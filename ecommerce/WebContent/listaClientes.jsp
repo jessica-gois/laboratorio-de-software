@@ -14,16 +14,21 @@
 
 		<c:if test="${not empty cliente}">
 			Cliente ${ cliente } cadastrado com sucesso!
+				<br />
 		</c:if>
 	
-	Clientes listados: <br />
+
+	
+	Clientes cadastrados: <br />
 	
 	<ul>
 		<c:forEach items="${clientes}" var="cliente">
 			
 			<li>
+				${cliente.id }
 				${cliente.nome } - <fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/> 
-				<a href="/ecommerce/mostraCliente?id=${cliente.id }">edita</a>
+				${cliente.cpf }  ${cliente.score}  ${cliente.status}  
+				<a href="/ecommerce/mostraCliente?id=${cliente.id }">atualiza</a>
 				<a href="/ecommerce/removeCliente?id=${cliente.id }">remove</a>
 			</li>
 		</c:forEach>

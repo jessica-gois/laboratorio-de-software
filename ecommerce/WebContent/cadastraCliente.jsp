@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:url value="/cadastraCliente" var="stub"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +15,9 @@
 <body>
 <h1> Cadastro Cliente: </h1>
 
-	<form action="/ecommerce/cadastraCliente" method="post">
+	
+
+	<form action="${stub }" method="post">
 	
 		Nome: <input type="text" name="nome" />
 		Data de Nascimento: <input type="text" name="dataNascimento" />

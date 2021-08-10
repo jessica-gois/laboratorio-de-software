@@ -1,6 +1,7 @@
 package persistencias;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class Banco {
 		Cliente cliente = new Cliente();
 		cliente.setId(chaveSequencial++);
 		cliente.setNome("Jéssica");
+		cliente.setDataNascimento(new Date());
 		cliente.setCpf("229.765.088-97");
 		cliente.setScore(900);
 		cliente.setStatus(true);
@@ -22,6 +24,7 @@ public class Banco {
 		Cliente cliente2 = new Cliente();
 		cliente2.setId(chaveSequencial++);
 		cliente2.setNome("Priscila");
+		cliente2.setDataNascimento(new Date());
 		cliente2.setCpf("229.650.099-96");
 		cliente2.setScore(998);
 		cliente2.setStatus(false);		

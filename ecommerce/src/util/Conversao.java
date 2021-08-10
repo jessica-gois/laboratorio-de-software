@@ -15,6 +15,8 @@ public class Conversao {
 		return number;
 	}
 	
+	//parse que devolve um Integer é valueOf
+	
 	public static Double parseStringToDouble (String parameter) {
 		Double number= 0.0;
 		if(parameter!=""){
