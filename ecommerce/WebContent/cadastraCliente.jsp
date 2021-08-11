@@ -25,8 +25,6 @@
 	font-family: Verdana;
 }
 </style>
-
-
 </head>
 <body>
 	<form action="${stub }" method="post">
