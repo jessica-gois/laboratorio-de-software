@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:url value="/cadastraCliente" var="stub"/>
+<c:url value="/controlador" var="stub"/>
 
 <!DOCTYPE html>
 <html>
@@ -69,7 +69,7 @@
 								<div>CPF: <input class="form-control" type="text" name="cpf" /></div>
 								<div>Score: <input class="form-control" type="text" name="score" /></div>
 								<div>Status: <input class="form-control" type="text" name="status" /></div>
-
+								<input type="hidden" name="acao" value="CadastraCliente" />
 
 								<div class="card-body">
 									<button class="btn btn-secondary" type="submit">Enviar</button>

@@ -1,25 +1,21 @@
-package controladores;
+package command;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entidades.Cliente;
-import persistencias.Banco;
+import dao.Banco;
+import model.domain.Cliente;
 import util.Conversao;
 
-
-@WebServlet("/mostraCliente")
-public class MostraCliente extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
+public class MostraCliente {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("JSP: mostraCliente");
+		
 		Conversao conv = new Conversao();
 		Integer id = Conversao.parseStringToInt(request.getParameter("id"));
 		
@@ -34,4 +30,3 @@ public class MostraCliente extends HttpServlet {
 	}
 
 }
- 

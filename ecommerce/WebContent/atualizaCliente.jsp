@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<c:url value="/atualizaCliente" var="stub"/>
+<c:url value="/controlador" var="stub"/>
 
 <!DOCTYPE html>
 <html>
@@ -75,8 +75,10 @@
 		<div>CPF: <input class="form-control" type="text" name="cpf" value="${cliente.cpf}"/> </div>
 		<div>Score: <input class="form-control" type="text" name="score"  value="${cliente.score}" /> </div>
 		<div>Status: <input class="form-control" type="text" name="status" value="${cliente.status}" /> <div>
+	
 		<input type="hidden" name="id" value="${cliente.id }" />
-
+		<input type="hidden" name="acao" value="AtualizaCliente" />
+		
 						<div class="card-body">
 									<button class="btn btn-secondary" type="submit">Enviar</button>
 								</div>

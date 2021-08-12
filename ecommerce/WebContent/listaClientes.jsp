@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List,entidades.Cliente" %>
+<%@ page import="java.util.List,model.domain.Cliente" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -60,11 +60,11 @@
 	
 			<div class="card">
 				<div>
-					<h1 class="card-header">CADASTRO REALIZADO COM SUCESSO</h1>
+					<h1 class="card-header">SUCESSO</h1>
 				</div>
 				<div>
 					<div class="card-header">
-						<p>Cliente cadastrado</p>
+						<p>Cliente cadastrado com sucesso</p>
 					</div>			
 
 	<div class="card-body">
@@ -76,8 +76,8 @@
 			<li>		
 				<p> ${cliente.nome } </p>
 				<div>
-				<a href="/ecommerce/mostraCliente?id=${cliente.id }">atualiza</a>
-				<a href="/ecommerce/removeCliente?id=${cliente.id }">remove</a>
+				<a href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id }">atualiza</a>
+				<a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>
 				</div>	
 			</li>
 		</c:forEach>
