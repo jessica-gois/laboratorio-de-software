@@ -1,11 +1,11 @@
 package command;
 
 import java.io.IOException;
-import java.text.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.ParseException;
 
 import dao.Banco;
 import model.domain.Cliente;
@@ -13,7 +13,7 @@ import util.Conversao;
 
 public class AtualizaCliente {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
 		Conversao conv = new Conversao();
@@ -39,8 +39,8 @@ public class AtualizaCliente {
 		cliente.setCpf(cpf);
 		cliente.setScore(Conversao.parseStringToInt(request.getParameter("score")));
 		cliente.setStatus(Conversao.parseStringToBoolean(request.getParameter("status")));
-
-		response.sendRedirect("controlador?acao=ListaClientes");
+		
+		return "redirect:controlador?acao=ListaClientes";
 		
 	}
 

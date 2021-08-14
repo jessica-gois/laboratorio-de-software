@@ -13,15 +13,16 @@ import model.domain.Cliente;
 
 public class ListaClientes {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("JSP: listaClientes");
 		
 		Banco banco = new Banco();
 		List<Cliente> lista = banco.getClientes();
 
 		request.setAttribute("clientes", lista);
-		RequestDispatcher rd = request.getRequestDispatcher("/listaClientes.jsp");
-		rd.forward(request, response);
+		
+		return "forward:listaClientes.jsp";
+
 	}
 
 }

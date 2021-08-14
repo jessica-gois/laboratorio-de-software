@@ -13,7 +13,7 @@ import util.Conversao;
 
 public class CadastraCliente {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("JSP: cadastraCliente");
 		
 		Conversao conv = new Conversao();
@@ -41,7 +41,8 @@ public class CadastraCliente {
 		
 		request.setAttribute("cliente", cliente.getNome());
 		
-		response.sendRedirect("controlador?acao=ListaClientes");
+		
+		return "redirect:controlador?acao=ListaClientes";
 	}
 
 }

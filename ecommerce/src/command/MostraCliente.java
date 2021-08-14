@@ -13,7 +13,7 @@ import util.Conversao;
 
 public class MostraCliente {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("JSP: mostraCliente");
 		
 		Conversao conv = new Conversao();
@@ -25,8 +25,8 @@ public class MostraCliente {
 		System.out.println(cliente.getNome());
 		
 		request.setAttribute("cliente", cliente);
-		RequestDispatcher rd = request.getRequestDispatcher("/atualizaCliente.jsp");
-		rd.forward(request, response);
+
+		return "forward:atualizaCliente.jsp";
 	}
 
 }
