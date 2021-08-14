@@ -11,7 +11,7 @@ import dao.Banco;
 import model.domain.Cliente;
 import util.Conversao;
 
-public class NovoCadastroCliente {
+public class CadastraClienteFormulario implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		return "forward:cadastraCliente.jsp";

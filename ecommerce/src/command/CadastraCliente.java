@@ -11,7 +11,7 @@ import dao.Banco;
 import model.domain.Cliente;
 import util.Conversao;
 
-public class CadastraCliente {
+public class CadastraCliente implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("JSP: cadastraCliente");

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Banco;
 import model.domain.Cliente;
 
-public class ListaClientes {
+public class ListaClientes implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("JSP: listaClientes");

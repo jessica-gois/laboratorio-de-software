@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Banco;
 import util.Conversao;
 
-public class RemoveCliente {
+public class RemoveCliente implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("JSP: removeCliente");

@@ -6,10 +6,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import model.domain.Cliente;
+import model.domain.Usuario;
 
 public class Banco {
 	
 	private static List<Cliente> lista = new ArrayList<>();
+	private static List<Usuario> listaUsuarios = new ArrayList<>();
+	
 	private static Integer chaveSequencial = 1;
 
 	static {
@@ -20,6 +23,11 @@ public class Banco {
 		cliente.setCpf("229.765.088-97");
 		cliente.setScore(900);
 		cliente.setStatus(true);
+		Usuario u1 = new Usuario();
+		u1.setEmail("jessica@gmail.com");
+		u1.setSenha("*Fatec123");
+		lista.add(cliente);	
+		listaUsuarios.add(u1);		
 		
 		Cliente cliente2 = new Cliente();
 		cliente2.setId(chaveSequencial++);
@@ -27,10 +35,12 @@ public class Banco {
 		cliente2.setDataNascimento(new Date());
 		cliente2.setCpf("229.650.099-96");
 		cliente2.setScore(998);
-		cliente2.setStatus(false);		
-		
-		lista.add(cliente);
+		cliente2.setStatus(false);			
+		Usuario u2 = new Usuario();
+		u2.setEmail("priscila@gmail.com");
+		u2.setSenha("*Fatec123");
 		lista.add(cliente2);
+		listaUsuarios.add(u2);
 	}
 
 	public void adiciona(Cliente cliente) {
@@ -59,6 +69,15 @@ public class Banco {
 		for (Cliente cliente : lista) {
 			if(cliente.getId() == id) {
 				return cliente;
+			}
+		}
+		return null;
+	}
+
+	public Usuario validaCredenciais(String email, String senha) {
+		for (Usuario usuario : listaUsuarios) {
+			if (usuario.autentica(email, senha)) {
+				return usuario;
 			}
 		}
 		return null;
