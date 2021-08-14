@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import command.Acao;
 import command.AtualizaCliente;
@@ -24,11 +25,27 @@ public class Controlador extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String parametroAcao = request.getParameter("acao");
+		
+		
+		HttpSession sessao = request.getSession();
+		boolean usuarioNaoLogado = (sessao.getAttribute("usuarioLogado") == null);
+		boolean acaoProtegida = !(parametroAcao.equals("Login") || parametroAcao.equals("LoginFormulario") || parametroAcao.equals("IndexFormulario"));
+		
+		
+		if (acaoProtegida && usuarioNaoLogado) {
+			response.sendRedirect("controlador?acao=LoginFormulario");	
+			return;	
+		}		
+		
+		
+		
+		
 		String nomeJSP = null;
-		String ParametroAcao = request.getParameter("acao");
+
 		
 		try {
-			String nomeClasse = "command."+ ParametroAcao;
+			String nomeClasse = "command."+ parametroAcao;
 			Class classe = Class.forName(nomeClasse); // carrega a classe com o nome desta string
 			Acao acao = (Acao)classe.newInstance();
 			nomeJSP = acao.executa(request, response);

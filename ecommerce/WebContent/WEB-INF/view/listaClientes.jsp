@@ -44,10 +44,11 @@
 			<nav class="navbar navbar-expand navbar-light bg-light mb-3">
 				<div class="navbar-nav col-8 me-2">
 					<a class="nav-link " href="">comprar livros</a> 
-					<a class="nav-link " href=""> minha conta</a> 
-					<a class="nav-link " href=""> cadastro</a> 
+					<a class="nav-link " href="/ecommerce/controlador?acao=ListaClientes"> minha conta </a> 
+					<a class="nav-link " href="/ecommerce/controlador?acao=CadastraClienteFormulario"> cadastro </a> 
 					<a class="nav-link " href=""> meus pedidos</a> 
-					<a class="nav-link " href=""> sair</a>
+					<a class="nav-link " href="/ecommerce/controlador?acao=Login"> login </a> 
+					<a class="nav-link " href="/ecommerce/controlador?acao=Logout"> sair </a>
 				</div>
 
 				<div class="container-fluid">
@@ -67,6 +68,7 @@
 				<div>
 					<div class="card-header">
 						<p>Cliente cadastrado com sucesso</p>
+						<p>Usuário logado ${usuarioLogado.email} </p>
 					</div>			
 
 	<div class="card-body">
