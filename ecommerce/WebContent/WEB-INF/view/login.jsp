@@ -30,7 +30,7 @@
 		
 					<div class="card-body">
 						<div class="row">
-							<div class="col-10 mb-3">
+							<div class="col-8 mb-3">
 							
 								<form action="${stub }" method="post">
 								<div>Email: <input class="form-control" type="email" name="email" /></div>
@@ -45,8 +45,8 @@
 								</form>
 
 							</div>
-							<div class="col-2 ">
-								<img class="img-thumbnail" src="imagens/perfil.jpg" alt="Foto de perfil" width="100%" height="100%">
+							<div class="col-4">
+								<img class="img-thumbnail" src="imagens/login.jpg" alt="Foto de perfil" width="100%" height="50%">
 							</div>
 							
 						</div>

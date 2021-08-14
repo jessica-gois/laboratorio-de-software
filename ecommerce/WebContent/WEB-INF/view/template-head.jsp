@@ -6,7 +6,7 @@
 
 <style>
 .cabecalho-ecomm {
-	background: #7209b7;
+	background: #9d4edd;
 	color: white;
 	font-size: 20px;
 	font-family: Verdana;

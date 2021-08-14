@@ -27,19 +27,23 @@ public class Controlador extends HttpServlet {
 
 		String parametroAcao = request.getParameter("acao");
 		
-		
-		HttpSession sessao = request.getSession();
-		boolean usuarioNaoLogado = (sessao.getAttribute("usuarioLogado") == null);
-		boolean acaoProtegida = !(parametroAcao.equals("Login") || parametroAcao.equals("LoginFormulario") || parametroAcao.equals("IndexFormulario")  ||  parametroAcao.equals("CadastraClienteFormulario"));
-		
-		
-		if (acaoProtegida && usuarioNaoLogado) {
-			response.sendRedirect("controlador?acao=LoginFormulario");	
-			return;	
-		}		
-		
-		
-		
+//		
+//		HttpSession sessao = request.getSession();
+//		boolean usuarioNaoLogado = (sessao.getAttribute("usuarioLogado") == null);
+//		boolean acaoProtegida = !(parametroAcao.equals("Login") || parametroAcao.equals("LoginFormulario") || parametroAcao.equals("IndexFormulario")  ||  
+//				parametroAcao.equals("CadastraClienteFormulario") || parametroAcao.equals("ListaClientesFormulario")
+//				|| parametroAcao.equals("ListaClientes")
+//				|| parametroAcao.equals("CadastraCliente")
+//				);
+//		
+//		
+//		if (acaoProtegida && usuarioNaoLogado) {
+//			response.sendRedirect("controlador?acao=LoginFormulario");	
+//			return;	
+//		}		
+//		
+//		
+//		
 		
 		String nomeJSP = null;
 

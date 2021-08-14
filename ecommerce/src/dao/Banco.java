@@ -17,17 +17,17 @@ public class Banco {
 
 	static {
 		Cliente cliente = new Cliente();
-		cliente.setId(chaveSequencial++);
-		cliente.setNome("Rodrigo Rocha");
-		cliente.setDataNascimento(new Date());
-		cliente.setCpf("229.765.088-97");
-		cliente.setScore(900);
-		cliente.setStatus(true);
-		Usuario u1 = new Usuario();
-		u1.setEmail("rodrigo@gmail.com");
-		u1.setSenha("123");
-		lista.add(cliente);	
-		listaUsuarios.add(u1);		
+//		cliente.setId(chaveSequencial++);
+//		cliente.setNome("Rodrigo Rocha");
+//		cliente.setDataNascimento(new Date());
+//		cliente.setCpf("229.765.088-97");
+//		cliente.setScore(900);
+//		cliente.setStatus(true);
+//		Usuario u1 = new Usuario();
+//		u1.setEmail("rodrigo@gmail.com");
+//		u1.setSenha("123");
+//		lista.add(cliente);	
+//		listaUsuarios.add(u1);		
 		
 //		Cliente cliente2 = new Cliente();
 //		cliente2.setId(chaveSequencial++);

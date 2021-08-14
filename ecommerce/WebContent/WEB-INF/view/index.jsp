@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	'<c:import url="template-head.jsp"/>
+	<c:import url="template-head.jsp"/>
 	<title>Ecommerce Turma do Livro</title>
 	</head>
 
