@@ -18,29 +18,29 @@ public class Banco {
 	static {
 		Cliente cliente = new Cliente();
 		cliente.setId(chaveSequencial++);
-		cliente.setNome("Jéssica");
+		cliente.setNome("Rodrigo Rocha");
 		cliente.setDataNascimento(new Date());
 		cliente.setCpf("229.765.088-97");
 		cliente.setScore(900);
 		cliente.setStatus(true);
 		Usuario u1 = new Usuario();
-		u1.setEmail("jessica@gmail.com");
-		u1.setSenha("*Fatec123");
+		u1.setEmail("rodrigo@gmail.com");
+		u1.setSenha("123");
 		lista.add(cliente);	
 		listaUsuarios.add(u1);		
 		
-		Cliente cliente2 = new Cliente();
-		cliente2.setId(chaveSequencial++);
-		cliente2.setNome("Priscila");
-		cliente2.setDataNascimento(new Date());
-		cliente2.setCpf("229.650.099-96");
-		cliente2.setScore(998);
-		cliente2.setStatus(false);			
-		Usuario u2 = new Usuario();
-		u2.setEmail("priscila@gmail.com");
-		u2.setSenha("*Fatec123");
-		lista.add(cliente2);
-		listaUsuarios.add(u2);
+//		Cliente cliente2 = new Cliente();
+//		cliente2.setId(chaveSequencial++);
+//		cliente2.setNome("Priscila");
+//		cliente2.setDataNascimento(new Date());
+//		cliente2.setCpf("229.650.099-96");
+//		cliente2.setScore(998);
+//		cliente2.setStatus(false);			
+//		Usuario u2 = new Usuario();
+//		u2.setEmail("priscila@gmail.com");
+//		u2.setSenha("*Fatec123");
+//		lista.add(cliente2);
+//		listaUsuarios.add(u2);
 	}
 
 	public void adiciona(Cliente cliente) {
