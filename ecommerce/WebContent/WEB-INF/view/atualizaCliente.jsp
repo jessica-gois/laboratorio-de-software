@@ -53,38 +53,6 @@
 			</div>
 		</div>
 		<br/>
-	<div class="container">
-		<section class="card shadow">
-			<div class="card-header">
-				<h3>Meus cartões</h3>
-			</div>
-			<div class="card-body">
-				<div class="row">
-					<div>
-						<a class="btn white" href="#"><p>Cadastrar novo</p></a>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<br/>
-	<div class="container">
-		<section class="card shadow">
-			<div class="card-header">
-				<h3>Endereços</h3>
-			</div>
-			<div class="card-body">
-				<div class="row">
-					<div>
-						<a class="btn white" href="#"><p>Adicionar novo endereço</p></a>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<br/>
-	<br/>
-
-
+	
 </body>
 </html>
