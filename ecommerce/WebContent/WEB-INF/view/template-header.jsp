@@ -17,8 +17,8 @@
 					<a class="nav-link " href="/ecommerce/controlador?acao=CadastraClienteFormulario"> Cadastro </a> 
 					<a class="nav-link " href=""> Meus pedidos</a> 
 					<a class="nav-link " href="/ecommerce/controlador?acao=LoginFormulario"> Login </a> 
-					<a class="nav-link " href="/ecommerce/controlador?acao=Logout">Sair
-					</a>
+					<a class="nav-link " href="/ecommerce/controlador?acao=Logout">Sair</a>
+					<a class="nav-link "><i class="fas fa-shopping-cart"></i></a>
 				</div>
 
 				<div class="container-fluid">
