@@ -45,7 +45,10 @@
 								<input type="hidden" name="id" value="${cliente.id}" />
 								<input type="hidden" name="acao" value="AtualizaCliente" />
 								<br/>
-								<button class="btn btn-secondary w-25" type="submit">Salvar</button>
+								<button class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar"><i class="fas fa-save"></i></button>
+								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn white border w-25" type="submit" alt="Voltar" title="Voltar">
+									<i class="fas fa-long-arrow-alt-left"></i>
+								</a>								
 							</form>
 						</div>
 					</div>

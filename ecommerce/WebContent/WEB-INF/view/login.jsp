@@ -41,8 +41,12 @@
 								
 								<br/>
 								<div>
-									<button class="btn btn-secondary w-25" type="submit">Entrar</button>	
-									<button class="btn white border w-25" type="reset">Limpar</button>	
+									<button class="btn btn-secondary w-25" alt="Entrar" title="Entrar" type="submit">
+										<i class="fas fa-sign-in-alt"></i>
+									</button>	
+									<button class="btn white border w-25" alt="Limpar" title="Limpar" type="reset">
+										<i class="fas fa-eraser"></i>
+									</button>	
 								</div>
 								</form>
 

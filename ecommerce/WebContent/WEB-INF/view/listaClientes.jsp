@@ -43,10 +43,12 @@
 									<h4>Data de nascimento</h4>
 									<p>${cliente.cpf}</p>
 									<h4>Score</h4>
-									<p>${cliente.score}</p> <br /> <a
-									class="btn btn-secondary w-25"
-									href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}">Atualizar
-										dados</a> </br> <!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->
+									<p>${cliente.score}</p> <br />
+									 <a class="btn btn-secondary w-25" alt="Atualizar dados" title="Atualizar dados"
+									 	href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}">
+										<i class="far fa-edit"></i></a>
+									</br> 
+									<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->
 								</li>
 							</c:forEach>
 						</ul>

@@ -52,8 +52,12 @@
 								
 								<br/>	
 								<div>
-									<button class="btn btn-secondary w-25" type="submit">Enviar</button>	
-									<button class="btn white border w-25" type="reset">Limpar</button>	
+									<button class="btn btn-secondary w-25" type="submit" title="Salvar" alt="Salvar">
+										<i class="fas fa-save"></i>	
+									</button>	
+									<button class="btn white border w-25" type="reset" title="Limpar" alt="Limpar">
+										<i class="fas fa-eraser"></i>
+									</button>	
 								</div>
 								</form>
 
