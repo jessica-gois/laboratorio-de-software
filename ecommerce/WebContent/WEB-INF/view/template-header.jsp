@@ -20,7 +20,7 @@
 				<div class="container-fluid">
 					<form class="d-flex">
 						<input class="form-control me-2 shadow-sm" type="search" placeholder="escreva o que procura">
-						<button class="btn btn-secondary w-20" type="submit">buscar</button>
+						<button class="btn btn-secondary w-20" type="submit"><i class="fas fa-search"></i></button>
 					</form>
 				</div>
 			</nav>
