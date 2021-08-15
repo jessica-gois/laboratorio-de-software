@@ -7,19 +7,19 @@
 		<div class="container">
 			<nav class="navbar navbar-expand navbar-light bg-light mb-3">
 				<div class="navbar-nav col-8 me-2">
-					<a class="nav-link " href="/ecommerce/controlador?acao=IndexFormulario">home</a> 
-					<a class="nav-link " href="">comprar livros</a> 
-					<a class="nav-link " href="/ecommerce/controlador?acao=ListaClientes"> minha conta </a> 
-					<a class="nav-link " href="/ecommerce/controlador?acao=CadastraClienteFormulario"> cadastro </a> 
-					<a class="nav-link " href=""> meus pedidos</a> 
-					<a class="nav-link " href="/ecommerce/controlador?acao=LoginFormulario"> login </a> 
-					<a class="nav-link " href="/ecommerce/controlador?acao=Logout"> sair </a>
+					<a class="nav-link " href="/ecommerce/controlador?acao=IndexFormulario">Home</a> 
+					<a class="nav-link " href="">Comprar livros</a> 
+					<a class="nav-link " href="/ecommerce/controlador?acao=ListaClientes"> Minha conta </a> 
+					<a class="nav-link " href="/ecommerce/controlador?acao=CadastraClienteFormulario"> Cadastro </a> 
+					<a class="nav-link " href=""> Meus pedidos</a> 
+					<a class="nav-link " href="/ecommerce/controlador?acao=LoginFormulario"> Login </a> 
+					<a class="nav-link " href="/ecommerce/controlador?acao=Logout"> Sair </a>
 				</div>
 
 				<div class="container-fluid">
 					<form class="d-flex">
-						<input class="form-control me-2" type="search" placeholder="escreva o que procura">
-						<button class="btn btn-secondary" type="submit">busca</button>
+						<input class="form-control me-2 shadow-sm" type="search" placeholder="escreva o que procura">
+						<button class="btn btn-secondary w-20" type="submit">buscar</button>
 					</form>
 				</div>
 			</nav>

@@ -19,14 +19,14 @@
 
 
 			<div class="container">
-				<div class="card">
+				<div class="card shadow">
 					<div>
-					<h1 class="card-header">MEU CADASTRO</h1>
+						<h1 class="card-header">MEU CADASTRO</h1>
 					</div>
 					
-						<div class="card-header">
-						<p>Usuário logado: ${usuarioLogado.email} </p>
-					</div>		
+						<!-- <div class="card-header hidden">
+							<p>Usuário logado: ${usuarioLogado.email} </p>
+						</div>-->	
 
 	<div class="card-body">
 	<div class="row">
@@ -35,10 +35,18 @@
 		<c:forEach items="${clientes}" var="cliente">
 			
 			<li>		
-				<h2> ${cliente.nome } </h2>		
-				<a href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id }">atualiza</a>
+				<h2> ${cliente.nome} </h2>
+				<p>${cliente.email}</p>
+				<h4>CPF</h4>
+				<p>${cliente.cpf}</p>	
+				<h4>Data de nascimento</h4>
+				<p>${cliente.cpf}</p>
+				<h4>Score</h4>
+				<p>${cliente.score}</p>
+				<br/>
+				<a class="btn btn-secondary w-25" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}">Atualizar dados</a>
 				</br>
-				<a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>
+				<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->
 				
 			</li>
 		</c:forEach>

@@ -4,7 +4,7 @@ package model.domain;
 import java.util.Date;
 
 
-public class Cliente {
+public class Cliente extends Usuario{
 	
 	private Integer id;
 	private String nome;

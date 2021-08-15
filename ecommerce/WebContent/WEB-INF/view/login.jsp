@@ -17,7 +17,7 @@
 
 
 			<div class="container">
-				<div class="card">
+				<div class="card shadow">
 					<div>
 					<h1 class="card-header">LOGIN</h1>
 					</div>
@@ -33,19 +33,21 @@
 							<div class="col-8 mb-3">
 							
 								<form action="${stub }" method="post">
-								<div>Email: <input class="form-control" type="email" name="email" /></div>
-								<div>Senha: <input class="form-control" type="password" name="senha" /></div>							
+								<div>Email: <input class="form-control" type="email" name="email" required="true" /></div>
+								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" required="true"/></div>							
 							
 			
 								<input type="hidden" name="acao" value="Login" />
-
-								<div class="card-body">
-									<button class="btn btn-secondary" type="submit">Enviar</button>
+								
+								<br/>
+								<div>
+									<button class="btn btn-secondary w-25" type="submit">Entrar</button>	
+									<button class="btn white border w-25" type="reset">Limpar</button>	
 								</div>
 								</form>
 
 							</div>
-							<div class="col-4">
+							<div class="col-3">
 								<img class="img-thumbnail" src="imagens/login.jpg" alt="Foto de perfil" width="100%" height="50%">
 							</div>
 							
