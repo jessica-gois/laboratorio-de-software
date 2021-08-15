@@ -1,3 +1,4 @@
+		<link href="fontawesome/css/all.css" rel="stylesheet">
 		<div class="cabecalho-ecomm mb-3 p-3 d-flex justify-content-between">
 		 <span class="logo"> TURMA DO LIVRO </span> 
 		 <span class="fonte-admin"> admin</span>
@@ -7,7 +8,7 @@
 		<div class="container">
 			<nav class="navbar navbar-expand navbar-light bg-light mb-3">
 				<div class="navbar-nav col-8 me-2">
-					<a class="nav-link " href="/ecommerce/controlador?acao=IndexFormulario">Home</a> 
+					<a class="nav-link " href="/ecommerce/controlador?acao=IndexFormulario"><i class="fas fa-home"></i></a> 
 					<a class="nav-link " href="">Comprar livros</a> 
 					<a class="nav-link " href="/ecommerce/controlador?acao=ListaClientes"> Minha conta </a> 
 					<a class="nav-link " href="/ecommerce/controlador?acao=CadastraClienteFormulario"> Cadastro </a> 
