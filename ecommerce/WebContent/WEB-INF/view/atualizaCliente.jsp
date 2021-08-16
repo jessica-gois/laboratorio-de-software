@@ -41,7 +41,8 @@
 									<input class="form-control" type="text" name="cpf" value="${cliente.cpf}" required="true"/></div>
 								</div>
 								<div>E-mail: <input class="form-control" type="email" name="email" value="${cliente.email}" required="true"/></div>
-											
+									
+					
 								<input type="hidden" name="id" value="${cliente.id}" />
 								<input type="hidden" name="acao" value="AtualizaCliente" />
 								<br/>

@@ -17,12 +17,19 @@ public class CadastraCliente implements Acao {
 		System.out.println("JSP: cadastraCliente");
 		
 		Conversao conv = new Conversao();
+		Cliente cliente= new Cliente();
 		
 		String nome = request.getParameter("nome");
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
+		String email = request.getParameter("email");
+		String senha = request.getParameter("senha");
+		String confirmacaoSenha = request.getParameter("confirmacaoSenha");
+		String score = request.getParameter("score");
+		String status = request.getParameter("status");
 
-		Cliente cliente= new Cliente();
+
+
 		cliente.setNome(nome);
 		try {
 			cliente.setDataNascimento(Conversao.parseStringToDate(request.getParameter("dataNascimento")));
@@ -30,9 +37,17 @@ public class CadastraCliente implements Acao {
 			throw new ServletException(e);
 		}
 		cliente.setCpf(cpf);	
-		cliente.setEmail(request.getParameter("email"));
-		cliente.setSenha(request.getParameter("senha"));
-		cliente.setStatus(true);
+		cliente.setEmail(email);
+		cliente.setSenha(senha);
+		cliente.setConfirmacaoSenha(confirmacaoSenha);
+		cliente.setScore(Conversao.parseStringToInt(score));
+		cliente.setStatus(Conversao.parseStringToBoolean(status));
+		
+		System.out.println(cliente.getEmail());
+		System.out.println(cliente.getSenha());
+		System.out.println(cliente.getConfirmacaoSenha());
+		System.out.println(cliente.getScore());
+		System.out.println(cliente.getStatus());
 
 		
 		Banco banco = new Banco();

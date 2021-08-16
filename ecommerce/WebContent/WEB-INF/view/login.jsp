@@ -22,7 +22,7 @@
 					<h1 class="card-header">LOGIN</h1>
 					</div>
 					
-						<div class="card-header">
+						<div class="card-header"> 
 						<p>Insira o <strong>e-mail</strong> e a <strong>senha</strong> usuário cadastrado</p>
 					</div>
 

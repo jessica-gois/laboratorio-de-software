@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import dao.Banco;
 import model.domain.Usuario;
 
-public class Login implements Acao {
+public class CadastraLogin implements Acao {
 
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
@@ -23,17 +23,10 @@ public class Login implements Acao {
 		Banco banco = new Banco();
 		Usuario  usuario = banco.validaCredenciais(email,senha);
 		
-//		Cliente usuario = (Cliente)banco.validaCredenciais(email,senha);
+		request.setAttribute("usuario", usuario.getEmail());
 		
-        if(usuario != null) {
-           System.out.println("Usuario existe no sistema");
-           HttpSession sessao = request.getSession();
-           sessao.setAttribute("usuarioLogado", usuario);
-           return "redirect:controlador?acao=ListaClientes";
-        }else {
-        	return "redirect:controlador?acao=LoginFormulario";
-        }
-
+		
+		return "redirect:controlador?acao=CadastraClienteFormulario";
 	
 	}
 

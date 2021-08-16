@@ -22,8 +22,9 @@ public class AtualizaCliente implements Acao {
 		String nome = request.getParameter("nome");
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
-		String score = request.getParameter("score");
-		String ativo = request.getParameter("status");
+		String email = request.getParameter("email");
+//		String score = request.getParameter("score");
+//		String ativo = request.getParameter("status");
 
 		System.out.println("JSP: atualizaCliente" + id);
 		
@@ -37,8 +38,10 @@ public class AtualizaCliente implements Acao {
 			throw new ServletException(e);
 		}
 		cliente.setCpf(cpf);
-		cliente.setScore(Conversao.parseStringToInt(request.getParameter("score")));
-		cliente.setStatus(Conversao.parseStringToBoolean(request.getParameter("status")));
+		cliente.setEmail(email);
+		
+//		cliente.setScore(Conversao.parseStringToInt(request.getParameter("score")));
+//		cliente.setStatus(Conversao.parseStringToBoolean(request.getParameter("status")));
 		
 		return "redirect:controlador?acao=ListaClientes";
 		

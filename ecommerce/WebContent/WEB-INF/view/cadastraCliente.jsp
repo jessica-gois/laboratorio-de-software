@@ -48,7 +48,10 @@
 									<input class="form-control" type="password" name="confirmacaoSenha" required="true"/>
 								</div>
 								</div>
-								<input type="hidden" name="acao" value="CadastraCliente" />								
+								<div><input type="hidden"  name="score" value ="700" /></div>
+								<div><input type="hidden" name="status"  value ="true"/></div>	
+								<input type="hidden" name="acao" value="CadastraCliente" />	
+						
 								
 								<br/>	
 								<div>

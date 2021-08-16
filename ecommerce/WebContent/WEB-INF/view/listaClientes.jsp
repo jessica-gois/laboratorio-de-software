@@ -23,10 +23,13 @@
 			<div>
 				<h1 class="card-header">MEU CADASTRO</h1>
 			</div>
+		
 
 			<!-- <div class="card-header hidden">
 					<p>Usuário logado: ${usuarioLogado.email} </p>
-				 </div>-->
+				 </div>-->	
+				 
+				 ${usuarioLogado.email} 		 
 
 			<div class="card-body">
 				<div class="row">

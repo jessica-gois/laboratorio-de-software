@@ -16,7 +16,7 @@
 	<c:import url="template-header.jsp"/>
 		</header>
 
-				<div class="container shadow-lg">	
+				<div class="container">	
 				<div>
 				<h1 class="card-header">Livros infantis</h1>
 				</div>
