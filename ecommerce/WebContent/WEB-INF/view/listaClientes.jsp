@@ -47,7 +47,8 @@
 									 <a class="btn btn-secondary w-25" alt="Atualizar dados" title="Atualizar dados"
 									 	href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}">
 										<i class="far fa-edit"></i></a>
-									</br> 
+									</br>									
+									<br/>
 									<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->
 								</li>
 							</c:forEach>
@@ -102,7 +103,10 @@
 			</div>
 		</section>
 	</div>
-	<br/>
+	<br/>	
+	<div class="container">
+		<a href="#">Desativar conta</a>
+	</div>
 	<br/>
 
 </body>
