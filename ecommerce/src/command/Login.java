@@ -22,8 +22,8 @@ public class Login implements Acao {
 		
 		Banco banco = new Banco();
 		Usuario  usuario = banco.validaCredenciais(email,senha);
+	
 		
-//		Cliente usuario = (Cliente)banco.validaCredenciais(email,senha);
 		
         if(usuario != null) {
            System.out.println("Usuario existe no sistema");
@@ -35,7 +35,6 @@ public class Login implements Acao {
         	System.out.println("Classe: command.Login -> command.LoginFormulario ");
         	return "redirect:controlador?acao=LoginFormulario";
         }
-
 	
 	}
 

@@ -22,10 +22,6 @@ public class ListaClientes implements Acao {
 		List<Cliente> lista = banco.getClientes();
 		request.setAttribute("clientes", lista);
 		
-		
-
-		
-
 		System.out.println("Classe: command.ListaClientes -> listaClientes.jsp ");
 		return "forward:listaClientes.jsp";
 

@@ -12,6 +12,7 @@ public class Banco {
 	
 	private static List<Cliente> lista = new ArrayList<>();
 	private static List<Usuario> listaUsuarios = new ArrayList<>();
+	private static List<Cliente> listaClientes = new ArrayList<>();
 	
 	private static Integer chaveSequencial = 1;
 
@@ -76,6 +77,7 @@ public class Banco {
 		return null;
 	}
 
+
 	public Usuario validaCredenciais(String email, String senha) {
 		for (Usuario usuario : listaUsuarios) {
 			if (usuario.autentica(email, senha)) {
@@ -84,5 +86,5 @@ public class Banco {
 		}
 		return null;
 	}
-
+	
 }
