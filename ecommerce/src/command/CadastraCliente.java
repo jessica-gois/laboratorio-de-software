@@ -21,8 +21,6 @@ public class CadastraCliente implements Acao {
 		String nome = request.getParameter("nome");
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
-		String score = request.getParameter("score");
-		String ativo = request.getParameter("status");
 
 		Cliente cliente= new Cliente();
 		cliente.setNome(nome);
@@ -32,8 +30,9 @@ public class CadastraCliente implements Acao {
 			throw new ServletException(e);
 		}
 		cliente.setCpf(cpf);	
-		cliente.setScore(Conversao.parseStringToInt(request.getParameter("score")));
-		cliente.setStatus(Conversao.parseStringToBoolean(request.getParameter("status")));
+		cliente.setEmail(request.getParameter("email"));
+		cliente.setSenha(request.getParameter("senha"));
+		cliente.setStatus(true);
 
 		
 		Banco banco = new Banco();
