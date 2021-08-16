@@ -14,7 +14,7 @@ import util.Conversao;
 public class CadastraCliente implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("JSP: cadastraCliente");
+		System.out.println("Classe: command.CadastraCliente");	
 		
 		Conversao conv = new Conversao();
 		Cliente cliente= new Cliente();
@@ -55,7 +55,7 @@ public class CadastraCliente implements Acao {
 		
 		request.setAttribute("cliente", cliente.getNome());
 		
-		
+		System.out.println("Classe: command.CadastraCliente -> command.ListaClientes");	
 		return "redirect:controlador?acao=ListaClientes";
 	}
 

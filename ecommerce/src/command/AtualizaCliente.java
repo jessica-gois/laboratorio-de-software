@@ -14,7 +14,7 @@ import util.Conversao;
 public class AtualizaCliente implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("Classe: command.AtualizaCliente");		
 		
 		Conversao conv = new Conversao();
 
@@ -26,7 +26,6 @@ public class AtualizaCliente implements Acao {
 //		String score = request.getParameter("score");
 //		String ativo = request.getParameter("status");
 
-		System.out.println("JSP: atualizaCliente" + id);
 		
 		Banco banco = new Banco();
 		Cliente cliente = banco.buscaClientePeloId(id);
@@ -43,7 +42,9 @@ public class AtualizaCliente implements Acao {
 //		cliente.setScore(Conversao.parseStringToInt(request.getParameter("score")));
 //		cliente.setStatus(Conversao.parseStringToBoolean(request.getParameter("status")));
 		
+		System.out.println("Classe: command.AtualizaCliente -> command.ListaClientes");	
 		return "redirect:controlador?acao=ListaClientes";
+		
 		
 	}
 

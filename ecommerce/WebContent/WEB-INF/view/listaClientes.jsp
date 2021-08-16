@@ -29,7 +29,7 @@
 					<p>Usuário logado: ${usuarioLogado.email} </p>
 				 </div>-->	
 				 
-				 ${usuarioLogado.email} 		 
+				 
 
 			<div class="card-body">
 				<div class="row">

@@ -14,7 +14,8 @@ import util.Conversao;
 public class CadastraClienteFormulario implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Encaminha para:cadastraCliente.jsp");
+		System.out.println("Classe: command.ClienteFormulario");
+		System.out.println("Classe: command.ClienteFormulario -> cadastraCliente.jsp");	
 		return "forward:cadastraCliente.jsp";
 	}
 

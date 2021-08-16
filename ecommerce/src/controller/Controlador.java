@@ -18,31 +18,14 @@ import command.MostraCliente;
 import command.CadastraClienteFormulario;
 import command.RemoveCliente;
 
-@WebServlet("/controlador")
+@WebServlet(urlPatterns = "/controlador")
 public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String parametroAcao = request.getParameter("acao");
-		
-		
-		HttpSession sessao = request.getSession();
-		boolean usuarioNaoLogado = (sessao.getAttribute("usuarioLogado") == null);
-		boolean acaoProtegida = !(parametroAcao.equals("Login") || parametroAcao.equals("LoginFormulario") || parametroAcao.equals("IndexFormulario")  
-				|| parametroAcao.equals("CadastraClienteFormulario")
-				);
-		
-		
-		if (acaoProtegida && usuarioNaoLogado) {
-			response.sendRedirect("controlador?acao=LoginFormulario");	
-			return;	
-		}		
-		
-		
-		
-		
+		String parametroAcao = request.getParameter("acao");	
 		String nomeJSP = null;
 
 		

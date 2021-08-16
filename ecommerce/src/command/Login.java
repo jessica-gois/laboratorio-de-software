@@ -15,7 +15,7 @@ public class Login implements Acao {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("JSP: login");	
+		System.out.println("Classe: command.Login");	
 		
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -29,8 +29,10 @@ public class Login implements Acao {
            System.out.println("Usuario existe no sistema");
            HttpSession sessao = request.getSession();
            sessao.setAttribute("usuarioLogado", usuario);
+           System.out.println("Classe: command.Login -> command.ListaClientes ");
            return "redirect:controlador?acao=ListaClientes";
         }else {
+        	System.out.println("Classe: command.Login -> command.LoginFormulario ");
         	return "redirect:controlador?acao=LoginFormulario";
         }
 

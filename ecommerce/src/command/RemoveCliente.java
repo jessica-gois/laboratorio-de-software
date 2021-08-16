@@ -12,7 +12,7 @@ import util.Conversao;
 public class RemoveCliente implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("JSP: removeCliente");
+		System.out.println("Classe: command.RemoveCliente");	
 		
 		Conversao conv = new Conversao();
 		
@@ -22,7 +22,7 @@ public class RemoveCliente implements Acao {
 		banco.removeCliente(id);
 		
 		
-		System.out.println(id);
+		System.out.println("Classe: command.ListaClientes");
 		return "redirect:controlador?acao=ListaClientes";
 	}
 

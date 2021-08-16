@@ -15,7 +15,7 @@ public class CadastraLogin implements Acao {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("JSP: login");	
+		System.out.println("Classe: command.CadastraLogin");	
 		
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -25,7 +25,7 @@ public class CadastraLogin implements Acao {
 		
 		request.setAttribute("usuario", usuario.getEmail());
 		
-		
+		System.out.println("Classe: command.CadastraLogin -> command.CadastraClienteFormulario");
 		return "redirect:controlador?acao=CadastraClienteFormulario";
 	
 	}

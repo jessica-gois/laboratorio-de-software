@@ -11,6 +11,8 @@ public class IndexFormulario implements Acao {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("Classe: command.IndexFormulario");
+		System.out.println("Classe: command.IndexFormulario -> index.jsp");	
 		return "forward:index.jsp";
 	}
 

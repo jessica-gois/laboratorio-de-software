@@ -12,9 +12,11 @@ public class Logout implements Acao {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("Classe: command.Logout");	
 		  HttpSession sessao = request.getSession();
 	//	  sessao.removeAttribute("usuarioLogado");
 		  sessao.invalidate();
+		  System.out.println("Classe: command.Logout -> command.LoginFormulario");
 		return "redirect:controlador?acao=LoginFormulario";
 	}
 

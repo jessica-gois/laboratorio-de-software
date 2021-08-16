@@ -14,7 +14,7 @@ import util.Conversao;
 public class MostraCliente implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("JSP: mostraCliente");
+		System.out.println("Classe: command.MostraCliente");	
 		
 		Conversao conv = new Conversao();
 		Integer id = Conversao.parseStringToInt(request.getParameter("id"));
@@ -25,7 +25,7 @@ public class MostraCliente implements Acao {
 		System.out.println(cliente.getNome());
 		
 		request.setAttribute("cliente", cliente);
-
+		System.out.println("Classe: command.MostraCliente -> atualizaCliente.jsp");
 		return "forward:atualizaCliente.jsp";
 	}
 

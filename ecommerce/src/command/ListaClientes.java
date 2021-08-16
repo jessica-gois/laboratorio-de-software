@@ -14,18 +14,19 @@ import model.domain.Usuario;
 public class ListaClientes implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("JSP: listaClientes");
+		System.out.println("Classe: command.ListaClientes");	
 		
 
-		
+
 		Banco banco = new Banco();
 		List<Cliente> lista = banco.getClientes();
 		request.setAttribute("clientes", lista);
 		
 		
+
 		
-		
-		
+
+		System.out.println("Classe: command.ListaClientes -> listaClientes.jsp ");
 		return "forward:listaClientes.jsp";
 
 	}

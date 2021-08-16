@@ -14,6 +14,8 @@ import util.Conversao;
 public class CadastraLoginFormulario implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Classe: command.CadastraLoginFormulario");	
+		System.out.println("Classe: command.CadastraLoginFormulario -> login.jsp");
 		return "forward:login.jsp";
 	}
 
