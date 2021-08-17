@@ -8,21 +8,26 @@ public class Cliente extends Usuario{
 	
 	private Integer id;
 	private String nome;
+	private String sobrenome;
 	private Date dataNascimento;
 	private String cpf;
 	private Integer score;
 	private Boolean status;
 	
-	public Cliente(Integer id, String nome, Date dataNascimento, String cpf, Integer score, Boolean status) {
+
+	
+	public Cliente(Integer id, String nome, String sobrenome, Date dataNascimento, String cpf, Integer score,
+		Boolean status) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.sobrenome = sobrenome;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.score = score;
 		this.status = status;
 	}
-	
+
 	public Cliente () {
 		
 	}
@@ -43,6 +48,15 @@ public class Cliente extends Usuario{
 		this.nome = nome;
 	}
 
+	
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+	
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}

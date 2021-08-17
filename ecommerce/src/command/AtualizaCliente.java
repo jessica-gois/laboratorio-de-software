@@ -20,6 +20,7 @@ public class AtualizaCliente implements Acao {
 
 		Integer id = Conversao.parseStringToInt(request.getParameter("id"));
 		String nome = request.getParameter("nome");
+		String sobrenome = request.getParameter("sobrenome");
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");
@@ -31,6 +32,7 @@ public class AtualizaCliente implements Acao {
 		Cliente cliente = banco.buscaClientePeloId(id);
 		
 		cliente.setNome(nome);
+		cliente.setSobrenome(sobrenome);
 		try {
 			cliente.setDataNascimento(Conversao.parseStringToDate(request.getParameter("dataNascimento")));
 		} catch (ParseException e) {

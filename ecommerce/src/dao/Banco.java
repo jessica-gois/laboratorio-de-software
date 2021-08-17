@@ -19,15 +19,16 @@ public class Banco {
 	static {
 		Cliente cliente = new Cliente();
 		cliente.setId(chaveSequencial++);
-		cliente.setNome("Rodrigo Rocha");
+		cliente.setNome("Zeca");
+		cliente.setSobrenome("Pagodinho");
 		cliente.setDataNascimento(new Date());
 		cliente.setCpf("229.765.088-97");
 		cliente.setScore(900);
 		cliente.setStatus(true);
-		cliente.setEmail("rodrigo@gmail.com");
+		cliente.setEmail("zeca@gmail.com");
 		cliente.setSenha("123");
 		Usuario u1 = new Usuario();
-		u1.setEmail("rodrigo@gmail.com");
+		u1.setEmail("zeca@gmail.com");
 		u1.setSenha("123");
 		lista.add(cliente);	
 		listaUsuarios.add(u1);		
