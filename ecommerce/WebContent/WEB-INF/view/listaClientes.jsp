@@ -20,25 +20,28 @@
 	<p>Usuário logado: ${usuarioLogado.email} </p>
 	</div>-->	
 	
+
 			<div class="container">
 				<div class="card shadow">
 				<div>
 				<h1 class="card-header">MINHA CONTA</h1>
-
-					
+				<div class="card-body">
+				<div class="row"></div>
+    					
+ 				<div class="card shadow">
+					<div>				
 					<div class="card-header">
-					<h3>Meus dados</h3>
+						<h2>Dados pessoais</h2>
 					</div>
+					</div>
+
+				<div class="card-body">
+				<div class="row">
 					<div>
-						
-					<div class="container">	
-					<div class="card-body">	
-					<div class="row">			
-					<div>
-					
-					<div class="col-10">
+					<div class="col-12 mb-3">							
+					<div class="row d-flex justify-content-between">
 					<table class="table">
-					<thead class="table table-dark table-striped">
+					<thead class="table table-dark table-striped ">
     					<tr>
         					<th>Nome</th>
         					<th>Sobrenome</th>
@@ -46,7 +49,8 @@
         					<th>CPF</th>
         					<th>E-mail</th> 
         					<th>Score</th>
-        					<th>Status</th>
+        					<!-- <th>Status</th>-->
+        					<th>Ação</th>
     				 	</tr>
     				</thead>
 						<tbody> 
@@ -58,82 +62,180 @@
        							<td>${cliente.cpf}</td>
         						<td>${cliente.email}</td>
         						<td>${cliente.score}</td>
-        						<td>${cliente.status}</td>
+        					<!--	<td>${cliente.status}</td>-->
+       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+  							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
+    						</c:forEach>      							
         					</tr>
         				</tbody>
-					</div>
-					
-			
-					<div class="col-2">
-					<a class="btn btn-secondary w-25" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a>		
-					</br>										
-					<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
-    				</c:forEach>
+					</table>	
+					<br/>
     				</div>
-    			
+    			</div>  
+    		 </div> 
+    		</div> 
+    	</div> 
+    </div> 
+ <br/>
     				
-				</table>	
-			</div>								
-		</div>
-<br/>
-	
-       				
-        				
-	
-	<div class="container">
-		<section class="card shadow">
-			<div class="card-header">
-				<h3>Senha</h3>
-			</div>
-			
-			<div class="card-body">
+				 	<div class="card shadow">
+					<div>				
+					<div class="card-header">
+						<h2>Senha</h2>
+					</div>
+					</div>
+
+				<div class="card-body">
 				<div class="row">
 					<div>
-						<a class="btn white" href="#"><p>Alterar senha</p></a>
+					<div class="col-12 mb-3">							
+					<div class="row d-flex justify-content-between">
+					<table class="table">
+					<thead class="table table-dark table-striped ">
+    					<tr>
+        					<th>Nome</th>
+        					<th>Sobrenome</th>
+        					<th>Data de nascimento</th>
+        					<th>CPF</th>
+        					<th>E-mail</th> 
+        					<th>Score</th>
+        					<!-- <th>Status</th>-->
+        					<th>Ação</th>
+    				 	</tr>
+    				</thead>
+						<tbody> 
+						<c:forEach items="${clientes}" var="cliente"> 
+							<tr>  				
+        						<td>${cliente.nome}</td>
+        						<td>${cliente.sobrenome}</td>
+        						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
+       							<td>${cliente.cpf}</td>
+        						<td>${cliente.email}</td>
+        						<td>${cliente.score}</td>
+        					<!--	<td>${cliente.status}</td>-->
+       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+  							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
+    						</c:forEach>      							
+        					</tr>
+        				</tbody>
+					</table>	
+					<br/>
+    				</div>
+    			</div>  
+    		 </div> 
+    		</div> 
+    	</div> 
+    </div> 
+ <br/>
+ 
+ 
+  				<div class="card shadow">
+					<div>				
+					<div class="card-header">
+						<h2>Meus cartões</h2>
 					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<br/>
-	
-	
-	<div class="container">
-		<section class="card shadow">
-			<div class="card-header">
-				<h3>Meus cartões</h3>
-			</div>
-			<div class="card-body">
+					</div>
+
+				<div class="card-body">
 				<div class="row">
 					<div>
-						<a class="btn white" href="#"><p>Cadastrar novo</p></a>
+					<div class="col-12 mb-3">							
+					<div class="row d-flex justify-content-between">
+					<table class="table">
+					<thead class="table table-dark table-striped ">
+    					<tr>
+        					<th>Nome</th>
+        					<th>Sobrenome</th>
+        					<th>Data de nascimento</th>
+        					<th>CPF</th>
+        					<th>E-mail</th> 
+        					<th>Score</th>
+        					<!-- <th>Status</th>-->
+        					<th>Ação</th>
+    				 	</tr>
+    				</thead>
+						<tbody> 
+						<c:forEach items="${clientes}" var="cliente"> 
+							<tr>  				
+        						<td>${cliente.nome}</td>
+        						<td>${cliente.sobrenome}</td>
+        						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
+       							<td>${cliente.cpf}</td>
+        						<td>${cliente.email}</td>
+        						<td>${cliente.score}</td>
+        					<!--	<td>${cliente.status}</td>-->
+       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+  							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
+    						</c:forEach>      							
+        					</tr>
+        				</tbody>
+					</table>	
+					<br/>
+    				</div>
+    			</div>  
+    		 </div> 
+    		</div> 
+    	</div> 
+    </div> 
+ <br/>
+ 
+ 
+  				<div class="card shadow">
+					<div>				
+					<div class="card-header">
+						<h2>Endereços</h2>
 					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<br/>
-	<div class="container">
-		<section class="card shadow">
-			<div class="card-header">
-				<h3>Endereços</h3>
-			</div>
-			<div class="card-body">
+					</div>
+
+				<div class="card-body">
 				<div class="row">
 					<div>
-						<a class="btn white" href="#"><p>Adicionar novo endereço</p></a>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<br/>	
+					<div class="col-12 mb-3">							
+					<div class="row d-flex justify-content-between">
+					<table class="table">
+					<thead class="table table-dark table-striped ">
+    					<tr>
+        					<th>Nome</th>
+        					<th>Sobrenome</th>
+        					<th>Data de nascimento</th>
+        					<th>CPF</th>
+        					<th>E-mail</th> 
+        					<th>Score</th>
+        					<!-- <th>Status</th>-->
+        					<th>Ação</th>
+    				 	</tr>
+    				</thead>
+						<tbody> 
+						<c:forEach items="${clientes}" var="cliente"> 
+							<tr>  				
+        						<td>${cliente.nome}</td>
+        						<td>${cliente.sobrenome}</td>
+        						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
+       							<td>${cliente.cpf}</td>
+        						<td>${cliente.email}</td>
+        						<td>${cliente.score}</td>
+        					<!--	<td>${cliente.status}</td>-->
+       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+  							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
+    						</c:forEach>      							
+        					</tr>
+        				</tbody>
+					</table>	
+					<br/>
+    				</div>
+    			</div>  
+    		 </div> 
+    		</div> 
+    	</div> 
+    </div> 
+ <br/>
+    				
+    			 				
+    						
+    				
 				<div class="container">
 					<a href="#">Desativar conta</a>
-				</div>
+				</div>				
 				<br/>
-			</div>
-				</div>
-				</div>
 		</body>
 </html>
