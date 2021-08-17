@@ -25,7 +25,7 @@ public class MostraSenha implements Acao {
 		System.out.println(cliente.getNome());
 		
 		request.setAttribute("cliente", cliente);
-		System.out.println("Classe: command.MostraCliente -> atualizaCliente.jsp");
+		System.out.println("Classe: command.MostraSenha -> atualizaSenha.jsp");
 		return "forward:atualizaSenha.jsp";
 	}
 
