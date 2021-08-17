@@ -41,7 +41,7 @@
 					<div class="col-12 mb-3">							
 					<div class="row d-flex justify-content-between">
 					<table class="table">
-					<thead class="table table-dark table-striped ">
+					<thead class="table table-striped ">
     					<tr>
         					<th>Nome</th>
         					<th>Sobrenome</th>
@@ -81,7 +81,7 @@
 				 	<div class="card shadow">
 					<div>				
 					<div class="card-header">
-						<h2>Senha</h2>
+						<h2>Alterar senha</h2>
 					</div>
 					</div>
 
@@ -91,29 +91,20 @@
 					<div class="col-12 mb-3">							
 					<div class="row d-flex justify-content-between">
 					<table class="table">
-					<thead class="table table-dark table-striped ">
+					<thead class="table table-striped ">
     					<tr>
-        					<th>Nome</th>
-        					<th>Sobrenome</th>
-        					<th>Data de nascimento</th>
-        					<th>CPF</th>
-        					<th>E-mail</th> 
-        					<th>Score</th>
-        					<!-- <th>Status</th>-->
+        					<th>E-mail</th>
+        					<th>Senha</th>
         					<th>Ação</th>
     				 	</tr>
     				</thead>
 						<tbody> 
 						<c:forEach items="${clientes}" var="cliente"> 
-							<tr>  				
-        						<td>${cliente.nome}</td>
-        						<td>${cliente.sobrenome}</td>
-        						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
-       							<td>${cliente.cpf}</td>
-        						<td>${cliente.email}</td>
-        						<td>${cliente.score}</td>
+							<tr>  	
+								<td>${cliente.email}</td>			
+        						<td>********</td>					
         					<!--	<td>${cliente.status}</td>-->
-       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraSenha&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
     						</c:forEach>      							
         					</tr>
@@ -142,31 +133,30 @@
 					<div class="col-12 mb-3">							
 					<div class="row d-flex justify-content-between">
 					<table class="table">
-					<thead class="table table-dark table-striped ">
+					<thead class="table table-striped ">
     					<tr>
-        					<th>Nome</th>
-        					<th>Sobrenome</th>
-        					<th>Data de nascimento</th>
-        					<th>CPF</th>
-        					<th>E-mail</th> 
-        					<th>Score</th>
+        					<th>Nome do titular</th>
+        					<th>Número do cartão</th>
+        					<th>Data de vencimento</th>
+        					<th>Bandeira</th>
+        					<th>Código do cartão</th> 
+        					<th>Cartão principal?</th>
         					<!-- <th>Status</th>-->
         					<th>Ação</th>
     				 	</tr>
     				</thead>
 						<tbody> 
-						<c:forEach items="${clientes}" var="cliente"> 
+						<!--<c:forEach items="${clientes}" var="cliente"> -->
 							<tr>  				
-        						<td>${cliente.nome}</td>
-        						<td>${cliente.sobrenome}</td>
-        						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
-       							<td>${cliente.cpf}</td>
-        						<td>${cliente.email}</td>
-        						<td>${cliente.score}</td>
-        					<!--	<td>${cliente.status}</td>-->
+        						<td>Zeca Pagodinho</td>
+        						<td>123.654.00</td>
+        						<td>14/05/2021</td>
+       							<td>Visa</td>
+        						<td>***</td>
+        						<td>Sim</td>
        						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
-    						</c:forEach>      							
+    						<!--<</c:forEach> -->     							
         					</tr>
         				</tbody>
 					</table>	
@@ -193,31 +183,39 @@
 					<div class="col-12 mb-3">							
 					<div class="row d-flex justify-content-between">
 					<table class="table">
-					<thead class="table table-dark table-striped ">
+					<thead class="table table-striped ">
     					<tr>
-        					<th>Nome</th>
-        					<th>Sobrenome</th>
-        					<th>Data de nascimento</th>
-        					<th>CPF</th>
-        					<th>E-mail</th> 
-        					<th>Score</th>
+    						<th>Tipo de endereço</th>
+        					<th>Tipo de residência</th>
+        					<th>Tipo de logradouro</th>
+        					<th>Logradouro</th>
+        					<th>Número</th>
+        					<th>Bairro</th> 
+        					<th>CEP</th>
+        					<th>Cidade</th>
+        					<th>Estado</th>
+        					<th>País</th>
         					<!-- <th>Status</th>-->
         					<th>Ação</th>
     				 	</tr>
     				</thead>
 						<tbody> 
-						<c:forEach items="${clientes}" var="cliente"> 
+						<!--<c:forEach items="${clientes}" var="cliente"> -->
 							<tr>  				
-        						<td>${cliente.nome}</td>
-        						<td>${cliente.sobrenome}</td>
-        						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
-       							<td>${cliente.cpf}</td>
-        						<td>${cliente.email}</td>
-        						<td>${cliente.score}</td>
+        						<td>Residencial</td>
+        						<td>Casa</td>
+        						<td>Rua</td>
+       							<td>Paulino Souza</td>
+        						<td>22</td>
+        						<td>Leblon</td>
+        						<td>08830-755</td>
+        						<td>Rio de Janeiro</td>
+        						<td>Rio de Janeiro</td>
+        						<td>Brasil</td>
         					<!--	<td>${cliente.status}</td>-->
        						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
-    						</c:forEach>      							
+    						<!--<</c:forEach> -->     							
         					</tr>
         				</tbody>
 					</table>	

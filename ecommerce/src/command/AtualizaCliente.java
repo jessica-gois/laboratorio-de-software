@@ -23,10 +23,11 @@ public class AtualizaCliente implements Acao {
 		String sobrenome = request.getParameter("sobrenome");
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
-		String email = request.getParameter("email");
+		String email = request.getParameter("email");	
+		String senha = request.getParameter("senha");
+		String confirmacaoSenha = request.getParameter("confirmacaoSenha");
 //		String score = request.getParameter("score");
 //		String ativo = request.getParameter("status");
-
 		
 		Banco banco = new Banco();
 		Cliente cliente = banco.buscaClientePeloId(id);
@@ -40,6 +41,8 @@ public class AtualizaCliente implements Acao {
 		}
 		cliente.setCpf(cpf);
 		cliente.setEmail(email);
+		cliente.setSenha(senha);
+		cliente.setConfirmacaoSenha(confirmacaoSenha);
 		
 //		cliente.setScore(Conversao.parseStringToInt(request.getParameter("score")));
 //		cliente.setStatus(Conversao.parseStringToBoolean(request.getParameter("status")));
