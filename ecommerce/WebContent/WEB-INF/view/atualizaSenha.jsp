@@ -25,7 +25,7 @@
 					</div>
 					
 					<div class="card-header">
-						<h2>Informe a nova senha</h2>
+						<p>Informe a nova senha</p>
 					</div>
 
 				<div class="card-body">
@@ -43,7 +43,7 @@
 								<div class="col-md-6"> <input class="form-control" type="hidden"  name="cpf" value="${cliente.cpf}" required="true"/></div>
 								</div>
 								
-								<div>E-mail: <input class="form-control" type="email" name="email" value="${cliente.email}" required="true"/></div>
+								<div><input class="form-control" type="hidden" name="email" value="${cliente.email}" required="true"/></div>
 								
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-6"> Nova senha: <input class="form-control" type="password" name="senha" value="${cliente.senha}" required="true"/></div>
@@ -62,8 +62,8 @@
 								<button class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar"><i class="fas fa-save"></i></button>
 								
 								
-								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn white border w-25" type="submit" alt="Voltar" title="Voltar">
-									<i class="fas fa-long-arrow-alt-left"></i>
+								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn white border w-25" type="submit" alt="Cancelar" title="Cancelar">
+									<i class="fas fa-ban"></i>
 								</a>								
 							</form>
 						</div>

@@ -41,4 +41,26 @@ public class Usuario {
 
         return true;
     }
+    
+    public boolean autenticaSenha(String senhaInformada, String confirmacaoSenha) {
+    	if(senhaInformada == null || confirmacaoSenha == null) {
+    		return false;
+    	}
+    	
+    	if(senhaInformada == "" || confirmacaoSenha=="") {
+    		return false;
+    	}
+    	
+    	if(!senhaInformada.equals(confirmacaoSenha)) {
+    		return false;
+    	}
+    	
+    	if(!senhaInformada.equals(this.getSenha())) {
+    		return false;
+    	}
+    	
+    	return true;
+    	
+    }
+   
 }

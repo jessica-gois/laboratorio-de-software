@@ -16,8 +16,6 @@ public class ListaClientes implements Acao {
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Classe: command.ListaClientes");	
 		
-
-
 		Banco banco = new Banco();
 		List<Cliente> lista = banco.getClientes();
 		request.setAttribute("clientes", lista);

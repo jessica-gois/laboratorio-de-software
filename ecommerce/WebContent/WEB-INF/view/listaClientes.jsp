@@ -50,7 +50,7 @@
         					<th>E-mail</th> 
         					<th>Score</th>
         					<!-- <th>Status</th>-->
-        					<th>Ação</th>
+        					<th></th>
     				 	</tr>
     				</thead>
 						<tbody> 
@@ -63,7 +63,12 @@
         						<td>${cliente.email}</td>
         						<td>${cliente.score}</td>
         					<!--	<td>${cliente.status}</td>-->
-       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+       						<td>
+	       						<a class="btn btn-secondary w-20" alt="Alterar dados da conta"
+	       							title="Alterar dados da conta" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}">
+	       							<i class="far fa-edit"></i>
+	       						</a
+       						></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
     						</c:forEach>      							
         					</tr>
@@ -82,6 +87,7 @@
 					<div>				
 					<div class="card-header">
 						<h2>Alterar senha</h2>
+						
 					</div>
 					</div>
 
@@ -95,7 +101,7 @@
     					<tr>
         					<th>E-mail</th>
         					<th>Senha</th>
-        					<th>Ação</th>
+        					<th></th>
     				 	</tr>
     				</thead>
 						<tbody> 
@@ -104,8 +110,9 @@
 								<td>${cliente.email}</td>			
         						<td>********</td>					
         					<!--	<td>${cliente.status}</td>-->
-       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraSenha&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
-  							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
+       						<td><a class="btn btn-secondary w-20" alt="Alterar senha" title="Alterar senha" 
+       						href="/ecommerce/controlador?acao=ConfirmaSenhaAtualFormulario"><i class="far fa-edit"></i></a></td>
+  								<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
     						</c:forEach>      							
         					</tr>
         				</tbody>
@@ -122,8 +129,11 @@
  
   				<div class="card shadow">
 					<div>				
-					<div class="card-header">
+					<div class="card-header d-flex justify-content-between">
 						<h2>Meus cartões</h2>
+						<a href="#" class="btn white" alt="Novo cartão" title="Novo cartão">
+							<i width="7px" heigth="100%" class="far fa-plus-square"></i>
+						</a>
 					</div>
 					</div>
 
@@ -142,7 +152,7 @@
         					<th>Código do cartão</th> 
         					<th>Cartão principal?</th>
         					<!-- <th>Status</th>-->
-        					<th>Ação</th>
+        					<th></th>
     				 	</tr>
     				</thead>
 						<tbody> 
@@ -154,7 +164,12 @@
        							<td>Visa</td>
         						<td>***</td>
         						<td>Sim</td>
-       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+       						<td>
+	       						<a class="btn btn-secondary w-20" alt="Excluir cartão" title="Excluir cartão"
+	       							href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}">
+	       							<i class="far fa-trash-alt"></i>
+	       						</a>
+       						</td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
     						<!--<</c:forEach> -->     							
         					</tr>
@@ -172,8 +187,12 @@
  
   				<div class="card shadow">
 					<div>				
-					<div class="card-header">
+					<div class="card-header d-flex justify-content-between"">
 						<h2>Endereços</h2>
+						<a href="#" class="btn white" alt="Novo endereço" title="Novo endereço">
+							<i class="far fa-plus-square"></i>
+						</a>
+						
 					</div>
 					</div>
 
@@ -196,7 +215,7 @@
         					<th>Estado</th>
         					<th>País</th>
         					<!-- <th>Status</th>-->
-        					<th>Ação</th>
+        					<th></th>
     				 	</tr>
     				</thead>
 						<tbody> 
@@ -213,7 +232,7 @@
         						<td>Rio de Janeiro</td>
         						<td>Brasil</td>
         					<!--	<td>${cliente.status}</td>-->
-       						<td><a class="btn btn-secondary w-20" alt="Atualizar dados" title="Atualizar dados" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+       						<td><a class="btn btn-secondary w-20" alt="Alterar endereço" title="Alterar endereço" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
     						<!--<</c:forEach> -->     							
         					</tr>

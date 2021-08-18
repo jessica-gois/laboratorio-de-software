@@ -10,7 +10,7 @@
 	color: white;
 	font-size: 20px;
 	font-family: Verdana;
-	padding: 20px;
+	padding: 20px;  
 }
 
 .fonte-admin {

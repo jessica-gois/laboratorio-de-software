@@ -16,7 +16,6 @@ public class MostraCliente implements Acao {
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Classe: command.MostraCliente");	
 		
-		Conversao conv = new Conversao();
 		Integer id = Conversao.parseStringToInt(request.getParameter("id"));
 		
 		Banco banco = new Banco();
