@@ -2,8 +2,21 @@
 		
 		<div class="cabecalho-ecomm mb-3 p-3 d-flex justify-content-between shadow">
 		 <img src="imagens/logo.png" alt="Logo" height="80" width="200px" >
-		 <span class="logo "alt="Administrador" title="Administrador"><i class="fas fa-user-tie"></i></span>
-		</div>
+		 <!-- <span class="logo "alt="Administrador" title="Administrador"><i class="fas fa-user-tie"></i></span>-->	
+
+	<div class="dropdown d-flex align-items-center">
+		<button class="btn btn-primary btn-lg btn-block btn-custom" type="button"
+			id="dropdownMenuButton" data-mdb-toggle="dropdown" 
+			aria-expanded="false">
+			<i class="fas fa-user-circle"></i>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<li><a class="dropdown-item" href="#">Action</a></li>
+			<li><a class="dropdown-item" href="#">Another action</a></li>
+			<li><a class="dropdown-item" href="#">Something else here</a></li>
+		</ul>
+	</div>
+</div>
 
 
 		<div class="container">
