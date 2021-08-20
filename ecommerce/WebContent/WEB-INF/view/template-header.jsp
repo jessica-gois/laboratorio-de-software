@@ -5,15 +5,16 @@
 		 <!-- <span class="logo "alt="Administrador" title="Administrador"><i class="fas fa-user-tie"></i></span>-->	
 
 	<div class="dropdown d-flex align-items-center">
-		<button class="btn btn-primary btn-lg btn-block btn-custom" type="button"
-			id="dropdownMenuButton" data-mdb-toggle="dropdown" 
+		<button class="btn btn-primary btn-lg btn-block btn-custom dropdown-toggle" type="button"
+			id="dropdownMenuButton" data-bs-toggle="dropdown" 
 			aria-expanded="false">
 			<i class="fas fa-user-circle"></i>
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<li><a class="dropdown-item" href="#">Action</a></li>
-			<li><a class="dropdown-item" href="#">Another action</a></li>
-			<li><a class="dropdown-item" href="#">Something else here</a></li>
+			<li><a class="dropdown-item" href="#">Entrar</a></li>
+			<li><a class="dropdown-item" href="#">Cadastro</a></li>
+			<li><a class="dropdown-item" href="#">Meus pedidos</a></li>
+			<li><a class="dropdown-item" href="#">Minha conta</a></li>
 		</ul>
 	</div>
 </div>

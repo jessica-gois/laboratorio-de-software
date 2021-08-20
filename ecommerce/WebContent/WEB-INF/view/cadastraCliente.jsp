@@ -19,12 +19,12 @@
 			<div class="container">
 				<div class="card shadow">
 					<div>
-					<h1 class="card-header">CADASTRO</h1>
+						<h1 class="card-header">CADASTRO</h1>
 					</div>
 					
 						<div class="card-header">
-						<h3>Meus dados</h3>
-					</div>
+							<h3>Meus dados</h3>
+						</div>
 		
 					<div class="card-body">
 						<div class="row">

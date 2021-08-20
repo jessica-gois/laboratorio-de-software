@@ -15,7 +15,7 @@
 	<header>
 	<c:import url="template-header.jsp"/>
 		</header>
-
+		
 				<div class="container">	
 				<div>
 				<h1 class="card-header">Livros infantis</h1>
@@ -24,6 +24,6 @@
 				<div class="col-12 ">
 				<img src="imagens/hero.jpg" alt="leitora infantil" width="100%" height="30%">		
 				</div>
-				</div>	
+				</div>			
 	</body>
 </html>
