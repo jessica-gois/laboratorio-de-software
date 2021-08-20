@@ -25,16 +25,14 @@
 						<div class="card-header"> 
 						<p>Insira a senha atual cadastrada</p>
 					</div>
-
-	
-		
+					
 					<div class="card-body">
 						<div class="row">
-							<div class="col-6 mb-3 mr-0">
+							<div class="col-8 mb-3">
 							
 								<form action="${stub }" method="post">
-								<div class="col-8">Senha: <input class="form-control" type="password" name="senha" required="true" /></div>
-								<div class="col-8">Confirme a senha: <input class="form-control" type="password" name="confirmacaoSenha" required="true"/></div>							
+								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" required="true" /></div>
+								<div class="col-6">Confirme a senha: <input class="form-control" type="password" name="confirmacaoSenha" required="true"/></div>							
 							
 			
 								<input type="hidden" name="acao" value="ConfirmaSenhaAtual" />
@@ -44,19 +42,20 @@
 									<button class="btn btn-secondary w-25" alt="Confirmar senha" title="Confirmar senha" type="submit">
 										<i class="fas fa-check"></i>
 									</button>	
-									<a href="/ecommerce/controlador?acao=ListaClientes" class="btn white border w-25" type="submit" alt="Cancelar" title="Cancelar">
+									<button class="btn white border w-25" type="submit" alt="Cancelar" title="Cancelar">
 										<i class="fas fa-ban"></i>
-									</a>	
+									</button>	
 								</div>
 								</form>
 
 							</div>
-							<div class="col-3 d-flex flex-row justify-content-center align-items-center ">
-								<img class="img-thumbnail" src="imagens/key.png" alt="Confirmação de senha" width="70%" height="70%">
+							<div class="col-3 d-flex align-items-center">
+								<img class="img-thumbnail"  src="imagens/key.png" alt="Confirmação de senha" width="70%" height="35%">
 							</div>
 							
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
