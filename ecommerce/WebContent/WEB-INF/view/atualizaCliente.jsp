@@ -43,13 +43,7 @@
 								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" value="${cliente.cpf}" required="true"/></div>
 								</div>
 								
-								<div>E-mail: <input class="form-control" type="email" name="email" value="${cliente.email}" required="true"/></div>
-								
-								<div class="row d-flex justify-content-between">
-								<div class="col-md-6"> Nova senha: <input class="form-control" type="password" name="senha" value="${cliente.senha}" required="true"/></div>
-								<div class="col-md-6"> Senha: <input class="form-control" type="password" name="confirmacaoSenha" value="${cliente.confirmacaoSenha}" required="true"/></div>								
-								</div>
-								
+								<div>E-mail: <input class="form-control" type="email" name="email" value="${cliente.email}" required="true"/></div>						
 							
 
 								<div><input type="hidden"  name="score" value ="700" /></div>

@@ -189,7 +189,7 @@
 					<div>				
 					<div class="card-header d-flex justify-content-between"">
 						<h2>Endereços</h2>
-						<a href="#" class="btn white" alt="Novo endereço" title="Novo endereço">
+						<a href="/ecommerce/controlador?acao=CadastraEnderecoFormulario" class="btn white" alt="Novo endereço" title="Novo endereço">
 							<i class="far fa-plus-square"></i>
 						</a>
 						
@@ -229,7 +229,7 @@
         						<td>Leblon</td>
         						<td>08830-755</td>
         						<td>Rio de Janeiro</td>
-        						<td>Rio de Janeiro</td>
+        						<td>RJ</td>
         						<td>Brasil</td>
         					<!--	<td>${cliente.status}</td>-->
        						<td><a class="btn btn-secondary w-20" alt="Alterar endereço" title="Alterar endereço" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
