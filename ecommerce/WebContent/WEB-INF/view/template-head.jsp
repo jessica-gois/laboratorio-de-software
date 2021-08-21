@@ -29,4 +29,12 @@
 .btn-custom {
 	border-radius: 50px;
 }
+
+
+ #esqueceu-senha{
+	color: black;
+	font-size: 10px;
+	font-family: 'Roboto', sans-serif;
+ }
+ 
 </style>
