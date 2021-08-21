@@ -131,7 +131,7 @@
 					<div>				
 					<div class="card-header d-flex justify-content-between">
 						<h2>Meus cartões</h2>
-						<a href="#" class="btn white" alt="Novo cartão" title="Novo cartão">
+						<a href="/ecommerce/controlador?acao=CadastraCartaoFormulario" class="btn white" alt="Novo cartão" title="Novo cartão">
 							<i width="7px" heigth="100%" class="far fa-plus-square"></i>
 						</a>
 					</div>
@@ -186,17 +186,18 @@
  
  
   				<div class="card shadow">
-					<div>				
-					<div class="card-header d-flex justify-content-between"">
-						<h2>Endereços</h2>
-						<a href="/ecommerce/controlador?acao=CadastraEnderecoFormulario" class="btn white" alt="Novo endereço" title="Novo endereço">
-							<i class="far fa-plus-square"></i>
-						</a>
-						
-					</div>
-					</div>
+						<div>
+							<div class="card-header d-flex justify-content-between"">
+								<h2>Endereços</h2>
+								<a href="/ecommerce/controlador?acao=CadastraEnderecoFormulario"
+									class="btn white" alt="Novo endereço" title="Novo endereço">
+									<i class="far fa-plus-square"></i>
+								</a>
 
-				<div class="card-body">
+							</div>
+						</div>
+
+						<div class="card-body">
 				<div class="row">
 					<div>
 					<div class="col-12 mb-3">							
@@ -251,7 +252,7 @@
     						
     				
 				<div class="container">
-					<a href="#">Desativar conta</a>
+					<a href="/ecommerce/controlador?acao=InativarContaFormulario">Desativar conta</a>
 				</div>				
 				<br/>
 		</body>
