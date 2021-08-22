@@ -20,6 +20,7 @@
 			<div>
 				<h1 class="card-header">CADASTRO DE ENDEREÇO</h1>
 			</div>
+			
 
 			<div class="card-body">
 				<div class="row">
@@ -155,11 +156,11 @@
 										for="enderecoResidencial">Endereço residencial?</label>
 								</div>
 							</div>
-							<div>
-								<button class="btn btn-secondary w-25" type="submit"
-									 action="/ecommerce/controlador?acao=ListaClientes" title="Salvar" alt="Salvar">
-									<i class="fas fa-save"></i>
+							<div>									
 								</button>
+								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar">
+									<i class="fas fa-save"></i>
+								</a>	
 								<button class="btn white border w-25" type="reset"
 									title="Limpar" alt="Limpar">
 									<i class="fas fa-eraser"></i>
@@ -168,11 +169,6 @@
 						</form>
 
 					</div>
-					<div class="col-3 d-flex align-items-center">
-						<img class="img-thumbnail" src="imagens/endereco.png"
-							alt="Endereço" width="70%" height="35%">
-					</div>
-
 				</div>
 			</div>
 
