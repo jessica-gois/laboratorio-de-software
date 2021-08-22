@@ -13,23 +13,31 @@ public class Banco {
 	private static List<Cliente> lista = new ArrayList<>();
 	private static List<Usuario> listaUsuarios = new ArrayList<>();
 	private static List<Cliente> listaClientes = new ArrayList<>();
+
 	
 	private static Integer chaveSequencial = 1;
 
 	static {
 		Cliente cliente = new Cliente();
 		cliente.setId(chaveSequencial++);
-		cliente.setNome("Zeca");
-		cliente.setSobrenome("Pagodinho");
+		cliente.setNome("Priscila");
+		cliente.setSobrenome("Sousa");
+		cliente.setGenero("F");
+		cliente.setTipoTelefone("Residencial");
+		cliente.setDdd("11");
+		cliente.setNumeroTelefone("2222-2222");	
 		cliente.setDataNascimento(new Date());
-		cliente.setCpf("229.765.088-97");
+		cliente.setCpf("111.111.111-11");
 		cliente.setScore(900);
 		cliente.setStatus(true);
-		cliente.setEmail("zeca@gmail.com");
+		cliente.setEmail("pri@gmail.com");
 		cliente.setSenha("123");
+		
+
+
 		Usuario u1 = new Usuario();
-		u1.setEmail("zeca@gmail.com");
-		u1.setSenha("123");
+		u1.setEmail("pri@gmail.com");
+		u1.setSenha("111");
 		lista.add(cliente);	
 		listaUsuarios.add(u1);		
 		

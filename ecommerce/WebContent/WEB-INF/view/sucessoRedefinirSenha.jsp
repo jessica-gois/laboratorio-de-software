@@ -25,7 +25,7 @@
 					</div>
 					
 					<div class="card-header">
-						<p>E-mail de redefinição de senha enviado! Redefina sua senha e faça o
+						<p>E-mail de redefinição de senha enviado! Siga as instruções e faça o
 						<a href="/ecommerce/controlador?acao=Logout">login</a>
 						novamente.
 						</p>

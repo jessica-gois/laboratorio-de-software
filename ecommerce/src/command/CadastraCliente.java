@@ -18,9 +18,14 @@ public class CadastraCliente implements Acao {
 		
 		Conversao conv = new Conversao();
 		Cliente cliente= new Cliente();
+
 		
 		String nome = request.getParameter("nome");
 		String sobrenome = request.getParameter("sobrenome");
+		String genero = request.getParameter("genero");	
+		String tipoTelefone = request.getParameter("tipoTelefone");
+		String ddd = request.getParameter("ddd");
+		String numeroTelefone = request.getParameter("numeroTelefone");	
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");
@@ -33,6 +38,10 @@ public class CadastraCliente implements Acao {
 
 		cliente.setNome(nome);
 		cliente.setSobrenome(sobrenome);
+		cliente.setGenero(genero);
+		cliente.setTipoTelefone(tipoTelefone);
+		cliente.setDdd(ddd);
+		cliente.setNumeroTelefone(numeroTelefone);
 		try {
 			cliente.setDataNascimento(Conversao.parseStringToDate(request.getParameter("dataNascimento")));
 		} catch (ParseException e) {
@@ -47,6 +56,7 @@ public class CadastraCliente implements Acao {
 		
 		System.out.println(cliente.getEmail());
 		System.out.println(cliente.getSenha());
+		System.out.println(cliente.getTipoTelefone());
 		System.out.println(cliente.getConfirmacaoSenha());
 		System.out.println(cliente.getScore());
 		System.out.println(cliente.getStatus());

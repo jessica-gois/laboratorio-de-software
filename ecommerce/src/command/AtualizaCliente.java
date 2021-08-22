@@ -21,6 +21,10 @@ public class AtualizaCliente implements Acao {
 		Integer id = Conversao.parseStringToInt(request.getParameter("id"));
 		String nome = request.getParameter("nome");
 		String sobrenome = request.getParameter("sobrenome");
+		String genero = request.getParameter("genero");
+		String tipoTelefone = request.getParameter("tipoTelefone");
+		String ddd = request.getParameter("ddd");
+		String numeroTelefone = request.getParameter("numeroTelefone");			
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");	
@@ -34,6 +38,10 @@ public class AtualizaCliente implements Acao {
 		
 		cliente.setNome(nome);
 		cliente.setSobrenome(sobrenome);
+		cliente.setGenero(genero);
+		cliente.setTipoTelefone(tipoTelefone);
+		cliente.setDdd(ddd);
+		cliente.setNumeroTelefone(numeroTelefone);
 		try {
 			cliente.setDataNascimento(Conversao.parseStringToDate(request.getParameter("dataNascimento")));
 		} catch (ParseException e) {

@@ -37,7 +37,11 @@
 								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" required="true"/></div>	
 								
 								<div>
-								<a id="esqueceu-senha" href="/ecommerce/controlador?acao=RedefinirSenhaClienteFormulario" class="redefinir">esqueceu sua senha?</a>						
+								<a id="esqueceu-senha" href="/ecommerce/controlador?acao=RedefinirSenhaClienteFormulario" >esqueceu sua senha?</a>						
+								</div>
+								
+								<div>
+								<a id="esqueceu-senha" href="/ecommerce/controlador?acao=CadastraClienteFormulario" >novo cadastro?</a>						
 								</div>
 			
 								<input type="hidden" name="acao" value="Login" />

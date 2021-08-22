@@ -30,13 +30,21 @@
 
 				<div class="card-body">
 					<div class="row">
-					 	<div class="col-10 mb-3">
+					 	<div class="col-12 mb-3">
 							<form action="${stub}" method="post">	
 							
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-6">Nome: <input class="form-control" type="text" name="nome" value="${cliente.nome}" required="true" /></div>
-								<div class="col-md-6">Sobrenome: <input class="form-control" type="text" name="sobrenome" value="${cliente.sobrenome}" required="true" /></div>
+								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" value="${cliente.nome}" required="true" /></div>
+								<div class="col-md-5">Sobrenome: <input class="form-control" type="text" name="sobrenome" value="${cliente.sobrenome}" required="true" /></div>
+								<div class="col-md-2">Gênero: <input class="form-control" type="text" name="genero" value="${cliente.genero}" required="true" /></div>
 								</div>
+								
+								
+								<div class="row d-flex justify-content-between">
+								<div class="col-md-5">Tipo Telefone: <input class="form-control" type="text" name="tipoTelefone"  value="${cliente.tipoTelefone}"required="true" /></div>
+								<div class="col-md-2">DDD: <input class="form-control" type="text" name="ddd"  value="${cliente.ddd}" required="true" /></div>
+								<div class="col-md-5">Número Telefone: <input class="form-control" type="tel" name="numeroTelefone"  value="${cliente.numeroTelefone}" required="true" /></div>								
+								</div>	
 								
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-6">Data de nascimento: <input class="form-control"  type="text" name="dataNascimento" value="<fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/>" required="true" /></div>

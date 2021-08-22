@@ -45,12 +45,15 @@
     					<tr>
         					<th>Nome</th>
         					<th>Sobrenome</th>
+        					<!--<th>Gênero</th>-->
+        					<!--<th>Tipo de Telefone</th>-->
+        					<!--<th>DDD</th>-->
+        					<th>Número Telefone</th>
         					<th>Data de nascimento</th>
         					<th>CPF</th>
         					<th>E-mail</th> 
         					<th>Score</th>
         					<!-- <th>Status</th>-->
-        					<th></th>
     				 	</tr>
     				</thead>
 						<tbody> 
@@ -58,6 +61,10 @@
 							<tr>  				
         						<td>${cliente.nome}</td>
         						<td>${cliente.sobrenome}</td>
+        						<!--<td>${cliente.genero}</td>-->
+        						<!--<td>${cliente.tipoTelefone}</td>-->
+        						<!--<td>${cliente.ddd}</td>-->
+        						<td>${cliente.numeroTelefone}</td>
         						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
        							<td>${cliente.cpf}</td>
         						<td>${cliente.email}</td>
@@ -110,9 +117,11 @@
 								<td>${cliente.email}</td>			
         						<td>********</td>					
         					<!--	<td>${cliente.status}</td>-->
+        					
        						<td><a class="btn btn-secondary w-20" alt="Alterar senha" title="Alterar senha" 
        						href="/ecommerce/controlador?acao=ConfirmaSenhaAtualFormulario"><i class="far fa-edit"></i></a></td>
   								<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
+  								
     						</c:forEach>      							
         					</tr>
         				</tbody>
@@ -149,7 +158,7 @@
         					<th>Número do cartão</th>
         					<th>Data de vencimento</th>
         					<th>Bandeira</th>
-        					<th>Código do cartão</th> 
+        					<!--<th>Código do cartão</th> -->
         					<th>Cartão principal?</th>
         					<!-- <th>Status</th>-->
         					<th></th>
@@ -158,11 +167,11 @@
 						<tbody> 
 						<!--<c:forEach items="${clientes}" var="cliente"> -->
 							<tr>  				
-        						<td>Zeca Pagodinho</td>
-        						<td>123.654.00</td>
-        						<td>14/05/2021</td>
+        						<td>Pri</td>
+        						<td>000</td>
+        						<td>10/10/2030</td>
        							<td>Visa</td>
-        						<td>***</td>
+        						<!--<td>***</td>-->
         						<td>Sim</td>
        						<td>
 	       						<a class="btn btn-secondary w-20" alt="Excluir cartão" title="Excluir cartão"
@@ -208,12 +217,12 @@
         					<th>Tipo de residência</th>
         					<th>Tipo de logradouro</th>
         					<th>Logradouro</th>
-        					<th>Número</th>
-        					<th>Bairro</th> 
-        					<th>CEP</th>
-        					<th>Cidade</th>
+        					<!--<th>Número</th>-->
+        					<!--<th>Bairro</th> -->
+        					<!--<th>CEP</th>-->
+        					<!--<th>Cidade</th>-->
         					<th>Estado</th>
-        					<th>País</th>
+        					<!--<th>País</th>-->
         					<!-- <th>Status</th>-->
         					<th></th>
     				 	</tr>
@@ -224,13 +233,13 @@
         						<td>Residencial</td>
         						<td>Casa</td>
         						<td>Rua</td>
-       							<td>Paulino Souza</td>
-        						<td>22</td>
-        						<td>Leblon</td>
-        						<td>08830-755</td>
-        						<td>Rio de Janeiro</td>
+       							<td>A</td>
+        						<!--<!--<td>00</td>-->
+        						<!--<td>Leblon</td>-->
+        						<!--<td>1111-1111</td>-->
+        						<!--<td>Rio de Janeiro</td>-->
         						<td>RJ</td>
-        						<td>Brasil</td>
+        						<!--<td>Brasil</td>-->
         					<!--	<td>${cliente.status}</td>-->
        						<td><a class="btn btn-secondary w-20" alt="Alterar endereço" title="Alterar endereço" href="/ecommerce/controlador?acao=MostraEndereco"><i class="far fa-edit"></i></a></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	

@@ -25,7 +25,7 @@
 		
 					<div class="card-body">
 						<div class="row">
-							<div class="col-10 mb-3">
+							<div class="col-12 mb-3">
 								
 								<form action="${stub }" method="post">
 								<div class="row mb-2">
@@ -33,9 +33,17 @@
 								</div>
 								
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-6">Nome: <input class="form-control" type="text" name="nome" required="true" /></div>
-								<div class="col-md-6">Sobrenome: <input class="form-control" type="text" name="sobrenome" required="true" /></div>
+								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" required="true" /></div>
+								<div class="col-md-5">Sobrenome: <input class="form-control" type="text" name="sobrenome" required="true" /></div>
+								<div class="col-md-2">Gênero: <input class="form-control" type="text" name="genero" required="true" /></div>								
 								</div>
+								
+								<div class="row d-flex justify-content-between">
+								<div class="col-md-5">Tipo Telefone: <input class="form-control" type="text" name="tipoTelefone" required="true" /></div>
+								<div class="col-md-2">DDD: <input class="form-control" type="text" name="ddd" required="true" /></div>
+								<div class="col-md-5">Número Telefone: <input class="form-control" type="tel" name="numeroTelefone" required="true" /></div>								
+								</div>								
+								
 								
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-6">Data de Nascimento: <input class="form-control" type="text" name="dataNascimento" required="true" /></div>
@@ -194,13 +202,7 @@
 									<button class="btn white border w-25" type="reset" title="Limpar" alt="Limpar"><i class="fas fa-eraser"></i>
 									</button>	
 								</div>
-								</form>
-							
-							</div>
-							<div class="col-2 ">
-								<img class="img-thumbnail" src="imagens/perfil.jpg" alt="Foto de perfil" width="100%" height="100%">
-							</div>
-							</div>				
+								</form>			
 			   </div>	
 		</body>
 </html>
