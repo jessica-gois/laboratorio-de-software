@@ -23,14 +23,14 @@ public class CadastraCliente implements Acao {
 		String nome = request.getParameter("nome");
 		String sobrenome = request.getParameter("sobrenome");
 		String genero = request.getParameter("genero");	
-		String tipoTelefone = request.getParameter("tipoTelefone");
-		String ddd = request.getParameter("ddd");
-		String numeroTelefone = request.getParameter("numeroTelefone");	
+		String dddResidencial = request.getParameter("dddResidencial");
+		String numeroTelResidencial = request.getParameter("numeroTelResidencial");	
+		String dddCelular = request.getParameter("dddCelular");
+		String numeroTelCelular = request.getParameter("numeroTelCelular");
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
-		String confirmacaoSenha = request.getParameter("confirmacaoSenha");
 		String score = request.getParameter("score");
 		String status = request.getParameter("status");
 
@@ -39,9 +39,10 @@ public class CadastraCliente implements Acao {
 		cliente.setNome(nome);
 		cliente.setSobrenome(sobrenome);
 		cliente.setGenero(genero);
-		cliente.setTipoTelefone(tipoTelefone);
-		cliente.setDdd(ddd);
-		cliente.setNumeroTelefone(numeroTelefone);
+		cliente.setDddResidencial(dddResidencial);
+		cliente.setNumeroTelResidencial(numeroTelResidencial);
+		cliente.setDddCelular(dddCelular);
+		cliente.setNumeroTelCelular(numeroTelCelular);
 		try {
 			cliente.setDataNascimento(Conversao.parseStringToDate(request.getParameter("dataNascimento")));
 		} catch (ParseException e) {
@@ -50,16 +51,9 @@ public class CadastraCliente implements Acao {
 		cliente.setCpf(cpf);	
 		cliente.setEmail(email);
 		cliente.setSenha(senha);
-		cliente.setConfirmacaoSenha(confirmacaoSenha);
 		cliente.setScore(Conversao.parseStringToInt(score));
 		cliente.setStatus(Conversao.parseStringToBoolean(status));
 		
-		System.out.println(cliente.getEmail());
-		System.out.println(cliente.getSenha());
-		System.out.println(cliente.getTipoTelefone());
-		System.out.println(cliente.getConfirmacaoSenha());
-		System.out.println(cliente.getScore());
-		System.out.println(cliente.getStatus());
 
 		
 		Banco banco = new Banco();

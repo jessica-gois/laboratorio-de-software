@@ -22,14 +22,14 @@ public class AtualizaCliente implements Acao {
 		String nome = request.getParameter("nome");
 		String sobrenome = request.getParameter("sobrenome");
 		String genero = request.getParameter("genero");
-		String tipoTelefone = request.getParameter("tipoTelefone");
-		String ddd = request.getParameter("ddd");
-		String numeroTelefone = request.getParameter("numeroTelefone");			
+		String dddResidencial = request.getParameter("dddResidencial");
+		String numeroTelResidencial = request.getParameter("numeroTelResidencial");	
+		String dddCelular = request.getParameter("dddCelular");
+		String numeroTelCelular = request.getParameter("numeroTelCelular");
 		String dataNascimento = request.getParameter("dataNascimento");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");	
 		String senha = request.getParameter("senha");
-		String confirmacaoSenha = request.getParameter("confirmacaoSenha");
 //		String score = request.getParameter("score");
 //		String ativo = request.getParameter("status");
 		
@@ -39,9 +39,10 @@ public class AtualizaCliente implements Acao {
 		cliente.setNome(nome);
 		cliente.setSobrenome(sobrenome);
 		cliente.setGenero(genero);
-		cliente.setTipoTelefone(tipoTelefone);
-		cliente.setDdd(ddd);
-		cliente.setNumeroTelefone(numeroTelefone);
+		cliente.setDddResidencial(dddResidencial);
+		cliente.setNumeroTelResidencial(numeroTelResidencial);
+		cliente.setDddCelular(dddCelular);
+		cliente.setNumeroTelCelular(numeroTelCelular);
 		try {
 			cliente.setDataNascimento(Conversao.parseStringToDate(request.getParameter("dataNascimento")));
 		} catch (ParseException e) {
@@ -50,7 +51,6 @@ public class AtualizaCliente implements Acao {
 		cliente.setCpf(cpf);
 		cliente.setEmail(email);
 		cliente.setSenha(senha);
-		cliente.setConfirmacaoSenha(confirmacaoSenha);
 		
 //		cliente.setScore(Conversao.parseStringToInt(request.getParameter("score")));
 //		cliente.setStatus(Conversao.parseStringToBoolean(request.getParameter("status")));

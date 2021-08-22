@@ -46,9 +46,10 @@
         					<th>Nome</th>
         					<th>Sobrenome</th>
         					<!--<th>Gênero</th>-->
-        					<!--<th>Tipo de Telefone</th>-->
-        					<!--<th>DDD</th>-->
-        					<th>Número Telefone</th>
+        					<!--<th>DDD Residencial</th>-->
+        					<th>Número Residencial</th>
+     						<!--<th>DDD Celular</th>-->
+        					<th>Número Celular</th>
         					<th>Data de nascimento</th>
         					<th>CPF</th>
         					<th>E-mail</th> 
@@ -62,9 +63,10 @@
         						<td>${cliente.nome}</td>
         						<td>${cliente.sobrenome}</td>
         						<!--<td>${cliente.genero}</td>-->
-        						<!--<td>${cliente.tipoTelefone}</td>-->
-        						<!--<td>${cliente.ddd}</td>-->
-        						<td>${cliente.numeroTelefone}</td>
+        						<!--<td>${cliente.dddResidencial}</td>-->
+        						<td>${cliente.numeroTelResidencial}</td>
+        						<!--<td>${cliente.dddCelular}</td>-->
+        						<td>${cliente.numeroTelCelular}</td>
         						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
        							<td>${cliente.cpf}</td>
         						<td>${cliente.email}</td>

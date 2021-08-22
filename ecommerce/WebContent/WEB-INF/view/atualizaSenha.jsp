@@ -59,12 +59,12 @@
 								<input type="hidden" name="acao" value="AtualizaCliente" />
 								<br/>
 								
-								<button class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar"><i class="fas fa-save"></i></button>
-								
-								
-								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn white border w-25" type="submit" alt="Cancelar" title="Cancelar">
-									<i class="fas fa-ban"></i>
-								</a>								
+							<button class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar"><i class="fas fa-save"></i></button>
+												
+								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn white border w-25" type="submit" alt="Voltar" title="Voltar">
+									<i class="fas fa-long-arrow-alt-left"></i>
+								</a>
+																
 							</form>
 						</div>
 					<br/>

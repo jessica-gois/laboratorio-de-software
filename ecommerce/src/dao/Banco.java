@@ -23,9 +23,13 @@ public class Banco {
 		cliente.setNome("Priscila");
 		cliente.setSobrenome("Sousa");
 		cliente.setGenero("F");
-		cliente.setTipoTelefone("Residencial");
-		cliente.setDdd("11");
-		cliente.setNumeroTelefone("2222-2222");	
+
+		cliente.setDddCelular("11");
+		cliente.setNumeroTelCelular("1111-1111");	
+		
+		cliente.setDddResidencial("11");
+		cliente.setNumeroTelResidencial("1111-1111");	
+		
 		cliente.setDataNascimento(new Date());
 		cliente.setCpf("111.111.111-11");
 		cliente.setScore(900);
@@ -37,7 +41,7 @@ public class Banco {
 
 		Usuario u1 = new Usuario();
 		u1.setEmail("pri@gmail.com");
-		u1.setSenha("111");
+		u1.setSenha("123");
 		lista.add(cliente);	
 		listaUsuarios.add(u1);		
 		

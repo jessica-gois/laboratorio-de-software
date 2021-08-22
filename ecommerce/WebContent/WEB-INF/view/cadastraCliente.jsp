@@ -44,11 +44,11 @@
 								</div>								
 								</div>
 								
-								<div class="row d-flex justify-content-between">
-								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddResidencial" required="true" placeholder="00" /></div>
-								<div class="col-md-4">Telefone residencial: <input class="form-control" type="tel" name="telefoneResidencial" placeholder="0000-0000" required="true" /></div>
-								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddCelular" required="true" placeholder="00" /></div>
-								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="telefoneCelular" placeholder="00000-0000" required="true" /></div>								
+								<div class="row d-flex justify-content-between">									
+								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddResidencial" value="${cliente.dddResidencial} required="true" placeholder="00" /></div>
+								<div class="col-md-4">Telefone residencial: <input class="form-control" type="tel" name="numeroTelResidencial" value="${cliente.numeroTelResidencial} placeholder="0000-0000" required="true" /></div>
+								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddCelular" value="${cliente.dddCelular} required="true" placeholder="00" /></div>
+								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="numeroTelCelular" value="${cliente.numeroTelCelular} placeholder="00000-0000" required="true" /></div>												
 								</div>								
 								
 								

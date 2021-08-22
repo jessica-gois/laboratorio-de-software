@@ -11,9 +11,10 @@ public class Cliente extends Usuario{
 	private Integer id;
 	private String nome;
 	private String sobrenome;
-	private String ddd;
-	private String numeroTelefone;
-	private String tipoTelefone;
+	private String dddResidencial;
+	private String numeroTelResidencial;
+	private String dddCelular;
+	private String numeroTelCelular;
 	private String genero;
 	private Date dataNascimento;
 	private String cpf;
@@ -26,22 +27,24 @@ public class Cliente extends Usuario{
 	}
 
 
-	public Cliente(Integer id, String nome, String sobrenome, String ddd, String numeroTelefone, String tipoTelefone,
-			String genero, Date dataNascimento, String cpf, Integer score, Boolean status) {
+
+	public Cliente(Integer id, String nome, String sobrenome, String dddResidencial, String numeroTelResidencial,
+			String dddCelular, String numeroTelCelular, String genero, Date dataNascimento, String cpf, Integer score,
+			Boolean status) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
-		this.ddd = ddd;
-		this.numeroTelefone = numeroTelefone;
-		this.tipoTelefone = tipoTelefone;
+		this.dddResidencial = dddResidencial;
+		this.numeroTelResidencial = numeroTelResidencial;
+		this.dddCelular = dddCelular;
+		this.numeroTelCelular = numeroTelCelular;
 		this.genero = genero;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.score = score;
 		this.status = status;
 	}
-
 
 
 
@@ -51,11 +54,9 @@ public class Cliente extends Usuario{
 
 
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 
 
@@ -65,11 +66,9 @@ public class Cliente extends Usuario{
 
 
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 
 
@@ -79,53 +78,57 @@ public class Cliente extends Usuario{
 
 
 
-
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
 
 
 
-
-	public String getDdd() {
-		return ddd;
+	public String getDddResidencial() {
+		return dddResidencial;
 	}
 
 
 
-
-	public void setDdd(String ddd) {
-		this.ddd = ddd;
+	public void setDddResidencial(String dddResidencial) {
+		this.dddResidencial = dddResidencial;
 	}
 
 
 
-
-	public String getNumeroTelefone() {
-		return numeroTelefone;
+	public String getNumeroTelResidencial() {
+		return numeroTelResidencial;
 	}
 
 
 
-
-	public void setNumeroTelefone(String numeroTelefone) {
-		this.numeroTelefone = numeroTelefone;
+	public void setNumeroTelResidencial(String numeroTelResidencial) {
+		this.numeroTelResidencial = numeroTelResidencial;
 	}
 
 
 
-
-	public String getTipoTelefone() {
-		return tipoTelefone;
+	public String getDddCelular() {
+		return dddCelular;
 	}
 
 
 
-
-	public void setTipoTelefone(String tipoTelefone) {
-		this.tipoTelefone = tipoTelefone;
+	public void setDddCelular(String dddCelular) {
+		this.dddCelular = dddCelular;
 	}
 
+
+
+	public String getNumeroTelCelular() {
+		return numeroTelCelular;
+	}
+
+
+
+	public void setNumeroTelCelular(String numeroTelCelular) {
+		this.numeroTelCelular = numeroTelCelular;
+	}
 
 
 
@@ -135,11 +138,9 @@ public class Cliente extends Usuario{
 
 
 
-
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-
 
 
 
@@ -149,11 +150,9 @@ public class Cliente extends Usuario{
 
 
 
-
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
 
 
 
@@ -163,11 +162,9 @@ public class Cliente extends Usuario{
 
 
 
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 
 
 
@@ -177,11 +174,9 @@ public class Cliente extends Usuario{
 
 
 
-
 	public void setScore(Integer score) {
 		this.score = score;
 	}
-
 
 
 
@@ -191,11 +186,10 @@ public class Cliente extends Usuario{
 
 
 
-
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
-	
+
 
 }
