@@ -56,7 +56,7 @@
 								
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-6">Data de nascimento: <input class="form-control"  type="text" name="dataNascimento" value="<fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/>" required="true" /></div>
-								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" value="${cliente.cpf}" required="true" disabled="true"/></div>
+								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" value="${cliente.cpf}" required="true"/></div>
 								</div>
 								
 								<div>E-mail: <input class="form-control" type="email" name="email" value="${cliente.email}" required="true"/></div>						

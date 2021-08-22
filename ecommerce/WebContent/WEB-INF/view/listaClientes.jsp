@@ -121,7 +121,7 @@
         					<!--	<td>${cliente.status}</td>-->
         					
        						<td><a class="btn btn-secondary w-20" alt="Alterar senha" title="Alterar senha" 
-       						href="/ecommerce/controlador?acao=ConfirmaSenhaAtualFormulario"><i class="far fa-edit"></i></a></td>
+       						href="/ecommerce/controlador?acao=ConfirmaSenhaAtualFormulario&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
   								<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
   								
     						</c:forEach>      							

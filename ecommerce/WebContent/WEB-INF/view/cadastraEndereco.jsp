@@ -157,14 +157,12 @@
 								</div>
 							</div>
 							<div>									
-								</button>
-								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar">
+								<button class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar">
 									<i class="fas fa-save"></i>
-								</a>	
-								<button class="btn white border w-25" type="reset"
-									title="Limpar" alt="Limpar">
-									<i class="fas fa-eraser"></i>
-								</button>
+								</button>	
+								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn white border w-25" type="submit" alt="Voltar" title="Voltar">
+									<i class="fas fa-long-arrow-alt-left"></i>
+								</a>
 							</div>
 						</form>
 

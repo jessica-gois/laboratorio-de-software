@@ -27,13 +27,13 @@
 						<div class="row">
 							<div class="col-12 mb-3">
 								
-								<form action="${stub }" method="post">
+								<form id="formCadastroCliente" action="${stub }" method="post">
 								<div class="row mb-2">
 									<h4>Dados pessoais:</h4>								
 								</div>
 								
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" required="true" placeholder="Digite seu nome..."/></div>
+								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" required placeholder="Digite seu nome..."/></div>
 								<div class="col-md-5">Sobrenome: <input class="form-control" type="text" name="sobrenome" required="true" placeholder="Digite seu sobrenome..." /></div>
 								<div class="col-md-2"><label for="cidade">Gênero:</label> 
 									<select class="form-control" name="genero" >
@@ -46,9 +46,9 @@
 								
 								<div class="row d-flex justify-content-between">									
 								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddResidencial" value="${cliente.dddResidencial} required="true" placeholder="00" /></div>
-								<div class="col-md-4">Telefone residencial: <input class="form-control" type="tel" name="numeroTelResidencial" value="${cliente.numeroTelResidencial} placeholder="0000-0000" required="true" /></div>
+								<div class="col-md-4">Telefone residencial: <input class="form-control" type="tel" name="numeroTelResidencial" value="${cliente.numeroTelResidencial}" placeholder="0000-0000" required="true" /></div>
 								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddCelular" value="${cliente.dddCelular} required="true" placeholder="00" /></div>
-								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="numeroTelCelular" value="${cliente.numeroTelCelular} placeholder="00000-0000" required="true" /></div>												
+								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="numeroTelCelular" value="${cliente.numeroTelCelular}" placeholder="00000-0000" required="true" /></div>												
 								</div>								
 								
 								
@@ -95,7 +95,7 @@
 										Nº: <input class="form-control" type="text"  name="numeroEndereco" required="true" placeholder="0000" />	
 									</div>
 									<div class="col-6">
-										Complemento: <input class="form-control" type="text"  name="complemento" required="true" placeholder="Digite o complemento..."/>	
+										Complemento: <input class="form-control" type="text"  name="complemento" placeholder="Digite o complemento..."/>	
 									</div>
 									
 									<div class="col-3">

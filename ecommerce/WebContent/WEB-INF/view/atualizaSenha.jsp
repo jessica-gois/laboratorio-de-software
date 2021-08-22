@@ -47,7 +47,7 @@
 								
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-6"> Nova senha: <input class="form-control" type="password" name="senha" value="${cliente.senha}" required="true" maxlength="8"/></div>
-								<div class="col-md-6"> Confirme a nova senha: <input class="form-control" type="password" name="confirmacaoSenha" value="${cliente.confirmacaoSenha}" required="true" maxlength="8"/></div>								
+								<div class="col-md-6"> Confirme a nova senha: <input class="form-control" type="password" name="confirmacaoSenha" required="true" maxlength="8"/></div>								
 								</div>
 								
 							
