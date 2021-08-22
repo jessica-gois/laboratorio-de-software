@@ -201,6 +201,6 @@
 								<img class="img-thumbnail" src="imagens/perfil.jpg" alt="Foto de perfil" width="100%" height="100%">
 							</div>
 							</div>				
-			   </div>		
+			   </div>	
 		</body>
 </html>

@@ -233,7 +233,7 @@
         						<td>RJ</td>
         						<td>Brasil</td>
         					<!--	<td>${cliente.status}</td>-->
-       						<td><a class="btn btn-secondary w-20" alt="Alterar endereço" title="Alterar endereço" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
+       						<td><a class="btn btn-secondary w-20" alt="Alterar endereço" title="Alterar endereço" href="/ecommerce/controlador?acao=MostraEndereco"><i class="far fa-edit"></i></a></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
     						<!--<</c:forEach> -->     							
         					</tr>

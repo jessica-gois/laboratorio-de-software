@@ -19,11 +19,11 @@
 			<div class="container">
 				<div class="card shadow">
 					<div>
-					<h1 class="card-header">LOGIN</h1>
+					<h1 class="card-header">REDEFINA SUA SENHA</h1>
 					</div>
 					
 						<div class="card-header"> 
-						<p>Insira o <strong>e-mail</strong> e a <strong>senha</strong> usuário cadastrado</p>
+						<p>Só precisamos do e-mail que você usou ao criar seu cadastro na Turma do Livro.</p>
 					</div>
 
 	
@@ -33,26 +33,20 @@
 							<div class="col-8 mb-3">
 							
 								<form action="${stub }" method="post">
-								<div class="col-6">Email: <input class="form-control" type="email" name="email" required="true" /></div>
-								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" required="true"/></div>	
-								
-								<div>
-								<a id="esqueceu-senha" href="/ecommerce/controlador?acao=RedefinirSenhaClienteFormulario" class="redefinir">esqueceu sua senha?</a>						
-								</div>
-			
-								<input type="hidden" name="acao" value="Login" />
+								<div class="col-12">Email: <input class="form-control" type="email" name="email" required="true" /></div>												
+						
+								<input type="hidden" name="acao" value="SucessoRedefinirSenhaClienteFormulario" />
 								
 								<br/>
 								<div>
-									<button class="btn btn-secondary w-25" alt="Entrar" title="Entrar" type="submit">
-										<i class="fas fa-sign-in-alt"></i>
+									<button class="btn btn-secondary w-25" alt="Redefinir Senha" title="Redefinir Senha" type="submit">
+										<i class="fas fa-check"></i>
 									</button>	
-									<button class="btn white border w-25" alt="Limpar" title="Limpar" type="reset">
-										<i class="fas fa-eraser"></i>
+									<button class="btn white border w-25" type="submit" alt="Cancelar" title="Cancelar">
+										<i class="fas fa-ban"></i>
 									</button>	
 								</div>
 								</form>
-
 							</div>
 							<div class="col-3">
 								<img class="img-thumbnail" src="imagens/login.jpg" alt="Foto de perfil" width="100%" height="50%">
