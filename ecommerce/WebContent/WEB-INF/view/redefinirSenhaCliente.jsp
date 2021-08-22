@@ -33,7 +33,7 @@
 							<div class="col-8 mb-3">
 							
 								<form action="${stub }" method="post">
-								<div class="col-12">Email: <input class="form-control" type="email" name="email" required="true" /></div>												
+								<div class="col-10">Email: <input class="form-control" type="email" name="email" required="true" placeholder="exemplo@exemplo.com.br" /></div>												
 						
 								<input type="hidden" name="acao" value="SucessoRedefinirSenhaClienteFormulario" />
 								

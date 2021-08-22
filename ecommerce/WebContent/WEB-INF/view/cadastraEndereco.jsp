@@ -30,7 +30,7 @@
 							<div class="row">
 								<div>
 									Descrição: <input class="form-control" type="text"
-										name="descricaoEndereco" required="true" />
+										name="descricaoEndereco" required="true"  placeholder="Exemplo: Minha Casa"  />
 								</div>
 							</div>
 
@@ -50,18 +50,18 @@
 								</div>
 								<div class="col-md-9">
 									Logradouro: <input class="form-control" type="text"
-										name="logradouro" required="true" />
+										name="logradouro" required="true" placeholder="Digite o logradouro..." />
 								</div>
 							</div>
 
 							<div class="row d-flex">
 								<div class="col-3">
 									Nº: <input class="form-control" type="text"
-										name="numeroEndereco" required="true" />
+										name="numeroEndereco" required="true" placeholder="0000" />
 								</div>
 								<div class="col-6">
 									Complemento: <input class="form-control" type="text"
-										name="complemento" required="true" />
+										name="complemento" required="true"  placeholder="Digite o complemento..." />
 								</div>
 
 								<div class="col-3">
@@ -80,10 +80,10 @@
 							<div class="row d-flex">
 								<div class="col-4">
 									Bairro: <input class="form-control" type="text" name="bairro"
-										required="true" />
+										required="true" placeholder="Digite o bairro..." />
 								</div>
 								<div class="col-2">
-									CEP: <input class="form-control" type="text" name="cep"
+									CEP: <input class="form-control" type="text" name="cep" placeholder="00000-000"
 										required="true" />
 								</div>
 								<div class="col-3">

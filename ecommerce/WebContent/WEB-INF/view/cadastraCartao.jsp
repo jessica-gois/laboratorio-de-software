@@ -43,18 +43,18 @@
 								</div>
 								<div class="col-md-9">
 									Número do cartão: <input class="form-control" type="text" maxlength="16"
-										name="numeroCartao" required="true" />
+										name="numeroCartao" required="true" placeholder="Digite o número do cartão..." />
 								</div>
 							</div>
 
 							<div class="row d-flex ">
 								<div class="col-8 mb-4">
 									Nome impresso no cartão: <input class="form-control" type="text"
-										name="nomeImpresso" required="true" />
+										name="nomeImpresso" required="true" placeholder="Digite o nome impresso no cartão..." />
 								</div>
 								<div class="col-4 mb-4">
 									Código de segurança (CVV): <input class="form-control" type="text" maxlength="3"
-										name="cvv" required="true" />
+										name="cvv" required="true" placeholder="Informe o código..." />
 								</div>
 
 							<div class="row mb-4">

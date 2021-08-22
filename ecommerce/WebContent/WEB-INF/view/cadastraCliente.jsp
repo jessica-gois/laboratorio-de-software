@@ -16,12 +16,12 @@
 <header>
 	<c:import url="template-header.jsp"/>
 	</header>
+	
 			<div class="container">
 				<div class="card shadow">
 					<div>
 						<h1 class="card-header">CADASTRO</h1>
-					</div>				
-						
+					</div>
 		
 					<div class="card-body">
 						<div class="row">
@@ -33,32 +33,41 @@
 								</div>
 								
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" required="true" /></div>
-								<div class="col-md-5">Sobrenome: <input class="form-control" type="text" name="sobrenome" required="true" /></div>
-								<div class="col-md-2">Gênero: <input class="form-control" type="text" name="genero" required="true" /></div>								
+								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" required="true" placeholder="Digite seu nome..."/></div>
+								<div class="col-md-5">Sobrenome: <input class="form-control" type="text" name="sobrenome" required="true" placeholder="Digite seu sobrenome..." /></div>
+								<div class="col-md-2"><label for="cidade">Gênero:</label> 
+									<select class="form-control" name="genero" >
+										<option value="">Escolha...</option>
+										<option value="FEMININO">Feminino</option>
+										<option value="MASCULINO">Masculino</option>
+									</select>										
+								</div>								
 								</div>
 								
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-5">Tipo Telefone: <input class="form-control" type="text" name="tipoTelefone" required="true" /></div>
-								<div class="col-md-2">DDD: <input class="form-control" type="text" name="ddd" required="true" /></div>
-								<div class="col-md-5">Número Telefone: <input class="form-control" type="tel" name="numeroTelefone" required="true" /></div>								
+								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddResidencial" required="true" placeholder="00" /></div>
+								<div class="col-md-4">Telefone residencial: <input class="form-control" type="tel" name="telefoneResidencial" placeholder="0000-0000" required="true" /></div>
+								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddCelular" required="true" placeholder="00" /></div>
+								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="telefoneCelular" placeholder="00000-0000" required="true" /></div>								
 								</div>								
 								
 								
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-6">Data de Nascimento: <input class="form-control" type="text" name="dataNascimento" required="true" /></div>
-								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" required="true"/></div>
+								<div class="col-md-6">Data de Nascimento: 
+									<input class="form-control" type="text" name="dataNascimento" placeholder="00/00/0000" required="true" />
+								</div>
+								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" placeholder="000.000.000-00" required="true"/></div>
 								</div>
 																
 								<br/>
 								
 								<div class="row mb-2">
-									<h4>Endereço</h4>								
+									<h4>Endereço Residencial</h4>								
 								</div>
 								
 								<div class="row">
 									<div>
-										Descrição: <input class="form-control" type="text"  name="descricaoEndereco" required="true" />
+										Descrição: <input class="form-control" type="text"  name="descricaoEndereco" required="true" placeholder="Exemplo: Minha Casa" />
 									</div>
 								</div>
 								
@@ -77,16 +86,16 @@
 										</select>
 									</div>								
 									<div class="col-md-9">
-										Logradouro: <input class="form-control" type="text"  name="logradouro" required="true" />	
+										Logradouro: <input class="form-control" type="text"  name="logradouro" required="true" placeholder="Digite o logradouro..."/>	
 									</div>									
 								</div>
 
 								<div class="row d-flex">
 									<div class="col-3">
-										Nº: <input class="form-control" type="text"  name="numeroEndereco" required="true" />	
+										Nº: <input class="form-control" type="text"  name="numeroEndereco" required="true" placeholder="0000" />	
 									</div>
 									<div class="col-6">
-										Complemento: <input class="form-control" type="text"  name="complemento" required="true" />	
+										Complemento: <input class="form-control" type="text"  name="complemento" required="true" placeholder="Digite o complemento..."/>	
 									</div>
 									
 									<div class="col-3">
@@ -104,11 +113,10 @@
 
 							<div class="row d-flex">
 								<div class="col-4">
-									Bairro: <input class="form-control" type="text" name="bairro"
-										required="true" />
+									Bairro: <input class="form-control" type="text" name="bairro" required="true" placeholder="Digite o bairro..."/>
 								</div>
 								<div class="col-2">
-									CEP: <input class="form-control" type="text" name="cep"
+									CEP: <input class="form-control" type="text" name="cep" placeholder="00000-000"
 										required="true" />
 								</div>
 								<div class="col-3">
@@ -181,11 +189,11 @@
 							<h4>Dados da conta:</h4>
 							</div>
 
-							<div class="col-md-12">E-mail: <input class="form-control" type="email" name="email" required="true" /></div>								
+							<div class="col-md-12">E-mail: <input class="form-control" type="email" name="email" required="true" placeholder="exemplo@exemplo.com.br" /></div>								
 			
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-6">Senha: <input class="form-control" type="password"  name="senha" required="true" /></div>
-								<div class="col-md-6">Confirme a senha: <input class="form-control" type="password"  name="confirmacaoSenha" required="true"/></div>
+								<div class="col-md-6">Senha: <input class="form-control" type="password"  name="senha" required="true" maxlength="8" placeholder="Digite sua senha..."/></div>
+								<div class="col-md-6">Confirme a senha: <input class="form-control" type="password"  name="confirmacaoSenha" required="true" maxlength="8" placeholder="Digite sua senha novamente..."/></div>
 								</div>
 							<br/>
 								

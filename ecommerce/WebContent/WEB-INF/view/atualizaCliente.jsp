@@ -36,19 +36,31 @@
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" value="${cliente.nome}" required="true" /></div>
 								<div class="col-md-5">Sobrenome: <input class="form-control" type="text" name="sobrenome" value="${cliente.sobrenome}" required="true" /></div>
-								<div class="col-md-2">Gênero: <input class="form-control" type="text" name="genero" value="${cliente.genero}" required="true" /></div>
+								<!-- <div class="col-md-2">Gênero: <input class="form-control" type="text" name="genero" value="${cliente.genero}" required="true" /></div>-->
+								<div class="col-md-2"><label for="cidade">Gênero:</label> 
+									<select class="form-control" name="genero" value="${cliente.genero}" required="true">
+										<option value="">Escolha...</option>
+										<option value="FEMININO">Feminino</option>
+										<option value="MASCULINO">Masculino</option>
+									</select>										
+								</div>	
 								</div>
 								
 								
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-5">Tipo Telefone: <input class="form-control" type="text" name="tipoTelefone"  value="${cliente.tipoTelefone}"required="true" /></div>
+								<!-- <div class="col-md-5">Tipo Telefone: <input class="form-control" type="text" name="tipoTelefone"  value="${cliente.tipoTelefone}"required="true" /></div>
 								<div class="col-md-2">DDD: <input class="form-control" type="text" name="ddd"  value="${cliente.ddd}" required="true" /></div>
-								<div class="col-md-5">Número Telefone: <input class="form-control" type="tel" name="numeroTelefone"  value="${cliente.numeroTelefone}" required="true" /></div>								
+								<div class="col-md-5">Número Telefone: <input class="form-control" type="tel" name="numeroTelefone"  value="${cliente.numeroTelefone}" required="true" /></div>	-->
+								
+								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddResidencial" required="true" placeholder="00" /></div>
+								<div class="col-md-4">Telefone residencial: <input class="form-control" type="tel" name="telefoneResidencial" placeholder="0000-0000" required="true" /></div>
+								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddCelular" required="true" placeholder="00" /></div>
+								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="telefoneCelular" placeholder="00000-0000" required="true" /></div>													
 								</div>	
 								
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-6">Data de nascimento: <input class="form-control"  type="text" name="dataNascimento" value="<fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/>" required="true" /></div>
-								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" value="${cliente.cpf}" required="true"/></div>
+								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" value="${cliente.cpf}" required="true" disabled="true"/></div>
 								</div>
 								
 								<div>E-mail: <input class="form-control" type="email" name="email" value="${cliente.email}" required="true"/></div>						

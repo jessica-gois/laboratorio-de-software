@@ -31,8 +31,8 @@
 							<div class="col-8 mb-3">
 							
 								<form action="${stub }" method="post">
-								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" required="true" /></div>
-								<div class="col-6">Confirme a senha: <input class="form-control" type="password" name="confirmacaoSenha" required="true"/></div>							
+								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" required="true" maxlength="8"/></div>
+								<div class="col-6">Confirme a senha: <input class="form-control" type="password" name="confirmacaoSenha" required="true" maxlength="8"/></div>							
 							
 			
 								<input type="hidden" name="acao" value="ConfirmaSenhaAtual" />
