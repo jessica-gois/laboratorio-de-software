@@ -14,7 +14,11 @@
 	<header>
 	<c:import url="template-header.jsp"/>
 	</header>
-
+ <script>
+             $(function(){
+                    $("#formLogin").validate();
+             });
+       </script>
 
 			<div class="container">
 				<div class="card shadow">
@@ -32,7 +36,7 @@
 						<div class="row">
 							<div class="col-8 mb-3">
 							
-								<form action="${stub }" method="post">
+								<form id="formLogin" action="${stub }" method="post" novalidate>
 								<div class="col-6">Email: <input class="form-control" type="email" name="email" required="true" /></div>
 								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" required="true"/></div>	
 								
