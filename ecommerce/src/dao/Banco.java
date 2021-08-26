@@ -41,7 +41,7 @@ public class Banco {
 
 		Usuario u1 = new Usuario();
 		u1.setEmail("pri@gmail.com");
-		u1.setSenha("123");
+		u1.setSenha("00wil360");
 		lista.add(cliente);	
 		listaUsuarios.add(u1);		
 		

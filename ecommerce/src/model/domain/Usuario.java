@@ -1,6 +1,6 @@
 package model.domain;
 
-public class Usuario {
+public class Usuario extends EntidadeDominio{
 
     private String email;
     private String senha;
