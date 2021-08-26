@@ -40,7 +40,6 @@
 }
 
 .error {
-
 	color: red
 }
 
