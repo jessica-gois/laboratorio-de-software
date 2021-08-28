@@ -13,6 +13,7 @@
 <body>
 	<header>
 	<c:import url="template-header.jsp"/>
+	<script src="javascript/validacaoFormulario/validaFormCadastroCartao.js" charset="UTF-8"></script>
 	</header>
 
 	<div class="container">
@@ -29,12 +30,12 @@
 				<div class="row">
 					<div class="col-8 mb-3">
 
-						<form action="${stub }" method="post">
+						<form id="formCadastroCartao" action="${stub }" method="post" novalidate>
 							
 							<div class="row d-flex">
 								<div class="col-3 mb-2">
-									<label for="tipoLogradouro">Bandeira:</label> <select
-										class="form-control" name="tipoLogradouro" id="tipoLogradouro" required="true">
+									<label for="bandeira">Bandeira:</label> <select
+										class="form-control" name="bandeira" id="bandeira" required="true">
 										<option value="">Escolha...</option>
 										<option value="VISA">Visa</option>
 										<option value="MASTERCARD">Mastercard</option>
@@ -54,7 +55,7 @@
 								</div>
 								<div class="col-4 mb-4">
 									Código de segurança (CVV): <input class="form-control" type="text" maxlength="3"
-										name="cvv" required="true" placeholder="Informe o código..." />
+										name="codigoSeguranca" required="true" placeholder="Informe o código..." />
 								</div>
 
 							<div class="row mb-4">
@@ -64,6 +65,7 @@
 										for="cartaoPreferencial">Usar como cartão preferencial?</label>
 								</div>
 							</div>
+							<input type="hidden" name="acao" value="ListaClientes" />
 							<div>									
 								</button>
 								<button class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar">

@@ -15,6 +15,7 @@
 <body>
 	<header>
 	<c:import url="template-header.jsp"/>
+	<script src="javascript/validacaoFormulario/validaFormAtualizaCliente.js" charset="UTF-8"></script>
 	</header>
 
 
@@ -31,7 +32,7 @@
 				<div class="card-body">
 					<div class="row">
 					 	<div class="col-12 mb-3">
-							<form action="${stub}" method="post">	
+							<form id="formAtualizaCliente" action="${stub}" method="post">	
 							
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" value="${cliente.nome}" required="true" /></div>
@@ -51,12 +52,14 @@
 								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddResidencial" value="${cliente.dddResidencial} required="true" placeholder="00" /></div>
 								<div class="col-md-4">Telefone residencial: <input class="form-control" type="tel" name="numeroTelResidencial" value="${cliente.numeroTelResidencial} placeholder="0000-0000" required="true" /></div>
 								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddCelular" value="${cliente.dddCelular} required="true" placeholder="00" /></div>
-								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="numeroTelCelular" value="${cliente.numeroTelCelular} placeholder="00000-0000" required="true" /></div>													
+								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="numeroTelCelular" value="${cliente.numeroTelCelular} placeholder="00000-0000"/></div>													
 								</div>	
 								
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-6">Data de nascimento: <input class="form-control"  type="text" name="dataNascimento" value="<fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/>" required="true" /></div>
-								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" value="${cliente.cpf}" required="true"/></div>
+								<div class="col-md-6">Data de Nascimento: 
+									 <input class="form-control"  type="text" name="dataNascimento" value="<fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/>" required="true" />
+								</div>
+								<div class="col-md-6">CPF:<input class="form-control" type="text" name="cpf" value="${cliente.cpf}" required="true"/></div>
 								</div>
 								
 								<div>E-mail: <input class="form-control" type="email" name="email" value="${cliente.email}" required="true"/></div>						

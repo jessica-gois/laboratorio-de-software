@@ -13,6 +13,7 @@
 <body>
 	<header>
 	<c:import url="template-header.jsp"/>
+	<script src="javascript/validacaoFormulario/validaFormCadastroEndereco.js" charset="UTF-8"></script>
 	</header>
 
 	<div class="container">
@@ -26,7 +27,7 @@
 				<div class="row">
 					<div class="col-8 mb-3">
 
-						<form action="${stub }" method="post">
+						<form id="formCadastroEndereco" action="${stub }" method="post" novalidate>
 							<div class="row">
 								<div>
 									Descrição: <input class="form-control" type="text"
@@ -61,7 +62,7 @@
 								</div>
 								<div class="col-6">
 									Complemento: <input class="form-control" type="text"
-										name="complemento" required="true"  placeholder="Digite o complemento..." />
+										name="complemento" placeholder="Digite o complemento..." />
 								</div>
 
 								<div class="col-3">
@@ -89,7 +90,7 @@
 								<div class="col-3">
 									<label for="estado">Estado:</label> <select
 										class="form-control" name="estado">
-										<option value="estado">Escolha o estado...</option>
+										<option value="">Escolha o estado...</option>
 										<option value="ac">Acre</option>
 										<option value="al">Alagoas</option>
 										<option value="am">Amazonas</option>
@@ -136,6 +137,13 @@
 								</div>
 							</div>
 							<br />
+							<div class="row">
+								<div>
+									Observação: <textarea class="form-control" type="text" maxlength="200" 
+										name="descricaoEndereco"></textarea>
+								</div>
+							</div>
+							<br/>
 
 							<div class="row mb-2">
 								<div class="col-4">

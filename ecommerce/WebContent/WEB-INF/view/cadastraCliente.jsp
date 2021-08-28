@@ -15,8 +15,8 @@
 		
 <header>
 	<c:import url="template-header.jsp"/>
+	<script src="javascript/validacaoFormulario/validaFormCadastroCliente.js" charset="UTF-8"></script>
 	</header>
-	
 			<div class="container">
 				<div class="card shadow">
 					<div>
@@ -27,16 +27,16 @@
 						<div class="row">
 							<div class="col-12 mb-3">
 								
-								<form id="formCadastroCliente" action="${stub }" method="post">
+								<form id="formCadastroCliente" action="${stub }" method="post" novalidate>
 								<div class="row mb-2">
 									<h4>Dados pessoais:</h4>								
 								</div>
 								
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" required placeholder="Digite seu nome..."/></div>
+								<div class="col-md-5">Nome: <input class="form-control" type="text" name="nome" required="true" placeholder="Digite seu nome..."/></div>
 								<div class="col-md-5">Sobrenome: <input class="form-control" type="text" name="sobrenome" required="true" placeholder="Digite seu sobrenome..." /></div>
 								<div class="col-md-2"><label for="cidade">Gênero:</label> 
-									<select class="form-control" name="genero" >
+									<select class="form-control" name="genero" required="true" >
 										<option value="">Escolha...</option>
 										<option value="FEMININO">Feminino</option>
 										<option value="MASCULINO">Masculino</option>
@@ -48,13 +48,13 @@
 								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddResidencial" value="${cliente.dddResidencial} required="true" placeholder="00" /></div>
 								<div class="col-md-4">Telefone residencial: <input class="form-control" type="tel" name="numeroTelResidencial" value="${cliente.numeroTelResidencial}" placeholder="0000-0000" required="true" /></div>
 								<div class="col-md-2">DDD: <input class="form-control" type="text" name="dddCelular" value="${cliente.dddCelular} required="true" placeholder="00" /></div>
-								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="numeroTelCelular" value="${cliente.numeroTelCelular}" placeholder="00000-0000" required="true" /></div>												
+								<div class="col-md-4">Telefone celular: <input class="form-control" type="tel" name="numeroTelCelular" value="${cliente.numeroTelCelular}" placeholder="00000-0000" /></div>												
 								</div>								
 								
 								
 								<div class="row d-flex justify-content-between">
 								<div class="col-md-6">Data de Nascimento: 
-									<input class="form-control" type="text" name="dataNascimento" placeholder="00/00/0000" required="true" />
+									<input class="form-control" type="text" name="dataNascimento" placeholder="dd/mm/aaaa"  required="true" />
 								</div>
 								<div class="col-md-6">CPF: <input class="form-control" type="text" name="cpf" placeholder="000.000.000-00" required="true"/></div>
 								</div>
@@ -67,13 +67,13 @@
 								
 								<div class="row">
 									<div>
-										Descrição: <input class="form-control" type="text"  name="descricaoEndereco" required="true" placeholder="Exemplo: Minha Casa" />
+										Descrição: <input class="form-control" type="text"  name="descricaoEndereco" placeholder="Exemplo: Minha Casa" required="true" maxlength="120"/>
 									</div>
 								</div>
 								
 								<div class="row d-flex">
 									<div class="col-3">
-										<label for="tipoLogradouro">Tipo de logradouro:</label> <select
+										<label for="tipoLogradouro">Tipo de logradouro:</label> <select required="true"
 											class="form-control" name="tipoLogradouro" id="tipoLogradouro">
 											<option value="">Escolha...</option>
 											<option value="RUA">Rua</option>
@@ -99,8 +99,8 @@
 									</div>
 									
 									<div class="col-3">
-										<label for="tipoResidencia">Tipo de residência:</label> <select
-											class="form-control" name="tipoResidencia" id="tipoResidencia">
+										<label for="tipoResidencia">Tipo de residência:</label> 
+										<select class="form-control" name="tipoResidencia" id="tipoResidencia" required="true">
 											<option value="">Escolha...</option>
 											<option value="CASA">Casa</option>
 											<option value="APARTAMENTO">Apartamento</option>
@@ -120,9 +120,9 @@
 										required="true" />
 								</div>
 								<div class="col-3">
-									<label for="estado">Estado:</label> <select
-										class="form-control" name="estado">
-										<option value="estado">Escolha o estado...</option>
+									<label for="estado">Estado:</label>
+									 <select class="form-control" name="estado" id="estado" required="true">
+										<option value="">Escolha o estado...</option>
 										<option value="ac">Acre</option>
 										<option value="al">Alagoas</option>
 										<option value="am">Amazonas</option>
@@ -154,7 +154,7 @@
 								</div>
 								<div class="col-3">
 									<label for="cidade">Cidade:</label> <select
-										class="form-control" name="cidade">
+										class="form-control" name="cidade" id="cidade" required="true">
 										<option value="">Escolha...</option>
 										<option value="Acrelândia">Acrelândia</option>
 										<option value="Assis Brasil">Assis Brasil</option>
@@ -169,7 +169,14 @@
 								</div>
 							</div>
 							<br/>
-							
+							<div class="row">
+								<div>
+									Observação: <textarea class="form-control" type="text" maxlength="200" 
+										name="descricaoEndereco"></textarea>
+								</div>
+							</div>
+							<br/>
+
 							<div class="row">
 								<div class="col-4">
 									<input class="form-check-input" type="checkbox" value="" id="enderecoEntrega">
@@ -192,8 +199,8 @@
 							<div class="col-md-12">E-mail: <input class="form-control" type="email" name="email" required="true" placeholder="exemplo@exemplo.com.br" /></div>								
 			
 								<div class="row d-flex justify-content-between">
-								<div class="col-md-6">Senha: <input class="form-control" type="password"  name="senha" required="true" maxlength="8" placeholder="Digite sua senha..."/></div>
-								<div class="col-md-6">Confirme a senha: <input class="form-control" type="password"  name="confirmacaoSenha" required="true" maxlength="8" placeholder="Digite sua senha novamente..."/></div>
+								<div class="col-md-6">Senha: <input class="form-control" type="password"  name="senha" id="senha" required="true" maxlength="8" placeholder="Digite sua senha..."/></div>
+								<div class="col-md-6">Confirme a senha: <input class="form-control" type="password"  name="confirmacaoSenha" id="confirmacaoSenha" required="true" maxlength="8" placeholder="Digite sua senha novamente..."/></div>
 								</div>
 							<br/>
 								

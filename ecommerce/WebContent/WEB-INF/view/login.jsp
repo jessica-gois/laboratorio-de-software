@@ -13,29 +13,8 @@
 <body>
 	<header>
 	<c:import url="template-header.jsp"/>
+	<script src="javascript/validacaoFormulario/validaFormLogin.js" charset="UTF-8"></script>
 	</header>
- <script>
- $(document).ready(function() {
-	  $("#formLogin").validate({
-	    rules: {
-	      email : {
-	        required: true
-	      },
-	      senha: {
-	        required: true
-	      }
-	    },
-	    messages : {
-	      email: {
-	        required: "Por favor, informe seu login"
-	      },
-	      senha: {
-	        required: "Por favor, informe sua senha"
-	      }
-	    }
-	  });
-	});
-       </script>
 
 			<div class="container">
 				<div class="card shadow">
@@ -54,7 +33,7 @@
 							<div class="col-8 mb-3">
 							
 								<form id="formLogin" action="${stub }" method="post" novalidate>
-								<div class="col-6">Email: <input class="form-control" type="email" name="email" id="email" required="true" /></div>
+								<div class="col-6">E-mail: <input class="form-control" type="email" name="email" id="email" required="true" /></div>
 								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" id="senha" required="true"/></div>	
 								
 								<div>

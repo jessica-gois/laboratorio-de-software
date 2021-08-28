@@ -13,6 +13,7 @@
 <body>
 	<header>
 	<c:import url="template-header.jsp"/>
+	<script src="javascript/validacaoFormulario/validaFormConfirmacaoSenha.js" charset="UTF-8"></script>
 	</header>
 
 
@@ -30,7 +31,7 @@
 						<div class="row">
 							<div class="col-8 mb-3">
 							
-								<form action="${stub }" method="post">
+								<form id="formConfirmacaoSenha" action="${stub }" method="post" novalidate>
 								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" required="true" maxlength="8"/></div>
 								<div class="col-6">Confirme a senha: <input class="form-control" type="password" name="confirmacaoSenha" required="true" maxlength="8"/></div>							
 							

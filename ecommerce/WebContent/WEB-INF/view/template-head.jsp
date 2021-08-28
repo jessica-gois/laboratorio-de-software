@@ -43,7 +43,7 @@
 	color: red
 }
 
-input.error{
+input.error, select.error{
 border: 1px solid red;
 }
 </style>
