@@ -1,6 +1,7 @@
 package command;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.Banco;
+import dao.UsuarioDAO;
 import model.domain.Usuario;
 
 public class Login implements Acao {
@@ -15,15 +17,15 @@ public class Login implements Acao {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Classe: command.Login");	
+		System.out.println("Classe: command.Login");					
+		Usuario usuario = new Usuario(request.getParameter("email"), request.getParameter("senha"));
+		usuario.setPesquisa("email,senha");
 		
-		String email = request.getParameter("email");
-		String senha = request.getParameter("senha");
+		UsuarioDAO dao = new UsuarioDAO();
 		
 		Banco banco = new Banco();
-		Usuario  usuario = banco.validaCredenciais(email,senha);
-	
-		
+		List<Usuario> resultado =  dao.consultar(usuario);
+		usuario = resultado != null ? resultado.get(0) : null;		
 		
         if(usuario != null) {
            System.out.println("Usuario existe no sistema");

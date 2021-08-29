@@ -6,6 +6,21 @@ public class Usuario extends EntidadeDominio{
     private String senha;
     private String confirmacaoSenha;
 
+    public Usuario(String email, String senha) {
+    	this.email = email;
+    	this.senha = senha;    	
+    }
+    
+    public Usuario(Integer id,String email, String senha) {
+    	this.setId(id);
+    	this.email = email;
+    	this.senha = senha;    	
+    }
+    
+    public Usuario(){
+    	
+    }
+    
     public String getEmail() {
         return email;
     }
