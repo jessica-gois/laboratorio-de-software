@@ -7,21 +7,23 @@ import model.domain.EntidadeDominio;
 public class ClienteDAO implements IDAO {
 
 	@Override
-	public void salvar(EntidadeDominio entidade) {
+	public String salvar(EntidadeDominio entidade) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void alterar(EntidadeDominio entidade) {
+	public String alterar(EntidadeDominio entidade) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void excluir(EntidadeDominio entidade) {
+	public String excluir(EntidadeDominio entidade) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override

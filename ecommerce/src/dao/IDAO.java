@@ -6,9 +6,9 @@ import model.domain.EntidadeDominio;
 
 public interface IDAO {
 
-	public void salvar(EntidadeDominio entidade);
-	public void alterar(EntidadeDominio entidade);
-	public void excluir(EntidadeDominio entidade);
+	public String salvar(EntidadeDominio entidade);
+	public String alterar(EntidadeDominio entidade);
+	public String excluir(EntidadeDominio entidade);
 	public List<EntidadeDominio>consultar(EntidadeDominio entidade);
 	
 }

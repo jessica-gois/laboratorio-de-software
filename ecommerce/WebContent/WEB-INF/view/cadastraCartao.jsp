@@ -37,9 +37,9 @@
 									<label for="bandeira">Bandeira:</label> <select
 										class="form-control" name="bandeira" id="bandeira" required="true">
 										<option value="">Escolha...</option>
-										<option value="VISA">Visa</option>
-										<option value="MASTERCARD">Mastercard</option>
-										<option value="ELO">Elo</option>
+										<option value="Visa">Visa</option>
+										<option value="Mastercard">Mastercard</option>
+										<option value="Elo">Elo</option>
 									</select>
 								</div>
 								<div class="col-md-9">
@@ -65,7 +65,7 @@
 										for="cartaoPreferencial">Usar como cartão preferencial?</label>
 								</div>
 							</div>
-							<input type="hidden" name="acao" value="ListaClientes" />
+							<input type="hidden" name="acao" value="CadastraCartao" />
 							<div>									
 								</button>
 								<button class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar">
