@@ -17,10 +17,10 @@ public class CadastraCartao extends AbstractCommand {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+				
 		Cartao cartao = new Cartao(request.getParameter("numeroCartao"), Bandeira.valueOf(request.getParameter("bandeira")) ,
 				request.getParameter("nomeImpresso"), request.getParameter("codigoSeguranca"), 
-				Conversao.parseStringToBoolean(request.getParameter("codigoSeguranca")));
+				Conversao.parseStringToBoolean(request.getParameter("preferencial")));
 		
 		// TODO Auto-generated method stub
 		return fachada.salvar(cartao);

@@ -11,155 +11,124 @@ import java.util.List;
 
 import db.Database;
 import model.domain.Cartao;
+import model.domain.Cliente;
 import model.domain.EntidadeDominio;
+import model.domain.enums.Bandeira;
+import util.Calculadora;
 
-public class CartaoDAO implements IDAO {
+public class CartaoDAO extends AbstractDAO {
 
 	public String salvar(EntidadeDominio entityDomain) {
 		Cartao cartao = (Cartao) entityDomain;
-		System.out.println(cartao.getId());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Connection conn = null;
-		PreparedStatement st = null;
+		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
+			st = conn.prepareStatement("INSERT INTO cartao "
+					+ "(car_numero, car_nome, car_cvv, car_preferencial, car_ban_id, car_cli_id) " + "VALUES " + "(?, ?, ?, ?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
 
-			st = conn.prepareStatement(
-					"INSERT INTO cartoes " + "(numero, nomeImpresso, bandeira, codigoSeguranca, preferencial) "
-					+ "VALUES " + "(?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			setaParametrosQuery(st, cartao.getNumero(), cartao.getNomeImpresso(), cartao.getCodigoSeguranca(),
+					cartao.getPreferencial(), cartao.getBandeira().getCodigo(), 1);
 
-			st.setString(1, cartao.getNumero());
-			st.setString(2, cartao.getNomeImpresso());
-			st.setString(3, cartao.getBandeira().getDescricao());
-			st.setString(4, cartao.getCodigoSeguranca());
-			st.setBoolean(5, cartao.getPreferencial());
-			int rowsAffected = st.executeUpdate();
+			Long inicioExecucao = System.currentTimeMillis();
+			int linhasAfetadas = st.executeUpdate();
+			Long terminoExecucao = System.currentTimeMillis();
 
-			System.out.println("Done! Rows affected: " + rowsAffected);
+			System.out.println(
+					"Cartão cadastrado com sucesso! \n Linhas afetadas: " + linhasAfetadas + "\nTempo de execução: "
+							+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
 			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "Erro ao salvar";
 		}
-
 	}
-//
-//	public String alterar(EntityDomain entityDomain) {
-//		Product product = (Product) entityDomain;
-//		System.out.println(product.getIdProduct());
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Connection conn = null;
-//		PreparedStatement st = null;
-//		try {
-//			conn = Database.conectarBD();
-//
-//			st = conn.prepareStatement("UPDATE product " + "SET nameProduct = ? ," + "dateProduct = ? ,"
-//					+ "priceProduct=? ," + "quantityProduct=? ," + "statusProduct=? " + "WHERE " + "(idProduct=?)");
-//
-//			st.setString(1, product.getNameProduct());
-//			st.setDate(2, new java.sql.Date(sdf.parse("2020-07-04").getTime()));
-//			st.setDouble(3, product.getPriceProduct());
-//			st.setInt(4, product.getQuantityProduct());
-//			st.setBoolean(5, true);
-//			st.setInt(6, product.getIdProduct());
-//
-//			int rowsAffected = st.executeUpdate();
-//
-//			System.out.println("Done! Rows affected: " + rowsAffected);
-//			return null;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return "Erro ao alterar";
-//		}
-//
-//	}
-//
-//	public String excluir(EntityDomain entityDomain) {
-//		Product product = (Product) entityDomain;
-//		System.out.println(product.getIdProduct());
-//		Connection conn = null;
-//		PreparedStatement st = null;
-//		try {
-//			conn = Database.conectarBD();
-//
-//			st = conn.prepareStatement("DELETE FROM product " + "WHERE " + "idProduct = ?");
-//			st.setInt(1, product.getIdProduct());
-//
-//			int rowsAffected = st.executeUpdate();
-//			System.out.println("Done! Rows affected: " + rowsAffected);
-//			return null;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return "Erro ao excluir";
-//		}
-//
-//	}
-//
-//	private String pesquisarAuxiliar(EntityDomain entity) {
-//		if (entity.getSearch().equals("id")) {
-//			return "select * from product  WHERE idProduct=?";
-//		} else {
-//			return "select * from product";
-//		}
-//	}
-//
-//	private PreparedStatement executarPesquisa(Product product, String sql) throws SQLException {
-//		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
-//		if (product.getSearch().equals("id")) {
-//			st.setInt(1, product.getIdProduct());
-//		}
-//		return st;
-//	}
-//
-//	public List<Product> consultar(EntityDomain entity) {
-//		Product product = (Product) entity;
-//		List <Product> products = new ArrayList();
-//		System.out.println(product.getIdProduct());
-//		Connection conn = null;
-//		PreparedStatement st = null;
-//		try {
-//			String sql = pesquisarAuxiliar(product);
-//			st = executarPesquisa(product, sql);
-//			
-//			ResultSet rs = st.executeQuery();
-//			while (rs.next()){
-//				Product productAux = new Product();	
-//				productAux.setIdProduct(rs.getInt("idProduct"));
-//				productAux.setNameProduct(rs.getString("nameProduct"));
-//				productAux.setDateProduct(rs.getDate("dateProduct"));
-//				productAux.setPriceProduct(rs.getDouble("priceProduct"));
-//				productAux.setQuantityProduct(rs.getInt("quantityProduct"));
-//				productAux.setStatusProduct(rs.getBoolean("statusProduct"));
-//				products.add(productAux);
-//				
-//			}
-//			
-//			return products;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//
-//	}
-	// return ProductMock.FindAll();
-	// return (List<EntityDomain>) findAll;
 
-	@Override
 	public String alterar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		Cartao cartao = (Cartao) entidade;
+		System.out.println(cartao.getId());
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("UPDATE cartao " + "SET car_numero = ? ," + "car_nome = ? ," + "car_cvv = ? ,"
+					+ "car_preferencial = ?" + "car_ban_id = ? " + "WHERE " + "(car_id = ?)");
+
+			setaParametrosQuery(st, cartao.getNumero(), cartao.getNomeImpresso(), cartao.getCodigoSeguranca(),
+					cartao.getPreferencial(), cartao.getBandeira().getCodigo(), cartao.getId());
+
+			int rowsAffected = st.executeUpdate();
+			System.out.println("Done! Rows affected: " + rowsAffected);
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Erro ao alterar";
+		}
+
 	}
 
-	@Override
 	public String excluir(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		Cartao cartao = (Cartao) entidade;
+		System.out.println(cartao.getId());
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("DELETE FROM cartao " + "WHERE " + "car_id = ?");
+			setaParametrosQuery(st, cartao.getId());
+
+			int linhasAfetadas = st.executeUpdate();
+			System.out.println("Cartão excluído com sucesso! Linhas afetadas: " + linhasAfetadas);
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Erro ao excluir";
+		}
+
 	}
 
-	@Override
-	public List<EntidadeDominio> consultar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+	private String pesquisarAuxiliar(EntidadeDominio entidade) {
+		if (entidade.getPesquisa().equals("id")) {
+			return "select * from cartao  WHERE car_id =?";
+		} else {
+			return "select * from cartao";
+		}
 	}
 
+	private PreparedStatement executarPesquisa(Cartao cartao, String sql) throws SQLException {
+		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
+		if (cartao.getPesquisa().equals("id")) {
+			setaParametrosQuery(st, cartao.getId());
+		}
+		return st;
+	}
+
+	public List<Cartao> consultar(EntidadeDominio entity) {
+		Cartao cartao = (Cartao) entity;
+		List<Cartao> cartoes = new ArrayList();
+		System.out.println(cartao);
+		Connection conn = null;
+		PreparedStatement st = null;
+		try {
+			String sql = pesquisarAuxiliar(cartao);
+			st = executarPesquisa(cartao, sql);
+
+			Long inicioExecucao = System.currentTimeMillis();
+			ResultSet rs = st.executeQuery();
+			Long terminoExecucao = System.currentTimeMillis();
+
+			System.out.println("Tempo de execução da consulta: "
+					+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
+
+			while (rs.next()) {
+				Cartao cartaoAux = new Cartao(rs.getInt("car_id"), rs.getString("car_numero"),
+						Bandeira.getByCodigo(rs.getInt("car_ban_id")), rs.getString("car_nome"),
+						rs.getString("car_cvv"), rs.getBoolean("car_preferencial"));
+				cartoes.add(cartaoAux);
+			}
+
+			return cartoes;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

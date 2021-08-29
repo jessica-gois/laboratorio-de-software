@@ -20,6 +20,16 @@ public class Cartao extends EntidadeDominio{
 		this.codigoSeguranca = codigoSeguranca;
 		this.preferencial = preferencial;
 	}
+	
+	public Cartao(Integer id, String numero, Bandeira bandeira, String nomeImpresso, String codigoSeguranca,
+			Boolean preferencial) {
+			this.setId(id);
+			this.numero = numero;
+			this.bandeira = bandeira;
+			this.nomeImpresso = nomeImpresso;
+			this.codigoSeguranca = codigoSeguranca;
+			this.preferencial = preferencial;
+		}
 
 	public String getNumero() {
 		return numero;

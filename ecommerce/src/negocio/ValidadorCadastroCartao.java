@@ -1,6 +1,7 @@
 package negocio;
 
-import org.junit.platform.commons.util.StringUtils;
+
+
 
 import model.domain.Cartao;
 import model.domain.EntidadeDominio;
@@ -13,15 +14,15 @@ public class ValidadorCadastroCartao implements IStrategy {
 		Cartao cartao = (Cartao) entidade;
 		StringBuilder erros = new StringBuilder();
 
-		if (StringUtils.isBlank(cartao.getNumero())) {
+		if (cartao.getNumero() == null || cartao.getNumero() == "") {
 			erros.append("O número do cartão é obrigatório");
 		}
 
-		if (StringUtils.isBlank(cartao.getNomeImpresso())) {
+		if (cartao.getNomeImpresso() == null || cartao.getNomeImpresso() =="") {
 			erros.append("O nome impresso no cartão é obrigatório");
 		}
 
-		if (StringUtils.isBlank(cartao.getCodigoSeguranca())) {
+		if (cartao.getCodigoSeguranca() == null || cartao.getCodigoSeguranca() == "") {
 			erros.append("O código de segurança é obrigatório");
 		}
 
@@ -29,7 +30,7 @@ public class ValidadorCadastroCartao implements IStrategy {
 			erros.append("A bandeira é obrigatória");
 		}
 
-		if (StringUtils.isNotBlank(erros.toString())) {
+		if (erros != null && erros.length() > 0) {
 			return erros.toString();
 		} else {
 			return null;

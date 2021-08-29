@@ -1,17 +1,27 @@
 package model.domain.enums;
 
 public enum Bandeira {
-	VISA("Visa"), 
-	MASTERCARD("Mastercard"), 
-	ELO("Elo");
-	
-	private String descricao;
-	
-	Bandeira(String descricao) {
-		this.descricao = descricao;
-	}	
-	
-	public String getDescricao() {
-		return this.descricao;
+	Visa(1),
+	Mastercard(2),
+	Elo(3);
+
+	int codigo;
+
+	private Bandeira(int codigo) {
+		this.codigo = codigo;
 	}
+
+	public int getCodigo() {
+		return this.codigo;
+	}
+
+	public static Bandeira getByCodigo(int id) {
+		for (Bandeira bandeira : values()) {
+			if (bandeira.getCodigo() == id) {
+				return bandeira;
+			}
+		}
+		return null;
+	}
+
 }

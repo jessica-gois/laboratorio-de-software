@@ -5,6 +5,7 @@ import java.util.Date;
 public class EntidadeDominio {
 	
 	private int id;
+	private String pesquisa;
 	private Date dtCadastro;
 	
 	public int getId() {
@@ -19,6 +20,11 @@ public class EntidadeDominio {
 	public void setDtCadastro(Date dtCadastro) {
 		this.dtCadastro = dtCadastro;
 	}
-	
+	public String getPesquisa() {
+		return pesquisa;
+	}
+	public void setPesquisa(String pesquisa) {
+		this.pesquisa = pesquisa;
+	}
 
 }
