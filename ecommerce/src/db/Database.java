@@ -14,7 +14,7 @@ public class Database {
 
 			String url = "jdbc:mysql://localhost:3306/ecommerce?useTimezone=true&serverTimezone=UTC";
 
-			Connection conexao = DriverManager.getConnection(url, "root", "Meubanco2020@");
+			Connection conexao = DriverManager.getConnection(url, "jessica", "root");
 
 			return conexao;
 

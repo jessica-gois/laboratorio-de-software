@@ -28,10 +28,11 @@
 					<div class="col-8 mb-3">
 
 						<form id="formCadastroEndereco" action="${stub }" method="post" novalidate>
+							
 							<div class="row">
 								<div>
 									Descrição: <input class="form-control" type="text"
-										name="descricaoEndereco" required="true"  placeholder="Exemplo: Minha Casa"  />
+										name="descricao" required="true"  placeholder="Exemplo: Minha Casa"  />
 								</div>
 							</div>
 
@@ -40,13 +41,9 @@
 									<label for="tipoLogradouro">Tipo de logradouro:</label> <select
 										class="form-control" name="tipoLogradouro" id="tipoLogradouro">
 										<option value="">Escolha...</option>
-										<option value="RUA">Rua</option>
-										<option value="TRAVESSA">Travessa</option>
-										<option value="AVENIDA">Avenida</option>
-										<option value="ALAMEDA">Alameda</option>
-										<option value="ESTRADA">Estrada</option>
-										<option value="RODOVIA">Rodovia</option>
-										<option value="JARDIM">Jardim</option>
+										<option value="Rua">Rua</option>
+										<option value="Avenida">Avenida</option>
+										<option value="Rodovia">Rodovia</option>
 									</select>
 								</div>
 								<div class="col-md-9">
@@ -58,7 +55,7 @@
 							<div class="row d-flex">
 								<div class="col-3">
 									Nº: <input class="form-control" type="text"
-										name="numeroEndereco" required="true" placeholder="0000" />
+										name="numero" required="true" placeholder="0000" />
 								</div>
 								<div class="col-6">
 									Complemento: <input class="form-control" type="text"
@@ -69,11 +66,8 @@
 									<label for="tipoResidencia">Tipo de residência:</label> <select
 										class="form-control" name="tipoResidencia" id="tipoResidencia">
 										<option value="">Escolha...</option>
-										<option value="CASA">Casa</option>
-										<option value="APARTAMENTO">Apartamento</option>
-										<option value="FLAT">Flat</option>
-										<option value="KITNET">Kitnet</option>
-										<option value="LOFT">Loft</option>
+										<option value="Casa">Casa</option>
+										<option value="Apartamento">Apartamento</option>
 									</select>
 								</div>
 							</div>
@@ -140,33 +134,35 @@
 							<div class="row">
 								<div>
 									Observação: <textarea class="form-control" type="text" maxlength="200" 
-										name="descricaoEndereco"></textarea>
+										name="observacao"></textarea>
 								</div>
 							</div>
 							<br/>
 
 							<div class="row mb-2">
 								<div class="col-4">
-									<input class="form-check-input" type="checkbox" value=""
+									<input class="form-check-input" type="checkbox" name="tipoEndereco" value="Entrega"
 										id="enderecoEntrega"> <label class="form-check-label"
 										for="enderecoEntrega"> Endereço de
 										entrega?</label>
 								</div>
 								<div class="col-4">
-									<input class="form-check-input" type="checkbox" value=""
+									<input class="form-check-input" type="checkbox" name="tipoEndereco" value="Cobranca"
 										id="enderecoCobranca"> <label class="form-check-label"
 										for="enderecoCobranca">Endereço de
 										cobrança?</label>
 								</div>
 								<div class="col-4">
-									<input class="form-check-input" type="checkbox" value=""
+									<input class="form-check-input" type="checkbox" name="tipoEndereco" value="Residencial"
 										id="enderecoResidencial"> <label class="form-check-label"
 										for="enderecoResidencial">Endereço residencial?</label>
 								</div>
 							</div>
+							<input type="hidden" name="acao" value="CadastraEndereco" />
 							<div>									
 								<button class="btn btn-secondary w-25" type="submit" alt="Salvar" title="Salvar">
 									<i class="fas fa-save"></i>
+								
 								</button>	
 								<a href="/ecommerce/controlador?acao=ListaClientes" class="btn white border w-25" type="submit" alt="Voltar" title="Voltar">
 									<i class="fas fa-long-arrow-alt-left"></i>
