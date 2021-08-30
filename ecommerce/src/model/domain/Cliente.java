@@ -2,7 +2,7 @@ package model.domain;
 
 import java.util.Date;
 
-public class Cliente extends Usuario {
+public class Cliente extends EntidadeDominio {
 
 	private String nome;
 	private String sobrenome;
@@ -14,15 +14,29 @@ public class Cliente extends Usuario {
 	private Date dataNascimento;
 	private String cpf;
 	private Integer score;
-	private Boolean status;
+	private Usuario usuario;
 
 	public Cliente() {
 
 	}
+	
+	public Cliente(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	public Cliente(Integer id, String nome, String sobrenome, String genero, Date dataNascimento, String cpf, Integer score, Usuario usuario) {
+			super();
+			this.nome = nome;
+			this.sobrenome = sobrenome;
+			this.genero = genero;
+			this.dataNascimento = dataNascimento;
+			this.cpf = cpf;
+			this.score = score;
+			this.usuario = usuario;
+		}
 
 	public Cliente(Integer id, String nome, String sobrenome, String dddResidencial, String numeroTelResidencial,
-		String dddCelular, String numeroTelCelular, String genero, Date dataNascimento, String cpf, Integer score,
-		Boolean status) {
+		String dddCelular, String numeroTelCelular, String genero, Date dataNascimento, String cpf, Integer score, Usuario usuario) {
 		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -34,7 +48,7 @@ public class Cliente extends Usuario {
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.score = score;
-		this.status = status;
+		this.usuario = usuario;
 	}
 
 	public String getNome() {
@@ -116,13 +130,14 @@ public class Cliente extends Usuario {
 	public void setScore(Integer score) {
 		this.score = score;
 	}
-
-	public Boolean getStatus() {
-		return status;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
+	
+	
 
 }

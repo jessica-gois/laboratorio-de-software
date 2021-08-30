@@ -8,6 +8,7 @@ import java.util.Map;
 import dao.CartaoDAO;
 import dao.ClienteDAO;
 import dao.IDAO;
+import dao.UsuarioDAO;
 import model.domain.Cartao;
 import model.domain.Cliente;
 import model.domain.Endereco;
@@ -28,6 +29,7 @@ public class Fachada implements IFachada {
 	private Map<String, IDAO> mapaDaos;
 	private Map<String, List<IStrategy>> mapaAntesPesistencia;
 	private Map<String, List<IStrategy>> mapaDepoisPesistencia;
+	Result result = new Result();
 
 	public Fachada() {
 
@@ -47,6 +49,8 @@ public class Fachada implements IFachada {
 
 		mapaDaos = new HashMap<String, IDAO>();
 		mapaDaos.put(Cartao.class.getName(), new CartaoDAO());
+		mapaDaos.put(Usuario.class.getName(), new UsuarioDAO());
+		mapaDaos.put(Cliente.class.getName(), new ClienteDAO());
 	}
 
 	@Override
@@ -81,11 +85,16 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public String consultar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result consultar(EntidadeDominio entidade) {
+		String nomeClasse = entidade.getClass().getName();
+		 List<EntidadeDominio> lista = mapaDaos.get(nomeClasse).consultar(entidade);
+		Result result = new Result();
+		for (EntidadeDominio obj : lista) {
+			result.addEntidades(obj);
+		}
+		return result;
 	}
-
+	
 	private StringBuilder executarStrategies(List<IStrategy> strategies, EntidadeDominio entidade) {
 		StringBuilder retorno = new StringBuilder();
 		for (IStrategy rn : strategies) {

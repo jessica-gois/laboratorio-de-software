@@ -33,9 +33,6 @@ public class Banco {
 		cliente.setDataNascimento(new Date());
 		cliente.setCpf("111.111.111-11");
 		cliente.setScore(900);
-		cliente.setStatus(true);
-		cliente.setEmail("pri@gmail.com");
-		cliente.setSenha("123");
 		
 
 

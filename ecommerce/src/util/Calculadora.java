@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 public class Calculadora {
 	public static Long calculaIntervaloTempo(Long inicio, Long fim) {
-		return (inicio - fim)/ 1000;
+		return (fim - inicio)/ 1000;
 	} 
 
 }

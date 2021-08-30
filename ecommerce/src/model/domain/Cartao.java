@@ -3,6 +3,7 @@ package model.domain;
 import model.domain.enums.Bandeira;
 
 public class Cartao extends EntidadeDominio{
+	private Cliente cliente;
 	private String numero;
 	private Bandeira bandeira;
 	private String nomeImpresso;
@@ -13,22 +14,24 @@ public class Cartao extends EntidadeDominio{
 	}
 
 	public Cartao(String numero, Bandeira bandeira, String nomeImpresso, String codigoSeguranca,
-		Boolean preferencial) {
+		Boolean preferencial, Cliente cliente) {
 		this.numero = numero;
 		this.bandeira = bandeira;
 		this.nomeImpresso = nomeImpresso;
 		this.codigoSeguranca = codigoSeguranca;
 		this.preferencial = preferencial;
+		this.cliente = cliente;
 	}
 	
 	public Cartao(Integer id, String numero, Bandeira bandeira, String nomeImpresso, String codigoSeguranca,
-			Boolean preferencial) {
+			Boolean preferencial, Cliente cliente) {
 			this.setId(id);
 			this.numero = numero;
 			this.bandeira = bandeira;
 			this.nomeImpresso = nomeImpresso;
 			this.codigoSeguranca = codigoSeguranca;
 			this.preferencial = preferencial;
+			this.cliente = cliente;
 		}
 
 	public String getNumero() {
@@ -69,6 +72,14 @@ public class Cartao extends EntidadeDominio{
 
 	public void setPreferencial(Boolean preferencial) {
 		this.preferencial = preferencial;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override

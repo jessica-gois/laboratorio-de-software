@@ -10,9 +10,12 @@ import javax.servlet.http.HttpSession;
 
 import dao.Banco;
 import dao.UsuarioDAO;
+import model.domain.Cliente;
+import model.domain.EntidadeDominio;
+import model.domain.Result;
 import model.domain.Usuario;
 
-public class Login implements Acao {
+public class Login extends AbstractCommand {
 
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
@@ -21,16 +24,24 @@ public class Login implements Acao {
 		Usuario usuario = new Usuario(request.getParameter("email"), request.getParameter("senha"));
 		usuario.setPesquisa("email,senha");
 		
-		UsuarioDAO dao = new UsuarioDAO();
-		
-		Banco banco = new Banco();
-		List<Usuario> resultado =  dao.consultar(usuario);
-		usuario = resultado != null ? resultado.get(0) : null;		
+		Result resultado = fachada.consultar(usuario);
+		usuario  = resultado != null && resultado.getEntidades() != null ? (Usuario)resultado.getEntidades().get(0) : null;		
 		
         if(usuario != null) {
            System.out.println("Usuario existe no sistema");
-           HttpSession sessao = request.getSession();
-           sessao.setAttribute("usuarioLogado", usuario);
+           Cliente cliente = new Cliente(usuario);
+           cliente.setPesquisa("usuario");
+           
+           resultado = fachada.consultar(cliente);
+           cliente  = resultado != null && resultado.getEntidades() != null ? (Cliente)resultado.getEntidades().get(0) : null;
+           cliente.setUsuario(usuario);        
+           
+           
+           
+           
+           
+           HttpSession sessao = request.getSession();           
+           sessao.setAttribute("clienteLogado", cliente);
            System.out.println("Classe: command.Login -> command.ListaClientes ");
            return "redirect:controlador?acao=ListaClientes";
         }else {

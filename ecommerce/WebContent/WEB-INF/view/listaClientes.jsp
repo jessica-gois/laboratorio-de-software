@@ -17,7 +17,7 @@
 	<c:import url="template-header.jsp"/>
 </header>
 	<!-- <div class="card-header hidden">
-	<p>Usuário logado: ${usuarioLogado.email} </p>
+	<p>Usuário logado: ${cliente.usuario.email} </p>
 	</div>-->	
 	
 
@@ -58,7 +58,8 @@
     				 	</tr>
     				</thead>
 						<tbody> 
-						<c:forEach items="${clientes}" var="cliente"> 
+						<%if (request.getSession().getAttribute("clienteLogado")!=null){	
+	Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");%>
 							<tr>  				
         						<td>${cliente.nome}</td>
         						<td>${cliente.sobrenome}</td>
@@ -69,9 +70,9 @@
         						<td>${cliente.numeroTelCelular}</td>
         						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
        							<td>${cliente.cpf}</td>
-        						<td>${cliente.email}</td>
+        						<td>${cliente.usuario.email}</td>
         						<td>${cliente.score}</td>
-        					<!--	<td>${cliente.status}</td>-->
+        					<!--	<td>${cliente.usuario.status}</td>-->
        						<td>
 	       						<a class="btn btn-secondary w-20" alt="Alterar dados da conta"
 	       							title="Alterar dados da conta" href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}">
@@ -79,7 +80,7 @@
 	       						</a
        						></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
-    						</c:forEach>      							
+    						<% } %>    							
         					</tr>
         				</tbody>
 					</table>	
@@ -116,9 +117,9 @@
 						<tbody> 
 						<c:forEach items="${clientes}" var="cliente"> 
 							<tr>  	
-								<td>${cliente.email}</td>			
+								<td>${cliente.usuario.email}</td>			
         						<td>********</td>					
-        					<!--	<td>${cliente.status}</td>-->
+        					<!--	<td>cliente.usuario.status/</td>-->
         					
        						<td><a class="btn btn-secondary w-20" alt="Alterar senha" title="Alterar senha" 
        						href="/ecommerce/controlador?acao=ConfirmaSenhaAtualFormulario&id=${cliente.id}"><i class="far fa-edit"></i></a></td>
@@ -243,7 +244,7 @@
         						<!--<td>Rio de Janeiro</td>-->
         						<td>RJ</td>
         						<!--<td>Brasil</td>-->
-        					<!--	<td>${cliente.status}</td>-->
+        					<!--	<td>cliente.usuario.status</td>-->
        						<td><a class="btn btn-secondary w-20" alt="Alterar endereço" title="Alterar endereço" href="/ecommerce/controlador?acao=MostraEndereco"><i class="far fa-edit"></i></a></td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
     						<!--<</c:forEach> -->     							

@@ -27,11 +27,10 @@ public class Controlador extends HttpServlet {
 
 		String parametroAcao = request.getParameter("acao");	
 		String nomeJSP = null;
-
 		
 		try {
 			String nomeClasse = "command."+ parametroAcao;
-			Class classe = Class.forName(nomeClasse); // carrega a classe com o nome desta string
+			Class classe = Class.forName(nomeClasse);
 			Acao acao = (Acao)classe.newInstance();
 			nomeJSP = acao.executa(request, response);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException

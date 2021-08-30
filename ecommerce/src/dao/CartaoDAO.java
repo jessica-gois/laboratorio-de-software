@@ -28,7 +28,7 @@ public class CartaoDAO extends AbstractDAO {
 					Statement.RETURN_GENERATED_KEYS);
 
 			setaParametrosQuery(st, cartao.getNumero(), cartao.getNomeImpresso(), cartao.getCodigoSeguranca(),
-					cartao.getPreferencial(), cartao.getBandeira().getCodigo(), 1);
+					cartao.getPreferencial(), cartao.getBandeira().getCodigo(), cartao.getCliente().getId());
 
 			Long inicioExecucao = System.currentTimeMillis();
 			int linhasAfetadas = st.executeUpdate();
