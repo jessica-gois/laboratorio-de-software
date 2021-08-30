@@ -11,11 +11,13 @@ import dao.Banco;
 import model.domain.Cliente;
 import util.Conversao;
 
-public class CadastraCliente implements Acao {
+public class CadastraCliente extends AbstractCommand implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Classe: command.CadastraCliente");	
 		
+		
+
 		Conversao conv = new Conversao();
 		Cliente cliente= new Cliente();
 
