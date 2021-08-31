@@ -59,19 +59,19 @@
     				</thead>
 						<tbody> 
 						<%if (request.getSession().getAttribute("clienteLogado")!=null){	
-	Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");%>
+						Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");%>
 							<tr>  				
-        						<td>${cliente.nome}</td>
-        						<td>${cliente.sobrenome}</td>
+        						<td><%=cliente.getNome()%></td>
+        						<td><%=cliente.getSobrenome()%></td>
         						<!--<td>${cliente.genero}</td>-->
         						<!--<td>${cliente.dddResidencial}</td>-->
         						<td>${cliente.numeroTelResidencial}</td>
         						<!--<td>${cliente.dddCelular}</td>-->
         						<td>${cliente.numeroTelCelular}</td>
-        						<td><fmt:formatDate value="${cliente.dataNascimento }" pattern="dd/MM/yyyy"/></td>
-       							<td>${cliente.cpf}</td>
-        						<td>${cliente.usuario.email}</td>
-        						<td>${cliente.score}</td>
+        						<td><fmt:formatDate value="<%=cliente.getDataNascimento()%>" pattern="dd/MM/yyyy"/></td>
+       							<td><%=cliente.getCpf()%></td>
+        						<td><%=cliente.getUsuario().getEmail() %></td>
+        						<td><%=cliente.getScore() %></td>
         					<!--	<td>${cliente.usuario.status}</td>-->
        						<td>
 	       						<a class="btn btn-secondary w-20" alt="Alterar dados da conta"
