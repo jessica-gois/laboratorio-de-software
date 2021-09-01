@@ -24,20 +24,23 @@ public class Cliente extends EntidadeDominio {
 		this.usuario = usuario;
 	}
 	
-	public Cliente(Integer id, String nome, String sobrenome, String genero, Date dataNascimento, String cpf, Integer score, Usuario usuario) {
-			super();
-			this.nome = nome;
-			this.sobrenome = sobrenome;
-			this.genero = genero;
-			this.dataNascimento = dataNascimento;
-			this.cpf = cpf;
-			this.score = score;
-			this.usuario = usuario;
-		}
+	public Cliente(Integer id, String nome, String sobrenome, String genero, Date dataNascimento, String cpf,
+			Integer score, Usuario usuario) {
+		super();
+		this.setId(id);
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.genero = genero;
+		this.dataNascimento = dataNascimento;
+		this.cpf = cpf;
+		this.score = score;
+		this.usuario = usuario;
+	}
 
 	public Cliente(Integer id, String nome, String sobrenome, String dddResidencial, String numeroTelResidencial,
 		String dddCelular, String numeroTelCelular, String genero, Date dataNascimento, String cpf, Integer score, Usuario usuario) {
 		super();
+		this.setId(id);
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.dddResidencial = dddResidencial;
