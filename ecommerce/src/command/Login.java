@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.Banco;
 import dao.UsuarioDAO;
+import model.domain.Cartao;
 import model.domain.Cliente;
 import model.domain.EntidadeDominio;
 import model.domain.Result;
@@ -34,7 +35,11 @@ public class Login extends AbstractCommand {
            
            resultado = fachada.consultar(cliente);
            cliente  = resultado != null && resultado.getEntidades() != null ? (Cliente)resultado.getEntidades().get(0) : null;
-           cliente.setUsuario(usuario);        
+           cliente.setUsuario(usuario);
+           
+           Cartao cartao = new Cartao();
+           cartao.setPesquisa("cliente");
+           cartao.setCliente(cliente);
            
            
            
@@ -42,6 +47,7 @@ public class Login extends AbstractCommand {
            
            HttpSession sessao = request.getSession();           
            sessao.setAttribute("clienteLogado", cliente);
+           sessao.setAttribute("cartoes", fachada.consultar(cartao).getEntidades());
            System.out.println("Classe: command.Login -> command.ListaClientes ");
            return "redirect:controlador?acao=ListaClientes";
         }else {

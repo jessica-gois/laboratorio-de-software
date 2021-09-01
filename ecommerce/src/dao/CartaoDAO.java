@@ -87,8 +87,10 @@ public class CartaoDAO extends AbstractDAO {
 
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
 		if (entidade.getPesquisa().equals("id")) {
-			return "select * from cartao  WHERE car_id =?";
-		} else {
+			return "select * from cartao where car_id =?";
+		}else if(entidade.getPesquisa().equals("cliente")){
+			return "select * from cartao where car_cli_id = ?";
+		}else {
 			return "select * from cartao";
 		}
 	}
@@ -97,6 +99,8 @@ public class CartaoDAO extends AbstractDAO {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
 		if (cartao.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, cartao.getId());
+		}else if(cartao.getPesquisa().equals("cliente")) {
+			setaParametrosQuery(st, cartao.getCliente().getId());
 		}
 		return st;
 	}
@@ -121,7 +125,7 @@ public class CartaoDAO extends AbstractDAO {
 			while (rs.next()) {
 				Cartao cartaoAux = new Cartao(rs.getInt("car_id"), rs.getString("car_numero"),
 						Bandeira.getByCodigo(rs.getInt("car_ban_id")), rs.getString("car_nome"),
-						rs.getString("car_cvv"), rs.getBoolean("car_preferencial"));
+						rs.getString("car_cvv"), rs.getBoolean("car_preferencial"), null);
 				cartoes.add(cartaoAux);
 			}
 

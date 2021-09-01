@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ page import="java.util.List,model.domain.Cliente" %>
+<%@ page import="java.util.List,model.domain.Cliente,model.domain.Cartao" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
@@ -156,10 +156,9 @@
 					<div class="row d-flex justify-content-between">
 					<table class="table">
 					<thead class="table table-striped ">
-    					<tr>
+						<tr>
         					<th>Nome do titular</th>
         					<th>Número do cartão</th>
-        					<th>Data de vencimento</th>
         					<th>Bandeira</th>
         					<!--<th>Código do cartão</th> -->
         					<th>Cartão principal?</th>
@@ -168,14 +167,16 @@
     				 	</tr>
     				</thead>
 						<tbody> 
-						<!--<c:forEach items="${clientes}" var="cliente"> -->
+						<%if(request.getSession().getAttribute("cartoes")!=null){	
+						List<Cartao>cartoes = (List<Cartao>)request.getSession().getAttribute("cartoes");%>
+						 <% for (Cartao cartao : cartoes) {
+						 System.out.println(cartao.getNomeImpresso());%> 						
 							<tr>  				
-        						<td>Pri</td>
-        						<td>000</td>
-        						<td>10/10/2030</td>
-       							<td>Visa</td>
+        						<td><%=cartao.getNomeImpresso()%></td>
+        						<td><%=cartao.getNumero()%></td>
+       							<td><%=cartao.getBandeira().toString()%></td>
         						<!--<td>***</td>-->
-        						<td>Sim</td>
+        						<td><%=cartao.getPreferencial() != null && cartao.getPreferencial() ? "Sim" : "Não"%></td>
        						<td>
 	       						<a class="btn btn-secondary w-20" alt="Excluir cartão" title="Excluir cartão"
 	       							href="/ecommerce/controlador?acao=MostraCliente&id=${cliente.id}">
@@ -183,8 +184,10 @@
 	       						</a>
        						</td>
   							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
-    						<!--<</c:forEach> -->     							
+    					    							
         					</tr>
+        						<% } %>
+	<% } %>
         				</tbody>
 					</table>	
 					<br/>

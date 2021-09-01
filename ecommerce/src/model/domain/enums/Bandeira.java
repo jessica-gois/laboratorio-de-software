@@ -23,5 +23,10 @@ public enum Bandeira {
 		}
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return this.name();
+	}
 
 }
