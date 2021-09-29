@@ -11,7 +11,7 @@ public class ValidadorSenha implements IStrategy{
 	public String processar(EntidadeDominio entidade) {
 		Usuario usuario = (Usuario) entidade;
 		
-		if(StringUtils.isBlank(usuario.getSenha())) {
+		if(usuario.getSenha() == null && usuario.getSenha() == "") {
 			return "A senha é obrigatória";
 		}
 		return null;	

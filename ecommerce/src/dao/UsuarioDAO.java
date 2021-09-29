@@ -4,34 +4,77 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import db.Database;
-import model.domain.Cartao;
 import model.domain.EntidadeDominio;
 import model.domain.Usuario;
-import model.domain.enums.Bandeira;
 import util.Calculadora;
 
 public class UsuarioDAO extends AbstractDAO {
 
 	@Override
 	public String salvar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
+		Usuario usuario = (Usuario) entidade;
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("INSERT INTO usuario " + "(usu_email, usu_senha, usu_status) VALUES (?, ?, ?)",
+				Statement.RETURN_GENERATED_KEYS);
+
+			setaParametrosQuery(st, usuario.getEmail(), usuario.getSenha(), true);
+			long inicioExecucao = System.currentTimeMillis();
+			int linhasAfetadas = st.executeUpdate();
+			long terminoExecucao = System.currentTimeMillis();
+			System.out.println(
+				"Usuario cadastrado com sucesso! \n Linhas afetadas: " + linhasAfetadas + "\nTempo de execução: "
+				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Erro ao salvar";
+		}
 		return null;
 	}
 
 	@Override
 	public String alterar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		Usuario usuario = (Usuario) entidade;
+		System.out.println(usuario.getId());
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("UPDATE usuario SET usu_senha = ?, usu_email = ? WHERE usu_id = ?");
+			
+			setaParametrosQuery(st, usuario.getSenha(), usuario.getEmail(), usuario.getId());
+
+			int rowsAffected = st.executeUpdate();
+			System.out.println("Done! Rows affected: " + rowsAffected);
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Erro ao alterar";
+		}
 	}
 
 	@Override
 	public String excluir(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		Usuario usuario = (Usuario) entidade;
+		System.out.println("Inativando usuario:" + usuario.getEmail()
+			+ " id: " + usuario.getId());
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("UPDATE usuario set usu_status = ? WHERE usu_id = ?");
+			setaParametrosQuery(st, false, usuario.getId());
+
+			int linhasAfetadas = st.executeUpdate();
+			System.out.println("Usuário inativado com excluído com sucesso! Linhas afetadas: " + linhasAfetadas);
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Erro ao inativar conta";
+		}
 	}
 
 	public List<Usuario> consultar(EntidadeDominio entidade) {
@@ -68,7 +111,9 @@ public class UsuarioDAO extends AbstractDAO {
 			return "select * from usuario  WHERE usu_id =?";
 		}else if(entidade.getPesquisa().equals("email,senha")) {
 			return "select * from usuario  WHERE usu_email = ? and usu_senha = ?";
-		} else {
+		} else if(entidade.getPesquisa().equals("senha,usuario")){
+			return "select * from usuario  WHERE usu_senha = ? and usu_id = ?";
+		}else {
 			return "select * from usuario";
 		}
 	}
@@ -79,6 +124,8 @@ public class UsuarioDAO extends AbstractDAO {
 			setaParametrosQuery(st, usuario.getId());
 		} else if (usuario.getPesquisa().equals("email,senha")) {
 			setaParametrosQuery(st, usuario.getEmail(), usuario.getSenha());
+		} else if(usuario.getPesquisa().equals("senha,usuario")){
+			setaParametrosQuery(st, usuario.getSenha(), usuario.getId());
 		}
 		return st;
 	}

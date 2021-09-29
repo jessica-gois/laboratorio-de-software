@@ -1,6 +1,8 @@
 package model.domain;
 
-public class Cidade {
+import model.domain.enums.Estado;
+
+public class Cidade extends EntidadeDominio {
 	private String nome;
 	
 	private Estado estado;
@@ -9,6 +11,15 @@ public class Cidade {
 	}
 
 	public Cidade(String nome, Estado estado) {
+		this.nome = nome;
+		this.estado = estado;
+	}
+	
+	public Cidade(Integer id, String nome, Estado estado) {
+		super();
+		if(id != null) {
+			this.setId(id);
+		}
 		this.nome = nome;
 		this.estado = estado;
 	}

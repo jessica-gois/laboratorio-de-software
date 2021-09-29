@@ -4,21 +4,27 @@ public class Usuario extends EntidadeDominio{
 
     private String email;
     private String senha;
-    private String confirmacaoSenha;
+    private Boolean status;
 
     public Usuario(String email, String senha) {
     	this.email = email;
     	this.senha = senha;    	
     }
     
+    public Usuario(String email, String senha, Boolean status) {
+    	this.email = email;
+    	this.senha = senha;    	
+    	this.status = status;
+    }
+    
     public Usuario(Integer id,String email, String senha) {
+    	super();
     	this.setId(id);
     	this.email = email;
     	this.senha = senha;    	
     }
     
-    public Usuario(){
-    	
+    public Usuario(){    	
     }
     
     public String getEmail() {
@@ -37,15 +43,15 @@ public class Usuario extends EntidadeDominio{
         this.senha = senha;
     }
     
-    public String getConfirmacaoSenha() {
-        return senha;
-    }
+    public Boolean getStatus() {
+		return status;
+	}
 
-    public void setConfirmacaoSenha(String senha) {
-        this.senha = senha;
-    }
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 
-    public boolean autentica(String email, String senha) {
+	public boolean autentica(String email, String senha) {
         if(!this.email.equals(email)) {
             return false;
         }

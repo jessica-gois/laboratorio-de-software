@@ -19,21 +19,23 @@ public abstract class AbstractDAO implements IDAO{
 	public void setaParametrosQuery (PreparedStatement st, Object... elementos) throws SQLException {
 	    int posicaoParametro = 1;
 	    
-	    for (Object parametro : elementos) {
-	        if(parametro instanceof String) {
-	        	st.setString(posicaoParametro,(String) parametro);
-	        } 
-	        if(parametro instanceof Integer) {
-	        	st.setInt(posicaoParametro,(Integer) parametro);
-	        }
-	        if(parametro instanceof Boolean) {
-	        	st.setBoolean(posicaoParametro,(Boolean) parametro);
-	        }
-			if (parametro instanceof Date) {
-				Date data = (Date) parametro;
-				st.setDate(posicaoParametro, new java.sql.Date(data.getTime()));
+		for (Object parametro : elementos) {
+			if (parametro != null && parametro != "") {
+				if (parametro instanceof String) {
+					st.setString(posicaoParametro, (String) parametro);
+				}
+				if (parametro instanceof Integer) {
+					st.setInt(posicaoParametro, (Integer) parametro);
+				}
+				if (parametro instanceof Boolean) {
+					st.setBoolean(posicaoParametro, (Boolean) parametro);
+				}
+				if (parametro instanceof Date) {
+					Date data = (Date) parametro;
+					st.setDate(posicaoParametro, new java.sql.Date(data.getTime()));
+				}
+				posicaoParametro++;
 			}
-	        posicaoParametro++;
-	    }
+		}
 	}
 }

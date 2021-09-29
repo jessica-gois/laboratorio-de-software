@@ -26,8 +26,8 @@ public class AutorizacaoFilter implements Filter {
 				
 				
 		HttpSession sessao = request.getSession();
-		boolean usuarioNaoLogado = (sessao.getAttribute("usuarioLogado") == null);
-		boolean acaoProtegida = !(parametroAcao.equals("Login") || parametroAcao.equals("LoginFormulario") || parametroAcao.equals("IndexFormulario")  
+		boolean usuarioNaoLogado = (sessao.getAttribute("clienteLogado") == null);
+		boolean acaoProtegida = !(parametroAcao.equals("login") || parametroAcao.equals("LoginFormulario") || parametroAcao.equals("IndexFormulario")  
 				|| parametroAcao.equals("CadastraClienteFormulario")	
 				);
 		

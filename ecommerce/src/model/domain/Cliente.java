@@ -6,14 +6,13 @@ public class Cliente extends EntidadeDominio {
 
 	private String nome;
 	private String sobrenome;
-	private String dddResidencial;
-	private String numeroTelResidencial;
-	private String dddCelular;
-	private String numeroTelCelular;
-	private String genero;
+	private String genero;	
 	private Date dataNascimento;
 	private String cpf;
 	private Integer score;
+	private Telefone telefoneResidencial;
+	private Telefone telefoneCelular;
+	private Endereco enderecoResidencial;
 	private Usuario usuario;
 
 	public Cliente() {
@@ -24,8 +23,8 @@ public class Cliente extends EntidadeDominio {
 		this.usuario = usuario;
 	}
 	
-	public Cliente(Integer id, String nome, String sobrenome, String genero, Date dataNascimento, String cpf,
-			Integer score, Usuario usuario) {
+	public Cliente(Integer id, String nome, String sobrenome, String genero, Date dataNascimento, String cpf, Integer score, 
+			Telefone telefoneResidencial, Telefone telefoneCelular, Endereco enderecoResidencial, Usuario usuario) {
 		super();
 		this.setId(id);
 		this.nome = nome;
@@ -34,23 +33,39 @@ public class Cliente extends EntidadeDominio {
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.score = score;
+		this.telefoneResidencial = telefoneResidencial;
+		this.telefoneCelular = telefoneCelular;
+		this.enderecoResidencial = enderecoResidencial;
+		this.usuario = usuario;
+	}
+	
+	public Cliente(String nome, String sobrenome, String genero, Date dataNascimento, String cpf, Integer score, 
+			Telefone telefoneResidencial, Telefone telefoneCelular, Endereco enderecoResidencial, Usuario usuario) {
+		super();
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.genero = genero;
+		this.dataNascimento = dataNascimento;
+		this.cpf = cpf;
+		this.score = score;
+		this.telefoneResidencial = telefoneResidencial;
+		this.telefoneCelular = telefoneCelular;
+		this.enderecoResidencial = enderecoResidencial;
 		this.usuario = usuario;
 	}
 
-	public Cliente(Integer id, String nome, String sobrenome, String dddResidencial, String numeroTelResidencial,
-		String dddCelular, String numeroTelCelular, String genero, Date dataNascimento, String cpf, Integer score, Usuario usuario) {
+	public Cliente(Integer id, String nome, String sobrenome, String genero, Date dataNascimento, String cpf, Integer score,
+			Telefone telefoneResidencial, Telefone telefoneCelular, Usuario usuario) {
 		super();
 		this.setId(id);
 		this.nome = nome;
 		this.sobrenome = sobrenome;
-		this.dddResidencial = dddResidencial;
-		this.numeroTelResidencial = numeroTelResidencial;
-		this.dddCelular = dddCelular;
-		this.numeroTelCelular = numeroTelCelular;
 		this.genero = genero;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
 		this.score = score;
+		this.telefoneResidencial = telefoneResidencial;
+		this.telefoneCelular = telefoneCelular;
 		this.usuario = usuario;
 	}
 
@@ -68,39 +83,7 @@ public class Cliente extends EntidadeDominio {
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
-	}
-
-	public String getDddResidencial() {
-		return dddResidencial;
-	}
-
-	public void setDddResidencial(String dddResidencial) {
-		this.dddResidencial = dddResidencial;
-	}
-
-	public String getNumeroTelResidencial() {
-		return numeroTelResidencial;
-	}
-
-	public void setNumeroTelResidencial(String numeroTelResidencial) {
-		this.numeroTelResidencial = numeroTelResidencial;
-	}
-
-	public String getDddCelular() {
-		return dddCelular;
-	}
-
-	public void setDddCelular(String dddCelular) {
-		this.dddCelular = dddCelular;
-	}
-
-	public String getNumeroTelCelular() {
-		return numeroTelCelular;
-	}
-
-	public void setNumeroTelCelular(String numeroTelCelular) {
-		this.numeroTelCelular = numeroTelCelular;
-	}
+	}	
 
 	public String getGenero() {
 		return genero;
@@ -140,6 +123,31 @@ public class Cliente extends EntidadeDominio {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public Telefone getTelefoneResidencial() {
+		return telefoneResidencial;
+	}
+
+	public void setTelefoneResidencial(Telefone telefoneResidencial) {
+		this.telefoneResidencial = telefoneResidencial;
+	}
+
+	public Telefone getTelefoneCelular() {
+		return telefoneCelular;
+	}
+
+	public void setTelefoneCelular(Telefone telefoneCelular) {
+		this.telefoneCelular = telefoneCelular;
+	}
+
+	public Endereco getEnderecoResidencial() {
+		return enderecoResidencial;
+	}
+
+	public void setEnderecoResidencial(Endereco enderecoResidencial) {
+		this.enderecoResidencial = enderecoResidencial;
+	}
+	
 	
 	
 

@@ -16,6 +16,17 @@ public class Telefone extends EntidadeDominio {
 		this.numero = numero;
 		this.tipoTelefone = tipoTelefone;
 	}
+	
+	public Telefone(Integer id,String ddd, String numero, TipoTelefone tipoTelefone) {
+		super();
+		if(id != null) {
+			this.setId(id);
+		}
+		this.ddd = ddd;
+		this.numero = numero;
+		this.tipoTelefone = tipoTelefone;
+	}
+
 
 	public String getDdd() {
 		return ddd;

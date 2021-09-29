@@ -11,10 +11,10 @@ public class ValidadorCpf implements IStrategy {
 	public String processar(EntidadeDominio entidade) {
 		if (entidade instanceof Cliente) {
 			Cliente cliente = (Cliente) entidade;
-			String cpf = cliente.getCpf().replaceAll("-", "").replaceAll(".", "");
+			String cpf = cliente.getCpf().replace("-", "").replace(".", "");
 			String msgPadrao = "CPF inválido\n";
 
-			if (StringUtils.isBlank(cpf)) {
+			if (cpf == null || cpf.isBlank()) {
 				return "É necessário informar o cfp\n";
 			}
 

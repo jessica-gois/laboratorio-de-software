@@ -7,15 +7,17 @@ import java.util.Map;
 
 import dao.CartaoDAO;
 import dao.ClienteDAO;
+import dao.EnderecoDAO;
 import dao.IDAO;
+import dao.LivroDAO;
 import dao.UsuarioDAO;
 import model.domain.Cartao;
 import model.domain.Cliente;
 import model.domain.Endereco;
 import model.domain.EntidadeDominio;
+import model.domain.Livro;
 import model.domain.Result;
 import model.domain.Usuario;
-import negocio.ComplementarDataCadastro;
 import negocio.GerarLog;
 import negocio.IStrategy;
 import negocio.ValidadorCadastroCartao;
@@ -51,10 +53,12 @@ public class Fachada implements IFachada {
 		mapaDaos.put(Cartao.class.getName(), new CartaoDAO());
 		mapaDaos.put(Usuario.class.getName(), new UsuarioDAO());
 		mapaDaos.put(Cliente.class.getName(), new ClienteDAO());
+		mapaDaos.put(Endereco.class.getName(), new EnderecoDAO());
+		mapaDaos.put(Livro.class.getName(), new LivroDAO());
 	}
 
 	@Override
-	public String salvar(EntidadeDominio entidade) {
+	public Result salvar(EntidadeDominio entidade) {
 		String nmClass = entidade.getClass().getName();
 		List<IStrategy> rnsAntes = mapaAntesPesistencia.get(nmClass);
 
@@ -66,22 +70,39 @@ public class Fachada implements IFachada {
 			// List<IStrategy> rnsDepois = mapaDepoisPesistencia.get(nmClass);
 			// sb.append(executarStrategies(rnsDepois, entidade));
 		} else {
-			return sb.toString();
+			result.setResposta(sb.toString());
 		}
 
-		return null;
+		return result;
 	}
 
 	@Override
-	public String alterar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result alterar(EntidadeDominio entidade) {
+		String nmClass = entidade.getClass().getName();
+		List<IStrategy> rnsAntes = mapaAntesPesistencia.get(nmClass);
+
+		StringBuilder sb = executarStrategies(rnsAntes, entidade);
+
+		if (sb.length() == 0) {
+			IDAO dao = mapaDaos.get(nmClass);
+			dao.alterar(entidade);
+			// List<IStrategy> rnsDepois = mapaDepoisPesistencia.get(nmClass);
+			// sb.append(executarStrategies(rnsDepois, entidade));
+		} else {
+			result.setResposta(sb.toString());
+		}
+		return result;
 	}
 
 	@Override
-	public String excluir(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result excluir(EntidadeDominio entidade) {
+		String name = entidade.getClass().getName();
+		String mensagem = mapaDaos.get(name).excluir(entidade);
+		if (mensagem == null) {
+			return result;
+		}
+		result.setResposta(mensagem);
+		return result;
 	}
 
 	@Override
@@ -109,26 +130,19 @@ public class Fachada implements IFachada {
 	public void carregarMapaAntesPersistencia(List<IStrategy> rnAntesCliente, List<IStrategy> rnAntesCartao,
 			List<IStrategy> rnAntesEndereco, List<IStrategy> rnAntesUsuario) {
 
-		ComplementarDataCadastro cDtCadastro = new ComplementarDataCadastro();
-
 		// Regras antes da persistencia do cliente
-		rnAntesCliente.add(new ValidadorCadastroCartao());
 		rnAntesCliente.add(new ValidadorCpf());
 		rnAntesCliente.add(new ValidadorDadosCliente());
 		rnAntesCliente.add(new ValidadorExistenciaCliente());
-		rnAntesCliente.add(cDtCadastro);
 
 		// Regras antes da persistencia do cartão
 		rnAntesCartao.add(new ValidadorCadastroCartao());
-		rnAntesCartao.add(cDtCadastro);
 
 		// Regras antes da persistencia do endereço
 		rnAntesEndereco.add(new ValidadorEndereco());
-		rnAntesEndereco.add(cDtCadastro);
 
 		// Regras antes da persistencia do usuario
 		rnAntesUsuario.add(new ValidadorSenha());
-		rnAntesUsuario.add(cDtCadastro);
 
 		mapaAntesPesistencia.put(Cliente.class.getName(), rnAntesCliente);
 		mapaAntesPesistencia.put(Cartao.class.getName(), rnAntesCartao);

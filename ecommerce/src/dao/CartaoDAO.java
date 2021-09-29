@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import db.Database;
 import model.domain.Cartao;
 import model.domain.Cliente;
 import model.domain.EntidadeDominio;
@@ -18,13 +17,13 @@ import util.Calculadora;
 
 public class CartaoDAO extends AbstractDAO {
 
-	public String salvar(EntidadeDominio entityDomain) {
-		Cartao cartao = (Cartao) entityDomain;
+	public String salvar(EntidadeDominio entidade) {
+		Cartao cartao = (Cartao) entidade;
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("INSERT INTO cartao "
-					+ "(car_numero, car_nome, car_cvv, car_preferencial, car_ban_id, car_cli_id) " + "VALUES " + "(?, ?, ?, ?, ?, ?)",
+			st = conn.prepareStatement("INSERT INTO cartao (car_numero, car_nome, car_cvv, car_preferencial, car_ban_id, car_cli_id) " + 
+			"VALUES (?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 
 			setaParametrosQuery(st, cartao.getNumero(), cartao.getNomeImpresso(), cartao.getCodigoSeguranca(),
@@ -109,8 +108,7 @@ public class CartaoDAO extends AbstractDAO {
 		Cartao cartao = (Cartao) entity;
 		List<Cartao> cartoes = new ArrayList();
 		System.out.println(cartao);
-		Connection conn = null;
-		PreparedStatement st = null;
+		inicializarConexao();
 		try {
 			String sql = pesquisarAuxiliar(cartao);
 			st = executarPesquisa(cartao, sql);

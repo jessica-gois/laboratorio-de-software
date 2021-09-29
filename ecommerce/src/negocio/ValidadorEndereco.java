@@ -1,7 +1,5 @@
 package negocio;
 
-import org.junit.platform.commons.util.StringUtils;
-
 import model.domain.Endereco;
 import model.domain.EntidadeDominio;
 
@@ -12,15 +10,15 @@ public class ValidadorEndereco implements IStrategy {
 		Endereco endereco = (Endereco) entidade;
 		StringBuilder erros = new StringBuilder();
 
-		if (StringUtils.isBlank(endereco.getLogradouro())) {
+		if (endereco.getLogradouro() == null || endereco.getLogradouro().isBlank()) {
 			erros.append("O logradouro é obrigatório");	
 		}
 
-		if (StringUtils.isBlank(endereco.getBairro())) {
+		if (endereco.getBairro() == null || endereco.getBairro().isBlank()) {
 			erros.append("O bairro é obrigatório");	
 		}
 
-		if (StringUtils.isBlank(endereco.getNumero())) {
+		if (endereco.getNumero() == null || endereco.getNumero().isBlank()) {
 			erros.append("O número é obrigatório");	
 		}
 		
@@ -28,11 +26,11 @@ public class ValidadorEndereco implements IStrategy {
 			erros.append("A cidade é obrigatória");	
 		}
 
-		if (StringUtils.isBlank(endereco.getDescricao())) {
+		if (endereco.getDescricao() == null || endereco.getDescricao().isBlank()) {
 			erros.append("A descricao é obrigatória");	
 		}
 
-		if (StringUtils.isBlank(endereco.getCep())) {
+		if (endereco.getCep() == null || endereco.getCep().isBlank()) {
 			erros.append("O cep é obrigatório");	
 		}
 
@@ -43,7 +41,7 @@ public class ValidadorEndereco implements IStrategy {
 			erros.append("O logradouro é obrigatório");	
 		}
 		
-		if(StringUtils.isNotBlank(erros.toString())) {
+		if(erros.toString() != null && erros.toString() != "") {
 			return erros.toString();
 		}else {
 			return null;
