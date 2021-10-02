@@ -63,7 +63,7 @@
 							</form>
 							<input class="form-control w-25" type="text" name="quantidadeItem" id="quantidadeItem"							
 							style="background-color: #FFF; text-align: center;" value="<%=item.getQuantidade()%>" readonly/>
-							<form class="w-25" id="formAumentarQuantidade" action="${stub}" novalidate>
+							<form class="w-25" id="formDiminuirQuantidade" action="${stub}" novalidate>
 								<input type="hidden" name="acaoCarrinho" value="diminuirQuantidade" />
 								<input type="hidden" name="livroId" value="<%=item.getLivro().getId()%>" />							
 								<button class="btn white border w-10" type="submit" title="Diminuir quantidade"
