@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="java.util.List,model.domain.Cliente, model.domain.PedidoItem" %>
+<c:url value="/carrinho" var="stub"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 </head>
 <%
 	List<PedidoItem> itens = (List<PedidoItem>) request.getSession().getAttribute("carrinho");
+	System.out.println("Quantidade de itens no carrinho" + itens.size());
 %>
 <body>
 	<header>
@@ -20,7 +22,7 @@
 		<p class="h4 mb-3">Carrinho de compras</p>
 		<div class="card shadow mb-5 pb-5">
 			<div class="card-body">
-				<h4>Itens selecionados (2)</h4>
+				<h4>Itens selecionados</h4>
 				<hr class="my-3">
 				<div class="row">
 					<div class="col">
@@ -67,10 +69,14 @@
 						<p>R$ <%=item.getValorTotal()%></p>
 					</div>
 					<div class="col">
+					<form id="formRemoverCarinho" action="${stub}" method="get" novalidate>
+						<input type="hidden" name="acaoCarrinho" value="removerItem" />
+						<input type="hidden" name="livroId" value="<%=item.getLivro().getId()%>" />
 						<button class="btn btn-red w-50" type="submit"  title="Excluir"
 							alt="Excluir">
 								Excluir
 						</button>	
+					</form>
 					</div>				
 				</div>
 				<% }
