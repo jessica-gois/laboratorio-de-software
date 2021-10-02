@@ -39,12 +39,15 @@ public class CarrinhoServlet extends HttpServlet {
 
 		String acao = (String) request.getParameter("acaoCarrinho");
 		
-		if(acao.equals("adicionarItem")) {
+		if (acao.equals("adicionarItem")) {
 			adicionarItemCarrinho(item, carrinho);
-		}
-		if(acao.equals("removerItem") && request.getParameter("livroId") != null) {
+		} else {
 			Integer livroId = Conversao.parseStringToInt(request.getParameter("livroId"));
-			removerItemCarrinho(livroId, carrinho);
+			if (acao.equals("removerItem") && request.getParameter("livroId") != null) {
+				removerItemCarrinho(livroId, carrinho);
+			} else {
+				mudarQuantidade(livroId, acao, carrinho);
+			}
 		}
 		
 		request.getSession().setAttribute("carrinho", carrinho);
@@ -80,6 +83,20 @@ public class CarrinhoServlet extends HttpServlet {
 				}
 			}
 			carrinho.remove(itemRemover);
+		}	
+	}
+	
+	public void mudarQuantidade(Integer livroId, String acao, List<PedidoItem> carrinho) {		
+		if(carrinho != null && livroId != null && acao != null) {	
+			
+			for(PedidoItem itemCarrinho : carrinho) {
+				if(itemCarrinho.getLivro().getId() == livroId) {
+					itemCarrinho.setQuantidade(
+						acao.equals("aumentarQuantidade") ? itemCarrinho.getQuantidade() + 1
+						: itemCarrinho.getQuantidade() - 1
+					);
+				}
+			}
 		}	
 	}
 

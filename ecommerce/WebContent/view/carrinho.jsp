@@ -53,16 +53,24 @@
 					</div>
 					<div class="col">
 						<div class="row">
-							<button class="btn white border w-25" type="submit"  title="Aumentar quantidade"
-							alt="Aumentar quantidade">
-								<i class="fas fa-plus"></i>
-							</button>	
+							<form class="w-25" id="formAumentarQuantidade" action="${stub}" novalidate>
+								<input type="hidden" name="acaoCarrinho" value="aumentarQuantidade" />
+								<input type="hidden" name="livroId" value="<%=item.getLivro().getId()%>" />
+								<button class="btn white border w-10" type="submit"  title="Aumentar quantidade"
+								alt="Aumentar quantidade">
+									<i class="fas fa-plus"></i>
+								</button>	
+							</form>
 							<input class="form-control w-25" type="text" name="quantidadeItem" id="quantidadeItem"							
 							style="background-color: #FFF; text-align: center;" value="<%=item.getQuantidade()%>" readonly/>
-							<button class="btn white border w-25" type="submit" title="Diminuir quantidade"
-							alt="Diminuir quantidade">
-								<i class="fas fa-minus"></i>
-							</button>
+							<form class="w-25" id="formAumentarQuantidade" action="${stub}" novalidate>
+								<input type="hidden" name="acaoCarrinho" value="diminuirQuantidade" />
+								<input type="hidden" name="livroId" value="<%=item.getLivro().getId()%>" />							
+								<button class="btn white border w-10" type="submit" title="Diminuir quantidade"
+								alt="Diminuir quantidade">
+									<i class="fas fa-minus"></i>
+								</button>
+							</form>
 						</div>
 					</div>
 					<div class="col">
