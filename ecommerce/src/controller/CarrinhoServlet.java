@@ -57,7 +57,7 @@ public class CarrinhoServlet extends HttpServlet {
 			boolean adicionado = false;
 			
 			for(PedidoItem itemCarrinho : carrinho) {
-				if(itemCarrinho.getLivro().equals(item.getLivro())) {
+				if(itemCarrinho.getLivro().getId() == item.getLivro().getId()) {
 					itemCarrinho.setQuantidade(itemCarrinho.getQuantidade() + item.getQuantidade());
 					adicionado = true;
 					break;	
