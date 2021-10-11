@@ -28,7 +28,7 @@ public class TelefoneDAO extends AbstractDAO {
 		try {
 			conn = Database.conectarBD();
 			st = conn.prepareStatement("INSERT INTO telefone "
-					+ "(tel_ddd, tel_numero, tel_cli_id, tel_tip_id) " + "VALUES " + "(?, ?,(SELECT MAX(cli_id) FROM cliente), ?)",
+					+ "(tel_ddd, tel_numero, tel_cli_id, tel_tip_id) VALUES (?, ?,(SELECT MAX(cli_id) FROM cliente), ?)",
 					Statement.RETURN_GENERATED_KEYS);
 
 			setaParametrosQuery(st, telefone.getDdd(), telefone.getNumero(), telefone.getTipoTelefone().getCodigo());

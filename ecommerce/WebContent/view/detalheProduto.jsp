@@ -21,7 +21,10 @@
 			<div class="card shadow mb-5 pb-4">
 				<div>
 					<div class="card-body">
-						<h3>Título: <%=livro.getTitulo() %></h3>
+						<div class="d-flex  justify-content-between">
+						<h3><%=livro.getTitulo() %></h3>
+						<p class="h3 pe-4">R$<%=livro.getPrecoVenda()%></p>
+						</div>
 						<hr class="my-2">
 						<div class="row">
 							<div class="col-3 me-4">
@@ -97,33 +100,37 @@
 							<br/>
 							<form id="formAdicionarCarrinho" action="${stub }" method="get" novalidate>
 								<div class="row d-flex justify-content-space-between">
-									<div class="col-4">
-										<h4>Quantidade:</h4>
-										<input class="form-control" type="number" name="quantidade"
-											id="quantidade" min="1" max="<%=livro.getQtdEstoque()%>"
-											required="true" placeholder="Informe a quantidade..." />
-									</div>
+									<%if(livro.getQtdDisponivelCompra() != null && livro.getQtdDisponivelCompra() > 0){%>
+										<div class="col-4">
+											<h4>Quantidade:</h4>
+											<input class="form-control" type="number" name="quantidade"
+												id="quantidade" min="1" max="<%=livro.getQtdDisponivelCompra()%>"
+												required="true" placeholder="Informe a quantidade..."  />
+										</div>
+									<%}%>
 									
 									<input type="hidden" name="acao" value="consultar" />
 									<input type="hidden" name="acaoCarrinho" value="adicionarItem" />
 									<input type="hidden" name="viewHelper" value="AdicionarCarrinhoVH" />
 									<input type="hidden" name="id" value="<%=livro.getId()%>"/>
 									
-									<div class="col-auto d-flex align-items-end">
-										<button class="btn btn-blue" type="submit" title="Adicionar ao carrinho"
-											alt="Adicionar ao carrinho">Adicionar ao carrinho</button>
-									</div>
+									<%if(livro.getQtdDisponivelCompra() != null && livro.getQtdDisponivelCompra() > 0){%>
+										<div class="col-auto d-flex align-items-end">
+											<button class="btn btn-blue" type="submit" title="Adicionar ao carrinho"
+												alt="Adicionar ao carrinho">Adicionar ao carrinho</button>
+										</div>
+									<%} %>
 									<div class="col-auto d-flex align-items-end">
 										<a class="btn btn-secondary" href="view/index">Voltar</a>
 									</div>
 								</div>
 							</form>	
 							<div class="row">
-								<div class="col-4 mt-3">
+								<!--  <div class="col-4 mt-3">
 									<a class="btn btn-blue w-100"href="#" >Comprar</a>
-								</div>
+								</div>-->
 								<div class="col-auto d-flex align-items-end">									
-									<p class="h4">R$<%=livro.getPrecoVenda()%></p>
+									
 								</div>
 							</div>			
 				</div>

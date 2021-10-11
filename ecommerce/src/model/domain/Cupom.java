@@ -1,6 +1,6 @@
 package model.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import model.domain.enums.TipoCupom;
 import model.domain.enums.TipoEndereco;
@@ -11,11 +11,24 @@ public class Cupom extends EntidadeDominio{
 	private TipoCupom tipo;
 	private Double valor;
 	private Date validade;
+	private boolean aplicado;
 	
 	public Cupom() {
 		
 	}
-	
+			
+	public Cupom(Integer id, String nome, String codigo, TipoCupom tipo, Double valor, Date validade) {
+		super();
+		if (id != null) {
+			this.setId(id);
+		}
+		this.nome = nome;
+		this.codigo = codigo;
+		this.tipo = tipo;
+		this.valor = valor;
+		this.validade = validade;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -41,7 +54,9 @@ public class Cupom extends EntidadeDominio{
 	}
 	
 	public Double getValor() {
-		return valor;
+		if(valor == null) {
+			valor = 0d;
+		}		return valor;
 	}
 	
 	public void setValor(Double valor) {
@@ -54,6 +69,72 @@ public class Cupom extends EntidadeDominio{
 	
 	public void setValidade(Date validade) {
 		this.validade = validade;
+	}
+	
+	public boolean isValido() {
+		boolean isValido = false;
+		if(this.validade != null && (this.validade.after(new Date()) || this.validade == new Date())) {
+			isValido = true;
+		}
+		
+		return isValido;		
+	}
+
+	public boolean isAplicado() {
+		return aplicado;
+	}
+
+	public void setAplicado(boolean aplicado) {
+		this.aplicado = aplicado;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (aplicado ? 1231 : 1237);
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		result = prime * result + ((validade == null) ? 0 : validade.hashCode());
+		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cupom other = (Cupom) obj;
+		if (aplicado != other.aplicado)
+			return false;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (tipo != other.tipo)
+			return false;
+		if (validade == null) {
+			if (other.validade != null)
+				return false;
+		} else if (!validade.equals(other.validade))
+			return false;
+		if (valor == null) {
+			if (other.valor != null)
+				return false;
+		} else if (!valor.equals(other.valor))
+			return false;
+		return true;
 	}
 	
 }

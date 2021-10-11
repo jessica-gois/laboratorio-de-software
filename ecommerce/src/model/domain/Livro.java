@@ -22,6 +22,7 @@ public class Livro extends EntidadeDominio {
 	private Boolean status;
 	
 	private Double qtdEstoque;
+	private Double qtdDisponivelCompra;
 	private String caminhoImagem;
 	
 	public Livro(){
@@ -167,6 +168,9 @@ public class Livro extends EntidadeDominio {
 	}
 	
 	public Double getPrecoVenda() {
+		if(precoVenda == null) {
+			precoVenda = 0d;
+		}
 		return precoVenda;
 	}
 	
@@ -208,7 +212,30 @@ public class Livro extends EntidadeDominio {
 	public void setQtdEstoque(Double qtdEstoque) {
 		this.qtdEstoque = qtdEstoque;
 	}
-	
+
+	public Double getQtdDisponivelCompra(Carrinho carrinho) {
+		qtdDisponivelCompra = getQtdEstoque() != null ? getQtdEstoque() : 0;
+		if(carrinho != null && carrinho.getItens() != null) {
+			for(CarrinhoItem itemCarrinho : carrinho.getItens()) {
+				if(itemCarrinho.getLivro().getId() == this.getId()
+					&& getQtdEstoque() > itemCarrinho.getQuantidade()) {
+					qtdDisponivelCompra = this.getQtdEstoque() - itemCarrinho.getQuantidade();
+				}
+			}
+		}
 		
+		return qtdDisponivelCompra;
+	}
+
+	public Double getQtdDisponivelCompra() {
+		if(qtdDisponivelCompra == null) {
+			qtdDisponivelCompra = 0d;
+		}
+		return qtdDisponivelCompra;
+	}
+
+	public void setQtdDisponivelCompra(Double qtdDisponivelCompra) {
+		this.qtdDisponivelCompra = qtdDisponivelCompra;
+	}
 	
 }

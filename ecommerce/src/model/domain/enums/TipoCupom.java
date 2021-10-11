@@ -10,6 +10,10 @@ public enum TipoCupom {
 		this.descricao = descricao;
 	}
 	
+	public String getDescricao() {
+		return this.descricao;
+	}
+	
 	@Override
 	public String toString() {
 		return this.descricao;

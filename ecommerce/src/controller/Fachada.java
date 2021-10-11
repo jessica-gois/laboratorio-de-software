@@ -7,12 +7,14 @@ import java.util.Map;
 
 import dao.CartaoDAO;
 import dao.ClienteDAO;
+import dao.CupomDAO;
 import dao.EnderecoDAO;
 import dao.IDAO;
 import dao.LivroDAO;
 import dao.UsuarioDAO;
 import model.domain.Cartao;
 import model.domain.Cliente;
+import model.domain.Cupom;
 import model.domain.Endereco;
 import model.domain.EntidadeDominio;
 import model.domain.Livro;
@@ -55,6 +57,7 @@ public class Fachada implements IFachada {
 		mapaDaos.put(Cliente.class.getName(), new ClienteDAO());
 		mapaDaos.put(Endereco.class.getName(), new EnderecoDAO());
 		mapaDaos.put(Livro.class.getName(), new LivroDAO());
+		mapaDaos.put(Cupom.class.getName(), new CupomDAO());
 	}
 
 	@Override

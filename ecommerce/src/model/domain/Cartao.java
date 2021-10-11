@@ -9,6 +9,7 @@ public class Cartao extends EntidadeDominio{
 	private String nomeImpresso;
 	private String codigoSeguranca;
 	private Boolean preferencial;
+	private boolean usado;
 	
 	public Cartao() {
 	}
@@ -80,6 +81,14 @@ public class Cartao extends EntidadeDominio{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	public boolean isUsado() {
+		return usado;
+	}
+
+	public void setUsado(boolean usado) {
+		this.usado = usado;
 	}
 
 	@Override

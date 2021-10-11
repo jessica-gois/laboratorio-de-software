@@ -175,5 +175,35 @@ public class Endereco extends EntidadeDominio {
 		this.observacao = observacao;
 	}
 
-
+	public String getLabel() {
+		StringBuilder label = new StringBuilder();
+		if(descricao != null && !descricao.isBlank()) {
+			label.append(descricao);
+		}
+		label.append(" - ");
+		if(tipoLogradouro != null && !tipoLogradouro.name().isBlank()) {
+			label.append(tipoLogradouro + " ");
+		}
+		if(logradouro != null && !logradouro.isBlank()) {
+			label.append(logradouro);
+		}
+		label.append(", ");
+		if(numero != null && !numero.isBlank()) {
+			label.append(numero + ", ");
+		}
+		if(cidade != null && !cidade.getNome().isBlank()) {
+			label.append(cidade.getEstado().getNome()).append(" - ");			
+			
+			if(cidade.getEstado() != null && !cidade.getEstado().getNome().isBlank()) {
+				label.append(cidade.getEstado().getSigla());
+			}
+		}
+		
+		if(cep != null && !cep.isBlank()) {
+			label.append(", " + cep);
+		}
+		
+		return label.toString();
+	}
+	
 }

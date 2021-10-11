@@ -44,7 +44,7 @@
 					<li><a href="#"></a>catálogo</li>
 					<li><a href="/ecommerce/view/login.jsp">entrar</a></li>
 					<li><a href="/ecommerce/view/cadastraCliente.jsp">cadastro</a></li>
-					<button>carrinho</button>
+					<button onClick="window.location.href='http://localhost:8080/ecommerce/carrinho'">carrinho</button>
 				</ul>
 			</nav>
 			<div class="header-block">

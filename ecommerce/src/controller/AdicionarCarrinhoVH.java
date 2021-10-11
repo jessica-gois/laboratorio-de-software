@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.domain.CarrinhoItem;
 import model.domain.EntidadeDominio;
 import model.domain.Livro;
-import model.domain.PedidoItem;
 import model.domain.Result;
 import util.Conversao;
 
@@ -29,8 +29,7 @@ public class AdicionarCarrinhoVH implements IViewHelper {
 		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
 			Double quantidade = Conversao.parseStringToDouble(request.getParameter("quantidade"));
 			Livro livro = (Livro) resultado.getEntidades().get(0);
-			PedidoItem item = new PedidoItem(livro, quantidade);
-			
+			CarrinhoItem item = new CarrinhoItem(livro, quantidade);			
 			
 			request.setAttribute("itemCarrinho", item);
 			request.setAttribute("acao", "adicionarItem");			
