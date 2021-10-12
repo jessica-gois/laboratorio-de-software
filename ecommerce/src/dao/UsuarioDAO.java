@@ -69,7 +69,7 @@ public class UsuarioDAO extends AbstractDAO {
 			setaParametrosQuery(st, false, usuario.getId());
 
 			int linhasAfetadas = st.executeUpdate();
-			System.out.println("Usuário inativado com excluído com sucesso! Linhas afetadas: " + linhasAfetadas);
+			System.out.println("Usuário inativado com sucesso! Linhas afetadas: " + linhasAfetadas);
 			return null;
 		} catch (Exception e) {
 			e.printStackTrace();

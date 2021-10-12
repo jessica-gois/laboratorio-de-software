@@ -16,6 +16,22 @@ public class FormaPagamento extends EntidadeDominio{
 	public FormaPagamento(Cartao cartao) {
 		this.cartao = cartao; 
 	}
+	
+	public FormaPagamento(Integer id, Cupom cupom, Cartao cartao, Pedido pedido) {
+		super();
+		if(id != null) {
+			this.setId(id);
+		}
+		if(cupom != null) {
+			this.cupom = cupom;
+		}
+		if(cartao != null) {
+			this.cartao = cartao;
+		} 
+		if(pedido != null){
+			this.pedido = pedido;
+		}
+	}
 
 	public Cupom getCupom() {
 		return cupom;
@@ -33,4 +49,12 @@ public class FormaPagamento extends EntidadeDominio{
 		this.cartao = cartao;
 	}
 
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+	
 }
