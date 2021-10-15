@@ -12,6 +12,7 @@ public class Cupom extends EntidadeDominio{
 	private Double valor;
 	private Date validade;
 	private boolean aplicado;
+	private Integer idCliente;
 	
 	public Cupom() {
 		
@@ -71,6 +72,14 @@ public class Cupom extends EntidadeDominio{
 		this.validade = validade;
 	}
 	
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
+	}
+
 	public boolean isValido() {
 		boolean isValido = false;
 		if(this.validade != null && (this.validade.after(new Date()) || this.validade == new Date())) {

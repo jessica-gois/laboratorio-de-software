@@ -53,6 +53,10 @@
 	color: red
 }
 
+.alerta{
+	background-color: #FFEF68;
+}
+
 .pink{
 	color: #BF3099;
 }

@@ -11,6 +11,8 @@
 <c:import url="template-head.jsp" />
 <title>Carrinho de compras</title>
 </head>
+<fmt:setLocale value = "pt_BR"/>						
+
 <%
 	Carrinho carrinho = (Carrinho) request.getSession().getAttribute("carrinho");
 %>
@@ -22,7 +24,7 @@
 		<p class="h4 mb-3">Carrinho de compras</p>
 		<div class="card shadow mb-5 pb-5">
 			<div class="card-body">
-				<h4>Itens selecionados (<%=carrinho.getQuantidadeTotal()%>)</h4>
+				<h4>Itens selecionados (<fmt:formatNumber value = "<%=carrinho.getQuantidadeTotal()%>" type = "number" minFractionDigits="0"/>)</h4>
 				<hr class="my-3">
 				<div class="row">
 					<div class="col">
@@ -49,7 +51,7 @@
 						<p><%=item.getLivro().getTitulo()%></p>
 					</div>
 					<div class="col">
-						<p>R$ <%=item.getValorUnitario()%></p>
+						<p><fmt:formatNumber value = "<%=item.getValorUnitario()%>" type = "currency"/></p>
 					</div>
 					<div class="col">
 						<div class="row">							
@@ -62,7 +64,8 @@
 								</button>
 							</form>
 							<input class="form-control w-25" type="text" name="quantidadeItem" id="quantidadeItem"							
-							style="background-color: #FFF; text-align: center;" value="<%=item.getQuantidade()%>" readonly/>
+							style="background-color: #FFF; text-align: center;" 
+							value="<fmt:formatNumber value = "<%=item.getQuantidade()%>" type = "number" minFractionDigits="0"/>" readonly/>
 							<form class="w-25" id="formAumentarQuantidade" action="${stub}" novalidate>
 								<input type="hidden" name="acaoCarrinho" value="aumentarQuantidade" />
 								<input type="hidden" name="livroId" value="<%=item.getLivro().getId()%>" />
@@ -73,8 +76,8 @@
 							</form>
 						</div>
 					</div>
-					<div class="col">
-						<p>R$ <%=item.getValorTotal()%></p>
+					<div class="col">		
+					<p><fmt:formatNumber value = "<%=item.getValorTotal()%>" type = "currency"/></p>
 					</div>
 					<div class="col">
 					<form id="formRemoverCarinho" action="${stub}" method="get" novalidate>
@@ -93,7 +96,7 @@
 		</div>
 		<div class="row">
 			<div class="col-auto">
-				<h4>Total: <%=carrinho.getValorTotal()%></h4>
+				<h4>Total: <fmt:formatNumber value = "<%=carrinho.getValorTotal()%>" type = "currency"/></h4>
 			</div>
 			<%if(carrinho != null && carrinho.getItens() != null && !carrinho.getItens().isEmpty()){%>
 				<div class="col-3">

@@ -13,6 +13,8 @@
 	<%
 		Livro livro = (Livro) request.getAttribute("livro");
 	%>
+	<fmt:setLocale value = "pt_BR"/>							
+
 	<body>
 		<header>
 			<c:import url="template-header.jsp"/>
@@ -23,7 +25,7 @@
 					<div class="card-body">
 						<div class="d-flex  justify-content-between">
 						<h3><%=livro.getTitulo() %></h3>
-						<p class="h3 pe-4">R$<%=livro.getPrecoVenda()%></p>
+						<p class="h3 pe-4"><fmt:formatNumber value = "<%=livro.getPrecoVenda()%>" type = "currency"/></p>
 						</div>
 						<hr class="my-2">
 						<div class="row">

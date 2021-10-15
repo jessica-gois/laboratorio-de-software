@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.domain.Cupom;
+import model.domain.Endereco;
 import model.domain.EntidadeDominio;
 import model.domain.enums.TipoCupom;
 import util.Calculadora;
@@ -126,6 +127,7 @@ public class CupomDAO extends AbstractDAO {
 			while (rs.next()) {
 				Cupom cupomAux = new Cupom(rs.getInt("cup_id"), rs.getString("cup_nome"), rs.getString("cup_codigo"),
 					TipoCupom.valueOf(rs.getString("cup_tipo")), rs.getDouble("cup_valor"), sdf.parse(rs.getString("cup_validade")));
+				cupomAux.setAplicado(isCupomUtilizado(rs.getInt("cup_id"), cupom.getIdCliente()));
 				cupons.add(cupomAux);
 			}
 
@@ -133,6 +135,38 @@ public class CupomDAO extends AbstractDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	private boolean isCupomUtilizado(Integer idCupom, Integer idCliente) {
+		boolean isCupomAplicado = false;
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("select 1 as aplicado from forma_pagamento where for_cup_id = ? and"
+				+ " exists (select 1 from pedido where ped_id = for_ped_id and ped_cli_id = ?)");
+			setaParametrosQuery(st, idCupom, idCliente);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				isCupomAplicado = rs.getBoolean("aplicado");
+			}
+			return isCupomAplicado;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return isCupomAplicado;
+		}
+	}
+	
+	public Cupom getCupomById(Integer idCupom) {
+		Cupom cupom = new Cupom();
+		cupom.setId(idCupom);
+		cupom.setPesquisa("id");
+		
+		if(idCupom != null && idCupom > 0) {
+			return (Cupom) consultar(cupom).get(0);
+		}else {
+			return cupom;
 		}
 	}
 }

@@ -38,7 +38,7 @@
 		<div class="content">
 			<nav>
 				<p class="brand">
-					turma do <strong>livro</strong>
+					Turma do <strong>livro</strong>
 				</p>
 				<ul>
 					<li><a href="#"></a>catálogo</li>

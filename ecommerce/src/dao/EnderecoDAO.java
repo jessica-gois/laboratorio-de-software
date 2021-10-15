@@ -201,11 +201,11 @@ public class EnderecoDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				endereco = new Endereco(rs.getInt("end_id"), rs.getString("end_descricao"),
-						TipoLogradouro.valueOf(rs.getString("end_tipologradouro")), rs.getString("end_logradouro"),
-						rs.getString("end_numero"), rs.getString("end_complemento"),
-						TipoResidencia.valueOf(rs.getString("end_tipoResidencia")), rs.getString("end_bairro"),
-						rs.getString("end_cep"), cidadeDAO.getCidadeById(rs.getInt("end_cid_id")),
-						rs.getString("end_observacao"), TipoEndereco.valueOf(rs.getString("end_tipo")));
+					TipoLogradouro.valueOf(rs.getString("end_tipologradouro")), rs.getString("end_logradouro"),
+					rs.getString("end_numero"), rs.getString("end_complemento"),
+					TipoResidencia.valueOf(rs.getString("end_tipoResidencia")), rs.getString("end_bairro"),
+					rs.getString("end_cep"), cidadeDAO.getCidadeById(rs.getInt("end_cid_id")),
+					rs.getString("end_observacao"), TipoEndereco.valueOf(rs.getString("end_tipo")));
 			}
 			
 			return endereco;
@@ -213,5 +213,13 @@ public class EnderecoDAO extends AbstractDAO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public Endereco getEnderecoById(Integer idEndereco) {
+		Endereco endereco = new Endereco();
+		endereco.setId(idEndereco);
+		endereco.setPesquisa("id");
+		
+		return (Endereco) consultar(endereco).get(0);
 	}
 }

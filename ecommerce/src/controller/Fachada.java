@@ -11,6 +11,7 @@ import dao.CupomDAO;
 import dao.EnderecoDAO;
 import dao.IDAO;
 import dao.LivroDAO;
+import dao.PedidoDAO;
 import dao.UsuarioDAO;
 import model.domain.Cartao;
 import model.domain.Cliente;
@@ -18,9 +19,9 @@ import model.domain.Cupom;
 import model.domain.Endereco;
 import model.domain.EntidadeDominio;
 import model.domain.Livro;
+import model.domain.Pedido;
 import model.domain.Result;
 import model.domain.Usuario;
-import negocio.GerarLog;
 import negocio.IStrategy;
 import negocio.ValidadorCadastroCartao;
 import negocio.ValidadorCpf;
@@ -58,6 +59,7 @@ public class Fachada implements IFachada {
 		mapaDaos.put(Endereco.class.getName(), new EnderecoDAO());
 		mapaDaos.put(Livro.class.getName(), new LivroDAO());
 		mapaDaos.put(Cupom.class.getName(), new CupomDAO());
+		mapaDaos.put(Pedido.class.getName(), new PedidoDAO());
 	}
 
 	@Override
@@ -121,10 +123,12 @@ public class Fachada implements IFachada {
 	
 	private StringBuilder executarStrategies(List<IStrategy> strategies, EntidadeDominio entidade) {
 		StringBuilder retorno = new StringBuilder();
-		for (IStrategy rn : strategies) {
-			String msg = rn.processar(entidade);
-			if (msg != null) {
-				retorno.append(msg);
+		if (strategies != null) {
+			for (IStrategy rn : strategies) {
+				String msg = rn.processar(entidade);
+				if (msg != null) {
+					retorno.append(msg);
+				}
 			}
 		}
 		return retorno;

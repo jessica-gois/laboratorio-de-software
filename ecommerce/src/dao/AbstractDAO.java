@@ -27,6 +27,9 @@ public abstract class AbstractDAO implements IDAO{
 				if (parametro instanceof Integer) {
 					st.setInt(posicaoParametro, (Integer) parametro);
 				}
+				if (parametro instanceof Double) {
+					st.setDouble(posicaoParametro, (Double) parametro);
+				}
 				if (parametro instanceof Boolean) {
 					st.setBoolean(posicaoParametro, (Boolean) parametro);
 				}

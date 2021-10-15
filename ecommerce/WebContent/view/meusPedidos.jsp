@@ -2,13 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="java.util.List,model.domain.Pedido" %>
 <!DOCTYPE html>
 <html>
 <head>
 <c:import url="template-head.jsp" />
 <title>Meus pedidos</title>
 </head>
-
+<%
+	List<Pedido> pedidos = (List<Pedido>) request.getSession().getAttribute("pedidos");
+%>
 <body>
 	<header>
 		<c:import url="template-header.jsp" />
@@ -35,41 +38,29 @@
 						<p class="h5" style="color:#FFF;"></p>
 					</div>				
 				</div>
-				<div class="row pt-2">
-					<div class="col-3">
-						<p>12345</p>
-					</div>
-					<div class="col-1 me-4">
-						<p>R$ 59,80</p>
-					</div>
-					<div class="col-2 me-4">
-						EM PROCESSAMENTO
-					</div>
-					<div class="col-2">
-						<p>15/11/2021</p>
-					</div>
-					<div class="col-2">
-						<a class="btn btn-blue w-100" href="#" title="Detalhes">Detalhes</a>	
-					</div>				
-				</div>
-				<hr class="my-2 mt-3">
-				<div class="row pt-2">
-					<div class="col-3">
-						<p>12344</p>
-					</div>
-					<div class="col-1 me-4">
-						<p>R$ 15,00</p>
-					</div>
-					<div class="col-2 me-4">
-						ENTREGUE
-					</div>
-					<div class="col-2">
-						<p>20/04/2021</p>
-					</div>
-					<div class="col-2">
-						<a class="btn btn-blue w-100" href="#" title="Detalhes">Detalhes</a>	
-					</div>				
-				</div>
+				<%if(pedidos != null){
+					for(Pedido pedido : pedidos){%>
+						<div class="row pt-2 mb-2">
+							<div class="col-3">
+								<p><%=pedido.getId()%></p>
+							</div>
+							<div class="col-1 me-4">
+								<fmt:setLocale value = "pt_BR"/>								
+								<p><fmt:formatNumber value = "<%=pedido.getValorTotal()%>" type = "currency"/></p>
+							</div>
+							<div class="col-2 me-4">
+								<%=pedido.getStatus() != null ? pedido.getStatus().getDescricao() : ""%>
+							</div>
+							<div class="col-2">
+								<p><fmt:formatDate value="<%=pedido.getDtCadastro()%>" pattern="dd/MM/yyyy"/></p>
+							</div>
+							<div class="col-2">
+								<a class="btn btn-blue w-100" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoVH&id=<%=pedido.getId()%>" title="Detalhes">Detalhes</a>	
+							</div>				
+						</div>
+					<%}
+					}%>
+				<!--  <hr class="my-2 mt-3">-->
 			</div>		
 		</div>
 		<div class="row mt-4">					

@@ -1,16 +1,13 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.domain.Cartao;
-import model.domain.Cliente;
 import model.domain.EntidadeDominio;
 import model.domain.enums.Bandeira;
 import util.Calculadora;
@@ -133,4 +130,18 @@ public class CartaoDAO extends AbstractDAO {
 			return null;
 		}
 	}
+	
+	public Cartao getCartaoById(Integer idCartao) {
+		Cartao cartao = new Cartao();
+		cartao.setId(idCartao);
+		cartao.setPesquisa("id");
+		
+		if(idCartao != null && idCartao > 0) {
+			return (Cartao) consultar(cartao).get(0);
+		}else {
+			return cartao;
+		}
+	}
+	
+	
 }

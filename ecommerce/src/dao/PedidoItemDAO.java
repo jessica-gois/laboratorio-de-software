@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.domain.EntidadeDominio;
+import model.domain.FormaPagamento;
+import model.domain.Pedido;
 import model.domain.PedidoItem;
 import util.Calculadora;
 
@@ -96,7 +98,7 @@ public class PedidoItemDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				PedidoItem pedidoItemAux = new PedidoItem(rs.getInt("pei_id"), sdf.parse(rs.getString("pei_dtCadastro")), rs.getDouble("pei_quantidade"),
-					rs.getDouble("valorUnitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), rs.getBoolean("pei_trocado"));
+					rs.getDouble("pei_valorunitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), rs.getBoolean("pei_trocado"));
 				itens.add(pedidoItemAux);
 			}
 
@@ -125,5 +127,19 @@ public class PedidoItemDAO extends AbstractDAO {
 			setaParametrosQuery(st, item.getPedido().getId());
 		}
 		return st;
+	}
+	
+	public List<PedidoItem> getItensByPedido(Integer idPedido) {
+		PedidoItem item = new PedidoItem();
+		Pedido pedido = new Pedido();
+		pedido.setId(idPedido);
+		item.setPedido(pedido);
+		item.setPesquisa("pedido");
+		
+		if(idPedido != null) {
+			return (List<PedidoItem>)consultar(item);
+		}else {
+			return new ArrayList<PedidoItem>();
+		}
 	}
 }

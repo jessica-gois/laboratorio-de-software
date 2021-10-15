@@ -1,22 +1,13 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.domain.Cartao;
-import model.domain.Cidade;
-import model.domain.Cliente;
 import model.domain.EntidadeDominio;
-import model.domain.GrupoPrecificacao;
 import model.domain.Livro;
-import model.domain.enums.Bandeira;
-import model.domain.enums.Estado;
 import util.Calculadora;
 
 public class LivroDAO extends AbstractDAO {

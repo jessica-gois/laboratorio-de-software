@@ -1,7 +1,7 @@
-package model.domain;
+	package model.domain;
 
-import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.domain.enums.StatusPedido;
@@ -38,6 +38,25 @@ public class Pedido extends EntidadeDominio {
 		}
 	}
 	
+	public Pedido(Integer id, Date dtCadastro, Cliente cliente, StatusPedido status, Endereco enderecoEntrega, Endereco enderecoCobranca,
+			Double valorTotal, Double valorFrete, List<FormaPagamento> formasPagamento, List<PedidoItem> itens) {
+		super();
+		if(id != null) {
+			this.setId(id);
+		}
+		if(dtCadastro != null) {
+			this.setDtCadastro(dtCadastro);
+		}
+		this.cliente = cliente;
+		this.status = status;
+		this.enderecoEntrega = enderecoEntrega;
+		this.enderecoCobranca = enderecoCobranca;
+		this.valorTotal = valorTotal;
+		this.valorFrete = valorFrete;
+		this.formasPagamento = formasPagamento;
+		this.itens = itens;
+	}
+
 	public StatusPedido getStatus() {
 		return status;
 	}

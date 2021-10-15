@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="java.util.List,model.domain.Cupom" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +10,9 @@
     <c:import url="template-head.jsp" />
     <title>Cupons</title>
 </head>
-
+<%
+	List<Cupom> cupons = (List<Cupom>) request.getSession().getAttribute("cupons");
+%>
 <body>
     <header>
         <c:import url="template-header.jsp" />
@@ -34,53 +37,29 @@
                     </div>
                 </div>
                 <hr class="my-2">
-                <div class="row pt-2">
-                    <div class="d-flex align-items-end col ">
-                        <p>Promocional</p>
-                    </div>
-                    <div class="col">
-                        <p>12345</p>
-                    </div>
-                    <div class="col">
-                        <p>0,90</p>
-                    </div>
-                    <div class="col">
-                        <p>Utilizado</p>
-                    </div>
-                </div>
-                <div class="row pt-2">
-                    <div class="d-flex align-items-end col ">
-                        <p>Troca</p>
-                    </div>
-                    <div class="col">
-                        <p>34</p>
-                    </div>
-                    <div class="col">
-                        <p>1,00</p>
-                    </div>
-                    <div class="col">
-                        <p>Utilizado</p>
-                    </div>
-                </div>
-                <div class="row pt-2">
-                    <div class="d-flex align-items-end col ">
-                        <p>Promocional</p>
-                    </div>
-                    <div class="col">
-                        <p>111111</p>
-                    </div>
-                    <div class="col">
-                        <p>10,00</p>
-                    </div>
-                    <div class="col">
-                        <p>Disponível</p>
-                    </div>
-                </div>
+                <%if(cupons != null){
+                	for(Cupom cupom : cupons){%>                
+	                <div class="row pt-2">
+	                    <div class="d-flex align-items-end col ">
+	                        <p><%=cupom.getTipo() != null ? cupom.getTipo().getDescricao() : "" %></p>
+	                    </div>
+	                    <div class="col">
+	                        <p><%=cupom.getCodigo() %></p>
+	                    </div>
+	                    <div class="col">
+	                        <p>R$ <%=cupom.getValor() %></p>
+	                    </div>
+	                    <div class="col">
+	                        <p><%=cupom.isAplicado() ? "Utilizado" : "Disponível" %></p>
+	                    </div>
+	                </div>
+                <%} 
+                }%>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-3">
-                <a class="btn btn-secondary w-100" href="#">Voltar</a>
+                <a class="btn btn-secondary w-100" href="listaClientes.jsp">Voltar</a>
             </div>
         </div>
     </div>

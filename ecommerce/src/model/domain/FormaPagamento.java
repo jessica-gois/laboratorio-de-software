@@ -1,5 +1,7 @@
 package model.domain;
 
+import java.util.Date;
+
 public class FormaPagamento extends EntidadeDominio{
 	private Cupom cupom;
 	private Cartao cartao;
@@ -17,10 +19,13 @@ public class FormaPagamento extends EntidadeDominio{
 		this.cartao = cartao; 
 	}
 	
-	public FormaPagamento(Integer id, Cupom cupom, Cartao cartao, Pedido pedido) {
+	public FormaPagamento(Integer id, Date dtCadastro, Cupom cupom, Cartao cartao, Pedido pedido) {
 		super();
 		if(id != null) {
 			this.setId(id);
+		}
+		if(dtCadastro != null) {
+			this.setDtCadastro(dtCadastro);
 		}
 		if(cupom != null) {
 			this.cupom = cupom;

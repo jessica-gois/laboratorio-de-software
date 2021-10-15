@@ -20,6 +20,7 @@
 	<!-- <div class="card-header hidden">
 	<p>Usuário logado: ${cliente.usuario.email} </p>
 	</div>-->	
+	<fmt:setLocale value = "pt_BR"/>
 	<%
 		Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");
 		%>

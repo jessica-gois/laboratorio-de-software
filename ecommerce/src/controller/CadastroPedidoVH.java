@@ -18,10 +18,8 @@ public class CadastroPedidoVH implements IViewHelper {
 		Endereco enderecoEntrega = new Endereco();
 		Endereco enderecoCobranca = new Endereco();
 		
-		Integer idEntrega = Conversao.parseStringToInt(request.getParameter("enderecoEntrega"));
-		Integer idCobranca = Conversao.parseStringToInt(request.getParameter("enderecoCobranca"));
-		enderecoEntrega.setId(idEntrega);
-		enderecoCobranca.setId(idCobranca);
+		enderecoEntrega.setId(Conversao.parseStringToInt(request.getParameter("enderecoEntrega")));
+		enderecoCobranca.setId(Conversao.parseStringToInt(request.getParameter("enderecoCobranca")));
 		pedido.setEnderecoEntrega(enderecoEntrega);
 		pedido.setEnderecoCobranca(enderecoCobranca);
 		
@@ -31,7 +29,7 @@ public class CadastroPedidoVH implements IViewHelper {
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//if(resultado.getResposta()==null) {
-		response.sendRedirect(request.getContextPath() + "/view/login.jsp");	
+		response.sendRedirect(request.getContextPath() + "/view/sucesso.jsp");	
 
 	}
 

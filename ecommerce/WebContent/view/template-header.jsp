@@ -17,7 +17,8 @@
 			<%} %>
 			<%if (request.getSession().getAttribute("clienteLogado")!=null){%>
 				<li><a class="dropdown-item" href="/ecommerce/view/listaClientes.jsp">Minha conta</a></li>			
-			<li><a class="dropdown-item" href="#">Meus pedidos</a></li>
+			<li><a class="dropdown-item" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidosVH">Meus pedidos</a></li>
+			<li><a class="dropdown-item" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarCuponsVH">Meus cupons</a></li>
 			<li><a class="dropdown-item" href="/ecommerce/controlador?acao=Logout">Sair</a></li>	
 			<%}%>		
 		</ul>
