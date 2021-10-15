@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import="java.util.List,model.domain.Livro"%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -12,7 +13,7 @@
 
 <!DOCTYPE html>
 <html>
-
+	<fmt:setLocale value = "pt_BR"/>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,7 +91,7 @@
 										<tr>
 											<td><img src="<%=livro.getCaminhoImagem()%>" class="col-6 ps-4"
 												alt="Capa do livro <%=livro.getTitulo() %>" height="120%"></td>
-											<td><div class="col"><p class="h5">Preço</p><p class="h5">R$<%=livro.getPrecoVenda() %></p></div></td>
+											<td><div class="col"><p class="h5">Preço</p><p class="h5"><fmt:formatNumber value = "<%=livro.getPrecoVenda()%>" type = "currency"/></p></div></td>
 											<td></td>
 											<td></td>
 											<td>

@@ -12,6 +12,7 @@
 <c:import url="template-head.jsp" />
 <title>Finalizar compra</title>
 </head>
+<fmt:setLocale value = "pt_BR"/>
 <%
 	Carrinho carrinho = (Carrinho) request.getSession().getAttribute("carrinho");
 	Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
@@ -49,16 +50,16 @@
 				</div>
 				<div class="row mt-2">
 					<div class="col-3">
-						R$ <%=pedido.getValorTotalItens()%>
+						<fmt:formatNumber value = "<%=pedido.getValorTotalItens()%>" type = "currency"/>
 					</div>
 					<div class="col-2">
-						R$ <%=pedido.getValorFrete() %>
+						<fmt:formatNumber value = "<%=pedido.getValorFrete() %>" type = "currency"/>
 					</div>
 					<div class="col-4">
-						R$ <%=pedido.getValorTotalDescontos() %>
+						<fmt:formatNumber value = "<%=pedido.getValorTotalDescontos() %>" type = "currency"/>
 					</div>
 					<div class="col-3">
-						R$ <%=pedido.getValorTotal()%>
+						<fmt:formatNumber value = "<%=pedido.getValorTotal()%>" type = "currency"/>
 					</div>
 				</div>
 				<div class="row mt-4">
@@ -118,7 +119,7 @@
 								<%=cupom.getCodigo()%>
 							</div>
 							<div class="col-2">
-								R$ <%=cupom.getValor()%>
+								<fmt:formatNumber value = "<%=cupom.getValor()%>" type = "currency"/>
 							</div>
 							<div class="col-3">
 								<%if(!cupom.isAplicado()){%>
@@ -200,7 +201,7 @@
 								<%=item.getLivro().getTitulo()%>
 							</div>
 							<div class="col-2">
-								R$ <%=item.getValorUnitario()%>
+								<fmt:formatNumber value = "<%=item.getValorUnitario()%>" type = "currency"/>
 							</div>
 							<div class="col">
 						<div class="row">							
@@ -210,7 +211,7 @@
 									<i class="fas fa-minus"></i>
 								</a>
 							<input class="form-control w-25" type="text" name="quantidadeItem" id="quantidadeItem"							
-							style="background-color: #FFF; text-align: center;" value="<%=item.getQuantidade()%>" readonly/>
+							style="background-color: #FFF; text-align: center;" value="<fmt:formatNumber value = "<%=item.getQuantidade()%>" type = "number" minFractionDigits="0"/>" readonly/>
 								<a class="btn white border w-10" type="submit" title="Aumentar quantidade"
 								 href="/ecommerce/carrinho?acaoCarrinho=aumentarQuantidade&caminhoRedirecionar=/view/finalizarPedido&livroId=<%=item.getLivro().getId()%>" alt="Aumentar quantidade">
 									<i class="fas fa-plus"></i>
@@ -218,7 +219,7 @@
 						</div>
 					</div>	
 							<div class="col-2">
-								<%=item.getValorTotal()%>
+								<fmt:formatNumber value = "<%=item.getValorTotal()%>" type = "currency"/>
 							</div>
 							<div class="col">
 									<input type="hidden" name="caminhoRedirecionar" value="/view/finalizarPedido" />

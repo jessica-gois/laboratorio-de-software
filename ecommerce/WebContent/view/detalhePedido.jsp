@@ -1,3 +1,4 @@
+<%@page import="model.domain.enums.StatusPedido"%>
 <%@page import="model.domain.PedidoItem"%>
 <%@page import="model.domain.FormaPagamento"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,8 +23,10 @@
 	<div class="container">
 		<div class="card shadow mb-5 pb-5">
 			<div class="card-body">
-				<h4>
-					Detalhe do pedido #<%=pedido.getId() %></h3>
+				<div class="d-flex  justify-content-between">
+					<h4>Detalhe do pedido #<%=pedido.getId() %></h4>
+					<p class="h4 pe-4"><%=pedido.getStatus().getDescricao()%></p>
+				</div>				
 					<hr class="my-3">
 					<div class="row mt-4">
 						<p class="h5">1. Resumo do pedido</p>
@@ -155,9 +158,11 @@
 					}
 					%>
 					<div class="row mt-4">
-						<div class="col-3">
-							<a class="btn btn-blue w-100" href="#">Solicitar troca</a>
-						</div>
+						<%if(pedido != null && pedido.getStatus().equals(StatusPedido.ENTREGUE)){ %>
+							<div class="col-3">
+								<a class="btn btn-blue w-100"href="/ecommerce/controlador?acao=alterar&viewHelper=SolicitarTrocaVH&id=<%=pedido.getId()%>">Solicitar troca</a>
+							</div>
+						<%}%>
 						<div class="col-3">
 							<a class="btn btn-secondary w-100" href="meusPedidos.jsp">Voltar</a>
 						</div>

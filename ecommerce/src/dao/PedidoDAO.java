@@ -70,8 +70,22 @@ public class PedidoDAO extends AbstractDAO {
 
 	@Override
 	public String alterar(EntidadeDominio entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		Pedido pedido = (Pedido) entidade;
+		System.out.println(pedido.getId());
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("UPDATE pedido SET ped_status = ? WHERE ped_id = ?");
+			
+			setaParametrosQuery(st, pedido.getStatus().name(), pedido.getId());
+
+			int rowsAffected = st.executeUpdate();
+			System.out.println("Done! Rows affected: " + rowsAffected);
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Erro ao alterar pedido";
+		}
 	}
 
 	@Override

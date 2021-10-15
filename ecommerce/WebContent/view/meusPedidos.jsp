@@ -65,7 +65,7 @@
 		</div>
 		<div class="row mt-4">					
 			<div class="col-3">
-				<a class="btn btn-secondary w-100"href="#" >Voltar</a>
+				<a class="btn btn-secondary w-100"href="/ecommerce/view/listaClientes.jsp" >Voltar</a>
 			</div>
 		</div>
 	</div>

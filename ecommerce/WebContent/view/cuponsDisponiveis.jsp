@@ -13,6 +13,7 @@
 <%
 	List<Cupom> cupons = (List<Cupom>) request.getSession().getAttribute("cupons");
 %>
+<fmt:setLocale value = "pt_BR"/>
 <body>
     <header>
         <c:import url="template-header.jsp" />
@@ -47,7 +48,7 @@
 	                        <p><%=cupom.getCodigo() %></p>
 	                    </div>
 	                    <div class="col">
-	                        <p>R$ <%=cupom.getValor() %></p>
+	                        <p><fmt:formatNumber value = "<%=cupom.getValor() %>" type = "currency"/></p>
 	                    </div>
 	                    <div class="col">
 	                        <p><%=cupom.isAplicado() ? "Utilizado" : "Disponível" %></p>

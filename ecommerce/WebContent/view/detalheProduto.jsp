@@ -65,21 +65,21 @@
 								<div class="row mb-3">
 									<div class="col-4">
 										<p class="h5">Altura</p>
-										<%=livro.getAltura()%> cm
+										<fmt:formatNumber value = "<%=livro.getAltura()%>" type = "number" maxFractionDigits="2"/> cm
 									</div>
 									<div class="col-4">
 										<p class="h5">Largura</p>
-										 <%=livro.getLargura() %> cm
+										 <fmt:formatNumber value = "<%=livro.getLargura() %>" type = "number" maxFractionDigits="2"/> cm
 									</div>
 									<div class="col-4">
 										<p class="h5">Profundidade</p>
-										<%=livro.getProfundidade() %> cm
+										<fmt:formatNumber value = "<%=livro.getProfundidade() %>" type = "number" maxFractionDigits="2"/> cm
 									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-4">
 										<p class="h5">Peso</p>
-										<%=livro.getPeso() %>g
+										<fmt:formatNumber value = "<%=livro.getPeso() %>" type = "number" maxFractionDigits="2"/>g
 									</div>
 									<div class="col-4">
 										<p class="h5">Páginas</p>

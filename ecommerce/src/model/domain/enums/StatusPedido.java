@@ -4,8 +4,9 @@ public enum StatusPedido {
 	EM_PROCESSAMENTO("Em processamento"),
 	EM_TRANSITO("Em trânsito"),
 	ENTREGUE("Entregue"),
-	EM_TROCA("Em troca"),
-	TROCA_AUTORIZADA("Troca autorizada");
+	TROCA_SOLICITADA("Troca solicitada"),
+	TROCA_AUTORIZADA("Troca autorizada"),
+	TROCA_REPROVADA("Troca reprovada");
 	
 	public String descricao;
 	

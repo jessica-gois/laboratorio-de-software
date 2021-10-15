@@ -24,7 +24,7 @@
 		<p class="h4 mb-3">Carrinho de compras</p>
 		<div class="card shadow mb-5 pb-5">
 			<div class="card-body">
-				<h4>Itens selecionados (<fmt:formatNumber value = "<%=carrinho.getQuantidadeTotal()%>" type = "number" minFractionDigits="0"/>)</h4>
+				<h4>Itens selecionados (<fmt:formatNumber value = "<%=carrinho.getQuantidadeTotal()%>" type = "number" maxFractionDigits="0"/>)</h4>
 				<hr class="my-3">
 				<div class="row">
 					<div class="col">
