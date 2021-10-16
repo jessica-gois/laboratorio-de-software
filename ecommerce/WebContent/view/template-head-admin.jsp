@@ -49,5 +49,34 @@
     li {
   	list-style-type: none;
 	}
+	
+	.btn-custom {
+	border-radius: 50px;
+	}
+
+	.btn-blue{
+	background-color:#4e82dd; 
+	color:#FFF;
+	}
+	
+	.btn-green{
+	background-color:#23d9c7; 
+	color:#FFF;
+	}
+	
+footer {
+  width: 100%;
+  height: 100px;
+  background: #23d9c7;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
 </style>
 </head>

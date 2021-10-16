@@ -5,4 +5,5 @@
 <body>
 <c:import url="template-header-admin.jsp" />
 </body>
+<c:import url="template-footer.jsp" />
 </html>

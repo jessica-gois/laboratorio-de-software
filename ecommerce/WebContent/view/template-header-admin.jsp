@@ -20,27 +20,28 @@
   				<a href="#" class="list-group-item list-group-item-action active" id="topico">
     			GERENCIAMENTO
   				</a>
-  				<a href="#" class="list-group-item list-group-item-action">Pedidos</a>
-  				<a href="#" class="list-group-item list-group-item-action">Clientes</a>
+  				<a href="/ecommerce/view/painelAdmin.jsp" class="list-group-item list-group-item-action">Painel</a>
+  				<a href="/ecommerce/view/consultarPedidos.jsp" class="list-group-item list-group-item-action">Pedidos</a>
+  				<a href="/ecommerce/view/cadastraCliente.jsp" class="list-group-item list-group-item-action">Clientes</a>
   				<a href="#" class="list-group-item list-group-item-action active" id="topico">
     			ESTOQUE
   				</a>
-  				<a href="#" class="list-group-item list-group-item-action">Precificação</a>
-  				<a href="#" class="list-group-item list-group-item-action">Categoria</a>
+  				<a href="/ecommerce/view/precificacao.jsp" class="list-group-item list-group-item-action">Precificação</a>
+  				<a href="/ecommerce/view/categoria.jsp" class="list-group-item list-group-item-action">Categoria</a>
   				<a href="#" class="list-group-item list-group-item-action">Cadastrar livro</a>
   				<a href="#" class="list-group-item list-group-item-action">Consultar livros</a>
-  				<a href="#" class="list-group-item list-group-item-action">Movimentações</a>
+  				<a href="/ecommerce/view/movimentacoes.jsp" class="list-group-item list-group-item-action">Movimentações</a>
   				<a href="#" class="list-group-item list-group-item-action">Consultar movimentações</a>
   				<a href="#" class="list-group-item list-group-item-action active" id="topico">
     			CUPONS
   				</a>
-  				<a href="#" class="list-group-item list-group-item-action">Cadastrar cupons</a>
+  				<a href="/ecommerce/view/cadastrarCupom.jsp" class="list-group-item list-group-item-action">Cadastrar cupons</a>
   				<a href="#" class="list-group-item list-group-item-action">Consultar cupons</a>
   			
   			    <a href="#" class="list-group-item list-group-item-action active" id="topico">
     			DASHBOARD
   				</a>
-  				<a href="#" class="list-group-item list-group-item-action disabled">Sair</a>
+  				<a href="/ecommerce/view/loginAdmin.jsp" class="list-group-item list-group-item-action enable">Sair</a>
 			</div>		
         </div>
       </div>
