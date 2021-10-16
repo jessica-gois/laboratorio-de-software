@@ -8,7 +8,7 @@
 
     <div class="container mt-5">
         <h3>Consultar pedidos</h3>
-        <div class="card shadow mb-5 pb-4">
+        <div class="card shadow mb-5 p-4">
             <div class="card-body d-flex justify-content-center">
                 <div class="row">
                     <div>
@@ -33,14 +33,14 @@
                                                 <div class="row mb-3">
 
                                                     <tr>
-                                                        <td><input type="text" id="pedido" name="buscaPedido" /></td>
-                                                        <td><input type="text" id="pedido" name="buscaData" /></td>
-                                                        <td><input type="text" id="pedido" name="buscaEmail" /></td>
-                                                        <td><input type="text" id="pedido" name="buscaCPF" /></td>
-                                                        <td><input type="text" id="pedido" name="buscaTotal" /></td>
+                                                        <td><input class="form-control" type="text" id="pedido" name="buscaPedido" /></td>
+                                                        <td><input class="form-control" type="text" id="pedido" name="buscaData" /></td>
+                                                        <td><input class="form-control" type="text" id="pedido" name="buscaEmail" /></td>
+                                                        <td><input class="form-control" type="text" id="pedido" name="buscaCPF" /></td>
+                                                        <td><input class="form-control" type="text" id="pedido" name="buscaTotal" /></td>
 
                                                         <td>
-                                                            <select class="form-control pb-2 ps-4"" name=" status"
+                                                            <select class="form-control pb-2 ps-2" name=" status"
                                                                 id="status" required="true">
                                                                 <option value="">Escolha...</option>
                                                                 <option value="ENTREGUE">Entregue</option>
