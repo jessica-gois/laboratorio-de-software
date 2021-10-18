@@ -6,14 +6,6 @@ public class GrupoPrecificacao extends EntidadeDominio {
 	private String descricao;
 	private Double margemLucro;
 
-	public Double getMargemLucro() {
-		return margemLucro;
-	}
-
-	public void setMargemLucro(Double margemLucro) {
-		this.margemLucro = margemLucro;
-	}
-	
 	public GrupoPrecificacao() {
 		
 	}
@@ -29,5 +21,21 @@ public class GrupoPrecificacao extends EntidadeDominio {
 		this.descricao = descricao;
 		this.margemLucro = margemLucro;		
 	}
+	
+	public Double getMargemLucro() {
+		return margemLucro;
+	}
 
+	public void setMargemLucro(Double margemLucro) {
+		this.margemLucro = margemLucro;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
 }
