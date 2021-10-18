@@ -19,8 +19,6 @@ public class Conversao {
 	
 	public static Double parseStringToDouble (String parameter) {
 		Double number= 0.0;
-		String aux = parameter;
-		System.out.println(aux);
 		if(parameter!=""){
 		  number = Double.parseDouble(parameter);
 		}

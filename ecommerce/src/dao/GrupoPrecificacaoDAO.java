@@ -103,7 +103,6 @@ public class GrupoPrecificacaoDAO extends AbstractDAO {
 	public List<GrupoPrecificacao> consultar(EntidadeDominio entidade) {
 		GrupoPrecificacao grupo = (GrupoPrecificacao) entidade;
 		List<GrupoPrecificacao> grupos = new ArrayList();
-		SimpleDateFormat sdf = new SimpleDateFormat("");
 		inicializarConexao();
 		try {
 			String sql = pesquisarAuxiliar(grupo);

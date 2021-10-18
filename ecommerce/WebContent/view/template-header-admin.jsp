@@ -26,7 +26,7 @@
   				<a href="#" class="list-group-item list-group-item-action active" id="topico">
     			ESTOQUE
   				</a>
-  				<a href="/ecommerce/view/precificacao.jsp" class="list-group-item list-group-item-action">Precificação</a>
+  				<a href="/ecommerce/view/precificacao" class="list-group-item list-group-item-action">Precificação</a>
   				<a href="/ecommerce/view/categoria.jsp" class="list-group-item list-group-item-action">Categoria</a>
   				<a href="#" class="list-group-item list-group-item-action">Cadastrar livro</a>
   				<a href="#" class="list-group-item list-group-item-action">Consultar livros</a>
