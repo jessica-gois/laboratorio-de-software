@@ -206,13 +206,13 @@
 							<div class="col">
 						<div class="row">							
 								<!--  <input type="hidden" name="caminhoRedirecionar" value="/view/finalizarPedido" />	-->					
-								<a class="btn white border w-10" title="Diminuir quantidade"
+								<a class="btn white border w-25" title="Diminuir quantidade"
 								 href="/ecommerce/carrinho?acaoCarrinho=diminuirQuantidade&caminhoRedirecionar=/view/finalizarPedido&livroId=<%=item.getLivro().getId()%>" alt="Diminuir quantidade">
 									<i class="fas fa-minus"></i>
 								</a>
 							<input class="form-control w-25" type="text" name="quantidadeItem" id="quantidadeItem"							
 							style="background-color: #FFF; text-align: center;" value="<fmt:formatNumber value = "<%=item.getQuantidade()%>" type = "number" minFractionDigits="0"/>" readonly/>
-								<a class="btn white border w-10" type="submit" title="Aumentar quantidade"
+								<a class="btn white border w-25" type="submit" title="Aumentar quantidade"
 								 href="/ecommerce/carrinho?acaoCarrinho=aumentarQuantidade&caminhoRedirecionar=/view/finalizarPedido&livroId=<%=item.getLivro().getId()%>" alt="Aumentar quantidade">
 									<i class="fas fa-plus"></i>
 								</a>

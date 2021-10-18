@@ -122,7 +122,7 @@ public class Pedido extends EntidadeDominio {
 			Double frete = 10d;
 			if (itens != null && !itens.isEmpty()) {
 				for (PedidoItem item : itens) {
-					frete += 1d;
+					frete += item.getQuantidade();
 				}
 			}
 			return frete;
