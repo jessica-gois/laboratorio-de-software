@@ -5,7 +5,7 @@
 <body>
 <c:import url="template-header-admin.jsp" />
 <div class="container">
-	<p class="h4 mb-3 mt-5">Consultar cupons</p>
+	<p class="h4 mb-3 mt-5">Cupons cadastrados</p>
 	<div class="card shadow mb-5 pb-4">
 		<div class="card-body">
 			<div class="row mt-4">
@@ -31,7 +31,7 @@
 					<p class="h5" style="color: #FFF;"></p>
 				</div>
 			</div>
-			<div class="row mt-4 d-flex align-items-center">
+			<div class="row d-flex align-items-center">
 				<div class="col-1">
 					<input class="form-control mt-2" type="text" id="codigo"
 						name="codigo" value="BF10" required="true" />
