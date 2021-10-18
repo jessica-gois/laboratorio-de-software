@@ -19,6 +19,8 @@ public class Conversao {
 	
 	public static Double parseStringToDouble (String parameter) {
 		Double number= 0.0;
+		String aux = parameter;
+		System.out.println(aux);
 		if(parameter!=""){
 		  number = Double.parseDouble(parameter);
 		}
@@ -27,8 +29,19 @@ public class Conversao {
 	
 	public static Date parseStringToDate (String parameter) throws ParseException {
 		Date data = null;
+		System.out.println(parameter);
 		if(parameter!=""){
 		SimpleDateFormat sdf = new SimpleDateFormat ("dd/MM/yyyy");
+		data = sdf.parse(parameter);
+		}
+		return data;
+	}
+	
+	public static Date parseStringToDate (String parameter, String formatoParametro) throws ParseException {
+		Date data = null;
+		System.out.println(parameter);
+		if(parameter!=""){
+		SimpleDateFormat sdf = new SimpleDateFormat (formatoParametro);
 		data = sdf.parse(parameter);
 		}
 		return data;

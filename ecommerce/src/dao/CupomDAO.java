@@ -24,7 +24,7 @@ public class CupomDAO extends AbstractDAO {
 		try {
 			conn = Database.conectarBD();
 			st = conn.prepareStatement("INSERT INTO cupom (cup_nome, cup_codigo, cup_valor, cup_validade, cup_tipo) " + 
-			"VALUES (?, ?, ?, ?, ?, ?)",
+			"VALUES (?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 
 			setaParametrosQuery(st, cupom.getNome(), cupom.getCodigo(),cupom.getValor(),
@@ -125,8 +125,8 @@ public class CupomDAO extends AbstractDAO {
 			//Integer id, Date dtCadastro, String nome, String codigo, TipoCupom tipo, Double valor, Date validade
 			//(cup_nome, cup_codigo, cup_valor, cup_validade, cup_tipo) sdf.parse
 			while (rs.next()) {
-				Cupom cupomAux = new Cupom(rs.getInt("cup_id"), rs.getString("cup_nome"), rs.getString("cup_codigo"),
-					TipoCupom.valueOf(rs.getString("cup_tipo")), rs.getDouble("cup_valor"), sdf.parse(rs.getString("cup_validade")));
+				Cupom cupomAux = new Cupom(rs.getInt("cup_id"), rs.getString("cup_codigo"), rs.getString("cup_nome"), 
+						rs.getDouble("cup_valor"),sdf.parse(rs.getString("cup_validade")), TipoCupom.valueOf(rs.getString("cup_tipo")));
 				cupomAux.setAplicado(isCupomUtilizado(rs.getInt("cup_id"), cupom.getIdCliente()));
 				cupons.add(cupomAux);
 			}
