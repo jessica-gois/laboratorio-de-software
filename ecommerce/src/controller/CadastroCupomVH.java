@@ -30,7 +30,8 @@ public class CadastroCupomVH implements IViewHelper {
 
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.sendRedirect(request.getContextPath() + "/view/consultarCupom.jsp");	
+		response.sendRedirect(request.getContextPath() + "/view/consultarCupom");
+		//response.sendRedirect(request.getContextPath() + "/carregarDadosCliente");
 	}
 
 }
