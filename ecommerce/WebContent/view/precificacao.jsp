@@ -53,8 +53,7 @@
 	</div>
 
 	<div class="card shadow mb-5 pb-4">
-		<div class="card-body">
-			<form id="formGruposPrecificacao" action="${stub}" method="post" novalidate>
+		<div class="card-body">			
 			<p class="h5">Grupos cadastrados</p>
 			<div class="row mt-4">
 				<div class="col-3">
@@ -75,30 +74,32 @@
 			</div>
 			<%if(grupos != null){ 
 				for(GrupoPrecificacao grupo : grupos){%>
-				<div class="row pt-2 mb-2 d-flex align-items-center">
-					<div class="col-3">
-						<input class="form-control mt-2" type="text" id="descricaoAtualizar"
-							name="descricaoAtualizar" value="<%=grupo.getDescricao()%>" required="true" />
+				<form action="${stub}" method="post" novalidate>
+					<div class="row pt-2 mb-2 d-flex align-items-center">
+						<div class="col-3">
+							<input class="form-control mt-2" type="text" id="descricaoAtualizar"
+								name="descricaoAtualizar" value="<%=grupo.getDescricao()%>" required="true" />
+						</div>
+						<div class="col-2">
+							<input class="form-control mt-2" type="number" id="margemLucroAtualizar"
+								name="margemLucroAtualizar" value="<%=grupo.getMargemLucro()%>" required="true" min="1"/>
+						</div>
+						<div class="col-2">
+							<p><fmt:formatDate value="<%=grupo.getDtCadastro()%>" pattern="dd/MM/yyyy"/></p>
+						</div>
+						<input type="hidden" name="id" value="<%=grupo.getId()%>" />
+						<input type="hidden" name="acao" value="alterar" />
+						<input type="hidden" name="viewHelper" value="AlterarGrupoPrecificacaoVH" />
+						<div class="col-2">
+							<button class="btn btn-blue w-100" type="submit" title="Atualizar" alt="Atualizar">
+								Atualizar
+							</button>
+						</div>
+						<div class="col-2">
+							<a class="btn btn-secondary w-100" href="/ecommerce/controlador?acao=excluir&viewHelper=ExcluirGrupoPrecificacaoVH&id=<%=grupo.getId()%>" title="Excluir">Excluir</a>	
+						</div>				
 					</div>
-					<div class="col-2">
-						<input class="form-control mt-2" type="number" id="margemLucroAtualizar"
-							name="margemLucroAtualizar" value="<%=grupo.getMargemLucro()%>" required="true" min="1"/>
-					</div>
-					<div class="col-2">
-						<p><fmt:formatDate value="<%=grupo.getDtCadastro()%>" pattern="dd/MM/yyyy"/></p>
-					</div>
-					<input type="hidden" name="id" value="<%=grupo.getId()%>" />
-					<input type="hidden" name="acao" value="alterar" />
-					<input type="hidden" name="viewHelper" value="AlterarGrupoPrecificacaoVH" />
-					<div class="col-2">
-						<button class="btn btn-blue w-100" type="submit" title="Salvar" alt="Salvar">
-							Salvar
-						</button>
-					</div>
-					<div class="col-2">
-						<a class="btn btn-secondary w-100" href="/ecommerce/controlador?acao=excluir&viewHelper=ExcluirGrupoPrecificacaoVH&id=<%=grupo.getId()%>" title="Excluir">Excluir</a>	
-					</div>				
-				</div>
+				</form>
 			<%}
 			} %>
 			</form>
