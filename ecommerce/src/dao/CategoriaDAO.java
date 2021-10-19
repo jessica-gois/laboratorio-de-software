@@ -4,12 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.domain.Categoria;
 import model.domain.EntidadeDominio;
+import model.domain.GrupoPrecificacao;
 import util.Calculadora;
+import util.Conversao;
 
 public class CategoriaDAO extends AbstractDAO {
 
@@ -17,9 +20,8 @@ public class CategoriaDAO extends AbstractDAO {
 		Categoria categoria = (Categoria) entidade;
 		inicializarConexao();
 		try {
-			conn = Database.conectarBD();
-			st = conn.prepareStatement("INSERT INTO categoria (cat_nome) " + 
-			"VALUES (?)",
+			conn = Database.conectarBD();		
+			st = conn.prepareStatement("INSERT INTO categoria (cat_nome) VALUES (?)",
 					Statement.RETURN_GENERATED_KEYS);
 
 			setaParametrosQuery(st, categoria.getNome());
@@ -45,7 +47,7 @@ public class CategoriaDAO extends AbstractDAO {
 		try {
 			conn = Database.conectarBD();
 			st = conn.prepareStatement("UPDATE categoria SET cat_nome = ? "
-					+ "WHERE  (cat_id = ?)");
+					+ "WHERE (cat_id = ?)");
 
 			setaParametrosQuery(st, categoria.getNome(), categoria.getId());
 
@@ -59,13 +61,14 @@ public class CategoriaDAO extends AbstractDAO {
 
 	}
 
+
 	public String excluir(EntidadeDominio entidade) {
 		Categoria categoria = (Categoria) entidade;
 		System.out.println(categoria.getId());
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("DELETE FROM categoria " + "WHERE " + "cat_id = ?");
+			st = conn.prepareStatement("DELETE FROM categoria WHERE cat_id = ?");
 			setaParametrosQuery(st, categoria.getId());
 
 			int linhasAfetadas = st.executeUpdate();
@@ -75,17 +78,16 @@ public class CategoriaDAO extends AbstractDAO {
 			e.printStackTrace();
 			return "Erro ao excluir";
 		}
-
 	}
-
+	
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
 		if (entidade.getPesquisa().equals("id")) {
 			return "select * from categoria where cat_id =?";
-		}else {
+		}else{
 			return "select * from categoria";
 		}
 	}
-
+	
 	private PreparedStatement executarPesquisa(Categoria categoria, String sql) throws SQLException {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
 		if (categoria.getPesquisa().equals("id")) {
@@ -93,11 +95,11 @@ public class CategoriaDAO extends AbstractDAO {
 		}
 		return st;
 	}
-
+	
+	
 	public List<Categoria> consultar(EntidadeDominio entidade) {
-		Categoria categoria = (Categoria) entidade;
+		Categoria categoria= (Categoria) entidade;
 		List<Categoria> categorias = new ArrayList();
-		System.out.println(categoria);
 		inicializarConexao();
 		try {
 			String sql = pesquisarAuxiliar(categoria);
@@ -108,14 +110,45 @@ public class CategoriaDAO extends AbstractDAO {
 			Long terminoExecucao = System.currentTimeMillis();
 
 			System.out.println("Tempo de execução da consulta: "
-					+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
+				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
 
 			while (rs.next()) {
-				Categoria catAux = new Categoria(rs.getString("cat_nome"));
-				categorias.add(catAux);
+				    Categoria categoriaAux = new 
+					Categoria(rs.getInt("cat_id"), rs.getString("cat_nome"), 
+					Conversao.parseStringToDate(rs.getString("cat_dtCadastro"), "yyyy-MM-dd"));
+				categorias.add(categoriaAux);
 			}
 
 			return categorias;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Categoria getCategoriaById(Integer categoriaId) {
+		Categoria categoria = new Categoria();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		inicializarConexao();
+		
+		System.out.println("Buscando categoria id:" + categoriaId);
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("SELECT * FROM categoria WHERE cat_id = ? LIMIT 1");
+			setaParametrosQuery(st, categoriaId);
+			Long inicioExecucao = System.currentTimeMillis();
+			ResultSet rs = st.executeQuery();
+			Long terminoExecucao = System.currentTimeMillis();
+
+			System.out.println("Tempo de execução da consulta: "
+				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
+
+			while (rs.next()) {
+				categoria = new Categoria(rs.getInt("cat_id"), rs.getString("cat_nome"),
+				sdf.parse(rs.getString("cat_dtCadastro")));
+			}
+			
+			return categoria;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

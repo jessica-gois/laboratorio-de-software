@@ -1,22 +1,22 @@
 package model.domain;
 
+import java.util.Date;
+
 public class Categoria extends EntidadeDominio{
 	private String nome;
 	
 	public Categoria() {
 	}
 	
-	public Categoria(String nome) {
-		super();
-		this.nome = nome;
-	}
-
-	public Categoria(Integer id, String nome) {
+	public Categoria(Integer id, String nome, Date dtCadastro) {
 		super();
 		if(id != null) {
 			this.setId(id);			
 		}
-		this.nome = nome;
+		if(dtCadastro != null) {
+			this.setDtCadastro(dtCadastro);
+		}
+		this.nome = nome;	
 	}
 	
 	public String getNome() {

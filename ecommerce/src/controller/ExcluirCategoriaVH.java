@@ -10,17 +10,18 @@ import model.domain.EntidadeDominio;
 import model.domain.Result;
 import util.Conversao;
 
-public class AlterarCategoriaVH implements IViewHelper {
+public class ExcluirCategoriaVH implements IViewHelper {
 
+	@Override
 	public EntidadeDominio getEntidade(HttpServletRequest request, HttpServletResponse response) {
-    Categoria categoria = new Categoria (Conversao.parseStringToInt(request.getParameter("id")),request.getParameter("descricaoAtualizar"), null);	
-	return categoria;
-}
-		
+		Categoria categoria = new Categoria();
+        categoria.setId((Conversao.parseStringToInt((request.getParameter("id")))));
+        return categoria;
+	}
 
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		 response.sendRedirect(request.getContextPath() + "/view/categoria");
+		response.sendRedirect(request.getContextPath() + "/view/categoria");			
 	}
 
 }
