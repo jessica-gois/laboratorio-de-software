@@ -2,11 +2,14 @@ package model.domain.enums;
 
 public enum StatusPedido {
 	EM_PROCESSAMENTO("Em processamento"),
+	APROVADO("Pedido aprovado"),
+	REPROVADO("Pedido reprovado"),
 	EM_TRANSITO("Em trânsito"),
 	ENTREGUE("Entregue"),
 	TROCA_SOLICITADA("Troca solicitada"),
 	TROCA_AUTORIZADA("Troca autorizada"),
-	TROCA_REPROVADA("Troca reprovada");
+	TROCA_REPROVADA("Troca reprovada"),
+	TROCA_REALIZADA("Troca realizada");
 	
 	public String descricao;
 	
