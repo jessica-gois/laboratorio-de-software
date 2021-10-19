@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import dao.CartaoDAO;
+import dao.CategoriaDAO;
 import dao.ClienteDAO;
 import dao.CupomDAO;
 import dao.EnderecoDAO;
@@ -63,7 +64,7 @@ public class Fachada implements IFachada {
 		mapaDaos.put(Livro.class.getName(), new LivroDAO());
 		mapaDaos.put(Cupom.class.getName(), new CupomDAO());
 		mapaDaos.put(Pedido.class.getName(), new PedidoDAO());
-		//mapaDaos.put(Categoria.class.getName(), new CategoriaDAO());
+		mapaDaos.put(Categoria.class.getName(), new CategoriaDAO());
 		mapaDaos.put(GrupoPrecificacao.class.getName(), new GrupoPrecificacaoDAO());
 		
 	}

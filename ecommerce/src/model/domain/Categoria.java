@@ -11,6 +11,14 @@ public class Categoria extends EntidadeDominio{
 		this.nome = nome;
 	}
 
+	public Categoria(Integer id, String nome) {
+		super();
+		if(id != null) {
+			this.setId(id);			
+		}
+		this.nome = nome;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

@@ -1,8 +1,7 @@
+<c:import url="template-head-admin.jsp" />
 <body>
-    <c:import url="template-header-admin.jsp" />
+<c:import url="template-header-admin.jsp" />
     
-
-
     <div class="container mt-5">
         <h3>Consultar pedidos</h3>
         <div class="card shadow mb-5 pb-4">

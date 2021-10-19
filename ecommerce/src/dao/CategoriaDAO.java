@@ -44,7 +44,7 @@ public class CategoriaDAO extends AbstractDAO {
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("UPDATE cupom SET cat_nome = ? "
+			st = conn.prepareStatement("UPDATE categoria SET cat_nome = ? "
 					+ "WHERE  (cat_id = ?)");
 
 			setaParametrosQuery(st, categoria.getNome(), categoria.getId());
