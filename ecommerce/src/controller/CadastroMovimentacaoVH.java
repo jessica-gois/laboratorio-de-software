@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.domain.EntidadeDominio;
+import model.domain.EstoqueItem;
 import model.domain.Livro;
 import model.domain.MovimentacaoEstoque;
 import model.domain.Result;
@@ -23,6 +24,8 @@ public class CadastroMovimentacaoVH implements IViewHelper {
 				
 				Livro livro = new Livro();
 				livro.setId(Conversao.parseStringToInt(request.getParameter("livro")));
+				
+				
 				TipoMovimentacao tipo = TipoMovimentacao.valueOf(request.getParameter("tipo"));
 			
 				movimentacao = new MovimentacaoEstoque(null, null, 
@@ -44,7 +47,7 @@ public class CadastroMovimentacaoVH implements IViewHelper {
 	
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.sendRedirect(request.getContextPath() + "/view/consultarMovimentacoes.jsp");	
+		response.sendRedirect(request.getContextPath() + "/view/consultarMovimentacoes");	
 	}
 
 }

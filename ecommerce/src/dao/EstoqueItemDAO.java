@@ -1,18 +1,42 @@
 package dao;
 
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 import model.domain.Cidade;
 import model.domain.EntidadeDominio;
+import model.domain.EstoqueItem;
+import model.domain.GrupoPrecificacao;
 import model.domain.enums.Estado;
 import util.Calculadora;
+import util.Conversao;
 
 public class EstoqueItemDAO extends AbstractDAO {
 
-	@Override
+
 	public String salvar(EntidadeDominio entidade) {
-		return null;
+		EstoqueItem item = (EstoqueItem) entidade;
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("INSERT INTO estoque_item (esi_quantidade, esi_liv_id) VALUES (?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+
+			setaParametrosQuery(st, item.getQuantidade(), item.getLivro().getId());
+
+			Long inicioExecucao = System.currentTimeMillis();
+			int linhasAfetadas = st.executeUpdate();
+			Long terminoExecucao = System.currentTimeMillis();
+
+			System.out.println(
+					"Estoque item cadastrado com sucesso! \n Linhas afetadas: " + linhasAfetadas + "\nTempo de execução: "
+							+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Erro ao salvar";
+		}
 	}
 
 	@Override
@@ -50,6 +74,36 @@ public class EstoqueItemDAO extends AbstractDAO {
 			}
 			
 			return quantidadeEstoque;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public EstoqueItem getEstoqueItemById(Integer estoqueId) {
+		EstoqueItem item = new EstoqueItem();
+		System.out.println("Buscando item id:" + estoqueId);
+		inicializarConexao();
+		LivroDAO livroDAO = new LivroDAO();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("SELECT * FROM estoque_item WHERE esi_id = ? LIMIT 1");
+			setaParametrosQuery(st, estoqueId);
+			Long inicioExecucao = System.currentTimeMillis();
+			ResultSet rs = st.executeQuery();
+			Long terminoExecucao = System.currentTimeMillis();
+
+			System.out.println("Tempo de execução da consulta: "
+					+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
+
+			while (rs.next()) {
+				item = new EstoqueItem(rs.getInt("esi_id"), 
+				Conversao.parseStringToDate(rs.getString("esi_dtCadastro"), "yyyy-MM-dd"),	
+				rs.getDouble ("esi_quantidade"),
+				livroDAO.getLivroById(rs.getInt("esi_liv_id")));
+			}
+							
+			return item;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

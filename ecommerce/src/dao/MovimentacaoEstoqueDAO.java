@@ -6,12 +6,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import model.domain.Cartao;
 import model.domain.Categoria;
 import model.domain.EntidadeDominio;
+import model.domain.EstoqueItem;
+import model.domain.Livro;
 import model.domain.MovimentacaoEstoque;
+import model.domain.enums.TipoEndereco;
+import model.domain.enums.TipoMovimentacao;
 import util.Calculadora;
 import util.Conversao;
 
@@ -22,22 +26,21 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("INSERT INTO movimentacao_estoque (mov_data, mov_quantidade, mov_precoCusto, mov_fornecedor, mov_entrada, mov_tipo, mov_esi_id, mov_liv_id)" + 
-			"VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+			st = conn.prepareStatement("INSERT INTO movimentacao_estoque (mov_data, mov_quantidade, mov_precoCusto, "
+					+ "mov_fornecedor, mov_entrada, mov_tipo, mov_liv_id)" + 
+			"VALUES (?, ?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
-
-			setaParametrosQuery(st, movimentacao.getData(), movimentacao.getQuantidade(), movimentacao.getPrecoCusto(). 
+			
+			setaParametrosQuery(st, movimentacao.getData(), movimentacao.getQuantidade(), movimentacao.getPrecoCusto(),
+								movimentacao.getFornecedor(),movimentacao.getEntrada(), movimentacao.getTipo().name(), 
+								movimentacao.getLivro().getId()); 
 					
-					
-					cartao.getNumero(), cartao.getNomeImpresso(), cartao.getCodigoSeguranca(),
-					cartao.getPreferencial(), cartao.getBandeira().getCodigo(), cartao.getCliente().getId());
-
 			Long inicioExecucao = System.currentTimeMillis();
 			int linhasAfetadas = st.executeUpdate();
 			Long terminoExecucao = System.currentTimeMillis();
 
 			System.out.println(
-					"Cartão cadastrado com sucesso! \n Linhas afetadas: " + linhasAfetadas + "\nTempo de execução: "
+					"Movimentação cadastrada com sucesso! \n Linhas afetadas: " + linhasAfetadas + "\nTempo de execução: "
 							+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
 			return null;
 		} catch (Exception e) {
@@ -47,15 +50,16 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 	}
 
 	public String alterar(EntidadeDominio entidade) {
-		Categoria categoria = (Categoria) entidade;
-		System.out.println(categoria.getId());
+		MovimentacaoEstoque movimentacao = (MovimentacaoEstoque) entidade;
+		System.out.println(movimentacao.getId());
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("UPDATE categoria SET cat_nome = ? "
-					+ "WHERE (cat_id = ?)");
 
-			setaParametrosQuery(st, categoria.getNome(), categoria.getId());
+			st = conn.prepareStatement("UPDATE movimentacao_estoque SET mov_quantidade = ?"
+					+ "WHERE (mov_id = ?)"); 
+
+			setaParametrosQuery(st, movimentacao.getQuantidade(), movimentacao.getId());
 
 			int rowsAffected = st.executeUpdate();
 			System.out.println("Done! Rows affected: " + rowsAffected);
@@ -69,16 +73,16 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 
 
 	public String excluir(EntidadeDominio entidade) {
-		Categoria categoria = (Categoria) entidade;
-		System.out.println(categoria.getId());
+		MovimentacaoEstoque movimentacao = (MovimentacaoEstoque) entidade;
+		System.out.println(movimentacao.getId());
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("DELETE FROM categoria WHERE cat_id = ?");
-			setaParametrosQuery(st, categoria.getId());
+			st = conn.prepareStatement("DELETE FROM movimentacao_estoque WHERE mov_id = ?");
+			setaParametrosQuery(st, movimentacao.getId());
 
 			int linhasAfetadas = st.executeUpdate();
-			System.out.println("Categoria excluída com sucesso! Linhas afetadas: " + linhasAfetadas);
+			System.out.println("Movimentação excluída com sucesso! Linhas afetadas: " + linhasAfetadas);
 			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,28 +92,30 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 	
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
 		if (entidade.getPesquisa().equals("id")) {
-			return "select * from categoria where cat_id =?";
+			return "select * from movimentacao_estoque where mov_id =?";
 		}else{
-			return "select * from categoria";
+			return "select * from movimentacao_estoque";
 		}
 	}
 	
-	private PreparedStatement executarPesquisa(Categoria categoria, String sql) throws SQLException {
+	private PreparedStatement executarPesquisa(MovimentacaoEstoque movimentacao, String sql) throws SQLException {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
-		if (categoria.getPesquisa().equals("id")) {
-			setaParametrosQuery(st, categoria.getId());
+		if (movimentacao.getPesquisa().equals("id")) {
+			setaParametrosQuery(st, movimentacao.getId());
 		}
 		return st;
 	}
 	
 	
-	public List<Categoria> consultar(EntidadeDominio entidade) {
-		Categoria categoria= (Categoria) entidade;
-		List<Categoria> categorias = new ArrayList();
+	public List<MovimentacaoEstoque> consultar(EntidadeDominio entidade) {
+		MovimentacaoEstoque movimentacao = (MovimentacaoEstoque) entidade;
+		List<MovimentacaoEstoque> movimentacoes = new ArrayList();
 		inicializarConexao();
+		EstoqueItemDAO itemDAO = new EstoqueItemDAO();
+		LivroDAO livroDAO = new LivroDAO();
 		try {
-			String sql = pesquisarAuxiliar(categoria);
-			st = executarPesquisa(categoria, sql);
+			String sql = pesquisarAuxiliar(movimentacao);
+			st = executarPesquisa(movimentacao, sql);
 
 			Long inicioExecucao = System.currentTimeMillis();
 			ResultSet rs = st.executeQuery();
@@ -119,42 +125,59 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
 
 			while (rs.next()) {
-				    Categoria categoriaAux = new 
-					Categoria(rs.getInt("cat_id"), rs.getString("cat_nome"), 
-					Conversao.parseStringToDate(rs.getString("cat_dtCadastro"), "yyyy-MM-dd"));
-				categorias.add(categoriaAux);
+					MovimentacaoEstoque movimentacaoAux = new 
+					MovimentacaoEstoque(rs.getInt("mov_id"),  
+					Conversao.parseStringToDate(rs.getString("mov_dtCadastro"), "yyyy-MM-dd"),
+					Conversao.parseStringToDate(rs.getString("mov_data"), "yyyy-MM-dd"),
+					rs.getDouble ("mov_quantidade"),
+					rs.getDouble ("mov_precoCusto"),
+					rs.getString ("mov_fornecedor"),
+					TipoMovimentacao.valueOf(rs.getString("mov_tipo")),
+					rs.getBoolean ("mov_entrada"),				
+					itemDAO.getEstoqueItemById(rs.getInt("mov_esi_id")),
+					livroDAO.getLivroById(rs.getInt("mov_liv_id"))
+					);
+					movimentacoes.add(movimentacaoAux);
 			}
-
-			return categorias;
+			return movimentacoes;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public Categoria getCategoriaById(Integer categoriaId) {
-		Categoria categoria = new Categoria();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	public MovimentacaoEstoque getMovimentacaoById(Integer movimentacaoId) {
+		MovimentacaoEstoque movimentacao = new MovimentacaoEstoque();
 		inicializarConexao();
+		EstoqueItemDAO itemDAO = new EstoqueItemDAO();
+		LivroDAO livroDAO = new LivroDAO();
 		
-		System.out.println("Buscando categoria id:" + categoriaId);
+		System.out.println("Buscando categoria id:" + movimentacaoId);
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("SELECT * FROM categoria WHERE cat_id = ? LIMIT 1");
-			setaParametrosQuery(st, categoriaId);
+			st = conn.prepareStatement("SELECT * FROM movimentacao_estoque WHERE mov_id = ? LIMIT 1");
+			setaParametrosQuery(st, movimentacaoId);
 			Long inicioExecucao = System.currentTimeMillis();
 			ResultSet rs = st.executeQuery();
 			Long terminoExecucao = System.currentTimeMillis();
 
 			System.out.println("Tempo de execução da consulta: "
-				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
-
+				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");		
 			while (rs.next()) {
-				categoria = new Categoria(rs.getInt("cat_id"), rs.getString("cat_nome"),
-				sdf.parse(rs.getString("cat_dtCadastro")));
-			}
-			
-			return categoria;
+				movimentacao = new MovimentacaoEstoque(
+				rs.getInt("mov_id"),  
+				Conversao.parseStringToDate(rs.getString("mov_dtCadastro"), "yyyy-MM-dd"),
+				Conversao.parseStringToDate(rs.getString("mov_data"), "yyyy-MM-dd"),
+				rs.getDouble ("mov_quantidade"),
+				rs.getDouble ("mov_precoCusto"),
+				rs.getString ("mov_fornecedor"),
+				TipoMovimentacao.valueOf(rs.getString("mov_tipo")),
+				rs.getBoolean ("mov_entrada"),				
+				itemDAO.getEstoqueItemById(rs.getInt("mov_esi_id")),
+				livroDAO.getLivroById(rs.getInt("mov_liv_id"))
+				);			
+			}					
+			return movimentacao;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

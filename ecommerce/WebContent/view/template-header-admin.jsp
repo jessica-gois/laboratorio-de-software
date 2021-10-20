@@ -27,11 +27,11 @@
     			ESTOQUE
   				</a>
   				<a href="/ecommerce/view/precificacao" class="list-group-item list-group-item-action">Precificação</a>
-  				<a href="/ecommerce/view/categoria.jsp" class="list-group-item list-group-item-action">Categoria</a>
+  				<a href="/ecommerce/view/categoria" class="list-group-item list-group-item-action">Categoria</a>
   				<a href="#" class="list-group-item list-group-item-action">Cadastrar livro</a>
   				<a href="#" class="list-group-item list-group-item-action">Consultar livros</a>
   				<a href="/ecommerce/controlador?acao=consultar&viewHelper=PreparaCadastroMovimentacaoVH" class="list-group-item list-group-item-action">Movimentações</a>
-  				<a href="#" class="list-group-item list-group-item-action">Consultar movimentações</a>
+  				<a href="/ecommerce/view/consultarMovimentacoes.jsp"  class="list-group-item list-group-item-action">Consultar movimentações</a>
   				<a href="#" class="list-group-item list-group-item-action active" id="topico">
     			CUPONS
   				</a>

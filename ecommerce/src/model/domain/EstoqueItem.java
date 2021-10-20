@@ -1,9 +1,29 @@
 package model.domain;
 
+import java.util.Date;
+
 public class EstoqueItem extends EntidadeDominio{
 	private Livro livro;
 	private Double quantidade;
-	private Double precoCusto;
+
+	
+	
+	public EstoqueItem() {
+	}
+	
+	
+	public EstoqueItem(Integer id, Date dtCadastro, Double quantidade, Livro livro) {
+		super();
+		if(id != null) {
+			this.setId(id);			
+		}
+		if(dtCadastro != null) {
+			this.setDtCadastro(dtCadastro);
+		}
+	
+		this.quantidade = quantidade;
+		this.livro = livro;
+	}
 	
 	public Livro getLivro() {
 		return livro;
@@ -16,12 +36,6 @@ public class EstoqueItem extends EntidadeDominio{
 	}
 	public void setQuantidade(Double quantidade) {
 		this.quantidade = quantidade;
-	}
-	public Double getPrecoCusto() {
-		return precoCusto;
-	}
-	public void setPrecoCusto(Double precoCusto) {
-		this.precoCusto = precoCusto;
 	}
 			
 }
