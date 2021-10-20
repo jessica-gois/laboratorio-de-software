@@ -1,14 +1,22 @@
 package model.domain.enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum TipoMovimentacao {
-	SAIDA_POR_VENDA("Saída por venda"),
-	ENTRADA_POR_TROCA("Entrada por troca"),
-	ENTRADA_POR_COMPRA("Entrada por compra");
+	SAIDA_POR_VENDA("Saída por venda", false),
+	ENTRADA_POR_TROCA("Entrada por troca", true),
+	ENTRADA_POR_COMPRA("Entrada por compra", true);
+	
 	
 	private String descricao;
 	
-	private TipoMovimentacao(String descricao) {
+	private boolean entrada;
+	
+	
+	private TipoMovimentacao(String descricao, boolean entrada) {
 		this.descricao = descricao;
+		this.entrada = entrada;
 	}
 	
 	@Override
@@ -19,4 +27,14 @@ public enum TipoMovimentacao {
 	public String getDescricao() {
 		return descricao;
 	}
+	
+	public boolean isEntrada() {
+		return entrada;
+	}
+	
+	public static List<TipoMovimentacao> getTiposMovimentacao (){
+		List<TipoMovimentacao> tipos = Arrays.asList(TipoMovimentacao.values());
+		return tipos;
+	}
+	
 }
