@@ -39,7 +39,6 @@ public class Cupom extends EntidadeDominio{
 		this.tipo = tipo;		
 	}
 
-
 	public String getNome() {
 		return nome;
 	}

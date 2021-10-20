@@ -20,7 +20,7 @@ public class AlterarCupomVH implements IViewHelper {
 		Cupom cupom = null;
 		try {
 		
-		cupom = new Cupom(
+		cupom = new Cupom(Conversao.parseStringToInt(request.getParameter("id")),
 				request.getParameter("codigo"),
 			    request.getParameter("nome"), 
 			    Conversao.parseStringToDouble(request.getParameter("valor")),

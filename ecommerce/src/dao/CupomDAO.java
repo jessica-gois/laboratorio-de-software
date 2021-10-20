@@ -127,7 +127,9 @@ public class CupomDAO extends AbstractDAO {
 			while (rs.next()) {
 				Cupom cupomAux = new Cupom(rs.getInt("cup_id"), rs.getString("cup_codigo"), rs.getString("cup_nome"), 
 						rs.getDouble("cup_valor"),sdf.parse(rs.getString("cup_validade")), TipoCupom.valueOf(rs.getString("cup_tipo")));
-				cupomAux.setAplicado(isCupomUtilizado(rs.getInt("cup_id"), cupom.getIdCliente()));
+				if(cupom.getIdCliente() != null) {
+					cupomAux.setAplicado(isCupomUtilizado(rs.getInt("cup_id"), cupom.getIdCliente()));
+				}
 				cupons.add(cupomAux);
 			}
 

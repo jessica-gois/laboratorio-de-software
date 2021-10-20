@@ -1,5 +1,8 @@
 package model.domain.enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum TipoCupom {
 	TROCA("Troca"),
 	PROMOCIONAL("Promocional");
@@ -17,5 +20,10 @@ public enum TipoCupom {
 	@Override
 	public String toString() {
 		return this.descricao;
+	}
+	
+	public static List<TipoCupom> getTiposCupom(){
+		List<TipoCupom> lista = Arrays.asList(TipoCupom.values());
+		return lista;
 	}
 }

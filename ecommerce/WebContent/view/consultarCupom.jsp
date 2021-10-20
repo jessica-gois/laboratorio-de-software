@@ -1,12 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page import="java.util.List, model.domain.Cupom" %>
+<%@ page import="java.util.List, model.domain.Cupom,model.domain.enums.TipoCupom" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <c:import url="template-head-admin.jsp" />
 <c:url value="/controlador" var="stub"/>
 	<%
 		List<Cupom> cupons = (List<Cupom>) request.getAttribute("cupons");
+		List<TipoCupom> tipos = TipoCupom.getTiposCupom(); 
 	%>
 <body>
 <c:import url="template-header-admin.jsp" />
@@ -73,8 +74,16 @@
 						</div>
 
 						<div class="col-2"> 
-							<input class="form-control mt-2" type="text" id="tipo"
-								name="tipo" value="<%=cupom.getTipo().getDescricao() %>" required="true" />
+							<select class="form-control mt-2" name="tipo" id="tipo" required="true">
+                            	<option value="">Escolha...</option>
+                                  	<%if(tipos != null){ 
+										for(TipoCupom tipo : tipos){%>
+                                        	<option value="<%=tipo.name()%>" <%= cupom.getTipo().name() == tipo.name() ?
+                                        		"selected" : ""%>> <%=tipo.getDescricao() %> </option>
+                                        <%}
+                                  	} %>
+                            </select>
+                                
 						</div>
 					
 					
