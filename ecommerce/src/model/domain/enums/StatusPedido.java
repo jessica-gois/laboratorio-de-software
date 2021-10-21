@@ -1,5 +1,8 @@
 package model.domain.enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum StatusPedido {
 	EM_PROCESSAMENTO("Em processamento"),
 	APROVADO("Pedido aprovado"),
@@ -24,5 +27,10 @@ public enum StatusPedido {
 	@Override
 	public String toString() {
 		return this.descricao;
+	}
+	
+	public static List<StatusPedido> getTiposStatus (){
+		List<StatusPedido> tipos = Arrays.asList(StatusPedido.values());
+		return tipos;
 	}
 }
