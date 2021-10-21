@@ -4,9 +4,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <c:import url="template-head-admin.jsp" />
+<fmt:setLocale value = "pt_BR"/>
 <c:url value="/controlador" var="stub" />
 <%
-		List<MovimentacaoEstoque> movimentacoes = (List<MovimentacaoEstoque>) request.getAttribute("movimentacoes");
+		List<MovimentacaoEstoque> movimentacoes = (List<MovimentacaoEstoque>) request.getSession().getAttribute("movimentacoes");
 		List<TipoMovimentacao> tipos = TipoMovimentacao.getTiposMovimentacao(); 
 		List<Livro> livros = (List<Livro>) request.getSession().getAttribute("livros");
 	%>
@@ -33,11 +34,17 @@
                     <div class="col">
                         <p class="h5">Fornecedor</p>
                     </div>
+                    <div class="col">
+                        <p class="h5">Preço de custo</p>
+                    </div>              
                     <div class="col-2">
                         <p class="h5" style="color: #FFF;"></p>
                     </div>
                 </div>
+                
+                
                 <div class="row mt-2 mb-4">
+                
                     <div class="col">
                         <input class="form-control" type="text" id="data" name="data" />
                     </div>
@@ -52,6 +59,7 @@
 							} %>
                         </select>
                     </div>
+                    
                     <div class="col">
                         <input class="form-control" type="text" id="livro" name="livro" />
                     </div>
@@ -60,6 +68,9 @@
                     </div>
                     <div class="col">
                         <input class="form-control" type="text" id="fornecedor" name="fornecedor" />
+                    </div>
+                   <div class="col">
+                        <input class="form-control" type="text" id="precoCusto" name="precoCusto" />
                     </div>
                     <div class="col-2">
                         <a class="btn btn-blue w-100 pb-2" id="consultar" name="consultar"
@@ -81,31 +92,31 @@
                         </div>
 
                         <div class="col">
-                           <select class="form-control mt-2" name="tipo" id="tipo" required="true">
-                            	<option value="">Escolha...</option>
-                                  	<%if(tipos != null){ 
-										for(TipoMovimentacao tipo : tipos){%>
-                                        	<option value="<%=tipo.name()%>" <%= mov.getTipo().name() == tipo.name() ?
-                                        		"selected" : ""%>> <%=tipo.getDescricao() %> </option>
-                                        <%}
-                                  	} %>
-                            </select>
+                        	<p><%=mov.getTipo().getDescricao()%></p>
                         </div>
 
                         <div class="col">
+                       		 <p><%=mov.getItemEstoque() != null && mov.getItemEstoque().getLivro() != null ? 
+                       		    mov.getItemEstoque().getLivro().getTitulo() : ""%></p>
                         </div>
 
                         <div class="col">
+                           <fmt:formatNumber value = "<%=mov.getQuantidade()%>" type = "number" maxFractionDigits="0"/>
                         </div>
 
                         <div class="col">
+                        	<p><%=mov.getFornecedor()%></p>
                         </div>
 
-                        <input type="hidden" name="id" value="<%=mov.getId()%>" />
 
-                        <div class="col-2">
-                            <a class="btn btn-blue w-100 pb-2" href="#" role="button">Visualizar</a>
+
+                        <div class="col-2">  
+                        	<p><fmt:formatNumber value = "<%=mov.getPrecoCusto()%>" type = "currency"/></p>      
                         </div>
+                        
+                     <div class="col">
+                        
+                    </div>
 
                     </div>
                 </form>

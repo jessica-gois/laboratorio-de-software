@@ -21,9 +21,6 @@ public class ConsultarMovimentacoesVH implements IViewHelper {
 	@Override
 	public EntidadeDominio getEntidade(HttpServletRequest request, HttpServletResponse response) {
 		MovimentacaoEstoque movimentacao = new MovimentacaoEstoque();
-		movimentacao.setId(Conversao.parseStringToInt(request.getParameter("id")));
-		movimentacao.setPesquisa("id");
-			
 		return movimentacao;
 	}
 
@@ -31,10 +28,8 @@ public class ConsultarMovimentacoesVH implements IViewHelper {
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
-	
 			if (resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
 				request.getSession().setAttribute("movimentacoes", resultado.getEntidades());
-
 				response.sendRedirect(request.getContextPath() + "/view/consultarMovimentacoes.jsp");
 			} else {
 				response.sendRedirect(request.getContextPath() + "/view/movimentacoes.jsp");

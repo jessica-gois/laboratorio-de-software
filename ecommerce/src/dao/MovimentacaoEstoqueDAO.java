@@ -4,17 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import model.domain.Categoria;
 import model.domain.EntidadeDominio;
-import model.domain.EstoqueItem;
-import model.domain.Livro;
 import model.domain.MovimentacaoEstoque;
-import model.domain.enums.TipoEndereco;
 import model.domain.enums.TipoMovimentacao;
 import util.Calculadora;
 import util.Conversao;
@@ -91,7 +85,7 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 	}
 	
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
-		if (entidade.getPesquisa().equals("id")) {
+		if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("id")) {
 			return "select * from movimentacao_estoque where mov_id =?";
 		}else{
 			return "select * from movimentacao_estoque";
@@ -100,7 +94,7 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 	
 	private PreparedStatement executarPesquisa(MovimentacaoEstoque movimentacao, String sql) throws SQLException {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
-		if (movimentacao.getPesquisa().equals("id")) {
+		if (movimentacao.getPesquisa() != null && movimentacao.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, movimentacao.getId());
 		}
 		return st;
