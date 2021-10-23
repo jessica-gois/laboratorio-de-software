@@ -26,7 +26,7 @@
                     <div class="col">
                         <p class="h5">Tipo</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <p class="h5">Livro</p>
                     </div>
                     <div class="col">
@@ -44,38 +44,42 @@
                 </div>
                 <!-- Fim Rótulos das consultas / Títulos colunas-->
                 <!-- Início inputs-->
-                <div class="row mt-2 mb-4">
-                    <div class="col">
-                        <input class="form-control" type="text" id="data" name="data" />
-                    </div>
-                    <div class="col">
-                        <select class="form-control" name="tipo" id="tipo" required="true">
-                            <option value="">Escolha...</option>
-                            <%if(tipos != null){ 
-							for(TipoMovimentacao tipo : tipos){%>
-                            <option value="<%=tipo.name()%>"> <%=tipo.getDescricao() %> </option>
-                            <%}
-							} %>
-                        </select>
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control" type="text" id="livro" name="livro" />
-                    </div>
-                    <div class="col">
-                        <input class="form-control" type="number" id="quantidade" name="quantidade" />
-                    </div>
-                    <div class="col">
-                        <input class="form-control" type="text" id="fornecedor" name="fornecedor" />
-                    </div>
-                    <div class="col">
-                        <input class="form-control" type="text" id="precoCusto" name="precoCusto" />
-                    </div>
-                    <div class="col-2">
-                        <a class="btn btn-blue w-100 pb-2" id="consultar" name="consultar"
-                            href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarMovimentacoesVH&id="
-                            title="Consultar" alt="Consultar">Consultar</a>
-                    </div>
-                </div>
+                <form id="formConsultarFiltros" action="${stub}" method="post" novalidate>
+	                <div class="row mt-2 mb-4">
+	                    <div class="col">
+	                        <input class="form-control ps-1 pe-1" type="date" id="data" name="data" style="width: 150px;" />
+	                    </div>
+	                    <div class="col">
+	                        <select class="form-control" name="tipo" id="tipo" required="true">
+	                            <option value="">Escolha...</option>
+	                            <%if(tipos != null){ 
+								for(TipoMovimentacao tipo : tipos){%>
+	                            <option value="<%=tipo.name()%>"> <%=tipo.getDescricao() %> </option>
+	                            <%}
+								} %>
+	                        </select>
+	                    </div>
+	                    <div class="col-2">
+	                        <input class="form-control" type="text" id="livro" name="livro" />
+	                    </div>
+	                    <div class="col">
+	                        <input class="form-control" type="number" id="quantidade" name="quantidade" />
+	                    </div>
+	                    <div class="col">
+	                        <input class="form-control" type="text" id="fornecedor" name="fornecedor" />
+	                    </div>
+	                    <div class="col">
+	                        <input class="form-control" type="text" id="precoCusto" name="precoCusto" />
+	                    </div>
+	                    <input type="hidden" name="acao" value="consultar" />
+						<input type="hidden" name="viewHelper" value="ConsultarMovimentacoesVH" />
+						<input type="hidden" name="tipoPesquisa" value="filtros" />
+	                    <div class="col-2">
+	                        <button class="btn btn-blue w-100 pb-2" id="consultar" name="consultar" type="submit"
+	                            title="Consultar" alt="Consultar">Consultar</button>
+	                    </div>
+	                </div>
+                </form>
                 <!-- Fim inputs-->
                 <!-- Início gets das consultas / retorno do banco-->
                 <hr class="my-4">
@@ -91,7 +95,7 @@
                         <div class="col">
                             <p><%=mov.getTipo().getDescricao()%></p>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <p><%=mov.getItemEstoque() != null && mov.getItemEstoque().getLivro() != null ? 
                        		    mov.getItemEstoque().getLivro().getTitulo() : ""%></p>
                         </div>

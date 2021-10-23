@@ -37,10 +37,21 @@ public class Conversao {
 	
 	public static Date parseStringToDate (String parameter, String formatoParametro) throws ParseException {
 		Date data = null;
-		System.out.println(parameter);
-		if(parameter!=""){
+		if(parameter != null && !parameter.isBlank() 
+			&& formatoParametro != null && !formatoParametro.isBlank()){
 		SimpleDateFormat sdf = new SimpleDateFormat (formatoParametro);
 		data = sdf.parse(parameter);
+		}
+		return data;
+	}
+	
+	public static String parseDateToString (Date parameter, String formatoParametro) throws ParseException {
+		String data = null;
+		if(parameter != null && formatoParametro != null && !formatoParametro.isBlank()){
+			System.out.println(parameter);
+		SimpleDateFormat sdf = new SimpleDateFormat (formatoParametro);
+		data = sdf.format(parameter);
+		System.out.println(data);
 		}
 		return data;
 	}

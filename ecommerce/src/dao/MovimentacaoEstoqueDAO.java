@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,15 +88,63 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
 		if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("id")) {
 			return "select * from movimentacao_estoque where mov_id =?";
-		}else{
+		}else if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("filtros")){
+			MovimentacaoEstoque mov = (MovimentacaoEstoque) entidade;
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from movimentacao_estoque ");
+			
+			if(mov.getLivro() != null) {
+				sql.append("join livro on liv_id = mov_liv_id and liv_titulo like ? ");
+			}
+			
+			if(mov.getData() != null || mov.getTipo() != null || mov.getLivro() != null || mov.getQuantidade() != null
+				|| mov.getFornecedor() != null || mov.getPrecoCusto() != null) {
+				sql.append("where mov_liv_id is not null ");
+			}
+			
+			if(mov.getData() != null) {
+				sql.append("and mov_data = ? ");
+			}
+			
+			if(mov.getTipo() != null) {
+				sql.append("and mov_tipo = ? ");
+			}
+			
+			if(mov.getQuantidade() != null) {
+				sql.append("and mov_quantidade = ? ");
+			}
+			
+			if(mov.getFornecedor() != null) {
+				sql.append("and mov_fornecedor like ? ");
+			}
+			
+			if(mov.getPrecoCusto() != null) {
+				sql.append("and mov_precoCusto = ? ");
+			}			
+			
+			return sql.toString();
+		
+		}else {
 			return "select * from movimentacao_estoque";
 		}
 	}
 	
-	private PreparedStatement executarPesquisa(MovimentacaoEstoque movimentacao, String sql) throws SQLException {
+	private PreparedStatement executarPesquisa(MovimentacaoEstoque movimentacao, String sql) throws SQLException, ParseException {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
+		
 		if (movimentacao.getPesquisa() != null && movimentacao.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, movimentacao.getId());
+		}else if (movimentacao.getPesquisa() != null && movimentacao.getPesquisa().equals("filtros")) {
+			String filtroLivro = movimentacao.getLivro() != null && movimentacao.getLivro().getTitulo() != null ?
+				"%" + movimentacao.getLivro().getTitulo().trim() + "%" : null;
+			
+			String filtroTipo = movimentacao.getTipo() != null ? movimentacao.getTipo().name() : null;
+			
+			String filtroFornecedor = movimentacao.getFornecedor() != null && movimentacao.getFornecedor() != null ?
+					"%" + movimentacao.getFornecedor().trim() + "%" : null;
+						
+			setaParametrosQuery(st, filtroLivro, movimentacao.getData(), filtroTipo, movimentacao.getQuantidade(),
+				filtroFornecedor, movimentacao.getPrecoCusto());
 		}
 		return st;
 	}
