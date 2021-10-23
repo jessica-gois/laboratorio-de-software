@@ -22,7 +22,7 @@
   				</a>
   				<a href="/ecommerce/view/painelAdmin.jsp" class="list-group-item list-group-item-action">Painel</a>
   				<a href="/ecommerce/view/consultarPedidos.jsp" class="list-group-item list-group-item-action">Pedidos</a>
-  				<a href="/ecommerce/view/cadastraCliente.jsp" class="list-group-item list-group-item-action">Clientes</a>
+  				<a href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarClientesVH" class="list-group-item list-group-item-action">Clientes</a>
   				<a href="#" class="list-group-item list-group-item-action active" id="topico">
     			ESTOQUE
   				</a>

@@ -1,7 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.List, model.domain.Cliente" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <c:import url="template-head-admin.jsp" />
+<fmt:setLocale value="pt_BR" />
+<c:url value="/controlador" var="stub" />
+<% 
+	List<Cliente> clientes = (List<Cliente>) request.getSession().getAttribute("clientes");
+%>
 <body>
     <c:import url="template-header-admin.jsp" />
     <div class="container">
@@ -168,33 +175,38 @@
                         <p class="h5" style="color: #FFF;"></p>
                     </div>
                 </div>
-                <form id="formConsultarClientes" action="" method="get" novalidate>
-                    <div class="row pt-2 mb-2 d-flex align-items-center">
-                        <div class="col-1">
-                            <p>Exemplo<p/>
-                        </div>
-                        <div class="col-2">
-                            <p>Exemplo<p/>
-                        </div>
-                        <div class="col-2">
-                            <p>Exemplo<p/>
-                        </div>
-                        <div class="col-3">
-                            <p>exemplo@exemplo.com<p/>
-                        </div>
-                        <div class="col-1">
-                            <p>Exemplo<p/>
-                        </div>
-                        <div class="col-1">
-                            <p>Exemplo<p/>
-                        </div>
-                        <div class="col-2">
-                            <a class="btn btn-blue w-100" id="consultar" name="consultar"
-                                href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarClientesVH&id="
-                                title="Consultar" alt="Consultar">Visualizar</a>
-                        </div>
-                    </div>
-                </form>
+                 <%if(clientes != null){ 
+					for(Cliente cliente : clientes){%>
+		                <form id="formConsultarClientes" action="${stub}" method="get" novalidate>
+		                    <div class="row pt-2 mb-2 d-flex align-items-center">
+		                        <div class="col-1">
+		                            <p><%=cliente.getId()%><p/>
+		                        </div>
+		                        <div class="col-2">
+		                            <p><%=cliente.getNome()%><p/>
+		                        </div>
+		                        <div class="col-2">
+		                            <p><%=cliente.getCpf()%><p/>
+		                        </div>
+		                        <div class="col-3">
+		                            <p><%=cliente.getUsuario().getEmail()%><p/>
+		                        </div>
+		                        <div class="col-1">
+		                            <p><%=cliente.getScore()%><p/>
+		                        </div>
+		                        <div class="col-1">
+		                            <p><%=cliente.getUsuario().getStatus() != null && cliente.getUsuario().getStatus() ? "Ativo" : "Inativo" %><p/>
+		                        </div>
+		                        <input type="hidden" name="acao" value="consultar" />
+								<input type="hidden" name="viewHelper" value="ConsultarClientesVH" />
+		                        <div class="col-2">
+		                            <button class="btn btn-blue w-100" id="consultar" name="consultar"
+		                               type="submit" title="Consultar" alt="Consultar">Visualizar pedidos</button>
+		                        </div>
+		                    </div>             
+		                </form>
+	                <%}
+				}%>
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@
 		List<MovimentacaoEstoque> movimentacoes = (List<MovimentacaoEstoque>) request.getSession().getAttribute("movimentacoes");
 		List<TipoMovimentacao> tipos = TipoMovimentacao.getTiposMovimentacao(); 
 		List<Livro> livros = (List<Livro>) request.getSession().getAttribute("livros");
-	%>
+%>
 
 <body>
     <c:import url="template-header-admin.jsp" />
@@ -73,7 +73,7 @@
 	                    </div>
 	                    <input type="hidden" name="acao" value="consultar" />
 						<input type="hidden" name="viewHelper" value="ConsultarMovimentacoesVH" />
-						<input type="hidden" name="tipoPesquisa" value="filtros" />
+						<input type="hidden" name="tipoPesquisa" value="filtros"/>
 	                    <div class="col-2">
 	                        <button class="btn btn-blue w-100 pb-2" id="consultar" name="consultar" type="submit"
 	                            title="Consultar" alt="Consultar">Consultar</button>
