@@ -7,10 +7,8 @@
 <fmt:setLocale value="pt_BR" />
 <c:url value="/controlador" var="stub" />
 <%
-		//List<Pedido> pedidos = (List<Pedido>) request.getSession().getAttribute("pedidos");
-		  List<Pedido> pedidos = (List<Pedido>) request.getAttribute("pedidos");
-
-		List<StatusPedido> tipos = StatusPedido.getTiposStatus();
+			List<Pedido> pedidos = (List<Pedido>) request.getSession().getAttribute("pedidos");
+			List<StatusPedido> tipos = StatusPedido.getTiposStatus();
 	%>
 <body>
     <c:import url="template-header-admin.jsp" />
@@ -49,7 +47,7 @@
                         <select class="form-control" name="id" id="id" required="true">
                             <option value="">Escolha...</option>
                             <%if(pedidos != null){ 
-														for(Pedido pedido : pedidos){%>
+							 for(Pedido pedido : pedidos){%>
                             <option value="<%=pedido.getId()%>">
                                 <%=pedido.getId() %></option>
                             <%}
@@ -80,7 +78,7 @@
                     </div>
                     <div class="col-2">
                         <a class="btn btn-blue w-100 pb-2" id="consultar" name="consultar"
-                            href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoVH&id="
+                            href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidosAdminVH&id="
                             title="Consultar" alt="Consultar">Consultar</a>
                     </div>
                 </div>
@@ -99,12 +97,16 @@
                                 <fmt:formatDate value="<%=pedido.getDtCadastro()%>" pattern="dd/MM/yyyy" />
                             </p>
                         </div>
+
                         <div class="col">
                             <p><%=pedido.getCliente().getUsuario().getEmail() %></p>
                         </div>
+
+
                         <div class="col">
                             <p><%=pedido.getCliente().getCpf() %></p>
                         </div>
+
                         <div class="col">
                             <p>
                                 <fmt:formatNumber value="<%=pedido.getValorTotal() %>" type="currency" />
@@ -115,7 +117,7 @@
                         </div>
                         <div class="col-2">
                             <a class="btn btn-blue w-100" id="consultar" name="consultar"
-                                href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarMovimentacoesVH&id="
+                                href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoAdminVH&id="
                                 title="Consultar" alt="Consultar">Consultar</a>
                         </div>
                     </div>
