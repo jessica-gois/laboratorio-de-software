@@ -20,7 +20,10 @@ public class ConsultarPedidoVH implements IViewHelper {
 		Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");
 		Pedido pedido = new Pedido();
 		
+		if(cliente != null) {
 		pedido.setCliente(cliente);
+		}
+		
 		if (request.getParameter("tipoPesquisa") != null) {
 			pedido.setPesquisa(request.getParameter("tipoPesquisa"));
 		}else if(request.getParameter("id") != null) {
@@ -34,10 +37,12 @@ public class ConsultarPedidoVH implements IViewHelper {
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//if(resultado.getResposta()==null) {
 		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
-			Pedido pedido = (Pedido) resultado.getEntidades().get(0);		
+			Pedido pedido = (Pedido) resultado.getEntidades().get(0);
+			String caminhoRedirecionar = request.getParameter("caminhoRedirecionar") != null ?
+				request.getParameter("caminhoRedirecionar") : "/view/detalhePedido.jsp";
 			request.getSession().setAttribute("pedido", pedido);
 			
-			response.sendRedirect(request.getContextPath() + "/view/detalhePedido.jsp");		
+			response.sendRedirect(request.getContextPath() + caminhoRedirecionar);		
 		}else {
 			response.sendRedirect(request.getContextPath() + "/view/index");
 		}

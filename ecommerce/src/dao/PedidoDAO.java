@@ -96,7 +96,9 @@ public class PedidoDAO extends AbstractDAO {
 			return "select * from pedido where ped_id = ?";
 		} else if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("ultimoCadastrado")) {
 			return "select * from pedido where ped_id = (select MAX(ped_id) from pedido where ped_cli_id = ?)";
-		} else {
+		} else if(entidade.getPesquisa() != null && entidade.getPesquisa().equals("cliente")){
+			return "select * from pedido where ped_cli_id = ?";
+		}else {
 			return "select * from pedido";
 		}
 	}
@@ -106,8 +108,10 @@ public class PedidoDAO extends AbstractDAO {
 		if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, pedido.getId());
 		}else if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("ultimoCadastrado") && pedido.getCliente() != null) {
-			setaParametrosQuery(st, pedido.getCliente().getId());;
-		} 
+			setaParametrosQuery(st, pedido.getCliente().getId());
+		}else if(pedido.getPesquisa() != null && pedido.getPesquisa().equals("cliente")){
+			setaParametrosQuery(st, pedido.getCliente().getId());
+		}
 		return st;
 	}
 	
