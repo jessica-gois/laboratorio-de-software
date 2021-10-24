@@ -188,4 +188,16 @@ public class ClienteDAO extends AbstractDAO {
 		}
 		return st;
 	}
+	
+	public Cliente getClienteById(Integer idCliente) {
+		Cliente cliente = new Cliente();
+		cliente.setId(idCliente);
+		cliente.setPesquisa("id");
+		
+		if(idCliente != null && idCliente > 0) {
+			return (Cliente)consultar(cliente).get(0);
+		}else {
+			return cliente;
+		}
+	}
 }

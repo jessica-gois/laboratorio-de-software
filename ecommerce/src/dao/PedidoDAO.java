@@ -6,14 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import model.domain.Cliente;
-import model.domain.Endereco;
 import model.domain.EntidadeDominio;
 import model.domain.FormaPagamento;
-import model.domain.Livro;
 import model.domain.Pedido;
 import model.domain.PedidoItem;
 import model.domain.enums.StatusPedido;
@@ -141,6 +138,10 @@ public class PedidoDAO extends AbstractDAO {
 					StatusPedido.valueOf(rs.getString("ped_status")), enderecoDAO.getEnderecoById(rs.getInt("ped_endEntrega_id")),
 					enderecoDAO.getEnderecoById(rs.getInt("ped_endCobranca_id")), rs.getDouble("ped_valortotal"), rs.getDouble("ped_valorfrete"),
 					formaPagamentoDAO.getFormasPagamentoByPedido(rs.getInt("ped_id")), pedidoItemDAO.getItensByPedido(rs.getInt("ped_id")));
+				if (pedido.getCliente() == null) {
+					ClienteDAO clienteDAO = new ClienteDAO();
+					pedidoAux.setCliente(clienteDAO.getClienteById(rs.getInt("ped_cli_id")));
+				}
 				pedidos.add(pedidoAux);
 			}	
 
@@ -150,5 +151,5 @@ public class PedidoDAO extends AbstractDAO {
 			return null;
 		}
 	}
-
+	
 }
