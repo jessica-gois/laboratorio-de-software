@@ -173,17 +173,21 @@
                     <div class="col-3">
                         <p><%=formaPagamento.getCartao().getBandeira() %></p>
                     </div>
+
+
+
                     <div class="col-3">
                         <p><%=formaPagamento.getCartao().getNumero()%></p>
                     </div>
                     <div class="col-3">
                         <p><%=formaPagamento.getCartao().getNomeImpresso() %></p>
                     </div>
-                </div>
-            </div>
-            <%}
+                    <%}
 						}
 					}%>
+                </div>
+
+            </div>
             <!-- Fim do bloco pagamento -->
 
             <!-- Começo do bloco cupom-->
@@ -216,10 +220,11 @@
                             <fmt:formatNumber value="<%=formaPagamento.getCupom().getValor()%>" type="currency" />
                         </p>
                     </div>
-                </div>
-                <%}
+                    <%}
 						}
 					}%>
+                </div>
+
             </div>
             <!-- Fim do bloco cupom -->
 
