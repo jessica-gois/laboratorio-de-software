@@ -5,10 +5,13 @@
 <html lang="pt-br">
 <c:import url="template-head-admin.jsp" />
 <fmt:setLocale value="pt_BR" />
+
 <c:url value="/controlador" var="stub" />
 <%
 			List<Pedido> pedidos = (List<Pedido>) request.getSession().getAttribute("pedidos");
 			List<StatusPedido> tipos = StatusPedido.getTiposStatus();
+			String caminhoRedirecionar = "/view/detalharPedido.jsp";
+			
 	%>
 <body>
     <c:import url="template-header-admin.jsp" />
@@ -117,7 +120,7 @@
                         </div>
                         <div class="col-2">
                             <a class="btn btn-blue w-100" id="consultar" name="consultar"
-                                href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoAdminVH&id="
+                                href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoVH&caminhoRedirecionar=<%=caminhoRedirecionar%>&id=<%=pedido.getId()%>"
                                 title="Consultar" alt="Consultar">Consultar</a>
                         </div>
                     </div>
