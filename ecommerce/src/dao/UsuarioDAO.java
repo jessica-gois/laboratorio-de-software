@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.domain.Cartao;
 import model.domain.EntidadeDominio;
 import model.domain.Usuario;
 import util.Calculadora;
@@ -128,5 +129,17 @@ public class UsuarioDAO extends AbstractDAO {
 			setaParametrosQuery(st, usuario.getSenha(), usuario.getId());
 		}
 		return st;
+	}
+	
+	public Usuario getUsuarioById(Integer idUsuario) {
+		Usuario usuario = new Usuario();
+		usuario.setId(idUsuario);
+		usuario.setPesquisa("id");
+		
+		if(idUsuario != null && idUsuario > 0) {
+			return (Usuario) consultar(usuario).get(0);
+		}else {
+			return usuario;
+		}
 	}
 }

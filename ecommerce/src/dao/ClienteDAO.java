@@ -153,7 +153,12 @@ public class ClienteDAO extends AbstractDAO {
 						telDAO.getTelefoneByCliente(clienteId, TipoTelefone.RESIDENCIAL),
 						telDAO.getTelefoneByCliente(clienteId, TipoTelefone.CELULAR),
 						enderecoDAO.getEnderecoResidencialByCliente(clienteId), cliente.getUsuario());
-				clienteAux.getUsuario().setId(rs.getInt("cli_usu_id"));
+				if(cliente.getUsuario() != null) {
+					clienteAux.getUsuario().setId(rs.getInt("cli_usu_id"));
+				}else {
+					UsuarioDAO usuarioDAO = new UsuarioDAO();
+					clienteAux.setUsuario(usuarioDAO.getUsuarioById(rs.getInt("cli_usu_id")));
+				}
 				clientes.add(clienteAux);
 			}
 
@@ -165,9 +170,9 @@ public class ClienteDAO extends AbstractDAO {
 	}
 
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
-		if (entidade.getPesquisa().equals("id")) {
+		if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("id")) {
 			return "select * from cliente  WHERE cli_id = ?";
-		} else if(entidade.getPesquisa().equals("usuario")){
+		} else if(entidade.getPesquisa() != null && entidade.getPesquisa().equals("usuario")){
 			return "select * from cliente  WHERE cli_usu_id = ?";
 		} {
 			return "select * from cliente";
@@ -176,9 +181,9 @@ public class ClienteDAO extends AbstractDAO {
 
 	private PreparedStatement executarPesquisa(Cliente cliente, String sql) throws SQLException {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
-		if (cliente.getPesquisa().equals("id")) {
+		if (cliente.getPesquisa() != null && cliente.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, cliente.getId());
-		} else if (cliente.getPesquisa().equals("usuario")) {
+		} else if (cliente.getPesquisa() != null && cliente.getPesquisa().equals("usuario")) {
 			setaParametrosQuery(st, cliente.getUsuario().getId());
 		}
 		return st;
