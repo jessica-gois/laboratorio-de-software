@@ -6,14 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import model.domain.Cliente;
-import model.domain.Endereco;
 import model.domain.EntidadeDominio;
 import model.domain.FormaPagamento;
-import model.domain.Livro;
 import model.domain.Pedido;
 import model.domain.PedidoItem;
 import model.domain.enums.StatusPedido;
@@ -95,22 +92,26 @@ public class PedidoDAO extends AbstractDAO {
 	}
 
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
-		if (entidade.getPesquisa().equals("id")) {
+		if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("id")) {
 			return "select * from pedido where ped_id = ?";
-		} else if (entidade.getPesquisa().equals("ultimoCadastrado")) {
+		} else if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("ultimoCadastrado")) {
 			return "select * from pedido where ped_id = (select MAX(ped_id) from pedido where ped_cli_id = ?)";
-		} else {
+		} else if(entidade.getPesquisa() != null && entidade.getPesquisa().equals("cliente")){
+			return "select * from pedido where ped_cli_id = ?";
+		}else {
 			return "select * from pedido";
 		}
 	}
 
 	private PreparedStatement executarPesquisa(Pedido pedido, String sql) throws SQLException {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
-		if (pedido.getPesquisa().equals("id")) {
+		if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, pedido.getId());
-		}else if (pedido.getPesquisa().equals("ultimoCadastrado") && pedido.getCliente() != null) {
-			setaParametrosQuery(st, pedido.getCliente().getId());;
-		} 
+		}else if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("ultimoCadastrado") && pedido.getCliente() != null) {
+			setaParametrosQuery(st, pedido.getCliente().getId());
+		}else if(pedido.getPesquisa() != null && pedido.getPesquisa().equals("cliente")){
+			setaParametrosQuery(st, pedido.getCliente().getId());
+		}
 		return st;
 	}
 	
@@ -141,6 +142,10 @@ public class PedidoDAO extends AbstractDAO {
 					StatusPedido.valueOf(rs.getString("ped_status")), enderecoDAO.getEnderecoById(rs.getInt("ped_endEntrega_id")),
 					enderecoDAO.getEnderecoById(rs.getInt("ped_endCobranca_id")), rs.getDouble("ped_valortotal"), rs.getDouble("ped_valorfrete"),
 					formaPagamentoDAO.getFormasPagamentoByPedido(rs.getInt("ped_id")), pedidoItemDAO.getItensByPedido(rs.getInt("ped_id")));
+				if (pedido.getCliente() == null) {
+					ClienteDAO clienteDAO = new ClienteDAO();
+					pedidoAux.setCliente(clienteDAO.getClienteById(rs.getInt("ped_cli_id")));
+				}
 				pedidos.add(pedidoAux);
 			}	
 
@@ -150,5 +155,5 @@ public class PedidoDAO extends AbstractDAO {
 			return null;
 		}
 	}
-
+	
 }

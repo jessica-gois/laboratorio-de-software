@@ -177,7 +177,7 @@
                 </div>
                  <%if(clientes != null){ 
 					for(Cliente cliente : clientes){%>
-		                <form id="formConsultarClientes" action="${stub}" method="get" novalidate>
+		                <form action="${stub}" method="get" novalidate>
 		                    <div class="row pt-2 mb-2 d-flex align-items-center">
 		                        <div class="col-1">
 		                            <p><%=cliente.getId()%><p/>
@@ -198,10 +198,12 @@
 		                            <p><%=cliente.getUsuario().getStatus() != null && cliente.getUsuario().getStatus() ? "Ativo" : "Inativo" %><p/>
 		                        </div>
 		                        <input type="hidden" name="acao" value="consultar" />
-								<input type="hidden" name="viewHelper" value="ConsultarClientesVH" />
+								<input type="hidden" name="viewHelper" value="ConsultarPedidosVH" />
+								<input type="hidden" name="nomeCliente" value="<%=cliente.getNome() + " " + cliente.getSobrenome()%>" />
+								<input type="hidden" name="idCliente" value="<%=cliente.getId()%>" />
 		                        <div class="col-2">
-		                            <button class="btn btn-blue w-100" id="consultar" name="consultar"
-		                               type="submit" title="Consultar" alt="Consultar">Visualizar pedidos</button>
+		                            <button class="btn btn-blue w-100" id="visualizarPedidos" name="visualizarPedidos"
+		                               type="submit" title="Visualizar pedidos" alt="Visualizar pedidos">Visualizar pedidos</button>
 		                        </div>
 		                    </div>             
 		                </form>
