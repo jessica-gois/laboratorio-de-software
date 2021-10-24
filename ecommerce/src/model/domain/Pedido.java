@@ -47,16 +47,32 @@ public class Pedido extends EntidadeDominio {
 		if(dtCadastro != null) {
 			this.setDtCadastro(dtCadastro);
 		}
+		if (cliente != null) {
 		this.cliente = cliente;
+		}
+		if (status != null) {
 		this.status = status;
+		}
+		if (enderecoEntrega != null) {
 		this.enderecoEntrega = enderecoEntrega;
+		}
+		if ( enderecoCobranca != null) {
 		this.enderecoCobranca = enderecoCobranca;
+		}
+		if (valorTotal != null) {
 		this.valorTotal = valorTotal;
+		}
+		if (valorFrete != null) {
 		this.valorFrete = valorFrete;
+		}
+		if (formasPagamento != null) {
 		this.formasPagamento = formasPagamento;
+		}
+		if (itens != null) {
 		this.itens = itens;
+		}
 	}
-
+	
 	public StatusPedido getStatus() {
 		return status;
 	}
