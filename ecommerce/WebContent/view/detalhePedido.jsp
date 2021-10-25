@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="java.util.List,model.domain.Cliente, model.domain.Carrinho,
-	model.domain.Cupom,model.domain.Endereco,model.domain.Cartao, model.domain.Endereco,model.domain.Pedido" %>
+	model.domain.Cupom,model.domain.Endereco,model.domain.Cartao, model.domain.Endereco, model.domain.enums.StatusPedido, model.domain.Pedido" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,8 @@
 </head>
 <%
 	Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+	String caminhoRedirecionarCliente = "/view/detalhePedido.jsp";
+
 %>
 <body>
 	<header>
@@ -157,15 +159,23 @@
 					<% }
 					}
 					%>
-					<div class="row mt-4">
-						<%if(pedido != null && pedido.getStatus().equals(StatusPedido.ENTREGUE)){ %>
+					
+					<div class="row mt-4">		
+						<%if(pedido.getStatus().equals(StatusPedido.EM_TRANSITO )){ %>
 							<div class="col-3">
-								<a class="btn btn-blue w-100"href="/ecommerce/controlador?acao=alterar&viewHelper=SolicitarTrocaVH&id=<%=pedido.getId()%>">Solicitar troca</a>
+								<a class="btn btn-blue w-100"href="/ecommerce/controlador?acao=alterar&viewHelper=AlterarStatusPedidoVH&caminhoRedirecionar=<%=caminhoRedirecionarCliente%>&id=<%=pedido.getId()%>&status=<%=StatusPedido.ENTREGUE.name()%>">Notificar recebimento</a>
 							</div>
 						<%}%>
+						
+						<%if(pedido != null && pedido.getStatus().equals(StatusPedido.ENTREGUE)){ %>
+							<div class="col-3">
+								<a class="btn btn-blue w-100"href="/ecommerce/controlador?acao=alterar&viewHelper=AlterarStatusPedidoVH&caminhoRedirecionar=<%=caminhoRedirecionarCliente%>&id=<%=pedido.getId()%>&status=<%=StatusPedido.TROCA_SOLICITADA.name()%>">Solicitar troca</a>
+							</div>
+						<%}%>								
 						<div class="col-3">
 							<a class="btn btn-secondary w-100" href="meusPedidos.jsp">Voltar</a>
 						</div>
+						
 					</div>
 			</div>
 		</div>

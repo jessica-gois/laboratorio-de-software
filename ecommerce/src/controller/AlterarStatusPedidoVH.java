@@ -26,7 +26,7 @@ public class AlterarStatusPedidoVH implements IViewHelper {
 
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String caminhoRedirecionar = "/view/detalharPedido.jsp";
+		String caminhoRedirecionar = request.getParameter("caminhoRedirecionar") !=null ? request.getParameter("caminhoRedirecionar") : "/view/detalharPedido.jsp";
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
 		response.sendRedirect("/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoVH&caminhoRedirecionar=" + 
 		caminhoRedirecionar + "&id=" + pedido.getId());	
