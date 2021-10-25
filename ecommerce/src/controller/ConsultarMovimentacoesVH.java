@@ -27,7 +27,7 @@ public class ConsultarMovimentacoesVH implements IViewHelper {
 			movimentacao.setPesquisa(request.getParameter("tipoPesquisa"));
 			if (request.getParameter("livro") != null && !request.getParameter("livro").isBlank()) {
 				Livro livro = new Livro();
-				livro.setTitulo(request.getParameter("livro"));
+				livro.setTitulo(request.getParameter("livro").trim());
 				movimentacao.setLivro(livro);
 			}
 			
@@ -36,15 +36,15 @@ public class ConsultarMovimentacoesVH implements IViewHelper {
 			}
 			
 			if(request.getParameter("quantidade") != null && !request.getParameter("quantidade").isBlank()) {
-				movimentacao.setQuantidade(Conversao.parseStringToDouble(request.getParameter("quantidade")));
+				movimentacao.setQuantidade(Conversao.parseStringToDouble(request.getParameter("quantidade").trim()));
 			}
 			
 			if(request.getParameter("fornecedor") != null && !request.getParameter("fornecedor").isBlank()) {
-				movimentacao.setFornecedor(request.getParameter("fornecedor"));
+				movimentacao.setFornecedor(request.getParameter("fornecedor").trim());
 			}
 			
 			if(request.getParameter("precoCusto") != null && !request.getParameter("precoCusto").isBlank()) {
-				movimentacao.setPrecoCusto(Conversao.parseStringToDouble(request.getParameter("precoCusto")));
+				movimentacao.setPrecoCusto(Conversao.parseStringToDouble(request.getParameter("precoCusto").trim()));
 			}			
 			
 			if (request.getParameter("data") != null && !request.getParameter("data").isBlank()) {

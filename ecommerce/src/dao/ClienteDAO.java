@@ -11,6 +11,7 @@ import java.util.List;
 import model.domain.Cliente;
 import model.domain.Endereco;
 import model.domain.EntidadeDominio;
+import model.domain.MovimentacaoEstoque;
 import model.domain.Telefone;
 import model.domain.enums.TipoTelefone;
 import util.Calculadora;
@@ -153,7 +154,7 @@ public class ClienteDAO extends AbstractDAO {
 						telDAO.getTelefoneByCliente(clienteId, TipoTelefone.RESIDENCIAL),
 						telDAO.getTelefoneByCliente(clienteId, TipoTelefone.CELULAR),
 						enderecoDAO.getEnderecoResidencialByCliente(clienteId), cliente.getUsuario());
-				if(cliente.getUsuario() != null) {
+				if(cliente.getUsuario() != null && cliente.getUsuario().getId() > 0) {
 					clienteAux.getUsuario().setId(rs.getInt("cli_usu_id"));
 				}else {
 					UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -174,7 +175,49 @@ public class ClienteDAO extends AbstractDAO {
 			return "select * from cliente  WHERE cli_id = ?";
 		} else if(entidade.getPesquisa() != null && entidade.getPesquisa().equals("usuario")){
 			return "select * from cliente  WHERE cli_usu_id = ?";
-		} {
+		} else if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("filtros")) {
+			Cliente cliente = (Cliente) entidade;
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("select * from cliente ");
+			
+			if(cliente.getUsuario() != null) {
+				sql.append("join usuario on cli_usu_id = usu_id ");
+				if(cliente.getUsuario().getEmail() != null) {
+					sql.append("and usu_email like ? ");
+				}
+				if(cliente.getUsuario().getStatus() != null) {
+					sql.append("and usu_status = ? ");
+				}
+			}
+			
+			if(cliente.getId() > 0 || cliente.getCpf() != null || cliente.getNome() != null || cliente.getSobrenome() != null
+				|| cliente.getDataNascimento() != null) {
+				sql.append("where cli_usu_id is not null ");
+			}
+			
+			if(cliente.getId() > 0) {
+				sql.append("and cli_id = ? ");
+			}
+			
+			if(cliente.getCpf() != null) {
+				sql.append("and cli_cpf like ? ");
+			}
+			
+			if(cliente.getNome() != null) {
+				sql.append("and cli_nome like ? ");
+			}
+			
+			if(cliente.getSobrenome() != null) {
+				sql.append("and cli_sobrenome like ? ");
+			}
+			
+			if(cliente.getDataNascimento() != null) {
+				sql.append("and cli_dataNascimento = ? ");
+			}
+			
+			return sql.toString();
+		} else {
 			return "select * from cliente";
 		}
 	}
@@ -185,6 +228,16 @@ public class ClienteDAO extends AbstractDAO {
 			setaParametrosQuery(st, cliente.getId());
 		} else if (cliente.getPesquisa() != null && cliente.getPesquisa().equals("usuario")) {
 			setaParametrosQuery(st, cliente.getUsuario().getId());
+		}else if (cliente.getPesquisa() != null && cliente.getPesquisa().equals("filtros")) {
+			Boolean filtroStatus = cliente.getUsuario() != null ? cliente.getUsuario().getStatus() : null;
+			String filtroEmail = cliente.getUsuario() != null && cliente.getUsuario().getEmail() != null? "%" + cliente.getUsuario().getEmail() + "%" : null;
+			Integer filtroId = cliente.getId() > 0 ? cliente.getId() : null;
+			String filtroCpf = cliente.getCpf() != null ? "%" + cliente.getCpf() + "%" : null;
+			String filtroNome = cliente.getNome() != null ? "%" + cliente.getNome() + "%" : null;
+			String filtroSobrenome = cliente.getSobrenome() != null ? "%" + cliente.getSobrenome()+ "%" : null;
+			
+			setaParametrosQuery(st, filtroEmail, filtroStatus, filtroId,
+				filtroCpf, filtroNome, filtroSobrenome, cliente.getDataNascimento());
 		}
 		return st;
 	}

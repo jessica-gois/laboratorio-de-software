@@ -148,7 +148,10 @@ public class Cliente extends EntidadeDominio {
 		this.enderecoResidencial = enderecoResidencial;
 	}
 	
-	
+	public String getNomeCompleto() {
+		return this.getNome() != null && this.getSobrenome() != null ?
+			this.getNome() + " " + this.getSobrenome() : null;
+	}
 	
 
 }

@@ -136,12 +136,12 @@ public class MovimentacaoEstoqueDAO extends AbstractDAO {
 			setaParametrosQuery(st, movimentacao.getId());
 		}else if (movimentacao.getPesquisa() != null && movimentacao.getPesquisa().equals("filtros")) {
 			String filtroLivro = movimentacao.getLivro() != null && movimentacao.getLivro().getTitulo() != null ?
-				"%" + movimentacao.getLivro().getTitulo().trim() + "%" : null;
+				"%" + movimentacao.getLivro().getTitulo() + "%" : null;
 			
 			String filtroTipo = movimentacao.getTipo() != null ? movimentacao.getTipo().name() : null;
 			
-			String filtroFornecedor = movimentacao.getFornecedor() != null && movimentacao.getFornecedor() != null ?
-					"%" + movimentacao.getFornecedor().trim() + "%" : null;
+			String filtroFornecedor = movimentacao.getFornecedor() != null ?
+					"%" + movimentacao.getFornecedor() + "%" : null;
 						
 			setaParametrosQuery(st, filtroLivro, movimentacao.getData(), filtroTipo, movimentacao.getQuantidade(),
 				filtroFornecedor, movimentacao.getPrecoCusto());

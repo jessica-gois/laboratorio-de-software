@@ -97,6 +97,7 @@ public class UsuarioDAO extends AbstractDAO {
 			while (rs.next()) {
 				Usuario usuAux = new Usuario(rs.getInt("usu_id"), rs.getString("usu_email"),
 						rs.getString("usu_senha"));
+				usuAux.setStatus(rs.getBoolean("usu_status"));
 				usuarios.add(usuAux);
 			}
 
