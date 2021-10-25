@@ -177,7 +177,8 @@ public class PedidoDAO extends AbstractDAO {
 			setaParametrosQuery(st, pedido.getId());
 		}else if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("filtros")) {
 		
-			String filtroEmail = pedido.getCliente() != null && pedido.getCliente().getUsuario() !=null ? pedido.getCliente().getUsuario().getEmail() : null;
+			String filtroEmail = pedido.getCliente() != null && pedido.getCliente().getUsuario() !=null ?
+				"%" + pedido.getCliente().getUsuario().getEmail() + "%": null;
 			
 			String filtroCpf = pedido.getCliente() != null && pedido.getCliente().getCpf() != null ? "%" + pedido.getCliente().getCpf().trim() + "%" : null;
 			
@@ -217,7 +218,7 @@ public class PedidoDAO extends AbstractDAO {
 					StatusPedido.valueOf(rs.getString("ped_status")), enderecoDAO.getEnderecoById(rs.getInt("ped_endEntrega_id")),
 					enderecoDAO.getEnderecoById(rs.getInt("ped_endCobranca_id")), rs.getDouble("ped_valortotal"), rs.getDouble("ped_valorfrete"),
 					formaPagamentoDAO.getFormasPagamentoByPedido(rs.getInt("ped_id")), pedidoItemDAO.getItensByPedido(rs.getInt("ped_id")));
-				if (pedido.getCliente() == null) {
+				if (pedido.getCliente() == null || pedido.getCliente().getId() == 0) {
 					ClienteDAO clienteDAO = new ClienteDAO();
 					pedidoAux.setCliente(clienteDAO.getClienteById(rs.getInt("ped_cli_id")));
 				}

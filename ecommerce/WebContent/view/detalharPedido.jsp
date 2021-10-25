@@ -10,6 +10,7 @@
 <fmt:setLocale value="pt_BR" />
 <%
 	Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+	List<StatusPedido> listaStatus = StatusPedido.getTiposStatus();
 %>
 
 <body>
@@ -18,14 +19,11 @@
         <p class="h4 mb-3 mt-5">Detalhar pedido</p>
         <div class="card shadow mb-5 pb-4">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-3">
-                        <h5>Pedido: <%=pedido.getId() %></h5>
-                    </div>
-                    <div class="col-3">
-                        <h5>Status: <%=pedido.getStatus() %></h5>
-                    </div>
-                </div>
+            	<div class="d-flex  justify-content-between">
+					<h4>Pedido #<%=pedido.getId() %></h4>
+					<p class="h4 pe-4"><%=pedido.getStatus().getDescricao()%></p>
+				</div>
+				
                 <!-- Começo do bloco resumo -->
                 <hr class="my-4">
                 <div class="row mt-2">
@@ -65,9 +63,9 @@
             <!-- Começo do bloco cliente -->
             <div class="card-body">
                 <div class="row">
-                    <h4>Cliente</h4>
+                    <h4 >Cliente</h4>
                     <div class="col-3">
-                        <p class="h5">Id cliente</p>
+                        <p class="h5">Nome</p>
                     </div>
                     <div class="col-3">
                         <p class="h5">E-mail</p>
@@ -81,7 +79,7 @@
                 </div>
                 <div class="row">
                     <div class="col-3">
-                        <p><%=pedido.getCliente().getId() %></p>
+                        <p><%=pedido.getCliente().getNomeCompleto()%></p>
                     </div>
                     <div class="col-3">
                         <p><%=pedido.getCliente().getUsuario().getEmail() %></p>
@@ -204,26 +202,26 @@
                         <p class="h5">Valor</p>
                     </div>
                 </div>
-                <div class="row">
-                    <%if(pedido.getFormasPagamento() != null){
-						for ( FormaPagamento formaPagamento : pedido.getFormasPagamento()) {
-							if(formaPagamento.getCupom() != null && formaPagamento.getCupom().getId() > 0){%>
-                    <div class="col-3">
-                        <p><%=formaPagamento.getCupom().getTipo() != null ? formaPagamento.getCupom().getTipo().getDescricao() : ""%>
-                        </p>
-                    </div>
-                    <div class="col-3">
-                        <p><%=formaPagamento.getCupom().getCodigo()%></p>
-                    </div>
-                    <div class="col-3">
-                        <p>
-                            <fmt:formatNumber value="<%=formaPagamento.getCupom().getValor()%>" type="currency" />
-                        </p>
-                    </div>
-                    <%}
-						}
-					}%>
-                </div>
+                 <%if(pedido.getFormasPagamento() != null){
+					for ( FormaPagamento formaPagamento : pedido.getFormasPagamento()) {
+						if(formaPagamento.getCupom() != null && formaPagamento.getCupom().getId() > 0){%>
+			                <div class="row">			                   
+			                    <div class="col-3">
+			                        <p><%=formaPagamento.getCupom().getTipo() != null ? formaPagamento.getCupom().getTipo().getDescricao() : ""%>
+			                        </p>
+			                    </div>
+			                    <div class="col-3">
+			                        <p><%=formaPagamento.getCupom().getCodigo()%></p>
+			                    </div>
+			                    <div class="col-3">
+			                        <p>
+			                            <fmt:formatNumber value="<%=formaPagamento.getCupom().getValor()%>" type="currency" />
+			                        </p>
+			                    </div>                   
+			                </div>
+                 		<%}
+					}
+				}%>
 
             </div>
             <!-- Fim do bloco cupom -->
@@ -245,9 +243,9 @@
                         <p class="h5">Valor</p>
                     </div>
                 </div>
-                <div class="row">
-                    <%if(pedido.getItens() != null){
-						for ( PedidoItem item : pedido.getItens()) {%>
+                 <%if(pedido.getItens() != null){
+					for ( PedidoItem item : pedido.getItens()) {%>
+                <div class="row">                   
                     <div class="col-3">
                         <p><%=item.getLivro().getId() %></p>
                     </div>
@@ -262,110 +260,37 @@
                     </div>
                 </div>
                 <% }
-					}
-					%>
+				}%>
             </div>
             <!-- Fim do bloco itens compra -->
         </div>
 
 
-
-
         <!-- Início do bloco gerenciamento do pedido -->
         <div class="card shadow mb-5 pb-4">
-            <div class="card-body">
-                <h4>
-                    Gerenciamento do pedido
-                </h4>
-                <div class="row mt-4">
-                    <div class="col">
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Em processamento </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status" checked>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Pagamento aprovado </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault3">
-                                Pagamento reprovado </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault4">
-                                Enviado para transportadora </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault5">
-                                Em transporte </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault6">
-                                Entregue </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault7">
-                                Troca solicitada </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault8">
-                                Troca autorizada </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault9">
-                                Troca reprovada </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault10">
-                                Item enviado para troca/cancelamento </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault11">
-                                Item recebido para troca/cancelamento </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault12">
-                                Troca realizada </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status">
-                            <label class="form-check-label" for="flexRadioDefault13">
-                                Finalizado</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2 mt-5">
-                    <a class="btn btn-blue w-100" id="salvar" name="salvar"
-                        href="/ecommerce/controlador?acao=salvar&viewHelper=ConsultarPedidoVH&id=" title="Salvar"
-                        alt="Salvar">Salvar</a>
-                </div>
-            </div>
+        	<form method="post" action="${stub}">
+	            <div class="card-body">
+	                <h4>Gerenciamento do pedido</h4> 
+	                               
+	                <div class="col mt-4">
+	                	<%for(StatusPedido status : listaStatus){%>
+		                	<div class="form-check">
+		                    	<input class="form-check-input" type="radio" value="<%=status.name()%>" name="status" id="<%=status.name()%>"
+		                        	<%=status == pedido.getStatus() ? "checked" : "" %>>
+		                        <label class="form-check-label" for="flexRadioDefault1">
+		                        	<%=status.getDescricao()%></label>
+		                   </div>
+	                  <%}%>
+	               </div>             
+	               <input type="hidden" name="acao" value="alterar" />
+				   <input type="hidden" name="viewHelper" value="AlterarStatusPedidoVH" />
+				                    
+	                <div class="col-2 mt-5">
+	                    <button class="btn btn-blue w-100" type="submit" id="salvar" name="salvar" title="Salvar"
+	                        alt="Salvar">Salvar</button>
+	                </div>
+	            </div>
+            </form>
         </div>
 
         <!-- Fim do bloco gerenciamento do pedido -->
