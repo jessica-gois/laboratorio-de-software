@@ -370,7 +370,7 @@
 
         <!-- Fim do bloco gerenciamento do pedido -->
         <div class="col-2 mb-5">
-            <a class="btn btn-secondary w-100" href="" title="Voltar">Voltar</a>
+            <a class="btn btn-secondary w-100" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidosAdminVH" title="Voltar">Voltar</a>
         </div>
     </div>
 </body>

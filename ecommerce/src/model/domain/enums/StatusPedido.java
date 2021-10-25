@@ -16,6 +16,7 @@ public enum StatusPedido {
 	
 	public String descricao;
 	
+	
 	private StatusPedido(String descricao) {
 		this.descricao = descricao;
 	}
