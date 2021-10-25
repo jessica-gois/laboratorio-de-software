@@ -89,7 +89,7 @@
                     <div class="row mb-4">
                         <div class="col">
                             <p>
-                                <fmt:formatDate value="<%=mov.getDtCadastro()%>" pattern="dd/MM/yyyy" />
+                                <fmt:formatDate value="<%=mov.getData()%>" pattern="dd/MM/yyyy" />
                             </p>
                         </div>
                         <div class="col">

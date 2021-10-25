@@ -47,7 +47,7 @@ public class CadastroMovimentacaoVH implements IViewHelper {
 	
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.sendRedirect(request.getContextPath() + "/view/consultarMovimentacoes");	
+		response.sendRedirect("/ecommerce/controlador?acao=consultar&viewHelper=ConsultarMovimentacoesVH");	
 	}
 
 }
