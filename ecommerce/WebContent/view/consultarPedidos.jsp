@@ -5,11 +5,10 @@
 <html lang="pt-br">
 <c:import url="template-head-admin.jsp" />
 <fmt:setLocale value="pt_BR" />
-
 <c:url value="/controlador" var="stub" />
 <%
 			List<Pedido> pedidos = (List<Pedido>) request.getSession().getAttribute("pedidos");
-			List<StatusPedido> tipos = StatusPedido.getTiposStatus();
+			List<StatusPedido> status = StatusPedido.getTiposStatus();
 			String caminhoRedirecionar = "/view/detalharPedido.jsp";
 			
 	%>
@@ -45,6 +44,7 @@
                 </div>
                 <!-- Fim Rótulos das consultas / Títulos colunas-->
                 <!-- Início inputs-->
+              <form action="${stub}" method="get" id="formFiltrosPedidos" novalidate>
                 <div class="row mt-2 mb-4">
                     <div class="col">
                         <select class="form-control" name="id" id="id" required="true">
@@ -58,7 +58,7 @@
                         </select>
                     </div>
                     <div class="col">
-                        <input class="form-control" type="text" id="dtCadastro" name="dtCadastro" />
+                        <input class="form-control" type="date" id="dtCadastro" name="dtCadastro" />
                     </div>
                     <div class="col">
                         <input class="form-control" type="email" id="email" name="email" />
@@ -67,24 +67,27 @@
                         <input class="form-control" type="text" id="cpf" name="cpf" />
                     </div>
                     <div class="col">
-                        <input class="form-control" type="text" id="valorTotal" name="valorTotal" />
+                        <input class="form-control" type="number" id="valorTotal" name="valorTotal" />
                     </div>
                     <div class="col">
-                        <select class="form-control" name="tipo" id="tipo" required="true">
+                        <select class="form-control" name="status" id="status" required="true">
                             <option value="">Escolha...</option>
-                            <%if(tipos != null){ 
-							for(StatusPedido tipo : tipos){%>
-                            <option value="<%=tipo.name()%>"> <%=tipo.getDescricao() %> </option>
+                            <%if(status != null){ 
+							for(StatusPedido statu : status){%>
+                            <option value="<%=statu.name()%>"> <%=statu.getDescricao() %> </option>
                             <%}
 							} %>
                         </select>
                     </div>
-                    <div class="col-2">
-                        <a class="btn btn-blue w-100 pb-2" id="consultar" name="consultar"
-                            href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidosAdminVH&id="
-                            title="Consultar" alt="Consultar">Consultar</a>
-                    </div>
+	                    <input type="hidden" name="acao" value="consultar" />
+						<input type="hidden" name="viewHelper" value="ConsultarPedidosAdminVH" />
+						<input type="hidden" name="tipoPesquisa" value="filtros"/>
+	                    <div class="col-2">
+	                        <button class="btn btn-blue w-100 pb-2" id="consultar" name="consultar" type="submit"
+	                            title="Consultar" alt="Consultar">Consultar</button>
+	                    </div>                               
                 </div>
+                </form>
                 <!-- Fim inputs-->
                 <!-- Início gets das consultas / retorno do banco-->
                 <hr class="my-4">
@@ -131,7 +134,7 @@
             </div>
         </div>
              <div class="col-2">
-                <a class="btn btn-secondary w-100" href="" title="Voltar">Voltar</a>
+                <a class="btn btn-secondary w-100" href="/ecommerce/view/painelAdmin.jsp" title="Voltar">Voltar</a>
             </div>
     </div>
 </body>

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +12,14 @@ import java.util.List;
 import model.domain.Cliente;
 import model.domain.EntidadeDominio;
 import model.domain.FormaPagamento;
+import model.domain.MovimentacaoEstoque;
 import model.domain.Pedido;
 import model.domain.PedidoItem;
+import model.domain.Usuario;
 import model.domain.enums.StatusPedido;
+import model.domain.enums.TipoMovimentacao;
 import util.Calculadora;
+import util.Conversao;
 
 public class PedidoDAO extends AbstractDAO {
 
@@ -91,29 +96,99 @@ public class PedidoDAO extends AbstractDAO {
 		return null;
 	}
 
+//	private String pesquisarAuxiliar(EntidadeDominio entidade) {
+//		if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("id")) {
+//			return "select * from pedido where ped_id = ?";
+//		} else if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("ultimoCadastrado")) {
+//			return "select * from pedido where ped_id = (select MAX(ped_id) from pedido where ped_cli_id = ?)";
+//		} else if(entidade.getPesquisa() != null && entidade.getPesquisa().equals("cliente")){
+//			return "select * from pedido where ped_cli_id = ?";
+//		}else {
+//			return "select * from pedido";
+//		}
+//	}
+	
+	
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
 		if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("id")) {
 			return "select * from pedido where ped_id = ?";
-		} else if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("ultimoCadastrado")) {
-			return "select * from pedido where ped_id = (select MAX(ped_id) from pedido where ped_cli_id = ?)";
-		} else if(entidade.getPesquisa() != null && entidade.getPesquisa().equals("cliente")){
-			return "select * from pedido where ped_cli_id = ?";
+		}else if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("filtros")){
+			Pedido pedido = (Pedido) entidade;
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from pedido ");
+			boolean filtroEmailPreenchido = pedido.getCliente() != null && pedido.getCliente().getUsuario() != null ? true : false;
+			boolean filtroCpfPreenchido = pedido.getCliente() != null && pedido.getCliente().getCpf() != null ? true : false;			
+			
+			if(pedido.getCliente() != null && pedido.getCliente().getUsuario() != null && pedido.getCliente().getUsuario().getEmail() != null) {
+				sql.append("join usuario on usu_id = (select cli_usu_id from cliente where cli_id = ped_cli_id LIMIT 1) and usu_email LIKE ? ");
+			}
+			
+			if(pedido.getCliente() != null && pedido.getCliente().getCpf() != null) {
+				sql.append("join cliente on cli_id = ped_cli_id and cli_cpf LIKE ? ");
+			}
+			
+			
+			if(pedido.getId() > 0 || pedido.getDtCadastro() != null || filtroEmailPreenchido || filtroCpfPreenchido
+				|| pedido.getValorTotal() != null || pedido.getStatus() != null) {
+				sql.append("where ped_cli_id is not null ");
+			}
+			
+			if(pedido.getDtCadastro() != null) {
+				sql.append("and CAST(ped_dtCadastro as date) = ? ");
+			}		
+			
+			if(pedido.getValorTotal() != null && pedido.getValorTotal() > 0) {
+				sql.append("and ped_valortotal = ? ");
+				System.out.println("Valor total do pedido" + pedido.getValorTotal());
+			}
+			
+			if(pedido.getStatus() != null) {
+				sql.append("and ped_status = ? ");
+			}			
+			
+			if (pedido.getId() > 0) {
+				sql.append("and ped_id = ? ");
+			}
+						
+			return sql.toString();
+		
 		}else {
 			return "select * from pedido";
 		}
 	}
+	
 
-	private PreparedStatement executarPesquisa(Pedido pedido, String sql) throws SQLException {
+//	private PreparedStatement executarPesquisa(Pedido pedido, String sql) throws SQLException {
+//		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
+//		if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("id")) {
+//			setaParametrosQuery(st, pedido.getId());
+//		}else if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("ultimoCadastrado") && pedido.getCliente() != null) {
+//			setaParametrosQuery(st, pedido.getCliente().getId());
+//		}else if(pedido.getPesquisa() != null && pedido.getPesquisa().equals("cliente")){
+//			setaParametrosQuery(st, pedido.getCliente().getId());
+//		}
+//		return st;
+//	}
+	
+	private PreparedStatement executarPesquisa(Pedido pedido, String sql) throws SQLException, ParseException {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
+		
 		if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, pedido.getId());
-		}else if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("ultimoCadastrado") && pedido.getCliente() != null) {
-			setaParametrosQuery(st, pedido.getCliente().getId());
-		}else if(pedido.getPesquisa() != null && pedido.getPesquisa().equals("cliente")){
-			setaParametrosQuery(st, pedido.getCliente().getId());
+		}else if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("filtros")) {
+		
+			String filtroEmail = pedido.getCliente() != null && pedido.getCliente().getUsuario() !=null ? pedido.getCliente().getUsuario().getEmail() : null;
+			
+			String filtroCpf = pedido.getCliente() != null && pedido.getCliente().getCpf() != null ? "%" + pedido.getCliente().getCpf().trim() + "%" : null;
+			
+			String filtroStatus = pedido.getStatus() != null ? pedido.getStatus().name() : null;
+			
+			setaParametrosQuery(st, filtroEmail, filtroCpf, pedido.getDtCadastro(),(pedido.getValorTotal() > 0 ? pedido.getValorTotal() : null ), filtroStatus, 
+					(pedido.getId() > 0 ? pedido.getId() : null ));
 		}
 		return st;
 	}
+	
 	
 	@Override
 	public List<Pedido> consultar(EntidadeDominio entidade) {
@@ -153,6 +228,17 @@ public class PedidoDAO extends AbstractDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+		public Pedido getPedidoById(Integer pedidoId) {
+		Pedido pedido = new Pedido();
+		pedido.setId(pedidoId);
+		pedido.setPesquisa("id");	
+		if(pedidoId != null && pedidoId > 0) {
+			return (Pedido)consultar(pedido).get(0);
+		}else {
+			return pedido;
 		}
 	}
 	
