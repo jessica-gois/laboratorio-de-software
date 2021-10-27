@@ -267,31 +267,44 @@
 
 
         <!-- Início do bloco gerenciamento do pedido -->
-        <div class="card shadow mb-5 pb-4">
-        	<form method="post" action="${stub}">
-	            <div class="card-body">
-	                <h4>Gerenciamento do pedido</h4> 
-	                               
-	                <div class="col mt-4">
-	                	<%for(StatusPedido status : listaStatus){%>
-		                	<div class="form-check">
-		                    	<input class="form-check-input" type="radio" value="<%=status.name()%>" name="status" id="<%=status.name()%>"
-		                        	<%=status == pedido.getStatus() ? "checked" : "" %>>
-		                        <label class="form-check-label" for="flexRadioDefault1">
-		                        	<%=status.getDescricao()%></label>
-		                   </div>
-	                  <%}%>
-	               </div>             
-	               <input type="hidden" name="acao" value="alterar" />
-				   <input type="hidden" name="viewHelper" value="AlterarStatusPedidoVH" />
-				                    
-	                <div class="col-2 mt-5">
-	                    <button class="btn btn-blue w-100" type="submit" id="salvar" name="salvar" title="Salvar"
-	                        alt="Salvar">Salvar</button>
-	                </div>
-	            </div>
-            </form>
-        </div>
+        <%if(pedido.getStatus() != StatusPedido.REPROVADO 
+        	&& pedido.getStatus() != StatusPedido.EM_TRANSITO
+        	&& pedido.getStatus() != StatusPedido.ENTREGUE 
+        	&& pedido.getStatus() != StatusPedido.TROCA_REPROVADA
+        	&& pedido.getStatus() != StatusPedido.TROCA_REALIZADA){ %>
+	        <div class="card shadow mb-5 pb-4">
+	        	<form method="post" action="${stub}">
+		            <div class="card-body">
+		                <h4>Gerenciamento do pedido</h4> 
+		                               
+		                <div class="col mt-4">
+		                	<%for(StatusPedido status : listaStatus){
+		                		if(status != StatusPedido.EM_PROCESSAMENTO){
+		                			if((pedido.getStatus() == StatusPedido.EM_PROCESSAMENTO && (status == StatusPedido.APROVADO || status == StatusPedido.REPROVADO))
+		                				||(pedido.getStatus() == StatusPedido.APROVADO && status == StatusPedido.EM_TRANSITO)
+		                				||(pedido.getStatus() == StatusPedido.TROCA_SOLICITADA && (status == StatusPedido.TROCA_AUTORIZADA || status == StatusPedido.TROCA_REPROVADA))
+		                				||(pedido.getStatus() == StatusPedido.TROCA_AUTORIZADA && status == StatusPedido.TROCA_REALIZADA)){%>
+			                	<div class="form-check">
+			                    	<input class="form-check-input" type="radio" value="<%=status.name()%>" name="status" id="<%=status.name()%>"
+			                        	<%=status == pedido.getStatus() ? "checked" : "" %>>
+			                        <label class="form-check-label" for="flexRadioDefault1">
+			                        	<%=status.getDescricao()%></label>
+			                   </div>
+		                  <%}
+		                  	}
+		                  }%>
+		               </div>             
+		               <input type="hidden" name="acao" value="alterar" />
+					   <input type="hidden" name="viewHelper" value="AlterarStatusPedidoVH" />
+					                    
+		                <div class="col-2 mt-5">
+		                    <button class="btn btn-blue w-100" type="submit" id="salvar" name="salvar" title="Salvar"
+		                        alt="Salvar">Salvar</button>
+		                </div>
+		            </div>
+	            </form>
+	        </div>
+		<%}%>
 
         <!-- Fim do bloco gerenciamento do pedido -->
         <div class="col-2 mb-5">
