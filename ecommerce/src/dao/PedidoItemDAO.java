@@ -12,6 +12,7 @@ import model.domain.EntidadeDominio;
 import model.domain.FormaPagamento;
 import model.domain.Pedido;
 import model.domain.PedidoItem;
+import model.domain.enums.StatusPedidoItem;
 import util.Calculadora;
 
 public class PedidoItemDAO extends AbstractDAO {
@@ -22,10 +23,11 @@ public class PedidoItemDAO extends AbstractDAO {
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("INSERT INTO pedido_item (pei_quantidade, pei_valorunitario, pei_liv_id, pei_ped_id, pei_trocado) VALUES (?, ?, ?, ?, ?)",
+			st = conn.prepareStatement("INSERT INTO pedido_item (pei_quantidade, pei_valorunitario, pei_liv_id, pei_ped_id, pei_status) VALUES (?, ?, ?, ?, ?)",
 				Statement.RETURN_GENERATED_KEYS);
 
-			setaParametrosQuery(st, pedidoItem.getQuantidade(), pedidoItem.getValorUnitario(), pedidoItem.getLivro().getId(),pedidoItem.getPedido().getId(), pedidoItem.isTrocado());
+			String status = pedidoItem.getStatus() != null ? pedidoItem.getStatus().name() : null;
+			setaParametrosQuery(st, pedidoItem.getQuantidade(), pedidoItem.getValorUnitario(), pedidoItem.getLivro().getId(), pedidoItem.getPedido().getId(), status);
 			long inicioExecucao = System.currentTimeMillis();
 			int linhasAfetadas = st.executeUpdate();
 			long terminoExecucao = System.currentTimeMillis();
@@ -46,9 +48,9 @@ public class PedidoItemDAO extends AbstractDAO {
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("UPDATE pedido_item SET pei_quantidade = ?, pei_valorunitario = ?, pei_liv_id = ?, pei_ped_id = ?, pei_trocado = ? WHERE pei_id = ?");
-			
-			setaParametrosQuery(st, pedidoItem.getQuantidade(), pedidoItem.getValorUnitario(), pedidoItem.getLivro().getId(), pedidoItem.getPedido().getId(), pedidoItem.isTrocado(), pedidoItem.getId());
+			st = conn.prepareStatement("UPDATE pedido_item SET pei_quantidade = ?, pei_valorunitario = ?, pei_liv_id = ?, pei_ped_id = ?, pei_status = ? WHERE pei_id = ?");
+			String status = pedidoItem.getStatus() != null ? pedidoItem.getStatus().name() : null;
+			setaParametrosQuery(st, pedidoItem.getQuantidade(), pedidoItem.getValorUnitario(), pedidoItem.getLivro().getId(), pedidoItem.getPedido().getId(), status, pedidoItem.getId());
 
 			int rowsAffected = st.executeUpdate();
 			System.out.println("Done! Rows affected: " + rowsAffected);
@@ -98,7 +100,7 @@ public class PedidoItemDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				PedidoItem pedidoItemAux = new PedidoItem(rs.getInt("pei_id"), sdf.parse(rs.getString("pei_dtCadastro")), rs.getDouble("pei_quantidade"),
-					rs.getDouble("pei_valorunitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), rs.getBoolean("pei_trocado"));
+					rs.getDouble("pei_valorunitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), StatusPedidoItem.valueOf(rs.getString("pei_status")));
 				itens.add(pedidoItemAux);
 			}
 

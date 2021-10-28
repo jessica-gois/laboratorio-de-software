@@ -2,13 +2,15 @@ package model.domain;
 
 import java.util.Date;
 
+import model.domain.enums.StatusPedidoItem;
+
 public class PedidoItem extends EntidadeDominio {
 	private Pedido pedido;
 	private Livro livro;
 	private Double quantidade;
 	private Double valorUnitario;
-	private boolean trocado;
-
+	private StatusPedidoItem status;
+	
 	public PedidoItem() {
 	}
 
@@ -18,7 +20,7 @@ public class PedidoItem extends EntidadeDominio {
 		this.valorUnitario = item.getValorUnitario();
 	}
 	
-	public PedidoItem(Integer id, Date dtCadastro, Double quantidade, Double valorUnitario, Livro livro, boolean isTrocado) {
+	public PedidoItem(Integer id, Date dtCadastro, Double quantidade, Double valorUnitario, Livro livro, StatusPedidoItem status) {
 		super();
 		if(id != null) {
 			this.setId(id);
@@ -29,7 +31,9 @@ public class PedidoItem extends EntidadeDominio {
 		this.quantidade = quantidade;
 		this.valorUnitario = valorUnitario;
 		this.livro = livro;
-		this.trocado = isTrocado;
+		if(status != null) {
+			this.status = status;
+		}
 	}
 
 	public Double getQuantidade() {
@@ -74,12 +78,12 @@ public class PedidoItem extends EntidadeDominio {
 		return getQuantidade() * getValorUnitario();
 	}
 
-	public boolean isTrocado() {
-		return trocado;
+	public StatusPedidoItem getStatus() {
+		return status;
 	}
 
-	public void setTrocado(boolean trocado) {
-		this.trocado = trocado;
+	public void setStatus(StatusPedidoItem status) {
+		this.status = status;
 	}
-
+	
 }
