@@ -10,6 +10,8 @@ import dao.CategoriaDAO;
 import dao.ClienteDAO;
 import dao.CupomDAO;
 import dao.EnderecoDAO;
+import dao.FiltroPesquisaPeriodoGrafico;
+import dao.GraficoVendasLivroDAO;
 import dao.GrupoPrecificacaoDAO;
 import dao.IDAO;
 import dao.LivroDAO;
@@ -69,7 +71,7 @@ public class Fachada implements IFachada {
 		mapaDaos.put(Categoria.class.getName(), new CategoriaDAO());
 		mapaDaos.put(GrupoPrecificacao.class.getName(), new GrupoPrecificacaoDAO());
 		mapaDaos.put(MovimentacaoEstoque.class.getName(), new MovimentacaoEstoqueDAO());
-		
+		mapaDaos.put(FiltroPesquisaPeriodoGrafico.class.getName(), new GraficoVendasLivroDAO());		
 	}
 
 	@Override

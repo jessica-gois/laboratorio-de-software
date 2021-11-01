@@ -31,14 +31,14 @@
   				<a href="/ecommerce/view/cadastrarLivro.jsp" class="list-group-item list-group-item-action">Cadastrar livro</a>
   				<a href="/ecommerce/view/consultarLivros.jsp" class="list-group-item list-group-item-action">Consultar livros</a>
   				<a href="/ecommerce/controlador?acao=consultar&viewHelper=PreparaCadastroMovimentacaoVH" class="list-group-item list-group-item-action">Movimentações</a>
-  				<a href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarMovimentacoesVH"  class="list-group-item list-group-item-action">Consultar movimentações</a>
+  				<a href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarMovimentacoesVH" class="list-group-item list-group-item-action">Consultar movimentações</a>
   				<a href="#" class="list-group-item list-group-item-action active" id="topico">
     			CUPONS
   				</a>
   				<a href="/ecommerce/view/cadastrarCupom.jsp" class="list-group-item list-group-item-action">Cadastrar cupons</a>
   				<a href="#" class="list-group-item list-group-item-action">Consultar cupons</a>
   			
-  			    <a href="#" class="list-group-item list-group-item-action active" id="topico">
+  			    <a href="/ecommmerce/view/dashboard.jsp" class="list-group-item list-group-item-action active" id="topico">
     			DASHBOARD
   				</a>
   				<a href="/ecommerce/view/loginAdmin.jsp" class="list-group-item list-group-item-action enable">Sair</a>

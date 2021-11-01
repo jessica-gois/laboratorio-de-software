@@ -63,5 +63,13 @@ public class Conversao {
 		}
 		return b;
 	}
+	
+	public static Integer parseDoubleToInteger (Double parameter) {
+		Integer i = null;
+		if(parameter != null){
+		  i = parameter.intValue();
+		}
+		return i;
+	}
 
 }
