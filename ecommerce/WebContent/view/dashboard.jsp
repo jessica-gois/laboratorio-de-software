@@ -140,17 +140,26 @@
 			);
 	 
 	 let campos = [];
+	 //Filtra as chaves do array provedor de dados do gráfico para retornar somente os nomes dos livros
      chart.dataProvider.forEach(dado => campos.push(Object.keys(dado).filter(function (value) {
          return value !== chart.categoryField;
      })));
+     
+     console.log(campos);
+     //Transforma o array de arrays retornado em um array único separado, utilizando a vírgula como separador dos indíces
      campos = campos.join().split(",")
-
+     console.log(campos);
+	
+    //Filtra os nomes dos livros que já estão no Array, para que não existam duas linhas do mesmo livro no gráfico
 	let valorCampos = campos.filter(function (valor, i) {
          return campos.indexOf(valor) === i;
      });
+	console.log(valorCampos);
 
+	//Adiciona os livros como novas linhas no gráfico
      valorCampos.forEach(function (valueField) {
-         chart.graphs.push({
+    	 console.log(valueField);
+         chart.graphs.push({        	 
              "valueField": valueField,
              "title": valueField,
              "type": "line",
