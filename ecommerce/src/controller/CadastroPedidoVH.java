@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.domain.Endereco;
 import model.domain.EntidadeDominio;
 import model.domain.Pedido;
+import model.domain.PedidoItem;
 import model.domain.Result;
+import model.domain.enums.StatusPedidoItem;
 import util.Conversao;
 
 public class CadastroPedidoVH implements IViewHelper { 
@@ -22,6 +24,13 @@ public class CadastroPedidoVH implements IViewHelper {
 		enderecoCobranca.setId(Conversao.parseStringToInt(request.getParameter("enderecoCobranca")));
 		pedido.setEnderecoEntrega(enderecoEntrega);
 		pedido.setEnderecoCobranca(enderecoCobranca);
+		
+		if(pedido.getItens() != null && !pedido.getItens().isEmpty()) {
+			for(PedidoItem item : pedido.getItens()) {
+				item.setStatus(StatusPedidoItem.EM_PROCESSAMENTO);
+			}
+			
+		}
 		
 		return pedido;
 	}

@@ -57,7 +57,7 @@
 </div>
 
 <div id="lineChart" class="<%=dadosGrafico == null || dadosGrafico.isBlank()
-	? "d-none"  : ""%>" style="height: 300px;"></div>
+	? "d-none"  : ""%> mt-5 mb-5" style="height: 300px;"></div>
 
 <%if(listaDadosPeriodo != null && !listaDadosPeriodo.isEmpty()){%>	
 	<div class="ms-4" style="width: 97%;">
