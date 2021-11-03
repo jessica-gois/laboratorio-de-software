@@ -30,9 +30,9 @@ public class AplicarCupomVH implements IViewHelper {
 		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
 			Cupom cupom = (Cupom) resultado.getEntidades().get(0);
 			FormaPagamento formaPagamento = new FormaPagamento(cupom);
-			Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+			Pedido pedido = (Pedido) request.getSession().getAttribute("novoPedido");
 			pedido.getFormasPagamento().add(formaPagamento);
-			request.getSession().setAttribute("pedido", pedido);
+			request.getSession().setAttribute("novoPedido", pedido);
 			
 			response.sendRedirect(request.getContextPath() + "/view/finalizarPedido");
 		}

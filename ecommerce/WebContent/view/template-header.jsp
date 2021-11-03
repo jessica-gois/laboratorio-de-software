@@ -16,6 +16,7 @@
 			<li><a class="dropdown-item" href="/ecommerce/view/cadastraCliente.jsp">Cadastro</a></li>
 			<%} %>
 			<%if (request.getSession().getAttribute("clienteLogado")!=null){%>
+				<li><a class="dropdown-item" href="/ecommerce/view/carrinho.jsp">Carrinho</a></li>	
 				<li><a class="dropdown-item" href="/ecommerce/view/listaClientes.jsp">Minha conta</a></li>			
 			<li><a class="dropdown-item" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidosVH">Meus pedidos</a></li>
 			<li><a class="dropdown-item" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarCuponsVH">Meus cupons</a></li>

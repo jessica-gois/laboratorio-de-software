@@ -15,15 +15,18 @@
 <fmt:setLocale value = "pt_BR"/>
 <%
 	Carrinho carrinho = (Carrinho) request.getSession().getAttribute("carrinho");
-	Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+	Pedido pedido = (Pedido) request.getSession().getAttribute("novoPedido");
 	List<Cupom> cupons = (List<Cupom>)request.getAttribute("cupons");
 	List<Endereco> enderecos = (List<Endereco>)request.getAttribute("enderecos");
 	List<Cartao> cartoes = (List<Cartao>) request.getAttribute("cartoes");
+	String erroCartao = (String) request.getAttribute("erroCartao");
+	String caminhoRedirecionar = "/view/finalizarPedido.jsp";
 	
 %>
 <body>
 	<header>
 		<c:import url="template-header.jsp" />
+		   <script src="javascript/validacaoFormulario/validaFormFinalizarPedido.js" charset="UTF-8"></script>
 	</header>
 	<div class="container">
 		<div class="card shadow mb-5 pb-5">
@@ -92,7 +95,7 @@
 				</div>
 				<div class="row mt-2">
 					<div class="col-auto d-flex align-items-end">
-						<a class="btn btn-blue" href="#">Cadastrar endereço</a>
+						<a class="btn btn-blue" href="/ecommerce/view/cadastraEndereco.jsp?caminhoRedirecionar">Cadastrar endereço</a>
 					</div>
 				</div>			
 				<div class="row mt-4">
@@ -134,6 +137,7 @@
 				
 					<div class="row mt-3">
 					<p class="h5">5. Pagamento</p>
+					<span class="error"><%=erroCartao != null ? erroCartao : ""%></span>
 				</div>
 				<div class="row mt-2">
 					<div class="col-3">
@@ -161,9 +165,13 @@
 					<div class="col-3">
 						<%if(!cartao.isUsado()){%>
 							<a class="btn btn-blue w-50" href="/ecommerce/controlador?acao=consultar&viewHelper=UsarCartaoVH&id=<%=cartao.getId()%>">Usar</a>	
-						<%}else{ %>
+						<%}else{
+							 if(pedido.getValorTotal() == 0 || pedido.getFormasPagamento().size() > 1){%>
 							<a class="btn btn-secondary w-50" href="/ecommerce/controlador?acao=consultar&viewHelper=RemoverCartaoPedidoVH&id=<%=cartao.getId()%>">Remover</a>	
-						<%}%>	
+						<%}else{%>
+							<a class="btn btn-secondary w-50" href="#">Usado</a>	
+						<% }
+						}%>
 					</div>
 				</div>
 				<%}

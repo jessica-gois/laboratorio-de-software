@@ -16,7 +16,7 @@ import util.Conversao;
 public class CadastroPedidoVH implements IViewHelper { 
 	
 	public EntidadeDominio getEntidade(HttpServletRequest request, HttpServletResponse response) {
-		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+		Pedido pedido = (Pedido) request.getSession().getAttribute("novoPedido");
 		Endereco enderecoEntrega = new Endereco();
 		Endereco enderecoCobranca = new Endereco();
 		

@@ -24,7 +24,7 @@
 		<p class="h4 mb-3">Carrinho de compras</p>
 		<div class="card shadow mb-5 pb-5">
 			<div class="card-body">
-				<h4>Itens selecionados (<fmt:formatNumber value = "<%=carrinho.getQuantidadeTotal()%>" type = "number" maxFractionDigits="0"/>)</h4>
+				<h4>Itens selecionados (<fmt:formatNumber value = "<%=carrinho != null ? carrinho.getQuantidadeTotal() : 0%>" type = "number" maxFractionDigits="0"/>)</h4>
 				<hr class="my-3">
 				<div class="row">
 					<div class="col">
@@ -96,7 +96,7 @@
 		</div>
 		<div class="row">
 			<div class="col-auto">
-				<h4>Total: <fmt:formatNumber value = "<%=carrinho.getValorTotal()%>" type = "currency"/></h4>
+				<h4>Total: <fmt:formatNumber value = "<%=carrinho != null ? carrinho.getValorTotal() : 0%>" type = "currency"/></h4>
 			</div>
 			<%if(carrinho != null && carrinho.getItens() != null && !carrinho.getItens().isEmpty()){%>
 				<div class="col-3">

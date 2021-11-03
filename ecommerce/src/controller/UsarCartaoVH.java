@@ -29,10 +29,10 @@ public class UsarCartaoVH implements IViewHelper {
 		if (resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
 			Cartao cartao = (Cartao) resultado.getEntidades().get(0);
 			FormaPagamento formaPagamento = new FormaPagamento(cartao);
-			Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+			Pedido pedido = (Pedido) request.getSession().getAttribute("novoPedido");
 			if (pedido.getQuantidadeCartoesUsados() < pedido.getQuantidadeMaxCartoes()) {
 				pedido.getFormasPagamento().add(formaPagamento);
-				request.getSession().setAttribute("pedido", pedido);
+				request.getSession().setAttribute("novoPedido", pedido);
 			}
 			response.sendRedirect(request.getContextPath() + "/view/finalizarPedido");
 		}

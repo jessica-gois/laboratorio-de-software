@@ -52,13 +52,14 @@ public class FinalizarPedidoServlet extends HttpServlet {
 				}
 			}
 			
-			if(request.getSession().getAttribute("pedido") == null) {
+			if(request.getSession().getAttribute("novoPedido") == null) {
 			pedido = new Pedido(cliente, StatusPedido.EM_PROCESSAMENTO, null, null, itens);			
 			}else {
-				pedido = (Pedido) request.getSession().getAttribute("pedido");
+				pedido = (Pedido) request.getSession().getAttribute("novoPedido");
 				pedido.setItens(itens);
 			}
-			request.getSession().setAttribute("pedido", pedido);			
+			request.getSession().setAttribute("novoPedido", pedido);
+			request.setAttribute("erroCartao", request.getAttribute("erroCartao"));
 			prepararConsultaEntidades();			
 			consultarEntidades(request);
 			RequestDispatcher rd = request.getRequestDispatcher("/view/pedido.jsp");
