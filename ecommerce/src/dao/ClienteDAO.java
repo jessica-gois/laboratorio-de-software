@@ -102,10 +102,10 @@ public class ClienteDAO extends AbstractDAO {
 			conn = Database.conectarBD();
 			
 			st = conn.prepareStatement("UPDATE cliente SET cli_nome = ?, "
-					+ "cli_sobrenome = ?, cli_genero = ?, cli_dataNascimento = ?, cli_cpf = ?");
+				+ "cli_sobrenome = ?, cli_genero = ?, cli_dataNascimento = ?, cli_cpf = ? WHERE cli_id = ? ");
 			
 			setaParametrosQuery(st, cliente.getNome(), cliente.getSobrenome(), cliente.getGenero(),
-					cliente.getDataNascimento(), cliente.getCpf());
+					cliente.getDataNascimento(), cliente.getCpf(), cliente.getId());
 
 			int rowsAffected = st.executeUpdate();
 			

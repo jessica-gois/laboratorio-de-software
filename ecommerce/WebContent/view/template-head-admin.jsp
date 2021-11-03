@@ -64,6 +64,14 @@
 	color:#FFF;
 	}
 	
+	.error {
+		color: red
+	}
+	
+	input.error, select.error{
+		border: 1px solid red;
+	}
+	
 footer {
   width: 100%;
   height: 100px;

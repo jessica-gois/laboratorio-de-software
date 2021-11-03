@@ -28,7 +28,8 @@
 			<div class="container">
 				<div class="card shadow">
 				<div>
-				<h1 class="card-header">MINHA CONTA</h1>
+				<h1 class="card-header"><%=cliente != null ? cliente.getNomeCompleto() : "" %></h1>
+				<h3 class="ps-3 pt-2" >Score: <%=cliente != null ? cliente.getScore(): "" %></h3>
 				<div class="card-body">
 				<div class="row"></div>
     					
@@ -48,41 +49,30 @@
 					<thead class="table table-striped ">
     					<tr>
         					<th>Nome</th>
-        					<th>Sobrenome</th>
-        					<!--<th>Gênero</th>-->
-        					<!--<th>DDD Residencial</th>-->
         					<th>Número Residencial</th>
-     						<!--<th>DDD Celular</th>-->
         					<th>Número Celular</th>
         					<th>Data de nascimento</th>
         					<th>CPF</th>
-        					<th>E-mail</th> 
-        					<th>Score</th>
-        					<!-- <th>Status</th>-->
+        					<th>E-mail</th>
     				 	</tr>
     				</thead>
 						<tbody> 
 						
 							<tr>  				
-        						<td><%=cliente.getNome()%></td>
-        						<td><%=cliente.getSobrenome()%></td>
+        						<td><%=cliente.getNomeCompleto()%></td>
         						<td>(<%=cliente.getTelefoneResidencial().getDdd()%>)<%=cliente.getTelefoneResidencial().getNumero() %></td>
         						
         						<td>(<%=cliente.getTelefoneCelular().getDdd()%>)<%=cliente.getTelefoneCelular().getNumero() %></td>
         						<td><fmt:formatDate value="<%=cliente.getDataNascimento()%>" pattern="dd/MM/yyyy"/></td>
        							<td><%=cliente.getCpf()%></td>
         						<td><%=cliente.getUsuario().getEmail() %></td>
-        						<td><%=cliente.getScore() %></td>
-        					<!--	<td>${cliente.usuario.status}</td>-->
        						<td>
 	       						<a class="btn btn-secondary w-20" alt="Alterar dados da conta"
 	       							title="Alterar dados da conta"
 	       							 href="/ecommerce/controlador?acao=consultar&viewHelper=PreparaAlteracaoClienteVH&id=<%=cliente.getId()%>">
 	       							<i class="far fa-edit"></i>
-	       						</a
-       						></td>
-  							<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
-    					    							
+	       						</a>
+	       					</td>
         					</tr>
         				</tbody>
 					</table>	
@@ -119,13 +109,9 @@
 						<tbody>  
 							<tr>  	
 								<td><%=cliente.getUsuario().getEmail() %></td>			
-        						<td>********</td>					
-        					<!--	<td>cliente.usuario.status/</td>-->
-        					
+        						<td>********</td>				        					
        						<td><a class="btn btn-secondary w-20" alt="Alterar senha" title="Alterar senha" 
        						href="/ecommerce/view/confirmaSenhaAtual.jsp"><i class="far fa-edit"></i></a></td>
-  								<!-- <a href="/ecommerce/controlador?acao=RemoveCliente&id=${cliente.id }">remove</a>-->	
-  								     							
         					</tr>
         				</tbody>
 					</table>	

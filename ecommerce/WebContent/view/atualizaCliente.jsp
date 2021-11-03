@@ -66,7 +66,7 @@
 								<div>E-mail: <input class="form-control" type="email" name="email" value="${cliente.usuario.email}" required="true"/></div>						
 							
 
-								<div><input type="hidden"  name="score" value ="100" /></div>
+								<div><input type="hidden"  name="score" value ="${cliente.score}" /></div>
 								<div><input type="hidden" name="status"  value ="true"/></div>									
 								
 								<input type="hidden" name="acao" value="alterar" />

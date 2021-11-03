@@ -32,7 +32,7 @@ public class AlterarClienteVH implements IViewHelper {
 		cliente.setSobrenome(request.getParameter("sobrenome"));
 		cliente.setGenero(request.getParameter("genero"));
 		cliente.setCpf(request.getParameter("cpf"));
-		cliente.getUsuario().setEmail(request.getParameter("cpf"));
+		cliente.getUsuario().setEmail(request.getParameter("email"));
 		try {
 			cliente.setDataNascimento(Conversao.parseStringToDate(request.getParameter("dataNascimento")));
 		} catch (ParseException e) {

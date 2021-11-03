@@ -10,9 +10,9 @@
 		List<TipoMovimentacao> tipos = TipoMovimentacao.getTiposMovimentacao();
 	%>
 
-
 <body>
     <c:import url="template-header-admin.jsp" />
+    <script src="javascript/validacaoFormulario/validaFormCadastroMovimentacao.js" charset="UTF-8"></script>
     <div class="container">
         <p class="h4 mb-3 mt-5">Movimentação no estoque</p>
         <div class="card shadow mb-5 pb-4">
@@ -92,7 +92,7 @@
                                         required="true" />
                                 </div>
                                 <div class="col-4">
-                                    <input class="form-control mt-2" type="text" id="precoCusto" name="precoCusto"
+                                    <input class="form-control mt-2" type="number" id="precoCusto" name="precoCusto"
                                         required="true" />
                                 </div>
                             </div>
@@ -127,6 +127,6 @@
         </div>
     </div>
 </body>
-<c:import url="template-footer.jsp" />
+<!--<c:import url="template-footer.jsp" />-->
 
 </html>
