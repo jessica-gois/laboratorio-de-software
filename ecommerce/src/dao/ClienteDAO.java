@@ -46,7 +46,7 @@ public class ClienteDAO extends AbstractDAO {
 			setaParametrosQuery(st, cliente.getNome(), cliente.getSobrenome(), cliente.getGenero(), 
 				cliente.getDataNascimento(), cliente.getCpf(), cliente.getScore());			
 				linhasAfetadas = st.executeUpdate();	
-			}
+			}		
 			
 			if(cliente.getTelefoneResidencial() != null && linhasAfetadas > 0) {				
 				telefoneDAO.salvar(cliente.getTelefoneResidencial());
@@ -60,22 +60,31 @@ public class ClienteDAO extends AbstractDAO {
 				Endereco end = cliente.getEnderecoResidencial();
 				StringBuilder sql = new StringBuilder("INSERT INTO endereco (end_descricao,"
 					+ " end_tipologradouro, end_logradouro, end_numero");
-				if(end.getComplemento() != null && end.getComplemento() != "") {
+				if(end.getComplemento() != null && !end.getComplemento().isBlank()) {
 					sql.append(", end_complemento");
 				}
-				sql.append(", end_tiporesidencia, end_cep, end_bairro, end_tipo, end_observacao, end_cli_id,"
+				if(end.getObservacao() != null && !end.getObservacao().isBlank()) {
+					sql.append(", end_observacao");
+				}
+				sql.append(", end_tiporesidencia, end_cep, end_bairro, end_tipo, end_cli_id,"
 					+ " end_cid_id) VALUES(");
-				if(end.getComplemento() != null && end.getComplemento() != "") {
+				
+				if(end.getComplemento() != null && !end.getComplemento().isBlank()) {
 					sql.append("?,");
 				}
-				sql.append("?, ?, ?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID(), " + 
+				if(end.getComplemento() != null && !end.getComplemento().isBlank()) {
+					sql.append("?,");
+				}
+				sql.append("?, ?, ?, ?, ?, ?, ?, ?, LAST_INSERT_ID(), " + 
 				"(SELECT cid_id FROM cidade WHERE cid_nome like ? AND cid_est_id = ? LIMIT 1 ))");
+				
+				System.out.println(sql.toString());
 				
 				st = conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 
 				setaParametrosQuery(st, end.getDescricao(), end.getTipoLogradouro().name(), end.getLogradouro(),
-					end.getNumero(), end.getComplemento(), end.getTipoResidencia().name(), end.getCep(),
-					end.getBairro(), end.getTipoEndereco().name(), end.getObservacao(), end.getCidade().getNome(),
+					end.getNumero(), end.getComplemento(), end.getObservacao(), end.getTipoResidencia().name(), end.getCep(),
+					end.getBairro(), end.getTipoEndereco().name(), end.getCidade().getNome(),
 					end.getCidade().getEstado().getCodigo());
 				linhasAfetadas += st.executeUpdate();
 				terminoExecucao = System.currentTimeMillis();

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,18 +37,23 @@ public class Controlador extends HttpServlet {
 		String parametroAcao = request.getParameter("acao");	
 		String nomeViewHelper = request.getParameter("viewHelper");
 		
-		try {
-			String viewHelper = "controller." + nomeViewHelper;
-			Class classe = Class.forName(viewHelper);
-			IViewHelper iViewHelper = (IViewHelper)classe.newInstance();
-			
-			ICommand command = commandMap.get(parametroAcao);
-			EntidadeDominio entidade = iViewHelper.getEntidade(request,response);
-			
-			Result resultado = command.executar(entidade);
-			iViewHelper.setView(resultado, request, response);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			throw new ServletException(e);
+		if(parametroAcao.equals("Logout")){
+			request.getSession().invalidate();
+			response.sendRedirect(request.getContextPath() + "/view/index");
+		} else {
+			try {
+				String viewHelper = "controller." + nomeViewHelper;
+				Class classe = Class.forName(viewHelper);
+				IViewHelper iViewHelper = (IViewHelper) classe.newInstance();
+
+				ICommand command = commandMap.get(parametroAcao);
+				EntidadeDominio entidade = iViewHelper.getEntidade(request, response);
+
+				Result resultado = command.executar(entidade);
+				iViewHelper.setView(resultado, request, response);
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+				throw new ServletException(e);
+			}
 		}
 		
 //		String[] tipoEndereco = nomeJSP.split(":");
