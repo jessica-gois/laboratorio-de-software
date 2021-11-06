@@ -13,11 +13,11 @@ public class Cupom extends EntidadeDominio{
 	private TipoCupom tipo;
 	private boolean aplicado;
 	private Integer idCliente;
+	private Integer idPedido;
 	
 	public Cupom() {
 		
 	}
-	
 	
 	public Cupom(String codigo, String nome, Double valor, Date validade, TipoCupom tipo) {
 		this.codigo = codigo;
@@ -27,7 +27,7 @@ public class Cupom extends EntidadeDominio{
 		this.tipo = tipo;		
 	}
 			
-	public Cupom(Integer id, String codigo, String nome, Double valor, Date validade, TipoCupom tipo) {
+	public Cupom(Integer id, String codigo, String nome, Double valor, Date validade, TipoCupom tipo, Integer idCliente, Integer idPedido) {
 		super();
 		if (id != null) {
 			this.setId(id);
@@ -36,7 +36,13 @@ public class Cupom extends EntidadeDominio{
 		this.nome = nome;
 		this.valor = valor;
 		this.validade = validade;
-		this.tipo = tipo;		
+		this.tipo = tipo;	
+		if(idCliente != null && idCliente > 0) {
+			this.idCliente = idCliente;
+		}
+		if(idPedido != null && idPedido > 0) {
+			this.idPedido = idPedido;
+		}
 	}
 
 	public String getNome() {
@@ -87,6 +93,14 @@ public class Cupom extends EntidadeDominio{
 
 	public void setIdCliente(Integer idCliente) {
 		this.idCliente = idCliente;
+	}
+	
+	public Integer getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(Integer idPedido) {
+		this.idPedido = idPedido;
 	}
 
 	public boolean isValido() {

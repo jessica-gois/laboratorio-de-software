@@ -25,8 +25,7 @@ public class AlterarCupomVH implements IViewHelper {
 			    request.getParameter("nome"), 
 			    Conversao.parseStringToDouble(request.getParameter("valor")),
 			    Conversao.parseStringToDate(request.getParameter("validade")), 
-			    TipoCupom.valueOf(request.getParameter("tipo")))
-			    ;			
+			    TipoCupom.valueOf(request.getParameter("tipo")), null, null);			
 		
 		} catch (ParseException e) {
 			e.printStackTrace();

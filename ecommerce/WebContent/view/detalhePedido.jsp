@@ -11,6 +11,7 @@
 <html>
 <head>
 <c:import url="template-head.jsp" />
+<c:url value="/controlador" var="stub"/>
 <title>Detalhe do pedido</title>
 </head>
 <%
@@ -169,8 +170,14 @@
 						
 						<%if(pedido != null && pedido.getStatus().equals(StatusPedido.ENTREGUE)){ %>
 							<div class="col-3">
-								<a class="btn btn-blue w-100"href="/ecommerce/controlador?acao=alterar&viewHelper=AlterarStatusPedidoVH&caminhoRedirecionar=<%=caminhoRedirecionarCliente%>&id=<%=pedido.getId()%>&status=<%=StatusPedido.TROCA_SOLICITADA.name()%>">Solicitar troca</a>
+								<form id="formSolicitarTroca" action="${stub }" method="post" novalidate>
+								<input type="hidden" name="id" value="<%=pedido.getId()%>" />
+								<input type="hidden" name="acao" value="consultar" />
+								<input type="hidden" name="viewHelper" value="PreparaSolicitacaoTrocaVH" />
+								<button class="btn btn-blue w-100" type="submit" alt="Solicitar Troca" title="Solicitar troca">Solicitar troca</button>
+								</form>
 							</div>
+							
 						<%}%>								
 						<div class="col-3">
 							<a class="btn btn-secondary w-100" href="meusPedidos.jsp">Voltar</a>

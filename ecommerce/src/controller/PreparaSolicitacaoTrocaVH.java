@@ -1,0 +1,54 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.domain.EntidadeDominio;
+import model.domain.Pedido;
+import model.domain.PedidoItem;
+import model.domain.PedidoItemTroca;
+import model.domain.Result;
+import util.Conversao;
+
+public class PreparaSolicitacaoTrocaVH implements IViewHelper {
+
+	@Override
+	public EntidadeDominio getEntidade(HttpServletRequest request, HttpServletResponse response) {
+		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+			
+		return pedido;
+	}
+
+	@Override
+	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
+			Pedido pedido = (Pedido) resultado.getEntidades().get(0);
+			List<PedidoItemTroca> itensTroca = new ArrayList<PedidoItemTroca>();
+			
+			if(pedido != null && pedido.getItens() != null && !pedido.getItens().isEmpty()) {
+				for(PedidoItem item : pedido.getItens()) {
+					itensTroca.add(new PedidoItemTroca(item));
+				}
+			}
+			
+			request.setAttribute("itensTroca", itensTroca);	
+			RequestDispatcher rd = request.getRequestDispatcher("/view/solicitacaoTroca.jsp");
+			try {
+				rd.forward(request, response);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}		
+		}else {
+			response.sendRedirect(request.getContextPath() + "/view/index");
+		}
+	}
+
+}

@@ -99,8 +99,9 @@ public class PedidoItemDAO extends AbstractDAO {
 				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
 
 			while (rs.next()) {
+				StatusPedidoItem status = rs.getString("pei_status") != null ? StatusPedidoItem.valueOf(rs.getString("pei_status")) : null;
 				PedidoItem pedidoItemAux = new PedidoItem(rs.getInt("pei_id"), sdf.parse(rs.getString("pei_dtCadastro")), rs.getDouble("pei_quantidade"),
-					rs.getDouble("pei_valorunitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), StatusPedidoItem.valueOf(rs.getString("pei_status")));
+					rs.getDouble("pei_valorunitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), null);
 				itens.add(pedidoItemAux);
 			}
 

@@ -86,7 +86,9 @@ public class CartaoDAO extends AbstractDAO {
 			return "select * from cartao where car_id =?";
 		}else if(entidade.getPesquisa().equals("cliente")){
 			return "select * from cartao where car_cli_id = ?";
-		}else {
+		}else if(entidade.getPesquisa().equals("preferencial")){
+			return "select * from cartao where car_cli_id = ? and car_preferencial = 1";
+		}{
 			return "select * from cartao";
 		}
 	}
@@ -95,7 +97,7 @@ public class CartaoDAO extends AbstractDAO {
 		PreparedStatement st = Database.conectarBD().prepareStatement(sql);
 		if (cartao.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, cartao.getId());
-		}else if(cartao.getPesquisa().equals("cliente")) {
+		}else if(cartao.getPesquisa().equals("cliente") || cartao.getPesquisa().equals("preferencial")) {
 			setaParametrosQuery(st, cartao.getCliente().getId());
 		}
 		return st;
@@ -143,5 +145,12 @@ public class CartaoDAO extends AbstractDAO {
 		}
 	}
 	
+	public boolean possuiCartaoPreferencial(EntidadeDominio entidade) {
+		Cartao cartao = (Cartao) entidade;
+		cartao.setPesquisa("preferencial");
+		
+		List<Cartao> resultados = consultar(cartao);
+		return resultados != null && !resultados.isEmpty();
+	}	
 	
 }

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="java.util.List, model.domain.PedidoItemTroca"%>
+<%@ page import="java.util.List, model.domain.PedidoItemTroca, model.domain.PedidoItem, model.domain.Livro"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +10,10 @@
 <title>Solicitação de troca</title>
 </head>
 <% 
-	List<PedidoItemTroca> itensTroca = (List<PedidoItemTroca>) request.getSession().getAttribute("itensTroca");
+	List<PedidoItemTroca> itensTroca = (List<PedidoItemTroca>) request.getAttribute("itensTroca");
 %>
 
+<fmt:setLocale value = "pt_BR"/>
 <body>
 	<header>
 		<c:import url="template-header.jsp" />
@@ -31,7 +32,7 @@
 						<p class="h5">Quantidade no pedido</p>
 					</div>
 					<div class="col me-4">
-						<p class="h5">Valor</p>
+						<p class="h5">Valor unitário</p>
 					</div>
 					<div class="col me-4">
 						<p class="h5">Subtotal</p>
@@ -40,25 +41,33 @@
 						<p class="h5">Quantidade para troca<p>
 					</div>			
 				</div>
-				<div class="row pt-2">
-					<div class="col">
-						<p>Amoras</p>
+				<%if(itensTroca != null && !itensTroca.isEmpty()){
+					for(PedidoItemTroca itemTroca : itensTroca){
+						PedidoItem itemPedido = itemTroca.getItem();
+						Livro livro = itemPedido != null ? itemPedido.getLivro() : null;%>				
+					<div class="row pt-2">
+						<div class="col">
+							<p><%=livro != null ? livro.getTitulo() : ""%></p>
+						</div>
+						<div class="col me-4">
+							<p><fmt:formatNumber value ="<%=itemPedido.getQuantidade()%>"
+								type = "number" maxFractionDigits="0"/></p>
+						</div>
+						<div class="col me-4">
+							<fmt:formatNumber value = "<%=itemPedido.getValorUnitario()%>" type = "currency"/>
+						</div>
+						<div class="col me-4">
+							<fmt:formatNumber value = "<%=itemPedido.getValorTotal()%>" type = "currency"/>
+						</div>
+						<div class="col">
+							<input class="form-control" type="number" name="quantidadeTrocaItem<%=itemPedido.getId()%>"
+								id="quantidadeTrocaItem<%=itemPedido.getId()%>" min="0" max="<%=itemPedido.getQuantidade()%>"
+								value="<fmt:formatNumber value ="<%=itemTroca.getQuantidade()%>"
+								type = "number" maxFractionDigits="0"/>" required="true" placeholder="Informe a quantidade..."/>
+						</div>				
 					</div>
-					<div class="col me-4">
-						<p>2</p>
-					</div>
-					<div class="col me-4">
-						R$ 29,90
-					</div>
-					<div class="col me-4">
-						R$ 59,80
-					</div>
-					<div class="col">
-						<input class="form-control" type="number" name="quantidade"
-							id="quantidade" min="0" max="2"
-							required="true" placeholder="Informe a quantidade..." />
-					</div>				
-				</div>
+				<%}
+				}%>
 			</div>		
 		</div>
 		<div class="row mt-4">					
