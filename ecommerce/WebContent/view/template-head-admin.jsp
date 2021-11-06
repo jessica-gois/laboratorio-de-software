@@ -72,7 +72,7 @@
 		border: 1px solid red;
 	}
 	
-footer {
+	footer {
   width: 100%;
   height: 100px;
   background: #23d9c7;

@@ -1,5 +1,6 @@
 package model.domain;
 
+import java.util.Date;
 import java.util.List;
 
 public class Livro extends EntidadeDominio {
@@ -36,24 +37,60 @@ public class Livro extends EntidadeDominio {
 		if(id != null) {
 			this.setId(id);
 		}
+		if (titulo != null) {
 		this.titulo = titulo;
+		}
+		if (autor != null) {
 		this.autor = autor;
+		}
+		if (editora != null) {
 		this.editora = editora;
+		}
+		if (ano != null) {
 		this.ano = ano;
+		}
+		if (qtdPaginas != null) {
 		this.qtdPaginas = qtdPaginas;
+		}
+		if (edicao != null) {
 		this.edicao = edicao;
+		}
+		if (sinopse != null ) {
 		this.sinopse = sinopse;
+		}
+		if (altura != null) {
 		this.altura = altura;
+		}
+		if (largura !=null) {
 		this.largura = largura;
+		}
+		if (peso != null) {
 		this.peso = peso;
+		}
+		if (profundidade != null) {
 		this.profundidade = profundidade;
+		}
+		if (codigoBarras != null) {
 		this.codigoBarras = codigoBarras;
+		}
+		if (grupoPrecificacao != null) {
 		this.grupoPrecificacao = grupoPrecificacao;
+		}
+		if (precoVenda != null) {
 		this.precoVenda = precoVenda;
-		this.status = status;	
+		}
+		if (status != null) {
+		this.status = status;
+		}
+		if (caminhoImagem != null) {
 		this.caminhoImagem = caminhoImagem;
+		}
+		if (isbn !=null) {
 		this.isbn = isbn;
+		}
+		if (qtdEstoque != null) {
 		this.qtdEstoque = qtdEstoque;
+		}
 	}
 	
 	public String getTitulo() {

@@ -2,7 +2,7 @@
 <header>
     <nav class="navbar navbar-dark bg-dark shadow">
         <div class="container-fluid">
-          <span class="navbar-brand mb-0 h1" style="color:white;">turma do livro</span>
+          <span class="navbar-brand mb-0 h1" style="color:white;">Turma do livro</span>
           <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <span class="navbar-toggler-icon"></span>
           </button> 

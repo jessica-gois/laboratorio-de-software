@@ -1,7 +1,7 @@
 		<link href="fontawesome/css/all.css" rel="stylesheet">
 		
 		<div class="cabecalho-ecomm mb-3 p-3 d-flex justify-content-between shadow">
-		 <a href="/ecommerce/view/index"><img src="imagens/logo.png" alt="Logo" height="80" width="200px" ></a>
+		<a href="/ecommerce/view/index" style="color:white;text-decoration:none;">Turma do <strong>livro</strong></a>
 		 <!-- <span class="logo "alt="Administrador" title="Administrador"><i class="fas fa-user-tie"></i></span>-->	
 
 	<div class="dropdown d-flex align-items-center">

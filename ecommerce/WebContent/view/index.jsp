@@ -42,16 +42,15 @@
 					Turma do <strong>livro</strong>
 				</p>
 				<ul>
-					<li><a href="#"></a>catálogo</li>
-					<li><a href="/ecommerce/view/login.jsp">entrar</a></li>
-					<li><a href="/ecommerce/view/cadastraCliente.jsp">cadastro</a></li>
-					<button onClick="window.location.href='http://localhost:8080/ecommerce/carrinho'">carrinho</button>
+					<li><a href="/ecommerce/view/login.jsp">Minha conta</a></li>
+					<li><a href="/ecommerce/view/cadastraCliente.jsp">Cadastro</a></li>
+					<button onClick="window.location.href='http://localhost:8080/ecommerce/carrinho'">Carrinho</button>
 				</ul>
 			</nav>
 			<div class="header-block">
 				<div class="text">
 					<h2>Livros infantis</h2>
-					<p>compre e ganhe um brinde</p>
+					<p>Descontos especiais</p>
 				</div>
 				<img src="imagens/book.jpg" alt="Menina lendo livro">
 			</div>
@@ -60,14 +59,16 @@
 	<section class="catalog" id="catalog">
 		<div class="content">
 			<div class="title-wrapper-catalog">
-				<p>Encontre seu favorito</p>
-				<h3>catálogo</h3>
+			<!-- 
+				<p>Encontre seu favorito</p>		
+				 <h3>catálogo</h3>
 			</div>
 			<div class="filter-card">
 				<input type="text" class="search-input"
 					placeholder="digite o livro que procura" />
 				<button class="search-button">Busca</button>
 			</div>
+			-->
 
 			<br>
 			<div class="container">

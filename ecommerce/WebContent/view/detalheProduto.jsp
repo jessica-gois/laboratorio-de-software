@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page import="model.domain.Livro"%>
+<%@ page import="model.domain.Livro, model.domain.Categoria"%>
 <c:url value="/controlador" var="stub"/>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@
 						<div class="row">
 							<div class="col-3 me-4">
 								 <img src="view/<%=livro.getCaminhoImagem()%>" height="280" />
-								<center> Categoria: Aventura</center>							 
+								<center> Categoria: Aventura </center>							 
 							</div>
 							<div class="col-8">
 								<div class="row mb-3">
