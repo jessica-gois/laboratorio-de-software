@@ -28,5 +28,22 @@ public class SolicitarTrocaVH implements IViewHelper {
 		// }
 
 	}
+	
+	
+//	@Override
+//	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
+//		//if(resultado.getResposta()==null) {
+//		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
+//			Pedido pedido = (Pedido) resultado.getEntidades().get(0);
+//			String caminhoRedirecionar = request.getParameter("caminhoRedirecionar") != null ?
+//				request.getParameter("caminhoRedirecionar") : "/view/detalhePedido.jsp";
+//			request.getSession().setAttribute("pedido", pedido);
+//			
+//			response.sendRedirect(request.getContextPath() + caminhoRedirecionar);		
+//		}else {
+//			response.sendRedirect(request.getContextPath() + "/view/index");
+//		}
+//		//}
+//	}
 
 }
