@@ -50,7 +50,7 @@ public class PedidoItemTrocaDAO extends AbstractDAO {
 		try {
 			conn = Database.conectarBD();
 			st = conn.prepareStatement(
-				"UPDATE pedido_item_troca SET pit_quantidade = ?, pit_notificacao = ? WHERE pet_id = ?");
+				"UPDATE pedido_item_troca SET pit_quantidade = ?, pit_notificacao = ? WHERE pit_id = ?");
 			setaParametrosQuery(st, itemTroca.getQuantidade(), itemTroca.getNotificacao(), itemTroca.getId());
 
 			int rowsAffected = st.executeUpdate();
@@ -93,7 +93,7 @@ public class PedidoItemTrocaDAO extends AbstractDAO {
 
 			return itens;
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 			return null;
 		}
 	}
