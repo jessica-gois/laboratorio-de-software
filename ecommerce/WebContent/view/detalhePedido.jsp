@@ -165,7 +165,7 @@
 					<div class="row mt-4">		
 						<%if(pedido.getStatus().equals(StatusPedido.EM_TRANSITO )){ %>
 							<div class="col-3">
-								<a class="btn btn-blue w-100" href="/ecommerce/controlador?acao=alterar&viewHelper=AlterarStatusPedidoVH&caminhoRedirecionar=<%=caminhoRedirecionarCliente%>&id=<%=pedido.getId()%>&status=<%=StatusPedido.ENTREGUE.name()%>">Notificar recebimento</a>
+								<a class="btn btn-blue w-100" href="/ecommerce/controlador?acao=alterar&viewHelper=AlterarStatusPedidoVH&id=<%=pedido.getId()%>&status=<%=StatusPedido.ENTREGUE.name()%>">Notificar recebimento</a>
 							</div>
 						<%}%>
 						

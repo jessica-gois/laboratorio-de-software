@@ -103,6 +103,7 @@ public class PedidoItemDAO extends AbstractDAO {
 				StatusPedidoItem status = rs.getString("pei_status") != null ? StatusPedidoItem.valueOf(rs.getString("pei_status")) : null;
 				PedidoItem pedidoItemAux = new PedidoItem(rs.getInt("pei_id"), sdf.parse(rs.getString("pei_dtCadastro")), rs.getDouble("pei_quantidade"),
 					rs.getDouble("pei_valorunitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), null);
+				pedidoItemAux.setQuantidadeDisponivelTroca(getQuantidadeDisponivelTroca(rs.getInt("pei_id")));
 				Pedido pedido = new Pedido();
 				pedido.setId(rs.getInt("pei_ped_id"));
 				pedidoItemAux.setPedido(pedido);
@@ -159,6 +160,34 @@ public class PedidoItemDAO extends AbstractDAO {
 			return (PedidoItem) consultar(item).get(0);
 		}else {
 			return item;
+		}
+	}
+	
+	private Double getQuantidadeDisponivelTroca(Integer idPedidoItem) {
+		Double quantidadeDisponivel = 0d;		
+		inicializarConexao();
+		try {
+			conn = Database.conectarBD();
+			st = conn.prepareStatement("SELECT pei_quantidade - SUM(IFNULL(pit_quantidade, 0)) AS quantidadeDisponivelTroca " + 
+				"FROM pedido_item LEFT JOIN pedido_item_troca ON pit_pei_id = pei_id where pei_id = ? LIMIT 1;",
+				Statement.RETURN_GENERATED_KEYS);
+			setaParametrosQuery(st, idPedidoItem);
+					
+			Long inicioExecucao = System.currentTimeMillis();
+			ResultSet rs = st.executeQuery();
+			Long terminoExecucao = System.currentTimeMillis();
+
+			System.out.println("Tempo de execução da consulta: "
+				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
+
+			while (rs.next()) {
+				quantidadeDisponivel = rs.getDouble("quantidadeDisponivelTroca");
+			}
+
+			return quantidadeDisponivel;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

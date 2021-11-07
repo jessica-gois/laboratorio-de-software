@@ -72,7 +72,7 @@ public class ConsultarPedidosAdminVH implements IViewHelper {
 	
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
-			request.getSession().setAttribute("pedidos", resultado.getEntidades());
+			request.getSession().setAttribute("pedidosAdmin", resultado.getEntidades());
 			response.sendRedirect(request.getContextPath() + "/view/consultarPedidos.jsp");
 	}
 }

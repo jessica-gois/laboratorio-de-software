@@ -8,6 +8,7 @@ public class PedidoItem extends EntidadeDominio {
 	private Pedido pedido;
 	private Livro livro;
 	private Double quantidade;
+	private Double quantidadeDisponivelTroca;
 	private Double valorUnitario;
 	private StatusPedidoItem status;
 	
@@ -85,5 +86,13 @@ public class PedidoItem extends EntidadeDominio {
 	public void setStatus(StatusPedidoItem status) {
 		this.status = status;
 	}
-	
+
+	public Double getQuantidadeDisponivelTroca() {
+		return quantidadeDisponivelTroca;
+	}
+
+	public void setQuantidadeDisponivelTroca(Double quantidadeDisponivelTroca) {
+		this.quantidadeDisponivelTroca = quantidadeDisponivelTroca;
+	}
+		
 }

@@ -16,7 +16,7 @@ public class PedidoItemTroca extends EntidadeDominio {
 	public PedidoItemTroca(PedidoItem pedidoItem){	
 		if(pedidoItem != null) {
 			this.item = pedidoItem;
-			this.quantidade = pedidoItem.getQuantidade();			
+			this.quantidade = pedidoItem.getQuantidadeDisponivelTroca();			
 		}
 	}
 	

@@ -7,7 +7,7 @@
 <fmt:setLocale value="pt_BR" />
 <c:url value="/controlador" var="stub" />
 <%
-			List<Pedido> pedidos = (List<Pedido>) request.getSession().getAttribute("pedidos");
+			List<Pedido> pedidos = (List<Pedido>) request.getSession().getAttribute("pedidosAdmin");
 			List<StatusPedido> status = StatusPedido.getTiposStatus();
 			String caminhoRedirecionar = "/view/detalharPedido.jsp";
 			
@@ -123,7 +123,7 @@
                         </div>
                         <div class="col-2">
                             <a class="btn btn-blue w-100" id="consultar" name="consultar"
-                                href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoVH&caminhoRedirecionar=<%=caminhoRedirecionar%>&id=<%=pedido.getId()%>"
+                                href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoAdminVH&id=<%=pedido.getId()%>"
                                 title="Consultar" alt="Consultar">Consultar</a>
                         </div>
                     </div>

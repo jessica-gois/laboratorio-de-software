@@ -13,16 +13,11 @@ import model.domain.Pedido;
 import model.domain.Result;
 import util.Conversao;
 
-public class ConsultarPedidoVH implements IViewHelper {
+public class ConsultarPedidoAdminVH implements IViewHelper {
 
 	@Override
 	public EntidadeDominio getEntidade(HttpServletRequest request, HttpServletResponse response) {
-		Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");
 		Pedido pedido = new Pedido();
-		
-		if(cliente != null) {
-		pedido.setCliente(cliente);
-		}
 		
 		if (request.getParameter("tipoPesquisa") != null) {
 			pedido.setPesquisa(request.getParameter("tipoPesquisa"));
@@ -37,9 +32,9 @@ public class ConsultarPedidoVH implements IViewHelper {
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
 			Pedido pedido = (Pedido) resultado.getEntidades().get(0);
-			request.getSession().setAttribute("pedido", pedido);
+			request.getSession().setAttribute("pedidoAdmin", pedido);
 			
-			response.sendRedirect(request.getContextPath() +  "/view/detalhePedido.jsp");		
+			response.sendRedirect(request.getContextPath() + "/view/detalharPedido.jsp");		
 		}else {
 			response.sendRedirect(request.getContextPath() + "/view/index");
 		}

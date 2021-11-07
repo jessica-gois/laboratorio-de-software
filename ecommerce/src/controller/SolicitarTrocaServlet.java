@@ -90,6 +90,7 @@ public class SolicitarTrocaServlet extends HttpServlet {
 			Result resultado = command.executar(pedido);
 		}
 				
+		request.getSession().setAttribute("itensTroca", null);
 		response.sendRedirect("/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidosVH");
 		
 //		if (resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {

@@ -9,7 +9,7 @@
 <c:url value="/controlador" var="stub" />
 <fmt:setLocale value="pt_BR" />
 <%
-	Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+	Pedido pedido = (Pedido) request.getSession().getAttribute("pedidoAdmin");
 	List<StatusPedido> listaStatus = StatusPedido.getTiposStatus();
 %>
 
@@ -295,7 +295,7 @@
 		                  }%>
 		               </div>             
 		               <input type="hidden" name="acao" value="alterar" />
-					   <input type="hidden" name="viewHelper" value="AlterarStatusPedidoVH" />
+					   <input type="hidden" name="viewHelper" value="AlterarStatusPedidoAdminVH" />
 					                    
 		                <div class="col-2 mt-5">
 		                    <button class="btn btn-blue w-100" type="submit" id="salvar" name="salvar" title="Salvar"

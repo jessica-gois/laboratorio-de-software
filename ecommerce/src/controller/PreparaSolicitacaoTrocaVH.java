@@ -21,6 +21,7 @@ public class PreparaSolicitacaoTrocaVH implements IViewHelper {
 	@Override
 	public EntidadeDominio getEntidade(HttpServletRequest request, HttpServletResponse response) {
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+		pedido.setPesquisa("id");
 			
 		return pedido;
 	}
@@ -33,7 +34,9 @@ public class PreparaSolicitacaoTrocaVH implements IViewHelper {
 			
 			if(pedido != null && pedido.getItens() != null && !pedido.getItens().isEmpty()) {
 				for(PedidoItem item : pedido.getItens()) {
-					itensTroca.add(new PedidoItemTroca(item));
+					if(item.getQuantidadeDisponivelTroca() != null && item.getQuantidadeDisponivelTroca() > 0) {
+						itensTroca.add(new PedidoItemTroca(item));
+					}
 				}
 			}
 			
