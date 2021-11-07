@@ -190,6 +190,7 @@
             <!-- Fim do bloco pagamento -->
 
             <!-- Começo do bloco cupom-->
+            <%if(pedido.isUtilizouCupom()){%>
             <div class="card-body">
                 <div class="row">
                     <h4>Cupons</h4>
@@ -223,8 +224,8 @@
                  		<%}
 					}
 				}%>
-
             </div>
+            <%}%>
             <!-- Fim do bloco cupom -->
 
             <!-- Começo do bloco itens compra-->
@@ -234,18 +235,18 @@
                     <div class="col-3">
                         <p class="h5">Título</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <p class="h5">Valor</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <p class="h5">Quantidade</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <p class="h5">Subtotal</p>
                     </div>
-	                    <div class="col-3">
-	                        <p></p>
-	                    </div>
+	                <div class="col-2">
+	                	<p></p>
+	                </div>
                 </div>
                  <%if(pedido.getItens() != null){
 					for ( PedidoItem item : pedido.getItens()) {%>
@@ -253,17 +254,17 @@
                     <div class="col-3">
                         <p><%=item.getLivro() != null ? item.getLivro().getTitulo() : "" %></p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <p><fmt:formatNumber value = "<%=item.getValorUnitario()%>" type = "currency"/></p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <p><fmt:formatNumber value = "<%=item.getQuantidade()%>" type = "number" maxFractionDigits="0"/></p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <p><fmt:formatNumber value = "<%=item.getValorTotal()%>" type = "currency"/></p>
                     </div>
                     
-                     <div class="col-3">
+                     <div class="col-2">
 	                    <p><%if(item.getStatus() != null &&
 	                        (item.getStatus() == StatusPedidoItem.TROCA_SOLICITADA ||
 	                        item.getStatus() == StatusPedidoItem.TROCA_AUTORIZADA ||

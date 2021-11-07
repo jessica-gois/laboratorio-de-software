@@ -62,7 +62,7 @@
 							</div>
 							<div class="col">
 								<input class="form-control" type="number" name="quantidadeTrocaItem<%=itemPedido.getId()%>"
-									id="quantidadeTrocaItem<%=itemPedido.getId()%>" min="0" max="<%=itemPedido.getQuantidade()%>"
+									id="quantidadeTrocaItem<%=itemPedido.getId()%>" min="0" max="<%=itemPedido.getQuantidadeDisponivelTroca()%>"
 									value="<fmt:formatNumber value ="<%=itemTroca.getQuantidade()%>"
 									type = "number" maxFractionDigits="0"/>" required="true" placeholder="Informe a quantidade..."
 									onkeyup="this.value = this.value <= <%=itemTroca.getQuantidade()%> ? parseInt(this.value, 10) : <%=itemTroca.getQuantidade()%> "/>
@@ -77,7 +77,7 @@
 					<button class="btn btn-blue w-100" type="submit" alt="Trocar" title="Trocar">Trocar</button>
 				</div>
 				<div class="col-3">
-					<a class="btn btn-secondary w-100"href="#" >Voltar</a>
+					<a class="btn btn-secondary w-100"href="/ecommerce/view/detalhePedido.jsp" >Voltar</a>
 				</div>
 			</div>
 		</div>

@@ -196,7 +196,7 @@ public class Pedido extends EntidadeDominio {
 	public boolean isUtilizouCupom() {
 		if(formasPagamento != null && !formasPagamento.isEmpty()) {
 			for(FormaPagamento forma : formasPagamento) {
-				if(forma.getCupom() != null) {
+				if(forma.getCupom() != null && forma.getCupom().getId() > 0 ) {
 					return true;
 				}
 			}

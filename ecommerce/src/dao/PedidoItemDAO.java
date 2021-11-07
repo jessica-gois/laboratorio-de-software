@@ -104,6 +104,7 @@ public class PedidoItemDAO extends AbstractDAO {
 				PedidoItem pedidoItemAux = new PedidoItem(rs.getInt("pei_id"), sdf.parse(rs.getString("pei_dtCadastro")), rs.getDouble("pei_quantidade"),
 					rs.getDouble("pei_valorunitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), null);
 				pedidoItemAux.setQuantidadeDisponivelTroca(getQuantidadeDisponivelTroca(rs.getInt("pei_id")));
+				pedidoItemAux.setStatus(status);
 				Pedido pedido = new Pedido();
 				pedido.setId(rs.getInt("pei_ped_id"));
 				pedidoItemAux.setPedido(pedido);

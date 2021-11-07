@@ -1,3 +1,4 @@
+<%@page import="model.domain.enums.StatusPedidoItem"%>
 <%@page import="model.domain.enums.StatusPedido"%>
 <%@page import="model.domain.PedidoItem"%>
 <%@page import="model.domain.FormaPagamento"%>
@@ -104,21 +105,23 @@
 								</div>
 							<%}
 						}
-					}%>		
-					<div class="row mt-4">
-						<p class="h5">4. Cupons utilizados</p>
-					</div>
-					<div class="row mt-2">
-						<div class="col-3">
-							<p class="h5">Tipo</p>
+					}%>	
+					<%if(pedido.isUtilizouCupom()){ %>	
+						<div class="row mt-4">
+							<p class="h5">4. Cupons utilizados</p>
 						</div>
-						<div class="col-2">
-							<p class="h5">Código</p>
+						<div class="row mt-2">
+							<div class="col-3">
+								<p class="h5">Tipo</p>
+							</div>
+							<div class="col-2">
+								<p class="h5">Código</p>
+							</div>
+							<div class="col-4">
+								<p class="h5">Valor</p>
+							</div>
 						</div>
-						<div class="col-4">
-							<p class="h5">Valor</p>
-						</div>
-					</div>
+					<%} %>
 					<%if(pedido.getFormasPagamento() != null){
 						for ( FormaPagamento formaPagamento : pedido.getFormasPagamento()) {
 							if(formaPagamento.getCupom() != null && formaPagamento.getCupom().getId() > 0){%>
@@ -143,9 +146,12 @@
 						<div class="col-2">
 							<p class="h5">Quantidade</p>
 						</div>
-						<div class="col-3">
+						<div class="col-2">
 							<p class="h5">Subtotal</p>
 						</div>
+						<div class="col-2">
+	                		<p></p>
+	                	</div>
 					</div>
 					<%if(pedido.getItens() != null){
 						for ( PedidoItem item : pedido.getItens()) {%>
@@ -157,6 +163,10 @@
 										type = "number" maxFractionDigits="0"/></p>
 								</div>
 								<div class="col-2"><fmt:formatNumber value = "<%=item.getValorTotal()%>" type="currency"/></div>
+								<div class="col-2">
+	                				<p><%=item.getStatus() != null && !item.getStatus().equals(StatusPedidoItem.EM_PROCESSAMENTO) 
+	                				&& !item.getStatus().equals(StatusPedidoItem.ENTREGUE) ? item.getStatus().getDescricao() : ""%></p>
+	                			</div>
 							</div>
 					<% }
 					}
