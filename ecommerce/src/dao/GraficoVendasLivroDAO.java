@@ -39,13 +39,23 @@ public class GraficoVendasLivroDAO extends AbstractDAO {
 		
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("select liv_titulo as titulo, DATE_FORMAT(CAST(ped_dtCadastro AS DATE), '%m/%Y') "+
+			StringBuilder sql = new StringBuilder("select liv_titulo as titulo, DATE_FORMAT(CAST(ped_dtCadastro AS DATE), '%m/%Y') "+
 				"as periodo, sum(pei_quantidade) as quantidadeTotal, sum(pei_quantidade * pei_valorunitario) as valorTotal " + 
 				"from pedido_item join livro on liv_id = pei_liv_id " + 
-				"join pedido on ped_id = pei_ped_id " +
-				"and ped_status like 'ENTREGUE' and CAST(ped_dtCadastro AS DATE) >= ? and CAST(ped_dtCadastro AS DATE) <= ? " + 
-				"group by liv_titulo, periodo order by YEAR (CAST(ped_dtCadastro AS DATE)), MONTH (CAST(ped_dtCadastro AS DATE)),"
-				+ "CAST(ped_dtCadastro AS DATE) asc") ;
+				"join pedido on ped_id = pei_ped_id ");			
+			sql.append("and ped_status like 'ENTREGUE' ");
+			
+			if (filtroPesquisa.getDataInicial() != null) {
+				sql.append("and CAST(ped_dtCadastro AS DATE) >= ? ");
+			}
+			
+			if (filtroPesquisa.getDataFinal() != null) {
+				sql.append("and CAST(ped_dtCadastro AS DATE) <= ? ");
+			}
+			sql.append("group by liv_titulo, periodo order by YEAR (CAST(ped_dtCadastro AS DATE)), MONTH (CAST(ped_dtCadastro AS DATE))," +
+				"CAST(ped_dtCadastro AS DATE) asc");
+			
+			st = conn.prepareStatement(sql.toString()) ;
 			setaParametrosQuery(st, filtroPesquisa.getDataInicial(), filtroPesquisa.getDataFinal());
 			Long inicioExecucao = System.currentTimeMillis();
 			ResultSet rs = st.executeQuery();

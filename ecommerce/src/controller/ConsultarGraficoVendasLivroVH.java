@@ -33,6 +33,7 @@ public class ConsultarGraficoVendasLivroVH implements IViewHelper {
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
+			
 			StringBuilder jsonSimulacao = new StringBuilder();
 			jsonSimulacao.append("["); //inicio do array de json que está sendo simulado
 			for(EntidadeDominio entidade : resultado.getEntidades()) {
