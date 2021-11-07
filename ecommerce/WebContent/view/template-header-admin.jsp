@@ -38,7 +38,7 @@
   				<a href="/ecommerce/view/cadastrarCupom.jsp" class="list-group-item list-group-item-action">Cadastrar cupons</a>
   				<a href="#" class="list-group-item list-group-item-action">Consultar cupons</a>
   			
-  			    <a href="/ecommmerce/view/dashboard.jsp" class="list-group-item list-group-item-action active" id="topico">
+  			    <a href="/ecommerce/view/dashboard.jsp" class="list-group-item list-group-item-action active" id="topico">
     			DASHBOARD
   				</a>
   				<a href="/ecommerce/view/loginAdmin.jsp" class="list-group-item list-group-item-action enable">Sair</a>
