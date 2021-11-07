@@ -3,6 +3,7 @@ package negocio;
 
 
 
+import dao.CartaoDAO;
 import model.domain.Cartao;
 import model.domain.EntidadeDominio;
 import model.domain.enums.Bandeira;
@@ -12,6 +13,8 @@ public class ValidadorCadastroCartao implements IStrategy {
 	@Override
 	public String processar(EntidadeDominio entidade) {
 		Cartao cartao = (Cartao) entidade;
+		cartao.setPesquisa("preferencial");
+		CartaoDAO dao = new CartaoDAO();
 		StringBuilder erros = new StringBuilder();
 
 		if (cartao.getNumero() == null || cartao.getNumero() == "") {
@@ -29,7 +32,13 @@ public class ValidadorCadastroCartao implements IStrategy {
 		if (cartao.getBandeira() == null) {
 			erros.append("A bandeira é obrigatória");
 		}
-
+		
+		if(dao.possuiCartaoPreferencial(cartao)) {
+			cartao.setPreferencial(false);
+		}else {
+			cartao.setPreferencial(true);
+		}
+		
 		if (erros != null && erros.length() > 0) {
 			return erros.toString();
 		} else {

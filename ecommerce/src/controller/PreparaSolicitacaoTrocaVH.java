@@ -37,7 +37,7 @@ public class PreparaSolicitacaoTrocaVH implements IViewHelper {
 				}
 			}
 			
-			request.setAttribute("itensTroca", itensTroca);	
+			request.getSession().setAttribute("itensTroca", itensTroca);	
 			RequestDispatcher rd = request.getRequestDispatcher("/view/solicitacaoTroca.jsp");
 			try {
 				rd.forward(request, response);

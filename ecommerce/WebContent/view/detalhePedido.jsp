@@ -153,7 +153,8 @@
 								<div class="col-3"><%=item.getLivro() != null ? item.getLivro().getTitulo() : "" %></div>
 								<div class="col-2"><fmt:formatNumber value = "<%=item.getValorUnitario()%>" type="currency"/></div>
 								<div class="col-2 d-flex justify-content-start">
-									<p>2</p>
+									<p><fmt:formatNumber value ="<%=item.getQuantidade()%>"
+										type = "number" maxFractionDigits="0"/></p>
 								</div>
 								<div class="col-2"><fmt:formatNumber value = "<%=item.getValorTotal()%>" type="currency"/></div>
 							</div>
@@ -164,7 +165,7 @@
 					<div class="row mt-4">		
 						<%if(pedido.getStatus().equals(StatusPedido.EM_TRANSITO )){ %>
 							<div class="col-3">
-								<a class="btn btn-blue w-100"href="/ecommerce/controlador?acao=alterar&viewHelper=AlterarStatusPedidoVH&caminhoRedirecionar=<%=caminhoRedirecionarCliente%>&id=<%=pedido.getId()%>&status=<%=StatusPedido.ENTREGUE.name()%>">Notificar recebimento</a>
+								<a class="btn btn-blue w-100" href="/ecommerce/controlador?acao=alterar&viewHelper=AlterarStatusPedidoVH&caminhoRedirecionar=<%=caminhoRedirecionarCliente%>&id=<%=pedido.getId()%>&status=<%=StatusPedido.ENTREGUE.name()%>">Notificar recebimento</a>
 							</div>
 						<%}%>
 						

@@ -17,6 +17,8 @@ import dao.IDAO;
 import dao.LivroDAO;
 import dao.MovimentacaoEstoqueDAO;
 import dao.PedidoDAO;
+import dao.PedidoItemDAO;
+import dao.PedidoItemTrocaDAO;
 import dao.UsuarioDAO;
 import model.domain.Cartao;
 import model.domain.Categoria;
@@ -28,6 +30,8 @@ import model.domain.GrupoPrecificacao;
 import model.domain.Livro;
 import model.domain.MovimentacaoEstoque;
 import model.domain.Pedido;
+import model.domain.PedidoItem;
+import model.domain.PedidoItemTroca;
 import model.domain.Result;
 import model.domain.Usuario;
 import negocio.IStrategy;
@@ -71,6 +75,8 @@ public class Fachada implements IFachada {
 		mapaDaos.put(Categoria.class.getName(), new CategoriaDAO());
 		mapaDaos.put(GrupoPrecificacao.class.getName(), new GrupoPrecificacaoDAO());
 		mapaDaos.put(MovimentacaoEstoque.class.getName(), new MovimentacaoEstoqueDAO());
+		mapaDaos.put(PedidoItem.class.getName(), new PedidoItemDAO());
+		mapaDaos.put(PedidoItemTroca.class.getName(), new PedidoItemTrocaDAO());
 		mapaDaos.put(FiltroPesquisaPeriodoGrafico.class.getName(), new GraficoVendasLivroDAO());		
 	}
 

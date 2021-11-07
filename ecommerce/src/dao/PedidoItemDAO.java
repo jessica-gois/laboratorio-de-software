@@ -48,9 +48,9 @@ public class PedidoItemDAO extends AbstractDAO {
 		inicializarConexao();
 		try {
 			conn = Database.conectarBD();
-			st = conn.prepareStatement("UPDATE pedido_item SET pei_quantidade = ?, pei_valorunitario = ?, pei_liv_id = ?, pei_ped_id = ?, pei_status = ? WHERE pei_id = ?");
+			st = conn.prepareStatement("UPDATE pedido_item SET pei_quantidade = ?, pei_valorunitario = ?, pei_liv_id = ?, pei_status = ? WHERE pei_id = ?");
 			String status = pedidoItem.getStatus() != null ? pedidoItem.getStatus().name() : null;
-			setaParametrosQuery(st, pedidoItem.getQuantidade(), pedidoItem.getValorUnitario(), pedidoItem.getLivro().getId(), pedidoItem.getPedido().getId(), status, pedidoItem.getId());
+			setaParametrosQuery(st, pedidoItem.getQuantidade(), pedidoItem.getValorUnitario(), pedidoItem.getLivro().getId(), status, pedidoItem.getId());
 
 			int rowsAffected = st.executeUpdate();
 			System.out.println("Done! Rows affected: " + rowsAffected);
@@ -143,6 +143,18 @@ public class PedidoItemDAO extends AbstractDAO {
 			return (List<PedidoItem>)consultar(item);
 		}else {
 			return new ArrayList<PedidoItem>();
+		}
+	}
+	
+	public PedidoItem getById(Integer idPedidoItem) {
+		PedidoItem item = new PedidoItem();
+		item.setId(idPedidoItem);
+		item.setPesquisa("id");
+		
+		if(idPedidoItem != null) {
+			return (PedidoItem) consultar(item).get(0);
+		}else {
+			return item;
 		}
 	}
 }

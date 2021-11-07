@@ -1,13 +1,16 @@
 package model.domain;
 
-public class PedidoItemTroca {
+import java.util.Date;
+
+public class PedidoItemTroca extends EntidadeDominio {
 	private PedidoItem item;
 	private Double quantidade;
 	private Boolean notificacao;
 	/*Quando o administrador autorizar uma troca o sistema deverá
 	 *  gerar uma notificação sobre tal ao cliente.*/
 		
-	public PedidoItemTroca(){		
+	public PedidoItemTroca(){
+		
 	}
 	
 	public PedidoItemTroca(PedidoItem pedidoItem){	
@@ -15,6 +18,20 @@ public class PedidoItemTroca {
 			this.item = pedidoItem;
 			this.quantidade = pedidoItem.getQuantidade();			
 		}
+	}
+	
+	public PedidoItemTroca(Integer id, Date dtCadastro, PedidoItem pedidoItem, Double quantidade, Boolean notificacao){	
+		if(pedidoItem != null) {			
+			this.quantidade = pedidoItem.getQuantidade();			
+		}
+		if (id != null) {
+			this.setId(id);
+		}
+		if(dtCadastro != null) {
+			this.setDtCadastro(dtCadastro);
+		}
+		this.quantidade = quantidade;
+		this.notificacao = notificacao;
 	}
 
 	public PedidoItem getItem() {
