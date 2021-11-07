@@ -63,7 +63,8 @@
 							<input class="form-control" type="number" name="quantidadeTrocaItem<%=itemPedido.getId()%>"
 								id="quantidadeTrocaItem<%=itemPedido.getId()%>" min="0" max="<%=itemPedido.getQuantidade()%>"
 								value="<fmt:formatNumber value ="<%=itemTroca.getQuantidade()%>"
-								type = "number" maxFractionDigits="0"/>" required="true" placeholder="Informe a quantidade..."/>
+								type = "number" maxFractionDigits="0"/>" required="true" placeholder="Informe a quantidade..."
+								onkeyup="this.value = this.value <= <%=itemTroca.getQuantidade()%> ? parseInt(this.value, 10) : <%=itemTroca.getQuantidade()%> "/>
 						</div>				
 					</div>
 				<%}
