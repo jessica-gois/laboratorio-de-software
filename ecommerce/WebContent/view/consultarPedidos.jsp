@@ -47,15 +47,8 @@
               <form action="${stub}" method="get" id="formFiltrosPedidos" novalidate>
                 <div class="row mt-2 mb-4">
                     <div class="col">
-                        <select class="form-control" name="id" id="id" required="true">
-                            <option value="">Escolha...</option>
-                            <%if(pedidos != null){ 
-							 for(Pedido pedido : pedidos){%>
-                            <option value="<%=pedido.getId()%>">
-                                <%=pedido.getId() %></option>
-                            <%}
-												} %>
-                        </select>
+                    	<input class="form-control" type="number" name="id"	id="id" min="0" 
+                    	onkeyup="this.value = this.value != null && this.value != undefined ? parseInt(this.value, 10) : null "/>
                     </div>
                     <div class="col">
                         <input class="form-control" type="date" id="dtCadastro" name="dtCadastro" />
@@ -67,7 +60,7 @@
                         <input class="form-control" type="text" id="cpf" name="cpf" />
                     </div>
                     <div class="col">
-                        <input class="form-control" type="number" id="valorTotal" name="valorTotal" />
+                        <input class="form-control" type="number" id="valorTotal" name="valorTotal" min="0" />
                     </div>
                     <div class="col">
                         <select class="form-control" name="status" id="status" required="true">

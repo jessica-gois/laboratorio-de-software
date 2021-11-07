@@ -112,6 +112,8 @@ public class PedidoDAO extends AbstractDAO {
 	private String pesquisarAuxiliar(EntidadeDominio entidade) {
 		if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("id")) {
 			return "select * from pedido where ped_id = ?";
+		}else if(entidade.getPesquisa() != null && entidade.getPesquisa().equals("cliente")) {
+			return "select * from pedido where ped_cli_id = ?";
 		}else if (entidade.getPesquisa() != null && entidade.getPesquisa().equals("filtros")){
 			Pedido pedido = (Pedido) entidade;
 			StringBuilder sql = new StringBuilder();
@@ -175,6 +177,8 @@ public class PedidoDAO extends AbstractDAO {
 		
 		if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, pedido.getId());
+		}else if(pedido.getPesquisa() != null && pedido.getPesquisa().equals("cliente")) {
+			setaParametrosQuery(st, pedido.getCliente().getId());
 		}else if (pedido.getPesquisa() != null && pedido.getPesquisa().equals("filtros")) {
 		
 			String filtroEmail = pedido.getCliente() != null && pedido.getCliente().getUsuario() !=null ?
