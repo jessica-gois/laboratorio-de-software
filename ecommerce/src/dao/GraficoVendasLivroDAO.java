@@ -44,7 +44,8 @@ public class GraficoVendasLivroDAO extends AbstractDAO {
 				"from pedido_item join livro on liv_id = pei_liv_id " + 
 				"join pedido on ped_id = pei_ped_id " +
 				"and ped_status like 'ENTREGUE' and CAST(ped_dtCadastro AS DATE) >= ? and CAST(ped_dtCadastro AS DATE) <= ? " + 
-				"group by liv_titulo, periodo order by periodo");
+				"group by liv_titulo, periodo order by YEAR (CAST(ped_dtCadastro AS DATE)), MONTH (CAST(ped_dtCadastro AS DATE)),"
+				+ "CAST(ped_dtCadastro AS DATE) asc") ;
 			setaParametrosQuery(st, filtroPesquisa.getDataInicial(), filtroPesquisa.getDataFinal());
 			Long inicioExecucao = System.currentTimeMillis();
 			ResultSet rs = st.executeQuery();
