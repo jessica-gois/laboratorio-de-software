@@ -84,7 +84,7 @@
 
                             <div class="row">
                                 <div class="col-4">
-                                    <input class="form-control mt-2" type="number" id="quantidade" name="quantidade"
+                                    <input class="form-control mt-2" type="number" id="quantidade" min="1" name="quantidade"
                                         required="true" />
                                 </div>
                                 <div class="col-4">
