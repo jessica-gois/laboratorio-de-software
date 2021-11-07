@@ -86,7 +86,7 @@ public class PedidoItemTrocaDAO extends AbstractDAO {
 					+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
 
 			while (rs.next()) {
-				PedidoItemTroca itemTrocaAux = new PedidoItemTroca(rs.getInt("pei_id"), sdf.parse(rs.getString("pit_dtCadastro")),
+				PedidoItemTroca itemTrocaAux = new PedidoItemTroca(rs.getInt("pit_id"), sdf.parse(rs.getString("pit_dtCadastro")),
 					pedidoItemDao.getById(rs.getInt("pit_pei_id")), rs.getDouble("pit_quantidade"), rs.getBoolean("pit_notificacao"));
 				itens.add(itemTrocaAux);
 			}
@@ -102,8 +102,12 @@ public class PedidoItemTrocaDAO extends AbstractDAO {
 		if (entidade.getPesquisa().equals("id")) {
 			return "select * from pedido_item_troca  WHERE pit_id = ?";
 		} else if (entidade.getPesquisa().equals("item")) {
-			return "select * from ped_item_troca  WHERE pit_pei_id = ?";
-		} else {
+			return "select * from pedido_item_troca  WHERE pit_pei_id = ?";
+		} else if(entidade.getPesquisa().equals("notificacaoPendente")){
+			return "select * from pedido_item_troca WHERE pit_notificacao = 0 and "
+				+ "exists(select 1 from pedido_item join pedido on ped_id = pei_ped_id where ped_cli_id = ? and (pei_status like\r\n" 
+				+ " 'TROCA_AUTORIZADA' or ped_status like 'TROCA_AUTORIZADA') and pei_id = pit_pei_id);";
+		}else{
 			return "select * from pedido_item_troca";
 		}
 	}
@@ -114,6 +118,8 @@ public class PedidoItemTrocaDAO extends AbstractDAO {
 			setaParametrosQuery(st, item.getId());
 		} else if (item.getPesquisa().equals("item")) {
 			setaParametrosQuery(st, item.getItem().getId());
+		}else if(item.getPesquisa().equals("notificacaoPendente")) {
+			setaParametrosQuery(st, item.getItem().getPedido().getCliente().getId());
 		}
 		return st;
 	}

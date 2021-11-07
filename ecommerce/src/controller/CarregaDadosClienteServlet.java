@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,12 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import command.ConsultarCommand;
-import command.SalvarCommand;
 import model.domain.Cartao;
 import model.domain.Cliente;
 import model.domain.Endereco;
+import model.domain.Pedido;
+import model.domain.PedidoItem;
+import model.domain.PedidoItemTroca;
 import model.domain.Result;
-import model.domain.Telefone;
 import model.domain.Usuario;
 import util.Conversao;
 
@@ -30,6 +30,7 @@ public class CarregaDadosClienteServlet extends HttpServlet {
 	private Cliente cliente = new Cliente();
 	private Cartao cartao = new Cartao();
 	private Endereco endereco = new Endereco();
+	PedidoItemTroca itemTroca = new PedidoItemTroca();
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -52,6 +53,7 @@ public class CarregaDadosClienteServlet extends HttpServlet {
 		resultado = command.executar(cliente);		
 		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
 			cliente = (Cliente) resultado.getEntidades().get(0);
+			itemTroca.getItem().getPedido().setCliente(cliente);
 		}
 		
 		cartao.setCliente(cliente);
@@ -59,6 +61,7 @@ public class CarregaDadosClienteServlet extends HttpServlet {
 		sessao.setAttribute("clienteLogado", cliente);
 		sessao.setAttribute("cartoes", command.executar(cartao).getEntidades());
 		sessao.setAttribute("enderecos", command.executar(endereco).getEntidades());
+		sessao.setAttribute("itensTrocaNotificacao", command.executar(itemTroca).getEntidades());
 		
 		response.sendRedirect(request.getContextPath() + "/view/listaClientes.jsp");
 	}
@@ -69,5 +72,11 @@ public class CarregaDadosClienteServlet extends HttpServlet {
 		cliente.setPesquisa("usuario");
 		cartao.setPesquisa("cliente");
 		endereco.setPesquisa("cliente");
+		
+		PedidoItem item = new PedidoItem();
+		Pedido pedido = new Pedido();
+		item.setPedido(pedido);
+		itemTroca.setItem(item);
+		itemTroca.setPesquisa("notificacaoPendente");
 	}
 }

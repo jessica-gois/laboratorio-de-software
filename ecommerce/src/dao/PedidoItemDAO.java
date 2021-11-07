@@ -84,6 +84,7 @@ public class PedidoItemDAO extends AbstractDAO {
 		PedidoItem pedidoItem = (PedidoItem) entidade;
 		List<PedidoItem> itens = new ArrayList();
 		LivroDAO livroDAO = new LivroDAO();
+		PedidoDAO pedidoDAO = new PedidoDAO();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		System.out.println(pedidoItem);
 		inicializarConexao();
@@ -102,6 +103,9 @@ public class PedidoItemDAO extends AbstractDAO {
 				StatusPedidoItem status = rs.getString("pei_status") != null ? StatusPedidoItem.valueOf(rs.getString("pei_status")) : null;
 				PedidoItem pedidoItemAux = new PedidoItem(rs.getInt("pei_id"), sdf.parse(rs.getString("pei_dtCadastro")), rs.getDouble("pei_quantidade"),
 					rs.getDouble("pei_valorunitario"), livroDAO.getLivroById(rs.getInt("pei_liv_id")), null);
+				Pedido pedido = new Pedido();
+				pedido.setId(rs.getInt("pei_ped_id"));
+				pedidoItemAux.setPedido(pedido);
 				itens.add(pedidoItemAux);
 			}
 

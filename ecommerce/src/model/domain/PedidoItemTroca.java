@@ -20,9 +20,9 @@ public class PedidoItemTroca extends EntidadeDominio {
 		}
 	}
 	
-	public PedidoItemTroca(Integer id, Date dtCadastro, PedidoItem pedidoItem, Double quantidade, Boolean notificacao){	
-		if(pedidoItem != null) {			
-			this.quantidade = pedidoItem.getQuantidade();			
+	public PedidoItemTroca(Integer id, Date dtCadastro, PedidoItem item, Double quantidade, Boolean notificacao){	
+		if(item != null) {			
+			this.item = item;			
 		}
 		if (id != null) {
 			this.setId(id);
