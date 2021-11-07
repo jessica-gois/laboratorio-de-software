@@ -193,4 +193,15 @@ public class Pedido extends EntidadeDominio {
 		return quantidadeCartoes;
 	}
 	
+	public boolean isUtilizouCupom() {
+		if(formasPagamento != null && !formasPagamento.isEmpty()) {
+			for(FormaPagamento forma : formasPagamento) {
+				if(forma.getCupom() != null) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 }

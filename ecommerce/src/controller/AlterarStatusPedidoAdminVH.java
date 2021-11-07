@@ -17,6 +17,7 @@ public class AlterarStatusPedidoAdminVH implements IViewHelper {
 		Pedido pedido = (Pedido) request.getSession().getAttribute("pedidoAdmin");
 		
 		if (request.getParameter("status") != null && !request.getParameter("status").isBlank()) {
+			System.out.println(request.getParameter("status"));
 			pedido.setStatus(StatusPedido.valueOf(request.getParameter("status")));
 		}
 		
@@ -26,7 +27,7 @@ public class AlterarStatusPedidoAdminVH implements IViewHelper {
 
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
+		Pedido pedido = (Pedido) request.getSession().getAttribute("pedidoAdmin");
 		response.sendRedirect("/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoAdminVH&id=" + pedido.getId());	
 	}
 }

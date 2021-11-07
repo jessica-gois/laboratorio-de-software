@@ -1,3 +1,4 @@
+<%@page import="model.domain.enums.StatusPedidoItem"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="java.util.List,model.domain.Cliente, model.domain.Carrinho,
@@ -231,32 +232,45 @@
                 <div class="row">
                     <h4>Itens do pedido</h4>
                     <div class="col-3">
-                        <p class="h5">Código</p>
+                        <p class="h5">Título</p>
                     </div>
                     <div class="col-3">
-                        <p class="h5">Título</p>
+                        <p class="h5">Valor</p>
                     </div>
                     <div class="col-3">
                         <p class="h5">Quantidade</p>
                     </div>
                     <div class="col-3">
-                        <p class="h5">Valor</p>
+                        <p class="h5">Subtotal</p>
                     </div>
+	                    <div class="col-3">
+	                        <p></p>
+	                    </div>
                 </div>
                  <%if(pedido.getItens() != null){
 					for ( PedidoItem item : pedido.getItens()) {%>
                 <div class="row">                   
                     <div class="col-3">
-                        <p><%=item.getLivro().getId() %></p>
-                    </div>
-                    <div class="col-3">
                         <p><%=item.getLivro() != null ? item.getLivro().getTitulo() : "" %></p>
                     </div>
                     <div class="col-3">
-                        <p><%=item.getQuantidade() %></p>
+                        <p><fmt:formatNumber value = "<%=item.getValorUnitario()%>" type = "currency"/></p>
                     </div>
                     <div class="col-3">
-                        <p>R$ 29,90</p>
+                        <p><fmt:formatNumber value = "<%=item.getQuantidade()%>" type = "number" maxFractionDigits="0"/></p>
+                    </div>
+                    <div class="col-3">
+                        <p><fmt:formatNumber value = "<%=item.getValorTotal()%>" type = "currency"/></p>
+                    </div>
+                    
+                     <div class="col-3">
+	                    <p><%if(item.getStatus() != null &&
+	                        (item.getStatus() == StatusPedidoItem.TROCA_SOLICITADA ||
+	                        item.getStatus() == StatusPedidoItem.TROCA_AUTORIZADA ||
+	                        item.getStatus() == StatusPedidoItem.TROCA_REALIZADA ||
+	                        item.getStatus() == StatusPedidoItem.TROCA_REPROVADA)){ %>	                   
+		                    <%=item.getStatus().getDescricao()%>	                    
+	                    <%}%></p>
                     </div>
                 </div>
                 <% }
