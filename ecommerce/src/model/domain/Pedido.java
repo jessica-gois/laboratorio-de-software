@@ -192,6 +192,9 @@ public class Pedido extends EntidadeDominio {
 		if (getValorTotal() > 0) { 
 			quantidadeCartoes = Math.floor(getValorTotal() / 10);
 		}
+		if(quantidadeCartoes == 0 && isUtilizouCupom() && getValorTotal() > 0 ) {
+			quantidadeCartoes = 1d;
+		}
 		return quantidadeCartoes;
 	}
 	
