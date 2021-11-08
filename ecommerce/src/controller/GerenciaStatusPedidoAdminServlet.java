@@ -49,7 +49,7 @@ public class GerenciaStatusPedidoAdminServlet extends HttpServlet {
 		
 		itemTroca = new PedidoItemTroca();
 		pedido = (Pedido) request.getSession().getAttribute("pedidoAdmin");
-		Double valorTotalCupomTroca = 0d;
+		valorTotalCupomTroca = 0d;
 		
 		if (request.getParameter("status") != null && !request.getParameter("status").isBlank()) {
 			System.out.println(request.getParameter("status"));
@@ -80,7 +80,7 @@ public class GerenciaStatusPedidoAdminServlet extends HttpServlet {
 			}		
 		}
 		
-		if(status == StatusPedido.TROCA_AUTORIZADA) {
+		if(status == StatusPedido.TROCA_REALIZADA) {
 			gerarCupomDeTroca(valorTotalCupomTroca, pedido);
 		}
 				
@@ -88,28 +88,28 @@ public class GerenciaStatusPedidoAdminServlet extends HttpServlet {
 
 	}
 	
-	public void gerenciarTrocaParcialRealizada() {
+	public void gerenciarTrocaParcialAutorizada() {
 		for (PedidoItem item : pedido.getItens()) {
-			if (item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_AUTORIZADA)) {
+			if (item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_SOLICITADA)) {
 				Double quantidadeTroca = item.getQuantidade() - item.getQuantidadeDisponivelTroca();				
 				
 				if(quantidadeTroca != null && quantidadeTroca > 0) {
-					item.setStatus(StatusPedidoItem.TROCA_REALIZADA);
+					item.setStatus(StatusPedidoItem.TROCA_AUTORIZADA);
 					command.executar(item);
 				}
 			}
 		}
 	}
 	
-	public void gerenciarTrocaParcialAutorizada() {
+	public void gerenciarTrocaParcialRealizada() {
 		
 		for (PedidoItem item : pedido.getItens()) {
-			if (item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_SOLICITADA)) {
+			if (item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_AUTORIZADA)) {
 				Double quantidadeTroca = item.getQuantidade() - item.getQuantidadeDisponivelTroca();
 				valorTotalCupomTroca += quantidadeTroca * item.getValorUnitario();
 				
 				if(quantidadeTroca != null && quantidadeTroca > 0) {
-					item.setStatus(StatusPedidoItem.TROCA_AUTORIZADA);
+					item.setStatus(StatusPedidoItem.TROCA_REALIZADA);
 					command.executar(item);
 				}
 			}

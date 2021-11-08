@@ -282,11 +282,15 @@
 
 
         <!-- Início do bloco gerenciamento do pedido -->
-        <%if(pedido.getStatus() != StatusPedido.REPROVADO 
+        <%if((pedido.getStatus() != StatusPedido.REPROVADO 
         	&& pedido.getStatus() != StatusPedido.EM_TRANSITO 
+        	&& pedido.getStatus() != StatusPedido.ENTREGUE
         	&& pedido.getStatus() != StatusPedido.TROCA_REPROVADA
         	&& pedido.getStatus() != StatusPedido.TROCA_REALIZADA
-        	&& !pedido.isPossuiTrocaParcialRealizada()){ %>
+        	&& !pedido.isPossuiTrocaParcialRealizada()) 
+        	|| pedido.isPossuiTrocaParcialSolicitada()
+        	||pedido.isPossuiTrocaParcialAutorizada()
+        		){ %>
 	        <div class="card shadow mb-5 pb-4">
 	        	<form method="post" action="${stub}">
 		            <div class="card-body">

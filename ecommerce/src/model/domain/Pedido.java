@@ -236,6 +236,5 @@ public class Pedido extends EntidadeDominio {
 			}
 		}
 		return false;
-	}
-	
+	}	
 }

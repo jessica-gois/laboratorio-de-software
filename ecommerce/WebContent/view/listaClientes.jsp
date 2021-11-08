@@ -38,7 +38,7 @@
 							 <hr>			  
 							  <%for(PedidoItemTroca itemTroca : itensTrocaNotificar){ %>
 							  <div>					  
-							    Pedido <%=itemTroca.getItem().getPedido().getId()%> - Item <%=itemTroca.getItem().getLivro().getTitulo()%>
+							    Pedido <%=itemTroca.getItem().getPedido().getId()%> - Item <%=itemTroca.getItem().getLivro().getTitulo()%> - <fmt:formatNumber value = "<%=itemTroca.getQuantidade()%>" type = "number" maxFractionDigits="0"/> unidade(s)
 							  </div>
 							  <%}%>
 							  <a class="btn mt-3 btn-outline-primary" href="/ecommerce/view/marcarNotificacaoTrocaComoLida" style="color:#084298;">Marcar como lido</a>

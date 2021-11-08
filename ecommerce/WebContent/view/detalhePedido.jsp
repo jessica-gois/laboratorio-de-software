@@ -182,7 +182,9 @@
 							</div>
 						<%}%>
 						
-						<%if(pedido != null && pedido.getStatus().equals(StatusPedido.ENTREGUE) && !pedido.isPossuiTrocaParcialSolicitada()){ %>
+						<%if(pedido != null && pedido.getStatus().equals(StatusPedido.ENTREGUE) &&
+							!pedido.isPossuiTrocaParcialSolicitada() &&
+							!pedido.isPossuiTrocaParcialRealizada() && !pedido.isPossuiTrocaParcialAutorizada()){ %>
 							<div class="col-3">
 								<form id="formSolicitarTroca" action="${stub }" method="post" novalidate>
 								<input type="hidden" name="id" value="<%=pedido.getId()%>" />
