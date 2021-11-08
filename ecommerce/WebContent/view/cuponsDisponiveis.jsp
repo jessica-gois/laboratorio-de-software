@@ -28,6 +28,9 @@
                         <p class="h5">Tipo</p>
                     </div>
                     <div class="col">
+                        <p class="h5">Descrição</p>
+                    </div>                    
+                    <div class="col">
                         <p class="h5">Código</p>
                     </div>
                     <div class="col">
@@ -43,6 +46,9 @@
 	                <div class="row pt-2">
 	                    <div class="d-flex align-items-end col ">
 	                        <p><%=cupom.getTipo() != null ? cupom.getTipo().getDescricao() : "" %></p>
+	                    </div>
+	                    <div class="col">
+	                        <p><%=cupom.getNome()%></p>
 	                    </div>
 	                    <div class="col">
 	                        <p><%=cupom.getCodigo() %></p>

@@ -37,9 +37,9 @@
 								<div class="col-6">E-mail: <input class="form-control" type="email" name="email" id="email" required="true" /></div>
 								<div class="col-6">Senha: <input class="form-control" type="password" name="senha" id="senha" required="true"/></div>	
 								
-								<div>
+								<!-- <div>
 								<a id="esqueceu-senha" href="/ecommerce/view/redefinirSenhaCliente.jsp" >Esqueceu sua senha?</a>						
-								</div>
+								</div> -->
 								
 								<div>
 								<a id="esqueceu-senha" href="/ecommerce/view/cadastraCliente.jsp" >Novo cadastro?</a>						

@@ -105,7 +105,7 @@ public class CupomDAO extends AbstractDAO {
 		if (entidade.getPesquisa().equals("id")) {
 			return "select * from cupom where cup_id =?";
 		}else if(entidade.getPesquisa().equals("validadeAtiva")){
-			return "select * from cupom where cup_validade >= ?";
+			return "select * from cupom where cup_validade >= ? and (cup_tipo like 'PROMOCIONAL' or cup_cli_id = ?)";
 		}else {
 			return "select * from cupom";
 		}
@@ -116,7 +116,7 @@ public class CupomDAO extends AbstractDAO {
 		if (cupom.getPesquisa().equals("id")) {
 			setaParametrosQuery(st, cupom.getId());
 		}else if(cupom.getPesquisa().equals("validadeAtiva")) {
-			setaParametrosQuery(st, new Date());
+			setaParametrosQuery(st, new Date(), cupom.getIdCliente());
 		}
 		return st;
 	}
