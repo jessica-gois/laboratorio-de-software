@@ -164,8 +164,11 @@
 								</div>
 								<div class="col-2"><fmt:formatNumber value = "<%=item.getValorTotal()%>" type="currency"/></div>
 								<div class="col-2">
-	                				<p><%=item.getStatus() != null && !item.getStatus().equals(StatusPedidoItem.EM_PROCESSAMENTO) 
-	                				&& !item.getStatus().equals(StatusPedidoItem.ENTREGUE) ? item.getStatus().getDescricao() : ""%></p>
+	                				<p><%=item.getStatus() != null &&
+	            	                        (item.getStatus() == StatusPedidoItem.TROCA_SOLICITADA ||
+	            	                        item.getStatus() == StatusPedidoItem.TROCA_AUTORIZADA ||
+	            	                        item.getStatus() == StatusPedidoItem.TROCA_REALIZADA ||
+	            	                        item.getStatus() == StatusPedidoItem.TROCA_REPROVADA) ? item.getStatus().getDescricao() : ""%></p>
 	                			</div>
 							</div>
 					<% }
@@ -179,7 +182,7 @@
 							</div>
 						<%}%>
 						
-						<%if(pedido != null && pedido.getStatus().equals(StatusPedido.ENTREGUE)){ %>
+						<%if(pedido != null && pedido.getStatus().equals(StatusPedido.ENTREGUE) && !pedido.isPossuiTrocaParcialSolicitada()){ %>
 							<div class="col-3">
 								<form id="formSolicitarTroca" action="${stub }" method="post" novalidate>
 								<input type="hidden" name="id" value="<%=pedido.getId()%>" />

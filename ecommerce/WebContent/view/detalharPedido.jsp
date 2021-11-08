@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <c:import url="template-head-admin.jsp" />
-<c:url value="/controlador" var="stub" />
+<c:url value="/view/gerenciamentoStatusPedido" var="stub" />
 <fmt:setLocale value="pt_BR" />
 <%
 	Pedido pedido = (Pedido) request.getSession().getAttribute("pedidoAdmin");
@@ -283,10 +283,10 @@
 
         <!-- Início do bloco gerenciamento do pedido -->
         <%if(pedido.getStatus() != StatusPedido.REPROVADO 
-        	&& pedido.getStatus() != StatusPedido.EM_TRANSITO
-        	&& pedido.getStatus() != StatusPedido.ENTREGUE 
+        	&& pedido.getStatus() != StatusPedido.EM_TRANSITO 
         	&& pedido.getStatus() != StatusPedido.TROCA_REPROVADA
-        	&& pedido.getStatus() != StatusPedido.TROCA_REALIZADA){ %>
+        	&& pedido.getStatus() != StatusPedido.TROCA_REALIZADA
+        	&& !pedido.isPossuiTrocaParcialRealizada()){ %>
 	        <div class="card shadow mb-5 pb-4">
 	        	<form method="post" action="${stub}">
 		            <div class="card-body">
@@ -297,8 +297,8 @@
 		                		if(status != StatusPedido.EM_PROCESSAMENTO){
 		                			if((pedido.getStatus() == StatusPedido.EM_PROCESSAMENTO && (status == StatusPedido.APROVADO || status == StatusPedido.REPROVADO))
 		                				||(pedido.getStatus() == StatusPedido.APROVADO && status == StatusPedido.EM_TRANSITO)
-		                				||(pedido.getStatus() == StatusPedido.TROCA_SOLICITADA && (status == StatusPedido.TROCA_AUTORIZADA || status == StatusPedido.TROCA_REPROVADA))
-		                				||(pedido.getStatus() == StatusPedido.TROCA_AUTORIZADA && status == StatusPedido.TROCA_REALIZADA)){%>
+		                				||((pedido.getStatus() == StatusPedido.TROCA_SOLICITADA || pedido.isPossuiTrocaParcialSolicitada()) && (status == StatusPedido.TROCA_AUTORIZADA || status == StatusPedido.TROCA_REPROVADA))
+		                				||((pedido.getStatus() == StatusPedido.TROCA_AUTORIZADA || pedido.isPossuiTrocaParcialAutorizada()) && status == StatusPedido.TROCA_REALIZADA)){%>
 			                	<div class="form-check">
 			                    	<input class="form-check-input" type="radio" value="<%=status.name()%>" name="status" id="<%=status.name()%>"
 			                        	<%=status == pedido.getStatus() ? "checked" : "" %>>

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.domain.enums.StatusPedido;
+import model.domain.enums.StatusPedidoItem;
 
 public class Pedido extends EntidadeDominio {
 	private Cliente cliente;
@@ -197,6 +198,39 @@ public class Pedido extends EntidadeDominio {
 		if(formasPagamento != null && !formasPagamento.isEmpty()) {
 			for(FormaPagamento forma : formasPagamento) {
 				if(forma.getCupom() != null && forma.getCupom().getId() > 0 ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean isPossuiTrocaParcialSolicitada() {
+		if(itens != null && !itens.isEmpty()) {
+			for(PedidoItem item : itens) {
+				if(item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_SOLICITADA)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean isPossuiTrocaParcialAutorizada() {
+		if(itens != null && !itens.isEmpty()) {
+			for(PedidoItem item : itens) {
+				if(item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_AUTORIZADA)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean isPossuiTrocaParcialRealizada() {
+		if(itens != null && !itens.isEmpty()) {
+			for(PedidoItem item : itens) {
+				if(item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_REALIZADA)) {
 					return true;
 				}
 			}
