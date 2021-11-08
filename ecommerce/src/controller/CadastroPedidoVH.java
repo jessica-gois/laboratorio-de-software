@@ -42,7 +42,7 @@ public class CadastroPedidoVH implements IViewHelper {
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String erroPedido = null;
 		if(resultado.getResposta()==null) {
-			request.getSession().setAttribute("carrinho", new ArrayList<CarrinhoItem>());
+			request.getSession().setAttribute("carrinho", null);
 			response.sendRedirect(request.getContextPath() + "/view/sucesso.jsp");	
 		}else {
 			erroPedido = resultado.getResposta();

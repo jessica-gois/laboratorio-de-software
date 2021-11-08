@@ -149,7 +149,7 @@
 					}%>
 				<div class="row mt-2">
 					<div class="col-auto d-flex align-items-end">
-						<a class="btn btn-blue" href="#">Cadastrar cartão</a>
+						<!-- <a class="btn btn-blue" href="#">Cadastrar cartão</a>-->
 					</div>
 					<!--<div class="col-auto d-flex align-items-end">
 						<a class="btn btn-secondary" href="#">Alterar</a>
@@ -241,7 +241,7 @@
 				</div>
 				<div class="row mt-2">
 					<div class="col-auto d-flex align-items-end">
-						<a class="btn btn-blue" href="/ecommerce/view/cadastraEndereco.jsp?caminhoRedirecionar">Cadastrar endereço</a>
+						<!--<a class="btn btn-blue" href="/ecommerce/view/cadastraEndereco.jsp?caminhoRedirecionar">Cadastrar endereço</a>  -->
 					</div>
 				</div>	
 				<input type="hidden" name="acao" value="salvar" />	

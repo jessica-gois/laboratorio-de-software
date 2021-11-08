@@ -64,9 +64,14 @@ public class FinalizarPedidoServlet extends HttpServlet {
 			request.setAttribute("erroPedido", request.getParameter("erroPedido"));
 			prepararConsultaEntidades();			
 			consultarEntidades(request);
-			RequestDispatcher rd = request.getRequestDispatcher("/view/pedido.jsp");
+			RequestDispatcher rd;
+			
+			if (itens != null && !itens.isEmpty()) {
+				rd = request.getRequestDispatcher("/view/pedido.jsp");
+			} else {
+				rd = request.getRequestDispatcher("/view/index");
+			}
 			rd.forward(request, response);
-			// response.sendRedirect(request.getContextPath() + "/view/index.jsp");
 		}else {
 			response.sendRedirect(request.getContextPath() + "/view/login.jsp");
 		}
