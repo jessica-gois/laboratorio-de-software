@@ -59,7 +59,9 @@ public class FinalizarPedidoServlet extends HttpServlet {
 				pedido.setItens(itens);
 			}
 			request.getSession().setAttribute("novoPedido", pedido);
-			request.setAttribute("erroCartao", request.getAttribute("erroCartao"));
+			request.setAttribute("erroCartao", request.getParameter("erroCartao"));
+			request.setAttribute("erroCupom", request.getParameter("erroCupom"));
+			request.setAttribute("erroPedido", request.getParameter("erroPedido"));
 			prepararConsultaEntidades();			
 			consultarEntidades(request);
 			RequestDispatcher rd = request.getRequestDispatcher("/view/pedido.jsp");
@@ -101,7 +103,8 @@ public class FinalizarPedidoServlet extends HttpServlet {
 			}
 			request.setAttribute("cartoes", cartoes);
 		}
-
+		
+		cupom.setIdCliente(cliente.getId());
 		resultado = command.executar(cupom);
 		if (resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
 			List<Cupom> cupons = new ArrayList<Cupom>();

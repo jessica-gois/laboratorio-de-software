@@ -20,6 +20,8 @@
 	List<Endereco> enderecos = (List<Endereco>)request.getAttribute("enderecos");
 	List<Cartao> cartoes = (List<Cartao>) request.getAttribute("cartoes");
 	String erroCartao = (String) request.getAttribute("erroCartao");
+	String erroCupom = (String) request.getAttribute("erroCupom");
+	String erroPedido = (String) request.getAttribute("erroPedido");
 	String caminhoRedirecionar = "/view/finalizarPedido.jsp";
 	
 %>
@@ -34,6 +36,7 @@
 				<form id="formFinalizarPedido" action="${stub}" novalidate>
 				<h4>Finalizar compra</h4>
 				<hr class="my-3">
+				<span class="error"><%=erroPedido != null ? erroPedido : ""%></span>
 				<div class="row mt-4">
 					<p class="h5">1. Resumo do pedido</p>
 				</div>
@@ -48,7 +51,7 @@
 						<p class="h5">Valor total descontos (cupons)</p>
 					</div>
 					<div class="col-3">
-						<p class="h5">Valor final do pedido</p>
+						<p class="h5"><%=pedido.getValorTotal() >= 0 ? "Valor final do pedido" : "Valor de troco do pedido"%></p>
 					</div>
 				</div>
 				<div class="row mt-2">
@@ -62,44 +65,12 @@
 						<fmt:formatNumber value = "<%=pedido.getValorTotalDescontos() %>" type = "currency"/>
 					</div>
 					<div class="col-3">
-						<fmt:formatNumber value = "<%=pedido.getValorTotal()%>" type = "currency"/>
+						<fmt:formatNumber value = "<%=pedido.getValorTotal() >=0 ? pedido.getValorTotal() : pedido.getValorTotal() * -1 %>" type = "currency"/>
 					</div>
-				</div>
+				</div>						
 				<div class="row mt-4">
-					<p class="h5">2. Endereço de entrega</p>
-				</div>
-				
-				<div class="row mt-2">
-					<div class="col">				
-						<select class="form-control" name="enderecoEntrega" id="enderecoEntrega" required="true">
-						<option value="">Escolha o endereco...</option>	
-						<% for ( Endereco endereco : enderecos) {  %>
-							<option value="<%=endereco.getId()%>"><%=endereco.getLabel()%></option>
-						<% } %>	
-						</select>
-					</div>
-				</div>
-				<div class="row mt-4">
-					<p class="h5">3. Endereço de cobrança</p>
-				</div>
-				<div class="row mt-2">
-					<div class="col">
-						<%if(enderecos != null){%>			
-							<select class="form-control" name="enderecoCobranca" id="enderecoCobranca" required="true">
-							<option value="">Escolha o endereco...</option>	
-							<% for ( Endereco endereco : enderecos) {  %>
-								<option value="<%=endereco.getId()%>"><%=endereco.getLabel()%></option>
-							<% } %>	
-							</select>
-						<% } %>	
-				</div>
-				<div class="row mt-2">
-					<div class="col-auto d-flex align-items-end">
-						<a class="btn btn-blue" href="/ecommerce/view/cadastraEndereco.jsp?caminhoRedirecionar">Cadastrar endereço</a>
-					</div>
-				</div>			
-				<div class="row mt-4">
-					<p class="h5">4. Cupons disponíveis</p>
+					<p class="h5">2. Cupons disponíveis</p>
+					<span class="error"><%=erroCupom != null ? erroCupom : ""%></span>
 				</div>
 				<div class="row mt-2">
 					<div class="col-3">
@@ -136,9 +107,9 @@
 				<% } %>
 				
 					<div class="row mt-3">
-					<p class="h5">5. Pagamento</p>
-					<span class="error"><%=erroCartao != null ? erroCartao : ""%></span>
-				</div>
+						<p class="h5">3. Pagamento</p>
+						<span class="error"><%=erroCartao != null ? erroCartao : ""%></span>
+					</div>
 				<div class="row mt-2">
 					<div class="col-3">
 						<p class="h5">Bandeira</p>
@@ -186,7 +157,7 @@
 				</div>
 					
 				<div class="row mt-4">
-					<p class="h5">6. Revisar itens</p>
+					<p class="h5">4. Revisar itens</p>
 				</div>
 				<div class="row mt-2">
 					<div class="col-3">
@@ -238,6 +209,41 @@
 						</div>
 					<%}%>
 				<%}%>
+				
+				<div class="row mt-4">
+					<p class="h5">5. Endereço de entrega</p>
+				</div>
+				
+				<div class="row mt-2">
+					<div class="col">				
+						<select class="form-control" name="enderecoEntrega" id="enderecoEntrega" required="true">
+						<option value="">Escolha o endereco...</option>	
+						<% for ( Endereco endereco : enderecos) {  %>
+							<option value="<%=endereco.getId()%>"><%=endereco.getLabel()%></option>
+						<% } %>	
+						</select>
+					</div>
+				</div>
+				<div class="row mt-4">
+					<p class="h5">6. Endereço de cobrança</p>
+				</div>
+				<div class="row mt-2">
+					<div class="col">
+						<%if(enderecos != null){%>			
+							<select class="form-control" name="enderecoCobranca" id="enderecoCobranca" required="true">
+							<option value="">Escolha o endereco...</option>	
+							<% for ( Endereco endereco : enderecos) {  %>
+								<option value="<%=endereco.getId()%>"><%=endereco.getLabel()%></option>
+							<% } %>	
+							</select>
+						<% } %>	
+					</div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-auto d-flex align-items-end">
+						<a class="btn btn-blue" href="/ecommerce/view/cadastraEndereco.jsp?caminhoRedirecionar">Cadastrar endereço</a>
+					</div>
+				</div>	
 				<input type="hidden" name="acao" value="salvar" />	
 				<input type="hidden" name="viewHelper" value="CadastroPedidoVH" />
 				<div class="row mt-4">					

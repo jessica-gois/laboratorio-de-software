@@ -1,9 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +11,7 @@ import model.domain.EntidadeDominio;
 import model.domain.FormaPagamento;
 import model.domain.Pedido;
 import model.domain.Result;
+import model.domain.enums.TipoCupom;
 import util.Conversao;
 
 public class AplicarCupomVH implements IViewHelper {
@@ -29,12 +29,24 @@ public class AplicarCupomVH implements IViewHelper {
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if(resultado.getEntidades() != null && !resultado.getEntidades().isEmpty()) {
 			Cupom cupom = (Cupom) resultado.getEntidades().get(0);
-			FormaPagamento formaPagamento = new FormaPagamento(cupom);
 			Pedido pedido = (Pedido) request.getSession().getAttribute("novoPedido");
-			pedido.getFormasPagamento().add(formaPagamento);
-			request.getSession().setAttribute("novoPedido", pedido);
+			StringBuilder erroCupom = new StringBuilder();
 			
-			response.sendRedirect(request.getContextPath() + "/view/finalizarPedido");
+			if(cupom.getTipo() != TipoCupom.PROMOCIONAL || !pedido.isUtilizouCupomPromocional()) {
+				if(pedido.getValorTotal() > 0) {
+				FormaPagamento formaPagamento = new FormaPagamento(cupom);
+				
+				pedido.getFormasPagamento().add(formaPagamento);
+				request.getSession().setAttribute("novoPedido", pedido);
+				}else {
+					erroCupom.append("Não é possível aplicar mais cupons ao pedido, valor de descontos excedido.\n ");
+				}
+			}else {
+				erroCupom.append("Não é possível utilizar mais de um cupom promocional no pedido.");
+			}
+			
+			response.sendRedirect(request.getContextPath() + "/view/finalizarPedido?erroCupom="+ (erroCupom.length() > 0 
+				? URLEncoder.encode(erroCupom.toString(), "UTF-8" ) : ""));
 		}
 	}
 

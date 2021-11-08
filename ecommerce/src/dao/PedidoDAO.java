@@ -7,9 +7,12 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import model.domain.Cliente;
+import model.domain.Cupom;
 import model.domain.EntidadeDominio;
 import model.domain.FormaPagamento;
 import model.domain.MovimentacaoEstoque;
@@ -17,6 +20,7 @@ import model.domain.Pedido;
 import model.domain.PedidoItem;
 import model.domain.Usuario;
 import model.domain.enums.StatusPedido;
+import model.domain.enums.TipoCupom;
 import model.domain.enums.TipoMovimentacao;
 import util.Calculadora;
 import util.Conversao;
@@ -34,12 +38,25 @@ public class PedidoDAO extends AbstractDAO {
 			st = conn.prepareStatement("INSERT INTO pedido(ped_valortotal, ped_valorfrete, ped_status, ped_cli_id, "
 				+ "ped_endEntrega_id, ped_endCobranca_id) VALUES (?, ?, ?, ?, ?, ?)",
 				Statement.RETURN_GENERATED_KEYS);
-
-			setaParametrosQuery(st, pedido.getValorTotal(), pedido.getValorFrete(), pedido.getStatus().name(),
+			
+			Double total = pedido.getValorTotal() >= 0 ? pedido.getValorTotal() : 0;
+			
+			setaParametrosQuery(st, total, pedido.getValorFrete(), pedido.getStatus().name(),
 				pedido.getCliente().getId(), pedido.getEnderecoEntrega().getId(), pedido.getEnderecoCobranca().getId());
 			long inicioExecucao = System.currentTimeMillis();
 			int linhasAfetadas = st.executeUpdate();
 			long terminoExecucao = System.currentTimeMillis();
+			
+			if (pedido.getValorTotal() < 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				while (rs.next()) {
+					Integer idPedidoCadastrado = rs.getInt(1);
+					pedido.setId(idPedidoCadastrado);
+				}			
+				
+			}
+			
+			gerarCupomDeTroca(pedido);
 			System.out.println(
 				"Pedido cadastrado com sucesso! \n Linhas afetadas: " + linhasAfetadas + "\nTempo de execução: "
 				+ Calculadora.calculaIntervaloTempo(inicioExecucao, terminoExecucao) + " segundos");
@@ -236,14 +253,31 @@ public class PedidoDAO extends AbstractDAO {
 		}
 	}
 	
-		public Pedido getPedidoById(Integer pedidoId) {
+	public Pedido getPedidoById(Integer pedidoId) {
 		Pedido pedido = new Pedido();
 		pedido.setId(pedidoId);
-		pedido.setPesquisa("id");	
-		if(pedidoId != null && pedidoId > 0) {
-			return (Pedido)consultar(pedido).get(0);
-		}else {
+		pedido.setPesquisa("id");
+		if (pedidoId != null && pedidoId > 0) {
+			return (Pedido) consultar(pedido).get(0);
+		} else {
 			return pedido;
+		}
+	}
+	
+	public void gerarCupomDeTroca(Pedido pedido) {
+		if (pedido != null && pedido.getValorTotal() < 0) {
+			CupomDAO cupomDAO = new CupomDAO();
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date());
+			calendar.add(Calendar.YEAR, 1);
+			Date validade = calendar.getTime(); // Atribuindo validade de um ano ao cupom de troca
+			Double valorCupom = pedido.getValorTotal() * -1d;
+			
+			Cupom cupom = new Cupom(null, "TPED" + pedido.getId(), "Troca do pedido " + pedido.getId(), valorCupom,
+				validade, TipoCupom.TROCA, pedido.getCliente().getId(), pedido.getId());
+			
+			cupomDAO.salvar(cupom);
+
 		}
 	}
 	

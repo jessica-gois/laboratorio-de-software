@@ -36,6 +36,7 @@ import model.domain.Result;
 import model.domain.Usuario;
 import negocio.IStrategy;
 import negocio.ValidadorCadastroCartao;
+import negocio.ValidadorCadastroPedido;
 import negocio.ValidadorCpf;
 import negocio.ValidadorDadosCliente;
 import negocio.ValidadorEndereco;
@@ -56,13 +57,14 @@ public class Fachada implements IFachada {
 		List<IStrategy> rnAntesCartao = new ArrayList<IStrategy>();
 		List<IStrategy> rnAntesEndereco = new ArrayList<IStrategy>();
 		List<IStrategy> rnAntesUsuario = new ArrayList<IStrategy>();
+		List<IStrategy> rnAntesPedido = new ArrayList<IStrategy>();
 
 		List<IStrategy> rnDepois = new ArrayList<IStrategy>();
 
 		mapaAntesPesistencia = new HashMap<String, List<IStrategy>>();
 		mapaDepoisPesistencia = new HashMap<String, List<IStrategy>>();
 
-		carregarMapaAntesPersistencia(rnAntesCliente, rnAntesCartao, rnAntesEndereco, rnAntesUsuario);
+		carregarMapaAntesPersistencia(rnAntesCliente, rnAntesCartao, rnAntesEndereco, rnAntesUsuario, rnAntesPedido);
 
 		mapaDaos = new HashMap<String, IDAO>();
 		mapaDaos.put(Cartao.class.getName(), new CartaoDAO());
@@ -153,7 +155,7 @@ public class Fachada implements IFachada {
 	}
 
 	public void carregarMapaAntesPersistencia(List<IStrategy> rnAntesCliente, List<IStrategy> rnAntesCartao,
-			List<IStrategy> rnAntesEndereco, List<IStrategy> rnAntesUsuario) {
+			List<IStrategy> rnAntesEndereco, List<IStrategy> rnAntesUsuario, List<IStrategy> rnAntesPedido) {
 
 		// Regras antes da persistencia do cliente
 		rnAntesCliente.add(new ValidadorCpf());
@@ -168,11 +170,15 @@ public class Fachada implements IFachada {
 
 		// Regras antes da persistencia do usuario
 		rnAntesUsuario.add(new ValidadorSenha());
+		
+		// Regras antes da persistencia do pedido
+		rnAntesPedido.add(new ValidadorCadastroPedido());
 
 		mapaAntesPesistencia.put(Cliente.class.getName(), rnAntesCliente);
 		mapaAntesPesistencia.put(Cartao.class.getName(), rnAntesCartao);
 		mapaAntesPesistencia.put(Endereco.class.getName(), rnAntesEndereco);
 		mapaAntesPesistencia.put(Usuario.class.getName(), rnAntesUsuario);
+		mapaAntesPesistencia.put(Pedido.class.getName(), rnAntesPedido);
 	}
 
 }

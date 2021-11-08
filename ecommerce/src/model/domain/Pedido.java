@@ -6,6 +6,7 @@ import java.util.List;
 
 import model.domain.enums.StatusPedido;
 import model.domain.enums.StatusPedidoItem;
+import model.domain.enums.TipoCupom;
 
 public class Pedido extends EntidadeDominio {
 	private Cliente cliente;
@@ -194,10 +195,32 @@ public class Pedido extends EntidadeDominio {
 		return quantidadeCartoes;
 	}
 	
+	public boolean isUtilizouCartao() {
+		if(formasPagamento != null && !formasPagamento.isEmpty()) {
+			for(FormaPagamento forma : formasPagamento) {
+				if(forma.getCartao() != null && forma.getCartao().getId() > 0 ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public boolean isUtilizouCupom() {
 		if(formasPagamento != null && !formasPagamento.isEmpty()) {
 			for(FormaPagamento forma : formasPagamento) {
 				if(forma.getCupom() != null && forma.getCupom().getId() > 0 ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean isUtilizouCupomPromocional() {
+		if(formasPagamento != null && !formasPagamento.isEmpty()) {
+			for(FormaPagamento forma : formasPagamento) {
+				if(forma.getCupom() != null && forma.getCupom().getTipo().equals(TipoCupom.PROMOCIONAL)) {
 					return true;
 				}
 			}

@@ -1,10 +1,13 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.domain.CarrinhoItem;
 import model.domain.Endereco;
 import model.domain.EntidadeDominio;
 import model.domain.Pedido;
@@ -37,9 +40,14 @@ public class CadastroPedidoVH implements IViewHelper {
 
 	@Override
 	public void setView(Result resultado, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		//if(resultado.getResposta()==null) {
-		response.sendRedirect(request.getContextPath() + "/view/sucesso.jsp");	
-
+		String erroPedido = null;
+		if(resultado.getResposta()==null) {
+			request.getSession().setAttribute("carrinho", new ArrayList<CarrinhoItem>());
+			response.sendRedirect(request.getContextPath() + "/view/sucesso.jsp");	
+		}else {
+			erroPedido = resultado.getResposta();
+			response.sendRedirect(request.getContextPath() + "/view/finalizarPedido?erroPedido="+ (erroPedido != null ? URLEncoder.encode(erroPedido, "UTF-8" ) : ""));
+		}
 	}
 
 }

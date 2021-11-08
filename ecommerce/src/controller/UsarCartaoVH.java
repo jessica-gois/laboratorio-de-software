@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,11 +31,16 @@ public class UsarCartaoVH implements IViewHelper {
 			Cartao cartao = (Cartao) resultado.getEntidades().get(0);
 			FormaPagamento formaPagamento = new FormaPagamento(cartao);
 			Pedido pedido = (Pedido) request.getSession().getAttribute("novoPedido");
+			StringBuilder erroCartao = new StringBuilder();
+			
 			if (pedido.getQuantidadeCartoesUsados() < pedido.getQuantidadeMaxCartoes()) {
 				pedido.getFormasPagamento().add(formaPagamento);
 				request.getSession().setAttribute("novoPedido", pedido);
+			}else {
+				erroCartao.append("Não é possível adicionar mais cartões ao pedido, limite excedido.");
 			}
-			response.sendRedirect(request.getContextPath() + "/view/finalizarPedido");
+			response.sendRedirect(request.getContextPath() + "/view/finalizarPedido?erroCartao="+ (erroCartao.length() > 0 
+				? URLEncoder.encode(erroCartao.toString(), "UTF-8" ) : ""));
 		}
 	}
 
