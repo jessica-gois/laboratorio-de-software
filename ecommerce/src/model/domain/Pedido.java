@@ -253,6 +253,8 @@ public class Pedido extends EntidadeDominio {
 		return false;
 	}
 	
+
+	
 	public boolean isPossuiTrocaParcialRealizada() {
 		if(itens != null && !itens.isEmpty()) {
 			for(PedidoItem item : itens) {

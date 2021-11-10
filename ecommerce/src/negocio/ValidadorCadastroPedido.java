@@ -17,9 +17,6 @@ public class ValidadorCadastroPedido implements IStrategy {
 			erros.append("É necessário informar ao menos uma forma de pagamento");
 		}
 		
-		if (!pedido.isUtilizouCartao() && pedido.getValorTotal() > 0) {
-			erros.append("É necessário informar ao menos um cartão, para finalizar o pedido");
-		}
 		
 		if (pedido.getEnderecoCobranca() == null) {
 			erros.append("É necessário informar o endereço de cobrança");
