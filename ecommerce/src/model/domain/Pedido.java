@@ -179,7 +179,7 @@ public class Pedido extends EntidadeDominio {
 		Double totalCartoes = 0d;
 		if(formasPagamento != null) {
 			for(FormaPagamento formaPagamento: formasPagamento) {
-				if(formaPagamento.getCartao() != null) {
+				if(formaPagamento.getCartao() != null && formaPagamento.getCartao().getId() > 0) {
 					totalCartoes++;
 				}
 			}
