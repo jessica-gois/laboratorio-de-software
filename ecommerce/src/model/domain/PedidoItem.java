@@ -94,5 +94,13 @@ public class PedidoItem extends EntidadeDominio {
 	public void setQuantidadeDisponivelTroca(Double quantidadeDisponivelTroca) {
 		this.quantidadeDisponivelTroca = quantidadeDisponivelTroca;
 	}
+	
+	public Double getQuantidadeTroca() {
+		Double quantidadeTroca = 0d;
+		if(quantidade != null && quantidadeDisponivelTroca != null) {
+			quantidadeTroca = quantidade - quantidadeDisponivelTroca;
+		}
+		return quantidadeTroca;
+	}
 		
 }

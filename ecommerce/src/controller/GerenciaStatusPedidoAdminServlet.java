@@ -25,6 +25,7 @@ import model.domain.Result;
 import model.domain.enums.StatusPedido;
 import model.domain.enums.StatusPedidoItem;
 import model.domain.enums.TipoCupom;
+import util.Conversao;
 
 @WebServlet("/view/gerenciamentoStatusPedido")
 public class GerenciaStatusPedidoAdminServlet extends HttpServlet {
@@ -56,7 +57,15 @@ public class GerenciaStatusPedidoAdminServlet extends HttpServlet {
 			status = StatusPedido.valueOf(request.getParameter("status"));
 		}
 		
-		if(pedido != null && status != null) {	
+		if(pedido == null && request.getParameter("id") != null) {
+			command = commandMap.get("consultar");
+			pedido = new Pedido();
+			pedido.setId(Conversao.parseStringToInt(request.getParameter("id")));
+			pedido.setPesquisa("id");
+			pedido = (Pedido) command.executar(pedido).getEntidades().get(0);
+		}
+		
+		if(status != null) {	
 			if ((status != StatusPedido.TROCA_AUTORIZADA && status != StatusPedido.TROCA_REALIZADA) || 
 				(!pedido.isPossuiTrocaParcialSolicitada() && !pedido.isPossuiTrocaParcialAutorizada())) {
 				

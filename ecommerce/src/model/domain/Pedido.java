@@ -231,10 +231,23 @@ public class Pedido extends EntidadeDominio {
 		return false;
 	}
 	
+	
+	public boolean isPossuiTrocaParcial() {
+		if(itens != null && !itens.isEmpty()) {
+			for(PedidoItem item : itens) {
+				if(item.getQuantidadeTroca() < item.getQuantidade()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}	
+	
 	public boolean isPossuiTrocaParcialSolicitada() {
 		if(itens != null && !itens.isEmpty()) {
 			for(PedidoItem item : itens) {
-				if(item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_SOLICITADA)) {
+				if(item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_SOLICITADA)
+						&& isPossuiTrocaParcial()) {
 					return true;
 				}
 			}
@@ -245,7 +258,8 @@ public class Pedido extends EntidadeDominio {
 	public boolean isPossuiTrocaParcialAutorizada() {
 		if(itens != null && !itens.isEmpty()) {
 			for(PedidoItem item : itens) {
-				if(item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_AUTORIZADA)) {
+				if(item.getStatus() != null && item.getStatus().equals(StatusPedidoItem.TROCA_AUTORIZADA)
+						&& isPossuiTrocaParcial()) {
 					return true;
 				}
 			}

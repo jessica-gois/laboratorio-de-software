@@ -164,7 +164,7 @@
 								</div>
 								<div class="col-2"><fmt:formatNumber value = "<%=item.getValorTotal()%>" type="currency"/></div>
 								<div class="col-2">
-	                				<p><%=item.getStatus() != null &&
+	                				<p><%=item.getStatus() != null && pedido.getStatus() == StatusPedido.ENTREGUE &&
 	            	                        (item.getStatus() == StatusPedidoItem.TROCA_SOLICITADA ||
 	            	                        item.getStatus() == StatusPedidoItem.TROCA_AUTORIZADA ||
 	            	                        item.getStatus() == StatusPedidoItem.TROCA_REALIZADA ||

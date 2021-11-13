@@ -265,7 +265,7 @@
                     </div>
                     
                      <div class="col-2">
-	                    <p><%if(item.getStatus() != null &&
+	                    <p><%if(item.getStatus() != null && pedido.getStatus() == StatusPedido.ENTREGUE &&
 	                        (item.getStatus() == StatusPedidoItem.TROCA_SOLICITADA ||
 	                        item.getStatus() == StatusPedidoItem.TROCA_AUTORIZADA ||
 	                        item.getStatus() == StatusPedidoItem.TROCA_REALIZADA ||
@@ -313,8 +313,7 @@
 		                  	}
 		                  }%>
 		               </div>             
-		               <input type="hidden" name="acao" value="alterar" />
-					   <input type="hidden" name="viewHelper" value="AlterarStatusPedidoAdminVH" />
+		               <input type="hidden" name="id" value="<%=pedido.getId()%>" />
 					                    
 		                <div class="col-2 mt-5">
 		                    <button class="btn btn-blue w-100" type="submit" id="salvar" name="salvar" title="Salvar"
