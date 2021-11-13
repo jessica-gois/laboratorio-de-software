@@ -73,6 +73,11 @@ public class GerenciaStatusPedidoAdminServlet extends HttpServlet {
 				command = commandMap.get("alterar");
 				command.executar(pedido);
 				
+				for(PedidoItem item : pedido.getItens()) {
+					item.setStatus(StatusPedidoItem.valueOf(status.name()));
+					command.executar(item);
+				}
+				
 				valorTotalCupomTroca = pedido.getValorTotalItens();
 				
 			} else { // Caso seja a autorização ou finalização de troca parcial
