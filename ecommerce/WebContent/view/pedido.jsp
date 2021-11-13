@@ -137,7 +137,7 @@
 						<%if(!cartao.isUsado()){%>
 							<a class="btn btn-blue w-50" href="/ecommerce/controlador?acao=consultar&viewHelper=UsarCartaoVH&id=<%=cartao.getId()%>">Usar</a>	
 						<%}else{
-							 if(pedido.getValorTotal() == 0 || pedido.getFormasPagamento().size() > 1){%>
+							 if(pedido.getValorTotal() <= 0 || pedido.getQuantidadeCartoesUsados() > 1){%>
 							<a class="btn btn-secondary w-50" href="/ecommerce/controlador?acao=consultar&viewHelper=RemoverCartaoPedidoVH&id=<%=cartao.getId()%>">Remover</a>	
 						<%}else{%>
 							<a class="btn btn-secondary w-50" href="#">Usado</a>	

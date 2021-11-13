@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,9 +36,21 @@ public class AplicarCupomVH implements IViewHelper {
 			
 			if(cupom.getTipo() != TipoCupom.PROMOCIONAL || !pedido.isUtilizouCupomPromocional()) {
 				if(pedido.getValorTotal() > 0) {
-				FormaPagamento formaPagamento = new FormaPagamento(cupom);
-				
+				FormaPagamento formaPagamento = new FormaPagamento(cupom);				
 				pedido.getFormasPagamento().add(formaPagamento);
+				
+				//Caso o valor do pedido tenha sido pago completamente pelos cupons, remover os cartões do pedido
+				if (pedido.getValorTotal() <= 0) {
+					List<FormaPagamento> formasRemover = new ArrayList<FormaPagamento>();
+					for (FormaPagamento forma : pedido.getFormasPagamento()) {
+						if (forma.getCartao() != null && forma.getCartao().getId() > 0) {
+							formasRemover.add(forma);
+						}
+					}
+
+					pedido.getFormasPagamento().removeAll(formasRemover);
+				}
+				
 				request.getSession().setAttribute("novoPedido", pedido);
 				}else {
 					erroCupom.append("Não é possível aplicar mais cupons ao pedido, valor de descontos excedido.\n ");
