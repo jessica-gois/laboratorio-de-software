@@ -273,7 +273,7 @@ public class PedidoDAO extends AbstractDAO {
 			Date validade = calendar.getTime(); // Atribuindo validade de um ano ao cupom de troca
 			Double valorCupom = pedido.getValorTotal() * -1d;
 			
-			Cupom cupom = new Cupom(null, "TPED" + pedido.getId(), "Troca do pedido " + pedido.getId(), valorCupom,
+			Cupom cupom = new Cupom(null, "TCPED" + pedido.getId(), "Troco do pedido " + pedido.getId(), valorCupom,
 				validade, TipoCupom.TROCA, pedido.getCliente().getId(), pedido.getId());
 			
 			cupomDAO.salvar(cupom);

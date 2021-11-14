@@ -65,7 +65,7 @@
 						<fmt:formatNumber value = "<%=pedido.getValorTotalDescontos() %>" type = "currency"/>
 					</div>
 					<div class="col-3">
-						<fmt:formatNumber value = "<%=pedido.getValorTotal() >=0 ? pedido.getValorTotal() : pedido.getValorTotal() * -1 %>" type = "currency"/>
+						<fmt:formatNumber value = "<%=pedido.getValorTotal() >= 0 ? pedido.getValorTotal() : pedido.getValorTotal() * -1 %>" type = "currency"/>
 					</div>
 				</div>						
 				<div class="row mt-4">

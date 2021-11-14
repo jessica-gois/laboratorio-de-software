@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,6 +32,7 @@ public class RemoverCartaoPedidoVH implements IViewHelper {
 			Cartao cartao = (Cartao) resultado.getEntidades().get(0);
 			FormaPagamento formaPagamentoRemover = null;
 			Pedido pedido = (Pedido) request.getSession().getAttribute("novoPedido");
+			StringBuilder erroCartao = new StringBuilder();
 			
 			for(FormaPagamento formaPagamento : pedido.getFormasPagamento()) {
 				if(formaPagamento.getCartao() != null && formaPagamento.getCartao().equals(cartao)) {
@@ -40,18 +42,12 @@ public class RemoverCartaoPedidoVH implements IViewHelper {
 			if (formaPagamentoRemover != null && (pedido.getValorTotal() == 0 || pedido.getFormasPagamento().size() > 1)) {
 				pedido.getFormasPagamento().remove(formaPagamentoRemover);
 			}else {
-				request.setAttribute("erroCartao", "Não foi possível remover o cartão.\n"
-				+ " É necessário no mínimo 1 forma de pagamento no pedido.");
+				erroCartao.append("Não foi possível remover o cartão.\n"
+					+ " É necessário no mínimo 1 forma de pagamento no pedido.");
 			}
 			request.getSession().setAttribute("novoPedido", pedido);
-			RequestDispatcher rd = request.getRequestDispatcher("/view/finalizarPedido");
-			try {
-				rd.forward(request, response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			response.sendRedirect(request.getContextPath() + "/view/finalizarPedido?erroCartao="+ (erroCartao.length() > 0 
+				? URLEncoder.encode(erroCartao.toString(), "UTF-8" ) : ""));
 		}
 	}
 

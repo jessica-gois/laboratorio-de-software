@@ -91,7 +91,7 @@ public class Fachada implements IFachada {
 
 		if (sb.length() == 0) {
 			IDAO dao = mapaDaos.get(nmClass);
-			dao.salvar(entidade);
+			result.setResposta(dao.salvar(entidade));
 			// List<IStrategy> rnsDepois = mapaDepoisPesistencia.get(nmClass);
 			// sb.append(executarStrategies(rnsDepois, entidade));
 		} else {
