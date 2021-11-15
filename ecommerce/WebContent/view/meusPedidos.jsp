@@ -55,7 +55,7 @@
 								<p><fmt:formatDate value="<%=pedido.getDtCadastro()%>" pattern="dd/MM/yyyy"/></p>
 							</div>
 							<div class="col-2">
-								<a class="btn btn-blue w-100" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoVH&id=<%=pedido.getId()%>" title="Detalhes">Detalhes</a>	
+								<a class="btn btn-blue w-100" id="detalhePedido<%=pedido.getId() %>" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoVH&id=<%=pedido.getId()%>" title="Detalhes">Detalhes</a>	
 							</div>				
 						</div>
 					<%}

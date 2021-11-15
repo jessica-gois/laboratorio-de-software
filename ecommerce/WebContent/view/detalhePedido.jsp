@@ -198,8 +198,12 @@
 						<div class="col-3">
 							<a class="btn btn-secondary w-100" href="meusPedidos.jsp">Voltar</a>
 						</div>
-						
+					<div class="col-3">
+						<a class="btn white w-100 border" title="Atualizar" alt="Botão que atualiza a tela "
+						href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoVH&id=<%=pedido.getId()%>"><i class="fas fa-redo-alt"></i></a>
 					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>

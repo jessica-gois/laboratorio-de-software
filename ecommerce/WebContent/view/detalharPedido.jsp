@@ -325,9 +325,17 @@
 		<%}%>
 
         <!-- Fim do bloco gerenciamento do pedido -->
+        <div class= "row">
         <div class="col-2 mb-5">
             <a class="btn btn-secondary w-100" href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidosAdminVH" title="Voltar">Voltar</a>
         </div>
-    </div>
+		<div class="col-2">
+			<a class="btn white w-100 border" title="Atualizar"
+				alt="Botão que atualiza a tela "
+				 href="/ecommerce/controlador?acao=consultar&viewHelper=ConsultarPedidoAdminVH&id=<%=pedido.getId()%>"><i
+				class="fas fa-redo-alt"></i></a>
+		</div>
+		</div>
+	</div>
 </body>
 </html>

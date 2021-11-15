@@ -36,7 +36,7 @@
     			CUPONS
   				</a>
   				<a href="/ecommerce/view/cadastrarCupom.jsp" class="list-group-item list-group-item-action">Cadastrar cupons</a>
-  				<a href="#" class="list-group-item list-group-item-action">Consultar cupons</a>
+  				<a href="/ecommerce/view/consultarCupom.jsp" class="list-group-item list-group-item-action">Consultar cupons</a>
   			
   			    <a href="/ecommerce/view/dashboard.jsp" class="list-group-item list-group-item-action active" id="topico">
     			DASHBOARD

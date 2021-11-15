@@ -19,8 +19,7 @@ public class AdicionarCarrinhoVH implements IViewHelper {
 	public EntidadeDominio getEntidade(HttpServletRequest request, HttpServletResponse response) {
 		Livro livro = new Livro();		
 		livro.setId(Conversao.parseStringToInt(request.getParameter("id")));
-		livro.setPesquisa("id");
-			
+		livro.setPesquisa("id");	
 		return livro;
 	}
 

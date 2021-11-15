@@ -97,7 +97,8 @@
 							</div>
 							<div class="col-3">
 								<%if(!cupom.isAplicado()){%>
-									<a class="btn btn-blue" href="/ecommerce/controlador?acao=consultar&viewHelper=AplicarCupomVH&id=<%=cupom.getId()%>">Aplicar cupom</a>	
+									<a class="btn btn-blue" id="aplicarCupom<%=cupom.getId()%>" 
+									href="/ecommerce/controlador?acao=consultar&viewHelper=AplicarCupomVH&id=<%=cupom.getId()%>">Aplicar cupom</a>	
 								<%}else{ %>
 									<a class="btn btn-secondary w-50" href="#">Aplicado</a>	
 								<%}%>
